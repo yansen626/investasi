@@ -15,8 +15,11 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $id
  * @property string $user_id
  * @property string $description
- * @property float $amount
  * @property float $saldo
+ * @property float $amount
+ * @property float $fee
+ * @property float $admin
+ * @property float $transfer_amount
  * @property string $bank_name
  * @property string $bank_acc_name
  * @property string $bank_acc_number
@@ -39,6 +42,9 @@ class WalletStatement extends Eloquent
 
 	protected $casts = [
 		'amount' => 'float',
+		'fee' => 'float',
+		'admin' => 'float',
+		'transfer_amount' => 'float',
 		'saldo' => 'float',
 		'status_id' => 'int'
 	];
@@ -53,8 +59,11 @@ class WalletStatement extends Eloquent
 	    'id',
 		'user_id',
 		'description',
+        'saldo',
 		'amount',
-		'saldo',
+		'fee',
+		'admin',
+		'transfer_amount',
 		'bank_name',
 		'bank_acc_name',
 		'bank_acc_number',
@@ -76,7 +85,7 @@ class WalletStatement extends Eloquent
 		return $this->belongsTo(\App\Models\User::class);
 	}
 
-	public function getUserIdAttribute()
+	public function getUserNameAttribute()
 	{
         $firstName = User::find($this->attributes['user_id']);
         $lastName = User::find($this->attributes['user_id']);
@@ -89,5 +98,17 @@ class WalletStatement extends Eloquent
 
     public function getSaldoAttribute(){
         return number_format($this->attributes['saldo'],0, ",", ".");
+    }
+
+    public function getFeeAttribute(){
+        return number_format($this->attributes['fee'],0, ",", ".");
+    }
+
+    public function getAdminAttribute(){
+        return number_format($this->attributes['admin'],0, ",", ".");
+    }
+
+    public function getTransferAmountAttribute(){
+        return number_format($this->attributes['transfer_amount'],0, ",", ".");
     }
 }

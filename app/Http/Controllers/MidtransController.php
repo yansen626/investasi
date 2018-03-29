@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Libs\TransactionUnit;
 use App\Libs\Utilities;
 use App\Libs\Veritrans;
 use App\Mail\InvoicePembelian;
@@ -125,6 +126,7 @@ class MidtransController extends Controller
                     }
                 }
                 // Transaction type is WALLET TOP UP END
+
                 // Transaction type is INVEST PAYMENT START
                 else{
                     $transaction = Transaction::where('order_id', $orderid)->first();
@@ -132,50 +134,10 @@ class MidtransController extends Controller
                     if($json->status_code == "200"){
                         Utilities::ExceptionLog($orderid.", status_code:200");
                         if(($json->transaction_status == "capture" || $json->transaction_status =="accept") && $json->fraud_status == "accept"){
-                            $transaction->status_id = 5;
 
-                            // Filter payment type
-                            if($json->payment_type == "bank_transfer"){
-                                // Filter bank
-                                if(!empty($json->permata_va_number)){
-                                    $transaction->va_bank = "permata";
-                                    $transaction->va_number = $json->permata_va_number;
-                                }
-                                else if(!empty($json->va_numbers)){
-                                    $transaction->va_bank = $json->va_numbers[0]->bank;
-                                    $transaction->va_number = $json->va_numbers[0]->va_number;
-                                }
-                            }
-                            else if($json->payment_type == "echannel"){
-                                $transaction->va_bank = "mandiri";
-                                $transaction->bill_key = $json->bill_key;
-                                $transaction->biller_code = $json->biller_code;
-                            }
+                            //change status, date etc
+                            TransactionUnit::transactionAfterVerified($orderid);
 
-                            $transaction->modified_on = $dateTimeNow->toDateTimeString();
-                            $transaction->save();
-
-                            //update product data
-                            $productDB = Product::find($transaction->product_id);
-                            $raisedDB = (double) str_replace('.','', $productDB->raised);
-                            $newRaise = (double) str_replace('.','', $transaction->total_price);
-                            $productDB->raised = $raisedDB + $newRaise;
-                            $productDB->save();
-
-                            //Send Email,
-                            $userData = User::find($transaction->user_id);
-                            $payment = PaymentMethod::find($transaction->payment_method_id);
-                            $product = Product::find($transaction->product);
-
-                            $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
-                            Mail::to($userData->email)->send($invoiceEmail);
-
-
-                            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
-                            Mail::to($userData->email)->send($perjanjianLayananEmail);
-
-                            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
-                            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
                         }
                     }
                     else if($json->status_code == "201"){

@@ -49,123 +49,123 @@ class WalletController extends Controller
         return View ('frontend.show-wallet', compact('statementsWithdraw','statementsTopup', 'user'));
     }
 
-    public function DepositShow()
-    {
-        if(!auth()->check()){
-            return redirect()->route('index');
-        }
-        $user = Auth::user();
-        $userId = $user->id;
-
-        $statements = WalletStatement::where('user_id', $userId)->get();
-        return View ('frontend.wallet-deposit', compact('statements'));
-    }
-
-    public function DepositConfirm(Request $request){
-//        if(Input::get('amount') == '-1'){
-//            return redirect()->back()->withErrors('Pilih jumlah top up!', 'default')->withInput($request->all());
+//    public function DepositShow()
+//    {
+//        if(!auth()->check()){
+//            return redirect()->route('index');
 //        }
-
-        if(Input::get('method') == '-1'){
-            return redirect()->back()->withErrors('Pilih metode top up!', 'default')->withInput($request->all());
-        }
-
-        if(empty(Input::get('amount')) || Input::get('amount') === '0'){
-            return redirect()->back()->withErrors('Isi jumlah top up!', 'default')->withInput($request->all());
-        }
-
-//        $amount = 0;
-//        if(Input::get('amount') == '0'){
-//            $amount = floatval(Input::get('custom_amount'));
+//        $user = Auth::user();
+//        $userId = $user->id;
+//
+//        $statements = WalletStatement::where('user_id', $userId)->get();
+//        return View ('frontend.wallet-deposit', compact('statements'));
+//    }
+//
+//    public function DepositConfirm(Request $request){
+////        if(Input::get('amount') == '-1'){
+////            return redirect()->back()->withErrors('Pilih jumlah top up!', 'default')->withInput($request->all());
+////        }
+//
+//        if(Input::get('method') == '-1'){
+//            return redirect()->back()->withErrors('Pilih metode top up!', 'default')->withInput($request->all());
+//        }
+//
+//        if(empty(Input::get('amount')) || Input::get('amount') === '0'){
+//            return redirect()->back()->withErrors('Isi jumlah top up!', 'default')->withInput($request->all());
+//        }
+//
+////        $amount = 0;
+////        if(Input::get('amount') == '0'){
+////            $amount = floatval(Input::get('custom_amount'));
+////        }
+////        else{
+////            $amount = floatval(Input::get('amount'));
+////        }
+//
+//        $amount = (double) str_replace('.','', Input::get('amount'));
+////        $amount = floatval(Input::get('amount'));
+//
+//        $amountStr = number_format($amount, 0, ",", ".");
+//
+//        // Get total top up
+//        $totalAmount = $amount + 4000;
+//        $totalAmountStr = number_format($totalAmount, 0, ",", ".");
+//
+//        $data = [
+//            'amount'            => $amount,
+//            'amountStr'         => $amountStr,
+//            'totalAmount'       => $totalAmount,
+//            'totalAmountStr'    => $totalAmountStr
+//        ];
+//
+//        return View('frontend.wallet-deposit-confirm')->with($data);
+//    }
+//
+//    public function DepositSubmit(Request $request){
+//
+//        $user = Auth::user();
+//        $userId = $user->id;
+//
+//        $paymentMethod = Input::get('method');
+//
+//        // Get unique order id
+//        $orderId = 'WALLET-'. uniqid();
+//
+////        $amount = floatval(Input::get('amount'));
+//        $amount = (double) str_replace('.','', Input::get('amount'));
+//
+//        // Delete existing cart
+//        $carts = Cart::where('user_id', $userId)
+//            ->whereNull('product_id')
+//            ->get();
+//
+//        if($carts->count() > 0){
+//            foreach($carts as $cart){
+//                $cart->delete();
+//            }
+//        }
+//
+//        $adminFee = 0;
+//        if($paymentMethod == 'bank_transfer'){
+//            $adminFee = 4000;
+//        }
+//
+//        // Save temporary data
+//        $cartCreate = Cart::create([
+//            'user_id'               => $userId,
+//            'quantity'              => 1,
+//            'admin_fee'             => 4000,
+//            'order_id'              => $orderId,
+//            'payment_method'        => $paymentMethod,
+//            'invest_amount'         => $amount,
+//            'total_invest_amount'   => $amount + $adminFee
+//        ]);
+//
+//        if($paymentMethod == 'bank_transfer'){
+//            $isSuccess = TransactionUnit::createTransactionTopUp($userId, $cartCreate->id, $orderId);
+//        }
+//        //set data to request
+//        $transactionDataArr = Midtrans::setRequestData($userId, $paymentMethod, $orderId, $cartCreate);
+//
+//        //sending to midtrans
+//        $redirectUrl = Midtrans::sendRequest($transactionDataArr);
+//
+//
+//        return redirect($redirectUrl);
+//    }
+//
+//    public function DepositSuccess($method){
+//        if($method == 'bank_transfer'){
+//            return View('frontend.wallet-deposit-success', compact('method'));
 //        }
 //        else{
-//            $amount = floatval(Input::get('amount'));
+//            dd("OTHERS");
 //        }
-
-        $amount = (double) str_replace('.','', Input::get('amount'));
-//        $amount = floatval(Input::get('amount'));
-
-        $amountStr = number_format($amount, 0, ",", ".");
-
-        // Get total top up
-        $totalAmount = $amount + 4000;
-        $totalAmountStr = number_format($totalAmount, 0, ",", ".");
-
-        $data = [
-            'amount'            => $amount,
-            'amountStr'         => $amountStr,
-            'totalAmount'       => $totalAmount,
-            'totalAmountStr'    => $totalAmountStr
-        ];
-
-        return View('frontend.wallet-deposit-confirm')->with($data);
-    }
-
-    public function DepositSubmit(Request $request){
-
-        $user = Auth::user();
-        $userId = $user->id;
-
-        $paymentMethod = Input::get('method');
-
-        // Get unique order id
-        $orderId = 'WALLET-'. uniqid();
-
-//        $amount = floatval(Input::get('amount'));
-        $amount = (double) str_replace('.','', Input::get('amount'));
-
-        // Delete existing cart
-        $carts = Cart::where('user_id', $userId)
-            ->whereNull('product_id')
-            ->get();
-
-        if($carts->count() > 0){
-            foreach($carts as $cart){
-                $cart->delete();
-            }
-        }
-
-        $adminFee = 0;
-        if($paymentMethod == 'bank_transfer'){
-            $adminFee = 4000;
-        }
-
-        // Save temporary data
-        $cartCreate = Cart::create([
-            'user_id'               => $userId,
-            'quantity'              => 1,
-            'admin_fee'             => 4000,
-            'order_id'              => $orderId,
-            'payment_method'        => $paymentMethod,
-            'invest_amount'         => $amount,
-            'total_invest_amount'   => $amount + $adminFee
-        ]);
-
-        if($paymentMethod == 'bank_transfer'){
-            $isSuccess = TransactionUnit::createTransactionTopUp($userId, $cartCreate->id, $orderId);
-        }
-        //set data to request
-        $transactionDataArr = Midtrans::setRequestData($userId, $paymentMethod, $orderId, $cartCreate);
-
-        //sending to midtrans
-        $redirectUrl = Midtrans::sendRequest($transactionDataArr);
-
-
-        return redirect($redirectUrl);
-    }
-
-    public function DepositSuccess($method){
-        if($method == 'bank_transfer'){
-            return View('frontend.wallet-deposit-success', compact('method'));
-        }
-        else{
-            dd("OTHERS");
-        }
-    }
-
-    public function DepositFailed(){
-        return View('frontend.wallet-deposit-failed');
-    }
+//    }
+//
+//    public function DepositFailed(){
+//        return View('frontend.wallet-deposit-failed');
+//    }
 
     public function WithdrawShow()
     {
@@ -218,6 +218,12 @@ class WalletController extends Controller
                     $accName = Input::get('acc_name');
                     $bank = Input::get('bank');
 
+                    //check for fee and admin
+                    $fee = (double) env('FEE');
+                    $fee_percentage = (double) $amount*env('FEE_PERSENTAGE');
+                    if($fee_percentage > $fee) $fee = $fee_percentage;
+                    $transfer_amount = $amount - $fee;
+
                     $userFinalWallet = $userWallet - $amount;
 
 
@@ -226,8 +232,10 @@ class WalletController extends Controller
                         'id'                => Uuid::generate(),
                         'user_id'           => $userId,
                         'description'       => "Penarikan Dompet (".$bank." - ".$accName." - ".$accNumber.")",
+                        'saldo'             => $userFinalWallet,
                         'amount'            => $amount,
-                        'saldo'            => $userFinalWallet,
+                        'fee'               => $fee,
+                        'transfer_amount'   => $transfer_amount,
                         'bank_name'         => $bank,
                         'bank_acc_name'     => $accName,
                         'bank_acc_number'   => $accNumber,

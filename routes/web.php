@@ -79,6 +79,7 @@ Route::get('/project-request', 'Frontend\ProductController@ProductList')->name('
 Route::prefix('/payment')->group(function (){
     Route::get('/checkout/{id}', 'Frontend\PaymentController@checkout')->name('checkout');
     Route::post('/confirm/{investId}', 'Frontend\PaymentController@pay');
+    Route::get('/pageVA/{orderId}', 'Frontend\PaymentController@pageVA')->name('pageVA');
     Route::get('/success/cc/{userId}', 'Frontend\PaymentController@successCC');
     Route::get('/success/va', 'Frontend\PaymentController@successVA');
     Route::get('/failed/{investId}', 'Frontend\PaymentController@failed');
@@ -129,6 +130,10 @@ Route::prefix('/admin/product')->group(function (){
     Route::get('/create', 'Admin\ProductController@create')->name('product-create');
     Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('product-edit');
     Route::post('/{id}', 'Admin\ProductController@update');
+    Route::get('/collected-fund', 'Admin\ProductController@ProductCollectedFund')->name('product-collected-fund');
+    Route::get('/collected-fund/accept/{id}', 'Admin\ProductController@AcceptCollectedFund');
+    Route::get('/investors/{id}', 'Admin\ProductController@ProductInvestorList')->name('product-investors');
+
 });
 
 // Transaction

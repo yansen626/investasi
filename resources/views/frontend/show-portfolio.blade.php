@@ -45,7 +45,8 @@
                                                 <th>Tanggal Beli</th>
                                                 <th>Jumlah Investasi</th>
                                                 <th>Jenis</th>
-                                                <th>Update Terkini</th>
+                                                <th>Status Pembayaran</th>
+                                                <th>Update Proyek</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -56,10 +57,11 @@
                                                         <td>
                                                             <a href="{{ route('project-detail', ['id' => $trx->product_id]) }}">{{ $trx->Product->name}}</a>
                                                         </td>
-                                                        <td>{{ $trx->created_on }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j F Y')}}</td>
                                                         <td>{{ $trx->total_price }}</td>
                                                         <td>{{ $trx->Product->Category->name }}</td>
-                                                        <td>Tahap Pengumpulan Dana</td>
+                                                        <td>{{ $trx->Status->description }}</td>
+                                                        <td>{{ $trx->Product->Status->description }}</td>
                                                     </tr>
                                                     @php( $idx++ )
                                                         @endforeach
@@ -124,7 +126,7 @@
                                                 <th>Nama</th>
                                                 <th>Tanggal Beli</th>
                                                 <th>Jumlah Investasi</th>
-                                                <th>Update Pembayaran</th>
+                                                <th>Grade/rate</th>
                                                 <th>Status Kolektibilitas</th>
                                             </tr>
                                             </thead>
@@ -138,7 +140,7 @@
                                                         </td>
                                                         <td>{{ $trx->created_on }}</td>
                                                         <td>{{ $trx->total_price }}</td>
-                                                        <td>{{ $trx->total_price }}</td>
+                                                        <td>{{ $trx->Product->business_class }} / {{ $trx->Product->interest_rate }}%</td>
                                                         @php($color = 'background-color: green')
                                                         <td style="{{$color}}">
 
@@ -159,11 +161,11 @@
                             </div>
                             <div class="tab-pane fade" id="portfolio">
                                 <h2>Portfolio Breakdown</h2>
-                                <h5>Dompet : Rp {{ $userDompet }}</h5>
+                                <h5>Dana : Rp {{ $userDompet }}</h5>
                                 <h5>Investasi : Rp {{ $userInvestasi }}</h5>
                                 <h5>Pendapatan : Rp {{ $userPendapatan }}</h5>
 
-                                <input type="hidden" id="dompet" value="{{ $userDompet }}">
+                                <input type="hidden" id="dana" value="{{ $userDompet }}">
                                 <input type="hidden" id="investasi" value="{{ $userInvestasi }}">
                                 <input type="hidden" id="pendapatan" value="{{$userPendapatan }}">
                                 {{--<div id="chart_wrap"><div id="chart_div"></div></div>--}}
@@ -186,7 +188,7 @@
         });
 
         function drawChart() {
-            var dompetFormatedVal = $('#dompet').val();
+            var dompetFormatedVal = $('#dana').val();
             var dompetVal = dompetFormatedVal.replace(".", "");
 
             var investFormatedVal = $('#investasi').val();
@@ -197,7 +199,7 @@
 
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Breakdown'],
-                ['Dompet', parseInt(dompetVal)],
+                ['Dana', parseInt(dompetVal)],
                 ['Investasi', parseInt(investVal)],
                 ['Pendapatan', parseInt(pendapatanVal)]
             ]);

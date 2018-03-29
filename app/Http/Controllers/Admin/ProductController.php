@@ -13,12 +13,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Webpatser\Uuid\Uuid;
 
 class ProductController extends Controller
@@ -45,6 +50,104 @@ class ProductController extends Controller
         $products = Product::Where('status_id', 3)->get()->sortByDesc('created_on');
 
         return View('admin.show-product-requests', compact('products'));
+    }
+
+    public function ProductCollectedFund(){
+        $adminType = Auth::guard('user_admins')->user()->user_type;
+        $products = Product::Where('status_id', 22)->get()->sortByDesc('created_on');
+
+        return View('admin.show-product-collected-funds', compact('products', 'adminType'));
+    }
+
+    public function AcceptCollectedFund($id){
+
+        $product = Product::find($id);
+
+        $adminType = Auth::guard('user_admins')->user()->user_type;
+        //admin confirmation
+        if($product->confirmation_1 == 0 && $adminType == 2){
+            $product->confirmation_1 = 1;
+            $product->save();
+
+            Session::flash('message', 'Admin Berhasil konfirmasi!');
+        }
+        // moderator / supperadmin confirmation
+        else if($product->confirmation_1 == 1 && $product->confirmation_2 == 0 && $adminType == 1){
+
+            DB::transaction(function() use ($product){
+                $product->confirmation_2 = 1;
+                $product->save();
+
+                //send fund to project owner
+                $userDB = User::find($product->user_id);
+                $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
+                $collectedFund = (double) str_replace('.','', $product->raised);
+                $userDB->wallet_amount = $userWalletDB + $collectedFund;
+                $userDB->status_id = 23;
+                $userDB->save();
+
+                //send email notfication to project owner
+
+                Session::flash('message', 'Superadmin Berhasil konfirmasi!');
+            });
+        }
+        else{
+            Session::flash('message', 'Gagal dalam melakukan tindakan!');
+        }
+
+        return Redirect::route('product-collected-fund');
+    }
+
+    public function ProductExpiredFund(){
+        $adminType = Auth::guard('user_admins')->user()->user_type;
+        $products = Product::Where('status_id', 22)->get()->sortByDesc('created_on');
+
+        return View('admin.show-product-expired-funds', compact('products', 'adminType'));
+    }
+    public function AcceptExpiredFund($id){
+
+        $product = Product::find($id);
+
+        $adminType = Auth::guard('user_admins')->user()->user_type;
+        //admin confirmation
+        if($product->confirmation_1 == 0 && $adminType == 2){
+            $product->confirmation_1 = 1;
+            $product->save();
+
+            Session::flash('message', 'Admin Berhasil konfirmasi!');
+        }
+        // moderator / supperadmin confirmation
+        else if($product->confirmation_1 == 1 && $product->confirmation_2 == 0 && $adminType == 1){
+
+            DB::transaction(function() use ($product){
+                $product->confirmation_2 = 1;
+                $product->save();
+
+                //send fund to project owner
+                $userDB = User::find($product->user_id);
+                $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
+                $collectedFund = (double) str_replace('.','', $product->raised);
+                $userDB->wallet_amount = $userWalletDB + $collectedFund;
+                $userDB->status_id = 23;
+                $userDB->save();
+
+                //send email notfication to project owner
+
+                Session::flash('message', 'Superadmin Berhasil konfirmasi!');
+            });
+        }
+        else{
+            Session::flash('message', 'Gagal dalam melakukan tindakan!');
+        }
+
+        return Redirect::route('product-collected-fund');
+    }
+
+    public function ProductInvestorList($id){
+        $productDB = Product::find($id);
+        $transactionDB = Transaction::where('product_id', $id)->get();
+
+        return View('admin.show-product-investors', compact('transactionDB', 'productDB'));
     }
 
     public function create(){

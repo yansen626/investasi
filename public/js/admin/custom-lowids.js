@@ -186,7 +186,7 @@ $("#prod-yes-opt").change(function(){
 function modalPop(id, mode, url){
     if(mode === "accept"){
         var title = "Warning";
-        var content = "Are you sure you want to accept?"
+        var content = "Apakah Anda yakin untuk melanjutkan / menerima?"
         var yes = "Accept"
 
         $("#small-modal-title").html(title);
@@ -197,7 +197,7 @@ function modalPop(id, mode, url){
     }
     else if(mode === "activate"){
         var title = "Warning";
-        var content = "Are you sure you want to activate?"
+        var content = "Apakah anda yakin untuk aktifkan?"
         var yes = "Activate"
 
         $("#small-modal-title").html(title);
@@ -208,7 +208,7 @@ function modalPop(id, mode, url){
     }
     else if(mode === "transfer"){
         var title = "Warning";
-        var content = "Are you sure you want to confirm?"
+        var content = "Apakah anda yakin untuk mengkonfirmasi?"
         var yes = "Confirm"
 
         $("#small-modal-yes").attr("class","btn btn-success");
@@ -220,7 +220,7 @@ function modalPop(id, mode, url){
     }
     else if(mode === "cancel"){
         var title = "Warning";
-        var content = "Are you sure you want to delete?"
+        var content = "Apakah Anda yakin untuk menolak / menghapus?"
         var yes = "Delete"
 
         $("#small-modal-yes").attr("class","btn btn-danger");
@@ -232,7 +232,7 @@ function modalPop(id, mode, url){
     }
     else if(mode === "deactivate"){
         var title = "Warning";
-        var content = "Are you sure you want to deactivate?"
+        var content = "Apakah anda yakin untuk non-aktifkan?"
         var yes = "Deactivate"
 
         $("#small-modal-yes").attr("class","btn btn-danger");

@@ -28,25 +28,42 @@
                     <div class="meta">
                         <h2>Pembayaran Virtual Akun</h2>
                     </div>
-                    <div class="clearfix">
+                    <div class="clearfix text-center">
                         <div class="foundings">
-                            @if($paymentMethod == 'credit_card')
-                                <p>Pembayaran kartu kredit anda telah berhasil diverifikasi</p>
-                            @elseif($paymentMethod == 'dompet')
-                                <p>Pembayaran dengan dompet anda telah berhasil</p>
-                            @else
-                                <p>Pembayaran bank transfer anda telah berhasil diajukan</p>
-                            @endif
+                            <h4>Nomor Virtual Akun = {{ $user->va_acc }}</h4>
+                            <h4>Nama Akun = {{ $user->first_name }} {{$user->last_name}}</h4>
+                            <h4>Total Pembayaran = Rp {{ $transaction->total_payment}}</h4>
+                            <p>Pembayaran maksimal 24 jam</p>
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">ATM Mandiri</button>
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">ATM Bersama</button>
                         </div>
                     </div>
                     <div class="info-block" style="margin: 0; padding: 0;">
-                        @if($paymentMethod == 'credit_card')
-                            <a href="{{ route('portfolio', ['tab' => 'pending']) }}" class="btn btn-big btn-solid">Portfolio Saya</a>
-                            <a href="{{ route('index') }}" class="btn btn-big btn-solid">Beranda</a>
-                        @else
-                            <a href="{{ route('portfolio', ['tab' => 'pending']) }}" class="btn btn-big btn-solid">Status Pembayaran</a>
-                            <a href="{{ route('index') }}" class="btn btn-big btn-solid">Beranda</a>
-                        @endif
+                        <div id="mandiri" class="collapse">
+                            <h3>Pembayaran dengan ATM Mandiri</h3>
+                            <ol>
+                                <li>1. Masukkan kartu ATM dan PIN MANDIRI Anda</li>
+                                <li>2. Masuk ke menu BAYAR/BELI > menu LAINNYA > menu LAINNYA > menu MULTIPAYMENT</li>
+                                <li>3. Masukkan KODE PERUSAHAAN yaitu 88795</li>
+                                <li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>
+                                <li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>
+                                <li>6. Ikuti instruksi untuk menyelesaikan transaksi</li>
+                            </ol>
+                        </div>
+                        <div id="bank_lain" class="collapse">
+                            <h3>Pembayaran dengan ATM Bersama</h3>
+                            <ol>
+                                <li>1. Masukkan kartu ATM dan PIN ATM Anda</li>
+                                <li>2. Pilih menu transfer</li>
+                                <li>3. Masukkan kode Bank Mandiri 008</li>
+                                <li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>
+                                <li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="info-block" style="margin: 0; padding: 0;">
+                        <a href="{{ route('portfolio', ['tab' => 'pending']) }}" class="btn btn-big btn-solid">Status Pembayaran</a>
+                        <a href="{{ route('index') }}" class="btn btn-big btn-solid">Beranda</a>
                     </div>
                 </div>
             </div>

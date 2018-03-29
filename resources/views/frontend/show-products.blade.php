@@ -41,7 +41,7 @@
                                                 <th>Nama</th>
                                                 <th>Total</th>
                                                 <th>Sisa Hari</th>
-                                                <th>Minimum</th>
+                                                <th>Terkumpul</th>
                                                 <th class="hidden-xs hidden-sm">Progress</th>
                                                 <th>Detail</th>
                                             </tr>
@@ -57,8 +57,8 @@
                                                                         <td>{{ $idx }}</td>
                                                                         <td>{{ $product->name }}</td>
                                                                         <td>Rp {{ $product->raising }}</td>
-                                                                        <td>{{ $product->days_left }} </td>
-                                                                        <td>Rp {{ $product->minimum_per_investor }}</td>
+                                                                        <td>{{ $product->days_left }} Hari</td>
+                                                                        <td>Rp {{ $product->raised }}</td>
                                                                         <td class="hidden-xs hidden-sm">
                                                                             <div class="progress-bar-inner">
                                                                                 <div class="progress-bar">

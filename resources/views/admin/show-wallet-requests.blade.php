@@ -30,16 +30,18 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        @include('admin.partials._success')
                         <div class="x_content">
+                            @include('admin.partials._success')
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
                                         <th>Deskripsi</th>
+                                        <th class="text-right">Saldo Terakhir</th>
                                         <th class="text-right">Jumlah Penarikan</th>
-                                        <th class="text-right">Jumlah Saldo</th>
+                                        <th class="text-right">Fee</th>
+                                        <th class="text-right">Jumlah yang ditransfer</th>
                                         <th>Option</th>
                                     </tr>
                                 </thead>
@@ -50,10 +52,12 @@
                                             <td>{{ $idx }}</td>
                                             <td>{{ $statement->date }}</td>
                                             <td>{{ $statement->description }}</td>
-                                            <td class="text-right">Rp {{ $statement->amount }}</td>
                                             <td class="text-right">Rp {{ $statement->saldo }}</td>
+                                            <td class="text-right">Rp {{ $statement->amount }}</td>
+                                            <td class="text-right">Rp {{ $statement->fee }}</td>
+                                            <td class="text-right">Rp {{ $statement->transfer_amount }}</td>
                                             <td>
-                                                <a onclick="modalPop('{{ $statement->id }}', 'accept', '/admin/dompet/accept/')" class="btn btn-primary">Terima</a>
+                                                <a onclick="modalPop('{{ $statement->id }}', 'accept', '/admin/dompet/accept/')" class="btn btn-success">Terima</a>
                                                 <a onclick="modalPop('{{ $statement->id }}', 'cancel', '/admin/dompet/reject/')" class="btn btn-danger">Tolak</a>
                                             </td>
 

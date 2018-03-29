@@ -13,24 +13,24 @@
     <div class="right_col" role="main">
         <!-- top tiles -->
         <div class="row tile_count">
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Investor Baru Terdaftar</span>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Investor Baru 1 Bulan terakhir</span>
                 <div class="count">{{ $newCustomerTotal }}</div>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-money"></i> Transaksi Baru</span>
                 <div class="count">{{ $newOrderTotal }}</div>
             </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-money"></i> Pembayaran Baru</span>
-                <div class="count">{{ $onGoingPaymentTotal }}</div>
-            </div>
+            {{--<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">--}}
+                {{--<span class="count_top"><i class="fa fa-money"></i> Pembayaran Baru</span>--}}
+                {{--<div class="count">{{ $onGoingPaymentTotal }}</div>--}}
+            {{--</div>--}}
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-dollar"></i> Penarikan Dompet</span>
                 <div class="count">{{ $walletWithdraw }}</div>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-money"></i> Pembayaran Bank Transfer</span>
+                <span class="count_top"><i class="fa fa-money"></i> Pembayaran Akun Virtual</span>
                 <div class="count">{{ $onGoingPaymentBankTotal }}</div>
             </div>
             {{--<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">--}}
@@ -74,6 +74,20 @@
                             </div>
                         @endif
 
+                        @if($raisingDone > 0)
+                            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                Terdapat {{ $raisingDone }} Dana proyek telah terkumpul
+                                , Anda dapat mengecek <a style="color: dodgerblue;" href="{{ route('product-collected-fund') }}"><strong>disini</strong></a>
+                            </div>
+                        @endif
+
+                        @if($twoDayTransfer > 0)
+                            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                Terdapat {{ $twoDayTransfer }} Jatuh Tempo pemindahan VA ke RDN
+                                , Anda dapat mengecek <a style="color: dodgerblue;" href="#"><strong>disini</strong></a>
+                            </div>
+                        @endif
+
                         @if($newOrderTotal > 0)
                             <div class="alert alert-warning alert-dismissible fade in" role="alert">
                                 Terdapat {{ $newOrderTotal }} transaksi baru
@@ -81,12 +95,12 @@
                             </div>
                         @endif
 
-                        @if($onGoingPaymentTotal > 0)
-                            <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                                Terdapat {{ $onGoingPaymentTotal }} pembayaran baru
-                                    , Anda dapat mengecek statusnya <a style="color: dodgerblue;" href="{{ route('payment-list') }}"><strong>disini</strong></a>
-                            </div>
-                        @endif
+                        {{--@if($onGoingPaymentTotal > 0)--}}
+                            {{--<div class="alert alert-warning alert-dismissible fade in" role="alert">--}}
+                                {{--Terdapat {{ $onGoingPaymentTotal }} pembayaran baru--}}
+                                    {{--, Anda dapat mengecek statusnya <a style="color: dodgerblue;" href="{{ route('payment-list') }}"><strong>disini</strong></a>--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
 
                         @if($walletWithdraw > 0)
                             <div class="alert alert-warning alert-dismissible fade in" role="alert">

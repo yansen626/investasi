@@ -28,7 +28,7 @@ class HomeController extends Controller
     //
     public function Home(){
 
-        $recentProducts = Product::where('category_id','=', 2)->where('status_id', 1)->orderByDesc('created_on')->take(3)->get();
+        $recentProducts = Product::where('category_id','=', 2)->where('status_id', 21)->orderByDesc('created_on')->take(3)->get();
 
         $recentBlogs = Blog::where('status_id', 1)
             ->orderByDesc('created_at')

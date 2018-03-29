@@ -24,6 +24,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                            @include('admin.partials._success')
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
@@ -31,10 +32,12 @@
                                     {{--<th>Invoice</th>--}}
                                     <th>Customer Name</th>
                                     <th>Payment Method</th>
+                                    <th>Project Name</th>
                                     <th>Total Price</th>
-                                    <th>Payment Code</th>
+                                    <th>Biaya Admin</th>
                                     <th>Total Payment</th>
                                     <th>Order Date</th>
+                                    <th>Status</th>
                                     <th>Option</th>
                                 </tr>
                                 </thead>
@@ -46,21 +49,17 @@
 {{--                                        <td>{{ $trx->invoice }}</td>--}}
                                         <td>{{ $trx->user->first_name }}&nbsp;{{ $trx->user->last_name }}</td>
                                         <td>{{ $trx->payment_method->description }}</td>
+                                        <td>{{ $trx->product->name }}</td>
                                         <td>Rp {{ $trx->total_price }}</td>
-                                        <td>
-                                            @if(!empty($trx->payment_code))
-                                                {{ $trx->payment_code }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
+                                        <td>Rp {{ $trx->admin_fee }}</td>
                                         <td>Rp {{ $trx->total_payment }}</td>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($trx->created_on)->format('j F y')}}</td>
+                                            {{ \Carbon\Carbon::parse($trx->created_on)->format('j F Y')}}</td>
+                                        <td>{{ $trx->status->description }}</td>
                                         <td>
-                                            {{--<a onclick="modalPop('{{ $trx->id }}', 'accept', '/admin/neworder/accept/')" class="btn btn-success">Accept</a>--}}
-                                            {{--<a onclick="rejectModalPop('{{ $trx->id }}')" class="btn btn-danger">Reject</a>--}}
-                                            <a href="/admin/transaction/detail/{{ $trx->id }}" class="btn btn-primary">Detail</a>
+                                            <a onclick="modalPop('{{ $trx->id }}', 'accept', '/admin/neworder/accept/')" class="btn btn-success">Accept</a>
+                                            <a onclick="rejectModalPop('{{ $trx->id }}')" class="btn btn-danger">Reject</a>
+                                            {{--<a href="/admin/transaction/detail/{{ $trx->id }}" class="btn btn-primary">Detail</a>--}}
                                         </td>
                                     </tr>
                                     @php( $idx++ )

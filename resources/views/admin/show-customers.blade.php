@@ -67,6 +67,7 @@
                                     <th>E-mail</th>
                                     <th>First name</th>
                                     <th>Last name</th>
+                                    <th>Wallet Amount</th>
                                     <th>Join Date</th>
                                 </tr>
                                 </thead>
@@ -78,6 +79,7 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}t</td>
+                                        <td>Rp {{ $user->wallet_amount }}</td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('j M Y G:i:s') }}</td>
                                     </tr>
                                     @php( $idx++ )

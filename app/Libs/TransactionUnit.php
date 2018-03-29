@@ -9,19 +9,26 @@
 namespace App\Libs;
 
 
+use App\Mail\InvoicePembelian;
+use App\Mail\PerjanjianLayanan;
+use App\Mail\PerjanjianPinjaman;
 use App\Models\Cart;
+use App\Models\PaymentMethod;
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionWallet;
 use App\Models\User;
 use Carbon\Carbon;
 use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionUnit
 {
     public static function createTransaction($userId, $cartId, $orderId){
         try{
-            $cart = Cart::find($cartId);
 
+            $cart = Cart::find($cartId);
             $user = User::find($userId);
 
             $dateTimeNow = Carbon::now('Asia/Jakarta');
@@ -61,7 +68,49 @@ class TransactionUnit
         }
         catch(\Exception $ex){
             Utilities::ExceptionLog($ex);
+            return false;
         }
+    }
+
+    public static function transactionAfterVerified($orderid){
+
+        DB::transaction(function() use ($orderid){
+            $transaction = Transaction::where('order_id', $orderid)->first();
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+            $transaction->status_id = 5;
+            $transaction->two_day_due_date = $dateTimeNow->addDays(2);
+            $transaction->modified_on = $dateTimeNow->toDateTimeString();
+            $transaction->save();
+
+            //update product data
+            $productDB = Product::find($transaction->product_id);
+            $raisedDB = (double) str_replace('.','', $productDB->raised);
+            $newRaise = (double) str_replace('.','', $transaction->total_price);
+            $productDB->raised = $raisedDB + $newRaise;
+
+            if(($raisedDB + $newRaise) >= $productDB->raising){
+                $productDB->status_id = 22;
+            }
+            $productDB->save();
+
+            //Send Email,
+            $userData = User::find($transaction->user_id);
+            $payment = PaymentMethod::find($transaction->payment_method_id);
+            $product = Product::find($transaction->product);
+
+            $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
+            Mail::to($userData->email)->send($invoiceEmail);
+
+
+            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
+            Mail::to($userData->email)->send($perjanjianLayananEmail);
+
+            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
+            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
+
+            return true;
+        });
     }
 
     public static function createTransactionTopUp($userId, $cartId, $orderId){

@@ -28,11 +28,11 @@
         </div>
     </div>
     <div class="footer-bar" style="background: white; color: #ff7a00;margin-top: 0;font-size: 16px !important;">
-        <a href="https://www.facebook.com/investasime-1033332290157898" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/Indofundid-430973140666740/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
-        <a href="https://twitter.com/investasime7771" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="https://twitter.com/indofund_id" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
-        <a href="https://www.instagram.com/investasime7777/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/indofund.id/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
         <a href="https://www.youtube.com/channel/UCLV2VznCGF7XFSzjuKARzrQ" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
         <br><br>

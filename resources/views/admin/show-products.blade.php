@@ -55,6 +55,7 @@
                                     <th>Terkumpul</th>
                                     <th>Minimum</th>
                                     <th>Progress</th>
+                                    <th>Status</th>
                                     <th>Option</th>
                                 </tr>
                                 </thead>
@@ -68,17 +69,13 @@
                                                     <td>{{ $idx }}</td>
                                                     <td>{{ $product->name }}</td>
                                                     <td>Rp {{ $product->raising }}</td>
-                                                    <td>{{ $product->days_left }} </td>
+                                                    <td>{{ $product->days_left }} hari</td>
                                                     <td>Rp {{ $product->raised }}</td>
                                                     <td>Rp {{ $product->minimum_per_investor }}</td>
+                                                    <td>{{$percentage}}%</td>
+                                                    <td>{{ $product->status->description }}</td>
                                                     <td>
-                                                        <div class="progress-bar-inner">
-                                                            <div class="progress-bar">
-                                                                <span data-percent="{{$percentage}}"><span class="pretng">{{$percentage}}%</span> </span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
+                                                        <a href="{{ route('product-investors', ['id'=>$product->id]) }}" class="btn btn-primary">Detail Pendana</a>
                                                         <a href="{{ route('project-detail', ['id' => $product->id]) }}" target="_blank">
                                                             <button class="btn btn-primary">Detail</button>
                                                         </a>

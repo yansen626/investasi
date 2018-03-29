@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Redirect;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades;
 
 class DompetController extends Controller
@@ -52,38 +53,43 @@ class DompetController extends Controller
     }
 
     public function acceptOrder($id){
-        $trx = WalletStatement::find($id);
+        DB::transaction(function() use ($id){
+            $trx = WalletStatement::find($id);
 
-        $trx->status_id = 6;
-        $trx->date = Carbon::now('Asia/Jakarta');
-        $trx->save();
+            $trx->status_id = 6;
+            $trx->date = Carbon::now('Asia/Jakarta');
+            $trx->save();
 
-        Session::flash('message', 'Wallet Statement Accepted!');
+            Session::flash('message', 'Penarikan Dana Accepted!');
 
-        //Send Email
-        $userData = User::find($trx->user_id);
-        $acceptEmail = new AcceptPenarikan($trx, $userData);
-        Mail::to($userData->email)->send($acceptEmail);
+            //Send Email
+            $userData = User::find($trx->user_id);
+            $acceptEmail = new AcceptPenarikan($trx, $userData);
+            Mail::to($userData->email)->send($acceptEmail);
+        });
 
         return redirect::route('dompet-request');
     }
 
     public function rejectOrder($id){
-        $trx = WalletStatement::find($id);
-
-        $trx->status_id = 7;
-        $trx->date = Carbon::now('Asia/Jakarta');
-        $trx->save();
-
-        $user = User::find($trx->user_id);
-        $userWallet = (double) str_replace('.','', $user->wallet_amount);
-        $amount = (double) str_replace('.','', $trx->amount);
-        $userWalletFinal = $userWallet + $amount;
-        $user->wallet_amount = $userWalletFinal;
-        $user->save();
+        DB::transaction(function() use ($id){
+            $trx = WalletStatement::find($id);
 
 
-        Session::flash('message', 'Wallet Statement Rejected!');
+            $trx->status_id = 7;
+            $trx->date = Carbon::now('Asia/Jakarta');
+            $trx->save();
+
+            $user = User::find($trx->user_id);
+            $userWallet = (double) str_replace('.','', $user->wallet_amount);
+            $amount = (double) str_replace('.','', $trx->amount);
+            $userWalletFinal = $userWallet + $amount;
+            $user->wallet_amount = $userWalletFinal;
+            $user->save();
+
+
+            Session::flash('message', 'Penarikan Dana Rejected!');
+        });
 
         return redirect::route('dompet-request');
     }

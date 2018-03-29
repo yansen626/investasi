@@ -14,6 +14,7 @@ use App\Libs\Midtrans;
 use App\Libs\TransactionUnit;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,22 +102,29 @@ class PaymentController extends Controller
                 if($paymentMethod == 'bank_transfer'){
                     error_log("CHECK!");
                     $isSuccess = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
+                    if($isSuccess){
+                        return redirect()->route('pageVA', ['orderId' => $orderId]);
+                    }
                 }
-
-                //set data to request
-                $transactionDataArr = Midtrans::setRequestData($userId, Input::get('checkout-payment-method-input'), $orderId, $cartCreate);
+                else{
+                    //set data to request
+                    $transactionDataArr = Midtrans::setRequestData($userId, Input::get('checkout-payment-method-input'), $orderId, $cartCreate);
 //                dd($transactionDataArr);
-                //sending to midtrans
-                $redirectUrl = Midtrans::sendRequest($transactionDataArr);
+                    //sending to midtrans
+                    $redirectUrl = Midtrans::sendRequest($transactionDataArr);
 //                dd($redirectUrl);
 
-                return redirect($redirectUrl);
+                    return redirect($redirectUrl);
+                }
             }
             //if pay with dompet
             else{
                 $userDB = User::find($userId);
                 if($userDB->wallet_amount < $investAmount){
                     $isSuccess = TransactionUnit::createTransaction($userId, $cart->id + 1, $cart->order_id);
+
+                    //change status, date etc
+                    TransactionUnit::transactionAfterVerified($cart->order_id);
 
                     $paymentMethod = 'dompet';
                     return View('frontend.checkout-success', compact('paymentMethod'));
@@ -140,6 +148,18 @@ class PaymentController extends Controller
 
             $paymentMethod = 'credit_card';
             return View('frontend.checkout-success', compact('paymentMethod'));
+        }
+        catch(\Exception $ex){
+
+        }
+    }
+
+    public function pageVA($orderId){
+        try{
+            $paymentMethod = 'va';
+            $transaction = Transaction::where('order_id', $orderId)->first();
+            $user = User::find($transaction->user_id);
+            return View('frontend.checkout-VA', compact('paymentMethod', 'transaction', 'user'));
         }
         catch(\Exception $ex){
 

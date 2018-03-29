@@ -34,6 +34,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $is_secondary
  * @property string $meta_tag_description
  * @property string $meta_tag_image
+ * @property int $confirmation_1
+ * @property int $confirmation_2
  * @property int $status_id
  * @property string $created_by
  * @property \Carbon\Carbon $created_on
@@ -56,7 +58,6 @@ class Product extends Eloquent
 	//protected $dateFormat = "U";
 
 	protected $casts = [
-		'user_id' => 'int',
 		'raising' => 'float',
 		'external_commitment' => 'float',
 		'raised' => 'float',
@@ -96,6 +97,8 @@ class Product extends Eloquent
         'is_secondary',
         'meta_tag_description',
         'meta_tag_image',
+        'confirmation_1',
+        'confirmation_2',
 		'status_id',
 		'created_by',
 		'created_on',

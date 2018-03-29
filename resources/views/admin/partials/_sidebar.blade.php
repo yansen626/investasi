@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Investasi.me</span></a>
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Indofund.id</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -52,11 +52,6 @@
                             <i class="fa fa-user"></i> Subscribe List
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('content-edit') }}">
-                            <i class="fa fa-file-text"></i> Edit Content
-                        </a>
-                    </li>
                     <li><a><i class="fa fa-tags"></i> Vendor List <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('vendor-list') }}">Tampilkan</a></li>
@@ -64,16 +59,21 @@
                             {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ route('dompet-list') }}">
-                            <i class="fa fa-money"></i> Semua Penarikan Dana
-                        </a>
-                    </li>
-                    <li><a><i class="fa fa-tags"></i> Produk Investasi <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-tags"></i> Proyek List <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('product-list') }}">Tampilkan</a></li>
                             {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('content-edit') }}">
+                            <i class="fa fa-file-text"></i> Edit Content
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('dompet-list') }}">
+                            <i class="fa fa-money"></i> Semua Penarikan Dana
+                        </a>
                     </li>
                     <li><a><i class="fa fa-tags"></i> Blog <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
