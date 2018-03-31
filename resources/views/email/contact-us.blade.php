@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="initial-scale=1.0"><meta name="format-detection" content="telephone=no"><title>Investasi.me - Sukses Penarikan Dana</title><style type="text/css">.socialLinks {font-size: 6px;}
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="initial-scale=1.0"><meta name="format-detection" content="telephone=no"><title>Indofund.id - Sukses Penarikan Dana</title><style type="text/css">.socialLinks {font-size: 6px;}
         .socialLinks a {display: inline-block;}
         .socialIcon {display: inline-block;vertical-align: top;padding-bottom: 0px;border-radius: 100%;}
         table.vb-row, table.vb-content {border-collapse: separate;}
@@ -60,7 +60,7 @@
 
                                 <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="166"><tr><td align="center" valign="top"><![endif]-->
                                 <div class="mobile-full" style="display: inline-block; max-width: 166px; vertical-align: top; width: 100%;">
-                                    <a target="_new" href="www.investasi.me" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #f3f3f3; text-decoration: none;"><img width="166" vspace="0" hspace="0" border="0" alt="" style="border: 0px;display: block;width: 100%;max-width: 166px;" src="https://mosaico.io/srv/f-dtn0k95/img?src=https%3A%2F%2Fmosaico.io%2Ffiles%2Fdtn0k95%2Flogo%2520%25281%2529.png&method=resize&params=350%2Cnull"></a>
+                                    <a target="_new" href="www.indofund.id" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #f3f3f3; text-decoration: none;"><img width="166" vspace="0" hspace="0" border="0" alt="" style="border: 0px;display: block;width: 100%;max-width: 166px;" src="https://mosaico.io/srv/f-dtn0k95/img?src=https%3A%2F%2Fmosaico.io%2Ffiles%2Fdtn0k95%2Flogo%2520%25281%2529.png&method=resize&params=350%2Cnull"></a>
                                 </div>
                                 <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
 
@@ -94,7 +94,7 @@
 
                 <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
                 <div class="oldwebkit" style="max-width: 570px;">
-                    <table width="570" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" align="center"><tbody><tr><td class="long-text links-color" style="text-align: center; font-size: 13px; color: #919191; font-weight: normal; text-align: center; font-family: Verdana, Geneva, sans-serif;"><p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">investasi.me @ 2017 All rights reserved.</p></td>
+                    <table width="570" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" align="center"><tbody><tr><td class="long-text links-color" style="text-align: center; font-size: 13px; color: #919191; font-weight: normal; text-align: center; font-family: Verdana, Geneva, sans-serif;"><p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">indofund.id @ 2017 All rights reserved.</p></td>
                         </tr></tbody></table></div>
                 <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
             </td>

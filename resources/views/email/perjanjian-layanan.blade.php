@@ -757,7 +757,7 @@ kepada Para Pihak dengan alamat sebagai berikut:</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>Alamat Surat Elektronik:</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
-  justify;line-height:normal'><span lang=IN>info@investasi.me</span></p>
+  justify;line-height:normal'><span lang=IN>info@indofund.id</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>&nbsp;</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:

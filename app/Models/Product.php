@@ -32,6 +32,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $interest_rate
  * @property string $installment_per_month
  * @property string $interest_per_month
+ * @property string $business_class
  * @property int $is_secondary
  * @property string $meta_tag_description
  * @property string $meta_tag_image
@@ -97,6 +98,7 @@ class Product extends Eloquent
         'interest_rate',
         'installment_per_month',
         'interest_per_month',
+        'business_class',
         'is_secondary',
         'meta_tag_description',
         'meta_tag_image',
