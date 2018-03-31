@@ -41,7 +41,7 @@ class RequestWithdrawInvestor extends Mailable
      */
     public function build()
     {
-        return $this->subject("Penarikan Dana Investasi me")
+        return $this->subject("Penarikan Dana Indofund")
             ->view('email.request-withdraw-investor')->with([
             'statement'     => $this->statement,
             'user'          => $this->user,

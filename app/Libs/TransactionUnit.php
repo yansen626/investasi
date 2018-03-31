@@ -89,7 +89,9 @@ class TransactionUnit
             $newRaise = (double) str_replace('.','', $transaction->total_price);
             $productDB->raised = $raisedDB + $newRaise;
 
-            if(($raisedDB + $newRaise) >= $productDB->raising){
+            //checking if fund 100% or not
+            $raisingDB = (double) str_replace('.','', $productDB->raising);
+            if(($raisedDB + $newRaise) >= $raisingDB){
                 $productDB->status_id = 22;
             }
             $productDB->save();

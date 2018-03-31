@@ -43,7 +43,7 @@ class PerjanjianPinjaman extends Mailable
      */
     public function build()
     {
-        return $this->subject("Perjanjian Pinjaman di Investasi me")
+        return $this->subject("Perjanjian Pinjaman di Indofund")
             ->view('email.perjanjian-pinjaman')->with([
             'transaction' => $this->transaction,
             'paymentMethod' => $this->paymentMethod,

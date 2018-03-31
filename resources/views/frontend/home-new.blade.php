@@ -250,7 +250,7 @@
                                 <div class="col-md-2">
                                     Waktu
                                     <br>
-                                    <span style="color: #ff7a00">{{$product->tenor_loan}} Tahun </span>
+                                    <span style="color: #ff7a00">{{$product->tenor_loan}} Bulan </span>
                                 </div>
                                 <div class="col-md-2">
                                     Progress {{$percentage}}%

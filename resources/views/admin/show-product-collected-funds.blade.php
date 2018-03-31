@@ -30,6 +30,7 @@
                                     <th>Nama Proyek</th>
                                     {{--<th>Category</th>--}}
                                     <th>Pengumpulan Dana </th>
+                                    <th>Dana Terkumpul</th>
                                     <th>Konfirmasi Admin</th>
                                     <th>Konfirmasi Superadmin</th>
                                     <th>Tanggal Pembuatan</th>
@@ -45,6 +46,7 @@
                                             <td>{{ $product->name}}</td>
                                             {{--<td>{{ $product->category->name }}</td>--}}
                                             <td>Rp {{ $product->raising}}</td>
+                                            <td>Rp {{ $product->raised}}</td>
                                             <td><input type="checkbox" @if($product->confirmation_1 == 1) checked @endif onclick="return false;" /></td>
                                             <td><input type="checkbox" @if($product->confirmation_2 == 1) checked @endif onclick="return false;" /></td>
                                             <td>

@@ -75,16 +75,17 @@ class ProductController extends Controller
         else if($product->confirmation_1 == 1 && $product->confirmation_2 == 0 && $adminType == 1){
 
             DB::transaction(function() use ($product){
-                $product->confirmation_2 = 1;
-                $product->save();
 
                 //send fund to project owner
                 $userDB = User::find($product->user_id);
                 $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
                 $collectedFund = (double) str_replace('.','', $product->raised);
                 $userDB->wallet_amount = $userWalletDB + $collectedFund;
-                $userDB->status_id = 23;
                 $userDB->save();
+
+                $product->confirmation_2 = 1;
+                $product->status_id = 23;
+                $product->save();
 
                 //send email notfication to project owner
 

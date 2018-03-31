@@ -32,7 +32,7 @@ class AcceptPenarikan extends Mailable
      */
     public function build()
     {
-        return $this->subject("Penarikan Dana Diterima Investasi me")
+        return $this->subject("Penarikan Dana Diterima Indofund")
             ->view('email.accept-penarikan')->with([
             'statement' => $this->statement,
             'user' => $this->user,

@@ -219,7 +219,7 @@ class VendorController extends Controller
                 'twitter_acc' => $request['twitter_acc'],
                 'username' => $request['username'],
                 'email_token' => base64_encode($request['email']),
-                'status_id' => 3,
+                'status_id' => 11,
                 'password' => bcrypt($request['password']),
                 'created_at'        => $dateTimeNow->toDateTimeString()
             ]);

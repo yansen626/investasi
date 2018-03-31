@@ -43,7 +43,7 @@
                                                 <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Tanggal Beli</th>
-                                                <th>Jumlah Investasi</th>
+                                                <th class="text-right">Jumlah Pendanaan</th>
                                                 <th>Jenis</th>
                                                 <th>Status Pembayaran</th>
                                                 <th>Update Proyek</th>
@@ -58,7 +58,7 @@
                                                             <a href="{{ route('project-detail', ['id' => $trx->product_id]) }}">{{ $trx->Product->name}}</a>
                                                         </td>
                                                         <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j F Y')}}</td>
-                                                        <td>{{ $trx->total_price }}</td>
+                                                        <td class="text-right">Rp {{ $trx->total_price }}</td>
                                                         <td>{{ $trx->Product->Category->name }}</td>
                                                         <td>{{ $trx->Status->description }}</td>
                                                         <td>{{ $trx->Product->Status->description }}</td>
@@ -125,7 +125,7 @@
                                                 <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Tanggal Beli</th>
-                                                <th>Jumlah Investasi</th>
+                                                <th class="text-right">Jumlah Pendanaan</th>
                                                 <th>Grade/rate</th>
                                                 <th>Status Kolektibilitas</th>
                                             </tr>
@@ -139,7 +139,7 @@
                                                             <a href="{{ route('project-detail', ['id' => $trx->product_id]) }}">{{ $trx->Product->name}}</a>
                                                         </td>
                                                         <td>{{ $trx->created_on }}</td>
-                                                        <td>{{ $trx->total_price }}</td>
+                                                        <td class="text-right">Rp {{ $trx->total_price }}</td>
                                                         <td>{{ $trx->Product->business_class }} / {{ $trx->Product->interest_rate }}%</td>
                                                         @php($color = 'background-color: green')
                                                         <td style="{{$color}}">

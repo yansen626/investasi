@@ -73,7 +73,7 @@
                                     </h5>
                                     <h4>
                                         <br>
-                                        <a href="{{route('download', ['filename' => 'test.pdf'])}}">Download Product Disclosure Statement</a>
+                                        <a href="{{route('download', ['filename' => $product->prospectus_path])}}">Download Product Disclosure Statement</a>
                                     </h4>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
                             <label>
                                 <input type="checkbox" name="check1" id="check1" onclick="check()">
                                 Saya telah membaca dan memahami isi dari prospektus produk investasi ini
-                                (<a href="{{route('download', ['filename' => 'test.pdf'])}}"><span>Download Product Disclosure Statement</span></a>),
+                                (<a href="{{route('download', ['filename' => $product->prospectus_path])}}"><span>Download Product Disclosure Statement</span></a>),
                                 dan saya telah menyetujui <a target="_blank" href="{{route('term-condition')}}">syarat dan ketentuan</a> dari indofund.id
 
                             </label>

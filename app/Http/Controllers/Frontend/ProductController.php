@@ -117,7 +117,7 @@ class ProductController extends Controller
 
     public function DownloadFile($filename)
     {
-        $file_path = public_path('files/'.$filename);
+        $file_path = public_path('storage/project/'.$filename);
         return response()->download($file_path);
     }
     public function GetProspectus(Request $request)

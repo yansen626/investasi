@@ -32,7 +32,7 @@ class Subscribe extends Mailable
      */
     public function build()
     {
-        return $this->subject("Subscribe ke Investasi me")
+        return $this->subject("Subscribe ke Indofund")
             ->view('email.subscribe')->with([
                 'email' => $this->email,
                 'name' => $this->name
