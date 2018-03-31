@@ -48,7 +48,7 @@ class HomeController extends Controller
         $section4_1 = Content::where('section', 'home_4_title')->first();
         $section4_2 = Content::where('section', 'home_4_row_1')->first();
         $section4_3 = Content::where('section', 'home_4_row_2')->first();
-        $sectionPopup = Content::where('section', 'home_popup')->first();
+        $section_Popup = Content::where('section', 'home_popup')->first();
 
         $user = null;
         $pendingTransaction = null;
@@ -71,7 +71,7 @@ class HomeController extends Controller
 //                if($pendingTransaction > 0 || $onGoingTransaction > 0 || $finishTransaction > 0){
 //                    return View('frontend.show-blog-urgents', compact('blogs'));
 //                }
-                return View('frontend.show-blog-urgents', compact('blogs'));
+                return View('frontend.show-blog-urgents', compact('blogs', 'section_Popup'));
             }
 
             $recentProductCount = Product::where('status_id', 1)->orderByDesc('created_on')->take(5)->count();
@@ -95,7 +95,7 @@ class HomeController extends Controller
             'section_4_1' => $section4_1,
             'section_4_2' => $section4_2,
             'section_4_3' => $section4_3,
-            'section_Popup' => $sectionPopup
+            'section_Popup' => $section_Popup
 
         ];
 

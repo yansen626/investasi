@@ -245,12 +245,12 @@
                                 <div class="col-md-2">
                                     Rating Rate
                                     <br>
-                                    <span style="color: #ff7a00">A 14%</span>
+                                    <span style="color: #ff7a00">{{$product->business_class}} {{$product->interest_rate}}%</span>
                                 </div>
                                 <div class="col-md-2">
                                     Waktu
                                     <br>
-                                    <span style="color: #ff7a00">1 tahun</span>
+                                    <span style="color: #ff7a00">{{$product->tenor_loan}} Tahun </span>
                                 </div>
                                 <div class="col-md-2">
                                     Progress {{$percentage}}%

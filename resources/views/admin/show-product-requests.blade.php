@@ -56,8 +56,8 @@
                                             <td><img src="{{ URL::asset('storage/project/'.$product->image_path) }}" width="100"></td>
                                             <td>
 
-                                                <a href="/admin/vendor/request-accept/{{ $product->vendor_id }}"class="btn btn-success">Accept</a>
-                                                <a href="/admin/vendor/request-reject/{{ $product->vendor_id }}"class="btn btn-danger">Reject</a>
+                                                <a onclick="modalPop('{{ $product->vendor_id }}', 'accept', '/admin/vendor/request-accept/')" class="btn btn-sm btn-success">Accept</a>
+                                                <a onclick="modalPop('{{ $product->vendor_id }}', 'cancel', '/admin/vendor/request-reject/')" class="btn btn-sm btn-danger">Reject</a>
                                                 {{--<a href="#" class="btn btn-primary">Terima</a>--}}
                                                 {{--<a href="#" class="btn btn-danger">Tolak</a>--}}
                                             </td>
@@ -76,4 +76,7 @@
     </div>
     <!-- /page content -->
 
+    <!-- small modal -->
+    @include('admin.partials._small_modal')
+    <!-- /small modal -->
 @endsection

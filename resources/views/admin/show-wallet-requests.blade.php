@@ -60,7 +60,6 @@
                                                 <a onclick="modalPop('{{ $statement->id }}', 'accept', '/admin/dompet/accept/')" class="btn btn-success">Terima</a>
                                                 <a onclick="modalPop('{{ $statement->id }}', 'cancel', '/admin/dompet/reject/')" class="btn btn-danger">Tolak</a>
                                             </td>
-
                                         </tr>
                                         @php( $idx++ )
                                             @endforeach

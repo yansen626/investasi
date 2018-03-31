@@ -90,7 +90,7 @@ Route::prefix('/payment')->group(function (){
 Route::get('/referral', 'Frontend\ReferralController@ShowReferral');
 
 //Vendor
-Route::get('/owner/{vendorObj}', 'Frontend\VendorController@show')->name('vendor-profile-show');
+Route::get('/vendor/{vendorObj}', 'Frontend\VendorController@show')->name('vendor-profile-show');
 Route::get('/pengajuan-update', 'Frontend\VendorController@RequestUpdate')->name('update-request');
 
 

@@ -23,6 +23,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property float $raised
  * @property int $equity_offered
  * @property int $days_left
+ * @property int $tenor_loan
  * @property float $minimum_per_investor
  * @property string $description
  * @property string $youtube_link
@@ -63,6 +64,7 @@ class Product extends Eloquent
 		'raised' => 'float',
 		'equity_offered' => 'int',
 		'days_left' => 'int',
+		'tenor_loan' => 'int',
         'interest_rate' => 'int',
         'installment_per_month'  => 'float',
         'interest_per_month'  => 'float',
@@ -86,6 +88,7 @@ class Product extends Eloquent
         'raised',
         'equity_offered',
         'days_left',
+        'tenor_loan',
         'minimum_per_investor',
         'description',
         'youtube_link',
@@ -173,6 +176,7 @@ class Product extends Eloquent
             $daysLeft = $dateTimeNow->diffInDays(Carbon::parse($this->due_date));
             return $daysLeft;
         }
+        return $this->attributes['days_left'];
     }
 
     public function getYoutubeLinkAttribute(){

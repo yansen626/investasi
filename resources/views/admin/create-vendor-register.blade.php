@@ -153,6 +153,11 @@
                                                     <h4>Gambar Proyek / Produk</h4>
                                                     {!! Form::file('project_image', array('id' => 'photo', 'class' => 'file')) !!}
                                                 </div>
+
+                                                <div class="field col-sm-12">
+                                                    <h4>Upload product disclosure statement</h4>
+                                                    {!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}
+                                                </div>
                                                 <div class="field col-sm-12">
                                                     <h4>Link Video Youtube</h4>
                                                     <input type="text" name="youtube" value="{{old('youtube')}}" class="form-control col-md-7 col-xs-12">
@@ -186,7 +191,11 @@
                                                     <input type="number" name="raising" value="{{old('raising')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
-                                                    <h4>Durasi Pendanaan</h4>
+                                                    <h4>Durasi Pinjaman (bulan)</h4>
+                                                    <input type="number" name="tenor_loan" value="{{old('tenor_loan')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-sm-12">
+                                                    <h4>Durasi Pengumpulan Dana (hari)</h4>
                                                     <input type="number" name="days_left" value="{{old('days_left')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
@@ -200,6 +209,7 @@
                                                         <option {{ old('business_class') == "A" ? "selected":"" }} value="A">A</option>
                                                         <option {{ old('business_class') == "B" ? "selected":"" }} value="B">B</option>
                                                         <option {{ old('business_class') == "C" ? "selected":"" }} value="C">C</option>
+                                                        <option {{ old('business_class') == "D" ? "selected":"" }} value="D">D</option>
                                                     </select>
                                                 </div>
                                                 <div class="field col-sm-12">
@@ -209,10 +219,6 @@
                                                 <div class="field col-sm-12">
                                                     <h4>Bunga/bulan</h4>
                                                     <input type="number" name="interest_per_month" value="{{old('interest_per_month')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Upload product disclosure statement</h4>
-                                                    {!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}
                                                 </div>
                                             </div>
 
@@ -249,7 +255,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="field col-sm-12">
-                                                    <h4>Lama Usaha Berdiri * </h4>
+                                                    <h4>Lama Usaha (Tahun) * </h4>
                                                     <input type="text" name="establish_since" value="{{old('establish_since')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">

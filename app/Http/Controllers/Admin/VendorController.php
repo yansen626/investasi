@@ -32,7 +32,7 @@ class VendorController extends Controller
 
 
     public function index(){
-        $vendors = Vendor::orderBy('created_at', 'ASC')->get();
+        $vendors = Vendor::orderBy('created_at', 'Desc')->get();
 
         return View('admin.show-vendors', compact('vendors'));
     }
@@ -47,7 +47,7 @@ class VendorController extends Controller
     }
 
     public function RequestList(){
-        $vendors = Vendor::Where('status_id', 3)->get();
+        $vendors = Vendor::Where('status_id', 3)->orderBy('created_at', 'Desc')->get();
 
         return View('admin.show-vendor-requests', compact('vendors'));
     }
@@ -106,6 +106,7 @@ class VendorController extends Controller
             'category'              => 'required',
             'raising'               => 'required',
             'days_left'             => 'required',
+            'tenor_loan'            => 'required',
             'description'           => 'required',
             'interest_rate'           => 'required',
             'installment_per_month'           => 'required',
@@ -169,11 +170,12 @@ class VendorController extends Controller
                 'project_tagline.required'   => 'Tagline Proyek harus diisi',
                 'category.required'   => 'Ketegori harus diisi',
                 'raising.required'   => 'Total Pendanaan harus diisi',
-                'days_left.required'   => 'Durasi Pendanaan harus diisi',
+                'days_left.required'   => 'Durasi Pengumpulan Dana harus diisi',
+                'tenor_loan.required'   => 'Durasi Pinjaman harus diisi',
                 'description.required'   => 'Deskripsi Proyek harus diisi',
                 'interest_rate.required'   => 'Suku Bunga Proyek harus diisi',
                 'installment_per_month.required'   => 'Cicilan / Bulan harus diisi',
-                'interestpermonth.required'   => 'Bunga / Bulan harus diisi',
+                'interest_per_month.required'   => 'Bunga / Bulan harus diisi',
                 'prospectus.required'   => 'Product Disclosure Statement Proyek harus diisi',
 
                 'vendor_image.required'   => 'Gambar Perusahaan harus diisi',
@@ -201,6 +203,7 @@ class VendorController extends Controller
         }
 
         DB::transaction(function() use ($request){
+//            dd($request);
             $userID = Uuid::generate();
             $vendorID = Uuid::generate();
             $dateTimeNow = Carbon::now('Asia/Jakarta');
@@ -273,8 +276,10 @@ class VendorController extends Controller
                 'days_left' => $request['days_left'],
                 'description' => $request['description'],
                 'interest_rate' => $request['interest_rate'],
+                'business_class' => $request['business_class'],
                 'installment_per_month' => $request['installment_per_month'],
                 'interest_per_month' => $request['interest_per_month'],
+                'tenor_loan' => $request['tenor_loan'],
                 'is_secondary' => 0,
                 'status_id' => 3,
                 'created_on'        => $dateTimeNow->toDateTimeString()
@@ -321,13 +326,12 @@ class VendorController extends Controller
             $newProduct->save();
 
 
-            return Redirect::route('vendor-list');
         });
 //
 //        if ($validator->fails()) {
 //            return back()->withErrors("Gagal dalam melakukan tindakan!")->withInput();
 //        }
 
-        return Redirect::route('product-collected-fund');
+        return Redirect::route('vendor-list');
     }
 }

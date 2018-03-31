@@ -26,19 +26,16 @@
                     <div class="col-md-2" style="float: left;">
                         <div class="col-md-12">
                             <img src="{{ URL::asset('frontend_images/default-profile.jpg') }}" style="height:30%;width:30%;border-radius: 50%;">
-                            <p class="font-14">
+                            <p data-toggle="modal" data-target="#profileModal" class="font-14" style="cursor: pointer;">
                                 <b>{{ $product->Vendor->name }}</b> <br>
                                 {{$projectCount}} Project
                             </p>
                         </div>
-                        {{--<div class="col-md-12">--}}
-                            {{--<button data-toggle="modal" data-target="#profileModal" class="btn btn-solid "><span>Selengkapnya</span></button>--}}
-                        {{--</div>--}}
                     </div>
                     <div class="col-md-10">
                         <h2>{{$product->name}}</h2>
 
-                        <p>{{$product->description}}</p>
+                        <div style="max-height: 45px;">{!! \App\Libs\Utilities::TruncateString($product->description) !!}</div>
                     </div>
 
                 </div>
@@ -238,7 +235,7 @@
                             <br><br>
                             <span>Industri : {{$product->vendor->business_type}}</span>
                             <br><br>
-                            <span>Agunan : </span>
+                            {{--<span>Agunan : </span>--}}
                             {{--<br><br>--}}
                             {{--<h3>Keterangan Tambahan</h3>--}}
                             {{--<br><br>--}}
