@@ -72,7 +72,7 @@
 
                         <div>
                             {{--<h1><i class="fa fa-paw"></i> Lowids</h1>--}}
-                            <p>©2017 All Rights Reserved. investasi.me <br> by PT Bursa Akselerasi Indonesia</p>
+                            <p>©2018 All Rights Reserved. <br> by PT Bursa Akselerasi Indonesia</p>
                         </div>
                     </div>
                 </form>

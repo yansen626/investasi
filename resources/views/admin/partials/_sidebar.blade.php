@@ -88,32 +88,32 @@
                             <li><a href="{{ route ('coupon-create') }}">Tambah</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-edit"></i> Banner <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a>Slider Banner<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li class="sub-menu"><a href="{{ route('slider-banner-list') }}">Tampilkan</a></li>
-                                    <li><a href="{{ route('slider-banner-create') }}">Tambah</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
                     <li><a><i class="fa fa-shopping-cart"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('transaction-list') }}">Histori</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-bar-chart"></i> Reports <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('report-form') }}">Tampilkan</a></li>
-                        </ul>
-                    </li>
-                    <li><a><i class="fa fa-edit"></i> Status <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('status-list') }}">Tampilkan</a></li>
-                            <li><a href="{{ route('status-create') }}">Tambah</a></li>
-                        </ul>
-                    </li>
+                    {{--<li><a><i class="fa fa-edit"></i> Banner <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a>Slider Banner<span class="fa fa-chevron-down"></span></a>--}}
+                                {{--<ul class="nav child_menu">--}}
+                                    {{--<li class="sub-menu"><a href="{{ route('slider-banner-list') }}">Tampilkan</a></li>--}}
+                                    {{--<li><a href="{{ route('slider-banner-create') }}">Tambah</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li><a><i class="fa fa-bar-chart"></i> Reports <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('report-form') }}">Tampilkan</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li><a><i class="fa fa-edit"></i> Status <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('status-list') }}">Tampilkan</a></li>--}}
+                            {{--<li><a href="{{ route('status-create') }}">Tambah</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     <li><a><i class="fa fa-user-secret"></i> Admin <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('admin-list') }}">Tampilkan</a></li>

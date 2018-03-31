@@ -62,7 +62,6 @@
                                     <th>No</th>
                                     <th>User Name</th>
                                     <th>Company Name</th>
-                                    <th>Description</th>
                                     <th>Created Date</th>
                                     <th>Option</th>
                                 </tr>
@@ -74,12 +73,12 @@
                                             <td>{{ $idx }}</td>
                                             <td>{{ $vendor->user->first_name }} {{ $vendor->user->last_name }}</td>
                                             <td>{{ $vendor->name }}</td>
-                                            <td>{{ $vendor->description }}</td>
                                             <td>{{ \Carbon\Carbon::parse($vendor->created_at)->format('j M Y G:i:s') }}</td>
                                             <td>
                                                 <a href="/admin/vendor/detail/{{ $vendor->id }}" class="btn btn-primary">Detail</a>
-                                                <a href="/admin/vendor/request-accept/{{ $vendor->id }}"class="btn btn-success">Accept</a>
-                                                <a href="/admin/vendor/request-reject/{{ $vendor->id }}"class="btn btn-danger">Reject</a>
+
+                                                <a onclick="modalPop('{{ $vendor->id }}', 'accept', '/admin/vendor/request-accept/')" class="btn btn-sm btn-success">Accept</a>
+                                                <a onclick="modalPop('{{ $vendor->id }}', 'cancel', '/admin/vendor/request-reject/')" class="btn btn-sm btn-danger">Reject</a>
                                             </td>
                                         </tr>
                                         @php( $idx++ )
@@ -94,4 +93,7 @@
     </div>
     <!-- /page content -->
 
+    <!-- small modal -->
+    @include('admin.partials._small_modal')
+    <!-- /small modal -->
 @endsection

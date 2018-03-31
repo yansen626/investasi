@@ -15,14 +15,11 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
-use Intervention\Image\Facades\DB;
 use Webpatser\Uuid\Uuid;
 use Carbon\Carbon;
 
@@ -57,32 +54,36 @@ class VendorController extends Controller
 
 
     public function AcceptRequest($id){
-        $dateTimeNow = Carbon::now('Asia/Jakarta');
+        DB::transaction(function() use ($id){
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
 
-        $vendor = Vendor::find($id);
-        $vendor->status_id = 1;
-        $vendor->save();
+            $vendor = Vendor::find($id);
+            $vendor->status_id = 1;
+            $vendor->save();
 
-        $product = Product::where('vendor_id', $id)->first();
-        $product->status_id = 21;
-        $product->due_date = $dateTimeNow->addDays($product->days_left);
-        $product->save();
+            $product = Product::where('vendor_id', $id)->first();
+            $product->status_id = 21;
+            $product->due_date = $dateTimeNow->addDays($product->days_left);
+            $product->save();
 
-        Session::flash('message', 'Vendor and Project Accepted!');
+            Session::flash('message', 'Vendor and Project Accepted!');
+        });
         return Redirect::route('vendor-request');
     }
 
     public function RejectRequest($id){
-        $vendor = Vendor::find($id);
-        $vendor->status_id = 7;
-        $vendor->save();
+        DB::transaction(function() use ($id){
+            $vendor = Vendor::find($id);
+            $vendor->status_id = 7;
+            $vendor->save();
 
 
-        $product = Product::where('vendor_id', $id)->first();
-        $product->status_id = 7;
-        $product->save();
+            $product = Product::where('vendor_id', $id)->first();
+            $product->status_id = 7;
+            $product->save();
 
-        Session::flash('message', 'Vendor and Project Rejected!');
+            Session::flash('message', 'Vendor and Project Rejected!');
+        });
         return Redirect::route('vendor-request');
     }
 
@@ -322,10 +323,10 @@ class VendorController extends Controller
 
             return Redirect::route('vendor-list');
         });
-
-        if ($validator->fails()) {
-            return back()->withErrors("Gagal dalam melakukan tindakan!")->withInput();
-        }
+//
+//        if ($validator->fails()) {
+//            return back()->withErrors("Gagal dalam melakukan tindakan!")->withInput();
+//        }
 
         return Redirect::route('product-collected-fund');
     }

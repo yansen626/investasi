@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades;
 
-class DompetController extends Controller
+class WalletController extends Controller
 {
     public function __construct()
     {

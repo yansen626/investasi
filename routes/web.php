@@ -96,6 +96,7 @@ Route::get('/pengajuan-update', 'Frontend\VendorController@RequestUpdate')->name
 
 //End Frontend Routing
 
+
 // Rajaongkir
 Route::get('rajaongkir/subdistrict/{cityId}', 'frontend\UserAddressController@getSubdistrict');
 
@@ -267,12 +268,12 @@ Route::prefix('admin/vendor')->group(function(){
 
 // Wallet
 Route::prefix('admin/dompet')->group(function(){
-    Route::get('/', 'Admin\DompetController@index')->name('dompet-list');
-    Route::get('/request', 'Admin\DompetController@newRequest')->name('dompet-request');
+    Route::get('/', 'Admin\WalletController@index')->name('dompet-list');
+    Route::get('/request', 'Admin\WalletController@newRequest')->name('dompet-request');
     Route::get('/detail/{id}', 'Admin\TransactionController@detail')->name('transaction-detail');
-    Route::get('/accept/{id}', 'Admin\DompetController@AcceptOrder');
-    Route::get('/reject/{id}', 'Admin\DompetController@RejectOrder');
-    Route::get('/download-wallet', 'Admin\DompetController@downloadExcel')->name('download-wallet');
+    Route::get('/accept/{id}', 'Admin\WalletController@AcceptOrder');
+    Route::get('/reject/{id}', 'Admin\WalletController@RejectOrder');
+    Route::get('/download-wallet', 'Admin\WalletController@downloadExcel')->name('download-wallet');
 });
 
 // Blog

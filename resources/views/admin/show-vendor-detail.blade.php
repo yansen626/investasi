@@ -164,8 +164,8 @@
 
                                         @if($product->status_id == 3)
                                             <div class="text-center mtop20">
-                                                <a onclick="modalPop('{{ $product->id }}', 'accept', '/admin/owner/accept/')" class="btn btn-sm btn-success">Accept</a>
-                                                <a onclick="modalPop('{{ $product->id }}', 'cancel', '/admin/owner/reject/')" class="btn btn-sm btn-danger">Reject</a>
+                                                <a onclick="modalPop('{{ $product->id }}', 'accept', '/admin/vendor/request-accept/')" class="btn btn-sm btn-success">Accept</a>
+                                                <a onclick="modalPop('{{ $product->id }}', 'cancel', '/admin/vendor/request-reject/')" class="btn btn-sm btn-danger">Reject</a>
                                             </div>
                                         @endif
                                     </div>
