@@ -91,7 +91,7 @@
 
                 <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
                 <div class="oldwebkit" style="max-width: 570px;">
-                    <table width="570" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" align="center"><tbody><tr><td class="long-text links-color" style="text-align: center; font-size: 13px; color: #919191; font-weight: normal; text-align: center; font-family: Verdana, Geneva, sans-serif;"><p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">indofund.id @ 2017 All rights reserved.</p></td>
+                    <table width="570" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" align="center"><tbody><tr><td class="long-text links-color" style="text-align: center; font-size: 13px; color: #919191; font-weight: normal; text-align: center; font-family: Verdana, Geneva, sans-serif;"><p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">indofund.id @ 2018 All rights reserved.</p></td>
                         </tr></tbody></table></div>
                 <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
             </td>

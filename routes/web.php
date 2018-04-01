@@ -127,10 +127,12 @@ Route::prefix('/admin/product')->group(function (){
     Route::get('/', 'Admin\ProductController@index')->name('product-list');
     Route::get('/request', 'Admin\ProductController@ProductRequest')->name('product-request');
     Route::get('/request-news/{productId}', 'Admin\ProductController@RequestBlogProduct')->name('product-news-request');
-    Route::post('/', 'Admin\ProductController@store');
-    Route::get('/create', 'Admin\ProductController@create')->name('product-create');
+
+    Route::get('/create/{id}', 'Admin\ProductController@create')->name('product-create');
+    Route::post('/create-submit', 'Admin\ProductController@store')->name('product-request-submit');
     Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('product-edit');
     Route::post('/{id}', 'Admin\ProductController@update');
+
     Route::get('/collected-fund', 'Admin\ProductController@ProductCollectedFund')->name('product-collected-fund');
     Route::get('/collected-fund/accept/{id}', 'Admin\ProductController@AcceptCollectedFund');
     Route::get('/investors/{id}', 'Admin\ProductController@ProductInvestorList')->name('product-investors');

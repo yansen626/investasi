@@ -19,12 +19,12 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div id="title-header" class="x_title">
-                            <h2>Buat Proyek</h2>
+                            <h2>Buat Proyek | Vendor = {{$vendorDB->name}}</h2>
                             <div class="clearfix"></div>
                         </div>
 
                         <div class="x_content">
-                            <form class="comment-form row altered" id="owner-form" method="POST" enctype="multipart/form-data" action="{{route('vendor-request-submit')}}">
+                            <form class="comment-form row altered" id="owner-form" method="POST" enctype="multipart/form-data" action="{{route('product-request-submit')}}">
                                 {{ csrf_field() }}
 
                                 <div class="field col-sm-12">
@@ -60,6 +60,8 @@
                                         <div class="tab-content">
                                             {{--tab 1--}}
                                             <div class="tab-pane active" id="project">
+
+                                                <input type="hidden" name="vendor_id" value="{{ $vendorDB->id }}" class="form-control col-md-7 col-xs-12">
                                                 <div class="field col-sm-12">
                                                     <h4>Gambar Proyek / Produk</h4>
                                                     {!! Form::file('project_image', array('id' => 'photo', 'class' => 'file')) !!}
