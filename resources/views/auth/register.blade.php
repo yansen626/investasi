@@ -15,7 +15,7 @@
 
                             <div class="field col-sm-12 {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <h4>E-mail</h4>
-                                <input type="email" name="email">
+                                <input type="email" name="email" value="{{ old('email') }}">
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -24,7 +24,7 @@
                             </div>
                             <div class="field col-sm-12 {{ $errors->has('first_name') ? ' has-error' : '' }}">
                                 <h4>Nama Depan</h4>
-                                <input type="text" name="first_name">
+                                <input type="text" name="first_name" value="{{ old('first_name') }}">
                                 @if ($errors->has('first_name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('first_name') }}</strong>
@@ -33,7 +33,7 @@
                             </div>
                             <div style="margin-top: 0;" class="field col-sm-12 {{ $errors->has('last_name') ? ' has-error' : '' }}">
                                 <h4>Nama Belakang</h4>
-                                <input type="text" name="last_name">
+                                <input type="text" name="last_name" value="{{ old('last_name') }}">
                                 @if ($errors->has('last_name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('last_name') }}</strong>
@@ -42,7 +42,7 @@
                             </div>
                             <div style="margin-top: 0;" class="field col-sm-12 {{ $errors->has('username') ? ' has-error' : '' }}">
                                 <h4>Username</h4>
-                                <input type="text" name="username">
+                                <input type="text" name="username" value="{{ old('username') }}">
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="field col-sm-12 {{ $errors->has('phone') ? ' has-error' : '' }}">
                                 <h4>Nomor Handphone</h4>
-                                <input type="number" name="phone">
+                                <input type="number" name="phone" value="{{ old('phone') }}">
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
