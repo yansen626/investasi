@@ -125,7 +125,7 @@
                         <tbody>
                         <tr>
                             <td class="long-text links-color" style="text-align: center; font-size: 13px; color: #919191; font-weight: normal; text-align: center; font-family: Verdana, Geneva, sans-serif;">
-                                <p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">indofund.id @ 2017&nbsp;All rights reserved.</p>
+                                <p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">indofund.id @ 2018&nbsp;All rights reserved.</p>
                             </td>
                         </tr>
                         </tbody>

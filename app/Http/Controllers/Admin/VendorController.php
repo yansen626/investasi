@@ -68,7 +68,7 @@ class VendorController extends Controller
 
             Session::flash('message', 'Vendor and Project Accepted!');
         });
-        return Redirect::route('vendor-request');
+        return Redirect::route('product-request');
     }
 
     public function RejectRequest($id){
@@ -84,7 +84,7 @@ class VendorController extends Controller
 
             Session::flash('message', 'Vendor and Project Rejected!');
         });
-        return Redirect::route('vendor-request');
+        return Redirect::route('product-request');
     }
 
     public function RequestUpdate(){

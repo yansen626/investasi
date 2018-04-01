@@ -15,6 +15,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Vendor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -151,119 +152,122 @@ class ProductController extends Controller
         return View('admin.show-product-investors', compact('transactionDB', 'productDB'));
     }
 
-    public function create(){
+    public function create($id){
+        $vendorDB = Vendor::find($id);
         $categories = Category::all();
 
-        return View('admin.create-product', compact('categories'));
+        return View('admin.create-product', compact('categories', 'vendorDB'));
     }
 
     public function store(Request $request){
 
         $validator = Validator::make($request->all(),[
-            'category'              => 'required|option_not_default',
-            'name'                  => 'required',
-            'price'                 => 'required',
-            'weight'                => 'required',
-            'qty'                   => 'required',
-            'product-featured'      => 'required|image|mimes:jpeg,jpg,png'
-        ],[
-            'option_not_default'    => 'Select a category'
-        ]);
+            'vendor_id'         => 'required',
+            'project_image'         => 'required',
+            'project_name'          => 'required',
+            'project_tagline'       => 'required',
+            'category'              => 'required',
+            'raising'               => 'required',
+            'days_left'             => 'required',
+            'tenor_loan'            => 'required',
+            'description'           => 'required',
+            'interest_rate'           => 'required',
+            'installment_per_month'           => 'required',
+            'interest_per_month'           => 'required',
+            'prospectus'           => 'required',
+        ],
+            [
+                'project_image.required'   => 'Gambar Proyek harus diisi',
+                'project_name.required'   => 'Nama Proyek harus diisi',
+                'project_tagline.required'   => 'Tagline Proyek harus diisi',
+                'category.required'   => 'Ketegori harus diisi',
+                'raising.required'   => 'Total Pendanaan harus diisi',
+                'days_left.required'   => 'Durasi Pengumpulan Dana harus diisi',
+                'tenor_loan.required'   => 'Durasi Pinjaman harus diisi',
+                'description.required'   => 'Deskripsi Proyek harus diisi',
+                'interest_rate.required'   => 'Suku Bunga Proyek harus diisi',
+                'installment_per_month.required'   => 'Cicilan / Bulan harus diisi',
+                'interest_per_month.required'   => 'Bunga / Bulan harus diisi',
+                'prospectus.required'   => 'Product Disclosure Statement Proyek harus diisi',
 
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-        else{
-            $price = $request->input('price');
-            $priceDouble = (double) str_replace('.','', $price);
-            $weight = (double) str_replace('.','', Input::get('weight'));
-
-            $dateTimeNow = Carbon::now('Asia/Jakarta');
-
-            $product = Product::create([
-                'id'            => Uuid::generate(),
-                'category_id'   => Input::get('category'),
-                'name'          => Input::get('name'),
-                'price'         => $priceDouble,
-                'weight'        => $weight,
-                'quantity'      => Input::get('qty'),
-                'created_on'    => $dateTimeNow->toDateTimeString(),
-                'status_id'     => 1
             ]);
 
-            if(Input::get('options') == 'percent'){
-                $discountPercent = (double) Input::get('discount-percent');
-                $product->discount = $discountPercent;
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
-                $discountAmount = $priceDouble / 100 * $discountPercent;
-                $product->price_discounted = $priceDouble - $discountAmount;
-            }
-            else if(Input::get('options') == 'flat'){
-                $discountFlat = (double) str_replace('.','', Input::get('discount-flat'));
-                $product->discount_flat = $discountFlat;
+        DB::transaction(function() use ($request){
+//            dd($request);
+            $vendorDB = Vendor::find($request['vendor_id']);
+            $vendorID = $vendorDB->id;
+            $userID = $vendorDB->user_id;
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
 
-                $product->price_discounted = $priceDouble - $discountFlat;
-            }
-            else{
-                $product->price_discounted = $priceDouble;
-            }
+//        create new product
+            $newProduct = Product::create([
+                'id' =>Uuid::generate(),
+                'category_id' => $request['category'],
+                'name' => $request['project_name'],
+                'user_id' => $userID,
+                'vendor_id' => $vendorID,
+                'tagline' => $request['project_tagline'],
+                'raising' => $request['raising'],
+                'days_left' => $request['days_left'],
+                'description' => $request['description'],
+                'interest_rate' => $request['interest_rate'],
+                'business_class' => $request['business_class'],
+                'installment_per_month' => $request['installment_per_month'],
+                'interest_per_month' => $request['interest_per_month'],
+                'tenor_loan' => $request['tenor_loan'],
+                'is_secondary' => 0,
+                'status_id' => 3,
+                'created_on'        => $dateTimeNow->toDateTimeString()
+            ]);
 
-            if(!empty(Input::get('description'))){
-                $product->description = Input::get('description');
-            }
+            //get youtube code
+            $url = $request['youtube'];
+            if(strpos($url, 'https://www.youtube.com') !== false){
+                if(strpos($url, 'embed') !== false){
+                    $splitedUrl = explode("https://www.youtube.com/embed/",$url);
+                    $newProduct->youtube_link = $splitedUrl[1];
 
-            $product->save();
-            $savedId = $product->id;
-
-            if(!empty($request->file('product-featured'))){
-                $img = Image::make($request->file('product-featured'));
-
-                // Get image extension
-                $extStr = $img->mime();
-                $ext = explode('/', $extStr, 2);
-
-                $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_0.'. $ext[1];
-
-                $img->save(public_path('storage\product' . '\\'. $filename));
-
-                $productImgFeatured = ProductImage::create([
-                    'product_id'    => $savedId,
-                    'path'          => $filename,
-                    'featured'      => 1
-                ]);
-
-                $productImgFeatured->save();
-            }
-
-            if(!empty($request->file('product-photos'))){
-                $idx = 1;
-                foreach($request->file('product-photos') as $img){
-                    error_log('index: '. $idx);
-                    $photo = Image::make($img);
-
-                    // Get image extension
-                    $extStr = $photo->mime();
-                    $ext = explode('/', $extStr, 2);
-
-                    $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_'. $idx. '.'. $ext[1];
-
-
-                    $photo->save(public_path('storage\product'. '\\'. $filename));
-
-                    $productPhoto = ProductImage::create([
-                        'product_id'    => $savedId,
-                        'path'          => $filename,
-                        'featured'      => 0
-                    ]);
-
-                    $productPhoto->save();
-                    $idx++;
+                }
+                else if(strpos($url, 'watch?') !== false){
+                    $splitedUrl = explode("https://www.youtube.com/watch?v=",$url);
+                    $newProduct->youtube_link = $splitedUrl[1];
+                }
+                else{
+                    $splitedUrl = explode("https://www.youtube.com",$url);
+                    $newProduct->youtube_link = $splitedUrl[1];
                 }
             }
-            return redirect::route('product-list');
-        }
+            if(strpos($url, 'youtu.be') !== false){
+                $splitedUrl = explode("https://youtu.be/",$url);
+                $newProduct->youtube_link = $splitedUrl[1];
+            }
+
+            // Get image extension
+            $img = Image::make($request->file('project_image'));
+            $extStr = $img->mime();
+            $ext = explode('/', $extStr, 2);
+
+            $filename = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms'). '.'. $ext[1];
+
+            $img->save(public_path('storage/project/'. $filename), 75);
+            $newProduct->image_path = $filename;
+
+            // save pdf
+            $filenamePDF = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms').'.pdf';
+            $destinationPath = public_path('storage/project/');
+
+            $request->file('prospectus')->move($destinationPath, $filenamePDF);
+            $newProduct->prospectus_path = $filenamePDF;
+            $newProduct->save();
+
+
+        });
+
+        return Redirect::route('vendor-list');
     }
 
     public function edit($id){

@@ -76,7 +76,9 @@
                                             {{--<td>{{ $vendor->description }}</td>--}}
                                             <td>{{ \Carbon\Carbon::parse($vendor->created_at)->format('j M Y G:i:s') }}</td>
                                             <td>
+                                                {{--<a href="{{ route('product-create', ['id'=>$vendor->id]) }}" class="btn btn-success">Tambah Produk</a>--}}
                                                 <a href="/admin/vendor/detail/{{ $vendor->id }}" class="btn btn-primary">Detail</a>
+
                                                 {{--@if(\Illuminate\Support\Facades\Auth::guard('user_admins')->user()->id == $user->id)--}}
                                                     {{--<a href="/admin/vendor/edit/{{ $user->id }}" class="btn btn-primary">Edit</a>--}}
                                                 {{--@else--}}
