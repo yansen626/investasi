@@ -314,11 +314,11 @@ tanggal <span style='background:yellow'>[asdffdsa]</span> oleh dan antara:</span
 
     <p class=MsoListParagraph style='text-align:justify;text-indent:-36.0pt;
 line-height:110%'><span lang=IN>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><b>PT </b><b><span lang=IN>[Fintech]</span></b><span lang=IN>, sebuah
+</span></span><b>PT </b><b><span lang=IN>Bursa Akselerasi Indonesia</span></b><span lang=IN>, sebuah
 </span>perseroan<span lang=IN> terbatas yang didirikan berdasarkan hukum Negara
-Republik Indonesia, beralamat di</span><span lang=IN> </span><span
-                style='background:yellow'>[asdffdsa]</span> <span lang=EN-GB>yang dalam hal ini
-diwakili oleh </span><span style='background:yellow'>[asdffdsa]</span> dalam
+Republik Indonesia, beralamat di</span><span lang=IN> </span><span>Menara Satrio Lantai 14 unit 5, Jalan PRof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span>
+        <span lang=EN-GB>yang dalam hal ini
+diwakili oleh </span><span>Ryan Filbert</span> dalam
         kedudukannya selaku Direktur yang dalam hal ini bertindak selaku penerima kuasa
         dari <span lang=IN>Pemberi Pinjaman. </span><span lang=IN> </span><span
                 lang=IN> </span></p>
@@ -329,9 +329,9 @@ diwakili oleh </span><span style='background:yellow'>[asdffdsa]</span> dalam
 
     <p class=MsoListParagraph style='text-align:justify;text-indent:-36.0pt;
 line-height:110%'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>[<span style='background:yellow'>[asdffdsa]</span>, Warga Negara
-        Indonesia, pemegang Kartu Tanda Penduduk nomor <span style='background:yellow'>[asdffdsa]</span>
-        yang beralamat di <span style='background:yellow'>[asdffdsa]</span> (untuk
+</span>[<span>{{ $user->first_name }} {{ $user->last_name }}</span>, Warga Negara
+        Indonesia, pemegang Kartu Tanda Penduduk nomor <span>{{ $user->identity_number }}</span>
+        yang beralamat di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span> (untuk
         selanjutnya disebut sebagai “<b>Penerima Pinjaman</b>”)]</p>
 
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
@@ -455,10 +455,10 @@ kecuali informasi yang diberikan tersebut dinyatakan sebagai rahasia;</span></p>
                     lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>Penyelenggara</span></b><span
                 style='font-family:"Calibri","sans-serif"'>” </span><span style='font-size:
 11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>adalah PT </span><b><span
-                    lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>[Fintech]
+                    lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>Bursa Akselerasi Indonesia
 </span></b><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>sebuah
 perseroan terbatas yang didirikan berdasarkan hukum Negara Republik Indonesia,
-beralamat di <span style='background:yellow'>[asdffdsa]</span>. </span></p>
+beralamat di <span>Menara Satrio Lantai 14 unit 5, Jalan PRof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span>. </span></p>
 
     <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:
 36.75pt;text-align:justify;line-height:110%'><span style='font-size:11.0pt;
@@ -522,7 +522,7 @@ line-height:110%;font-family:"Calibri","sans-serif"'> “<b>Rekening </b></span
 sebagaimana yang didefinisikan pada Pasal 4.1.2;</span></p>
 
     <p class=MsoListParagraph style='text-align:justify;line-height:110%'>“<b>Situs</b>”
-        adalah situs www.<b> </b><span style='background:yellow'>[asdffdsa]</span>.id
+        adalah situs www.<b> </b><span>indofund</span>.id
         yang dikelola oleh <span lang=IN>Penyelenggara</span>; </p>
 
     <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:

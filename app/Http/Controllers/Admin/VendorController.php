@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Libs\Utilities;
 use App\Models\Vendor;
 use App\Models\Category;
 use App\Models\Product;
@@ -207,7 +208,9 @@ class VendorController extends Controller
             $userID = Uuid::generate();
             $vendorID = Uuid::generate();
             $dateTimeNow = Carbon::now('Asia/Jakarta');
+
 //        create new user
+            $va_acc = Utilities::VANumber();
             $newUser = User::create([
                 'id' =>$userID,
                 'first_name' => $request['name'],
@@ -218,6 +221,7 @@ class VendorController extends Controller
                 'ig_acc' => $request['ig_acc'],
                 'twitter_acc' => $request['twitter_acc'],
                 'username' => $request['username'],
+                'va_acc' => $va_acc,
                 'email_token' => base64_encode($request['email']),
                 'status_id' => 11,
                 'password' => bcrypt($request['password']),

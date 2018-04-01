@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Libs\Utilities;
 use App\Models\AutoNumber;
 use App\Models\Referral;
 use Illuminate\Support\Facades\Input;
@@ -86,37 +87,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //Make Va Account Number
-        //From 000001 - 999999
-        $auto_number = AutoNumber::where('data', 'va_acc')->first();
-        $mod = strlen($auto_number->next_no);
-        $autoNumber = "";
-
-        switch ($mod){
-            case 1:
-                $autoNumber = "00000" . $auto_number->next_no;
-                break;
-            case 2:
-                $autoNumber = "0000" . $auto_number->next_no;
-                break;
-            case 3:
-                $autoNumber = "000" . $auto_number->next_no;
-                break;
-            case 4:
-                $autoNumber = "00" . $auto_number->next_no;
-                break;
-            case 5:
-                $autoNumber = "0" . $auto_number->next_no;
-                break;
-            case 6:
-                $autoNumber = $auto_number->next_no;
-                break;
-        }
-
-        $auto_number->next_no++;
-        $auto_number->save();
-
-        $va_acc = $autoNumber;
+        $va_acc = Utilities::VANumber();
 
         return User::create([
             'id' =>Uuid::generate(),

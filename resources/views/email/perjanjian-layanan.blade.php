@@ -189,7 +189,7 @@ text-indent:-36.0pt;line-height:110%'><span lang=IN>(1)<span style='font:7.0pt "
 </span></span><span lang=IN>PT Bursa Akselerasi Indonesia </span><span
                 lang=IN>, suatu perseroan terbatas yang didirikan berdasarkan hukum </span>Negara
         <span lang=IN>Republik Indonesia, yang memiliki domisili di <span>
-                Menara Satrio Lantai 14 unit 5, Jalan Prof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span> (“<b>Penyelenggara</b>”); dan</span></p>
+                Menara Satrio Lantai 14 unit 5, Jalan PRof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span> (“<b>Penyelenggara</b>”); dan</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=IN>(2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -753,7 +753,7 @@ kepada Para Pihak dengan alamat sebagai berikut:</span></p>
   10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>Penyelenggara:</span></p>
                 <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
   10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>U.p:
-  </span><span lang=IN style='background:yellow'>[asdffdsa]</span></p>
+  </span><span lang=IN>Ryan Filbert</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>Alamat Surat Elektronik:</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:

@@ -8,6 +8,7 @@
 
 namespace App\Libs;
 
+use App\Models\AutoNumber;
 use App\Models\Transaction;
 use GuzzleHttp\Client;
 use Monolog\Handler\StreamHandler;
@@ -88,5 +89,39 @@ class Utilities
             $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
         }
         return $string;
+    }
+
+    public static function VANumber (){
+        //Make Va Account Number
+        //From 000001 - 999999
+        $auto_number = AutoNumber::where('data', 'va_acc')->first();
+        $mod = strlen($auto_number->next_no);
+        $autoNumber = "";
+
+        switch ($mod){
+            case 1:
+                $autoNumber = "00000" . $auto_number->next_no;
+                break;
+            case 2:
+                $autoNumber = "0000" . $auto_number->next_no;
+                break;
+            case 3:
+                $autoNumber = "000" . $auto_number->next_no;
+                break;
+            case 4:
+                $autoNumber = "00" . $auto_number->next_no;
+                break;
+            case 5:
+                $autoNumber = "0" . $auto_number->next_no;
+                break;
+            case 6:
+                $autoNumber = $auto_number->next_no;
+                break;
+        }
+
+        $auto_number->next_no++;
+        $auto_number->save();
+
+        return "88795".$autoNumber;
     }
 }

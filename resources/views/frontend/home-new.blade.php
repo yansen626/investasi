@@ -290,7 +290,7 @@
             <div class="section-name one">
                 <h2>Artikel & Berita Proyek Terbaru</h2>
                 <div class="short-text">
-                    <h5>Update terkini & ikuti berita terbaru Invesetasi.me</h5>
+                    <h5>Update terkini & ikuti berita terbaru Indofund.id</h5>
                 </div>
             </div>
             <div class="row">
