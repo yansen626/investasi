@@ -37,11 +37,6 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Product List</h2>
-                            <div class="nav navbar-right">
-                                <a href="{{ route('product-create') }}" class="btn btn-app">
-                                    <i class="fa fa-plus"></i> Add
-                                </a>
-                            </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -85,11 +80,9 @@
                                                     </td>
                                                 </tr>
                                                 @php( $idx++ )
-                                                    @endforeach
+                                            @endforeach
                                 </tbody>
                             </table>
-
-
                         </div>
                     </div>
                 </div>

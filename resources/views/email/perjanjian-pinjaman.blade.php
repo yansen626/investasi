@@ -345,8 +345,7 @@ sebagai ”<b>Pihak</b>” dan secara bersama-sama disebut sebagai ”<b>Para Pi
 margin-left:36.0pt;text-align:justify;text-indent:-36.0pt;line-height:110%'><span
                 lang=EN-GB>A.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang=EN-GB>Penerima Pinjaman memiliki keinginan untuk
-meminjam dana sejumlah </span><span lang=EN-GB>Rp </span><span lang=EN-GB
-                                                               style='background:yellow'>[asdffdsa]</span><span lang=EN-GB> <span
+meminjam dana sejumlah </span><span lang=EN-GB>Rp </span><span lang=EN-GB>{{ $transaction->total_price }}</span><span lang=EN-GB> <span
                     style='background:yellow'>(&#9679;)</span> </span><span lang=EN-GB>dari Pemberi
 Pinjaman.</span></p>
 
@@ -393,8 +392,8 @@ font-family:"Calibri","sans-serif"'>” adalah biaya yang dikenakan sehubungan
 dengan penggunaan layanan Situs;</span></p>
 
     <p class=MsoListParagraph style='text-align:justify;line-height:110%'>“<b>Pinjaman”</b>
-        adalah Pinjaman yang diberikan oleh Pemberi Pinjaman melalui <b>[Fintech]</b><b>
-        </b>kepada Penerima Pinjaman sebesar Rp <span style='background:yellow'>[asdffdsa]</span>
+        adalah Pinjaman yang diberikan oleh Pemberi Pinjaman melalui <b>PT Bursa Akselerasi Indonesia</b><b>
+        </b>kepada Penerima Pinjaman sebesar Rp <span>{{ $transaction->total_price }}</span>
         (<span style='background:yellow'>[asdffdsa]</span> Rupiah); </p>
 
     <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:
@@ -577,7 +576,7 @@ TUJUAN</span> PENGGUNAAN PINJAMAN</b></p>
                 lang=IN>Dengan tunduk pada ketentuan-ketentuan dari Perjanjian Pinjaman ini</span>
         dan yang terdapat dalam Situs <span lang=IN>termasuk Syarat dan Ketentuan Umum,
 Pemberi Pinjaman telah setuju untuk menyediakan </span>suatu Pinjaman dalam
-        jumlah sebesar Rp <span style='background:yellow'>[asdffdsa]</span> (<span
+        jumlah sebesar Rp <span>{{ $transaction->total_price }}</span> (<span
                 style='background:yellow'>[asdffdsa]</span> Rupiah).</p>
 
     <p class=MsoListParagraph style='text-align:justify;text-indent:-36.0pt;
@@ -1074,8 +1073,7 @@ line-height:110%'><span lang=ES>10.2<span style='font:7.0pt "Times New Roman"'>&
         secara musyawarah oleh Para Pihak. Jika Sengketa itu tidak dapat diselesaikan
         secara musyawarah dalam waktu 1 (satu) bulan dari tanggal Pihak yang satu
         memberitahukan kepada Pihak lainnya bahwa terdapat Sengketa, Para Pihak setuju
-        bahwa Sengketa tersebut akan dirujuk ke dan akhirnya diselesaikan pada <span
-                style='background:yellow'>Pengadilan Negeri Jakarta Selatan</span>. </p>
+        bahwa Sengketa tersebut akan dirujuk ke dan akhirnya diselesaikan pada <span>Pengadilan Negeri Jakarta Selatan</span>. </p>
 
     <p class=MsoListParagraph style='text-align:justify;text-indent:-36.0pt;
 line-height:110%'><b>11.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1138,15 +1136,13 @@ tersebut akan dikirimkan melalui faks atau surat sesuai dengan Pasal 11.1 ini. <
                 <p class=MsoListParagraph style='margin-left:0cm;text-align:justify;
   line-height:110%'>Pemberi Pinjaman:</p>
                 <p class=MsoListParagraph style='margin-left:0cm;text-align:justify;
-  line-height:110%'>U.p: <span style='background:yellow'>[asdffdsa]</span></p>
+  line-height:110%'>U.p: <span>{{ $user->first_name }} {{ $user->last_name }}</span></p>
                 <p class=MsoListParagraph style='margin-left:0cm;text-align:justify'>Alamat
                     Surat Elektronik:</p>
-                <p class=MsoListParagraph style='margin-left:0cm;text-align:justify'><span
-                            style='background:yellow'>[asdffdsa]</span><u><span style='color:#0563C1'> </span></u></p>
+                <p class=MsoListParagraph style='margin-left:0cm;text-align:justify'><span>{{ $user->email }}</span><u><span style='color:#0563C1'> </span></u></p>
                 <p class=MsoListParagraph style='margin-left:0cm;text-align:justify'>No.
                     Telp:</p>
-                <p class=MsoListParagraph style='margin-left:0cm;text-align:justify'><span
-                            style='background:yellow'>[asdffdsa]</span></p>
+                <p class=MsoListParagraph style='margin-left:0cm;text-align:justify'><span>{{ $user->phone }}</span></p>
             </td>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoListParagraph style='margin-left:0cm;text-align:justify;

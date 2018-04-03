@@ -93,28 +93,25 @@ class Utilities
 
     public static function VANumber (){
         //Make Va Account Number
-        //From 000001 - 999999
+        //From 00001 - 99999
         $auto_number = AutoNumber::where('data', 'va_acc')->first();
         $mod = strlen($auto_number->next_no);
         $autoNumber = "";
 
         switch ($mod){
             case 1:
-                $autoNumber = "00000" . $auto_number->next_no;
-                break;
-            case 2:
                 $autoNumber = "0000" . $auto_number->next_no;
                 break;
-            case 3:
+            case 2:
                 $autoNumber = "000" . $auto_number->next_no;
                 break;
-            case 4:
+            case 3:
                 $autoNumber = "00" . $auto_number->next_no;
                 break;
-            case 5:
+            case 4:
                 $autoNumber = "0" . $auto_number->next_no;
                 break;
-            case 6:
+            case 5:
                 $autoNumber = $auto_number->next_no;
                 break;
         }

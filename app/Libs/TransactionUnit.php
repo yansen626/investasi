@@ -89,24 +89,25 @@ class TransactionUnit
             $newRaise = (double) str_replace('.','', $transaction->total_price);
             $productDB->raised = $raisedDB + $newRaise;
 
-            //checking if fund 100% or not
-            $raisingDB = (double) str_replace('.','', $productDB->raising);
-            if(($raisedDB + $newRaise) >= $raisingDB){
-                $productDB->status_id = 22;
-            }
-            $productDB->save();
-
-            //Send Email,
+            //checking if fund 100% or not and send email
             $userData = User::find($transaction->user_id);
             $payment = PaymentMethod::find($transaction->payment_method_id);
             $product = Product::find($transaction->product);
 
+            $raisingDB = (double) str_replace('.','', $productDB->raising);
+            if(($raisedDB + $newRaise) >= $raisingDB){
+                $productDB->status_id = 22;
+
+//            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
+//            Mail::to($userData->email)->send($perjanjianLayananEmail);
+
+            }
+            $productDB->save();
+
+            //Send Email,
+
             $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
             Mail::to($userData->email)->send($invoiceEmail);
-
-
-            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
-            Mail::to($userData->email)->send($perjanjianLayananEmail);
 
             $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
             Mail::to($userData->email)->send($perjanjianPinjamanEmail);

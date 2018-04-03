@@ -58,12 +58,13 @@
                                                 <h4 class="list-group-item-heading"><b>Home popup</b></h4>
                                             </a></li>
                                     </ul>
-                                    {{--<ul class="nav nav-tabs">--}}
-                                    {{--<li class="active"><a href="#project" data-toggle="tab">Data Proyek</a></li>--}}
-                                    {{--<li><a href="#user" data-toggle="tab">Data Diri</a></li>--}}
-                                    {{--<li><a href="#owner" data-toggle="tab">Perusahaan/Usaha</a></li>--}}
-                                    {{--<li><a href="#bank" data-toggle="tab">Akun Bank</a></li>--}}
-                                    {{--</ul>--}}
+                                    <br>
+                                    <div style="font-size: 16px;color:red;">
+                                        <span>*untuk enter ketik</span>
+                                        <span> <</span>
+                                        <span>br</span>
+                                        <span>> </span>
+                                    </div>
                                 </div>
                                 <div class="panel-body">
                                     <div class="tab-content">
