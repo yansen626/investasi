@@ -91,6 +91,7 @@ class Product extends Eloquent
         'days_left',
         'tenor_loan',
         'minimum_per_investor',
+        'due_date',
         'description',
         'youtube_link',
         'image_path',
