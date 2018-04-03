@@ -132,6 +132,8 @@ Route::prefix('/admin/product')->group(function (){
 
     Route::get('/create/{id}', 'Admin\ProductController@create')->name('product-create');
     Route::post('/create-submit', 'Admin\ProductController@store')->name('product-request-submit');
+    Route::get('/request-accept/{id}', 'Admin\ProductController@AcceptRequest');
+    Route::get('/request-reject/{id}', 'Admin\ProductController@RejectRequest');
     Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('product-edit');
     Route::post('/{id}', 'Admin\ProductController@update');
 

@@ -15,7 +15,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Owner & Project Detail</h3>
+                    <h3>Borrower & Project Detail</h3>
                 </div>
 
                 <div class="title_right">

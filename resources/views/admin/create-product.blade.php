@@ -19,7 +19,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div id="title-header" class="x_title">
-                            <h2>Buat Proyek | Vendor = {{$vendorDB->name}}</h2>
+                            <h2>Buat Proyek | Borrower = {{$vendorDB->name}}</h2>
                             <div class="clearfix"></div>
                         </div>
 

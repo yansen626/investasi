@@ -29,7 +29,7 @@
                     </li>
                     <li>
                         <a href="{{ route('vendor-request') }}">
-                            <i class="fa fa-exclamation-triangle"></i> Request Vendor
+                            <i class="fa fa-exclamation-triangle"></i> Request Borrower
                         </a>
                     </li>
                     <li>
@@ -44,7 +44,7 @@
                     </li>
                     <li>
                         <a href="{{ route('customer-list') }}">
-                            <i class="fa fa-user"></i> Investor List
+                            <i class="fa fa-user"></i> Lender List
                         </a>
                     </li>
                     <li>
@@ -52,10 +52,10 @@
                             <i class="fa fa-user"></i> Subscribe List
                         </a>
                     </li>
-                    <li><a><i class="fa fa-tags"></i> Vendor List <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-tags"></i> Borrower List <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('vendor-list') }}">Tampilkan</a></li>
-                            <li><a href="{{ route('vendor-request-form') }}">Tambah</a></li>
+                            <li><a href="{{ route('vendor-list') }}">Tampilkan Borrower</a></li>
+                            <li><a href="{{ route('vendor-request-form') }}">Tambah Borrower</a></li>
                             {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
                         </ul>
                     </li>

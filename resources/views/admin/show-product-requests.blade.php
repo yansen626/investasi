@@ -20,6 +20,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Request Produk Investasi</h2>
+                            <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             @include('admin.partials._success')
@@ -55,9 +56,13 @@
                                             {{--</td>--}}
                                             <td><img src="{{ URL::asset('storage/project/'.$product->image_path) }}" width="100"></td>
                                             <td>
-
-                                                <a onclick="modalPop('{{ $product->vendor_id }}', 'accept', '/admin/vendor/request-accept/')" class="btn btn-sm btn-success">Accept</a>
-                                                <a onclick="modalPop('{{ $product->vendor_id }}', 'cancel', '/admin/vendor/request-reject/')" class="btn btn-sm btn-danger">Reject</a>
+                                                @if($product->vendor->status_id == 3)
+                                                    <a onclick="modalPop('{{ $product->vendor_id }}', 'accept', '/admin/vendor/request-accept/')" class="btn btn-sm btn-success">Accept</a>
+                                                    <a onclick="modalPop('{{ $product->vendor_id }}', 'cancel', '/admin/vendor/request-reject/')" class="btn btn-sm btn-danger">Reject</a>
+                                                @else
+                                                    <a onclick="modalPop('{{ $product->id }}', 'accept', '/admin/product/request-accept/')" class="btn btn-sm btn-success">Accept</a>
+                                                    <a onclick="modalPop('{{ $product->id }}', 'cancel', '/admin/product/request-reject/')" class="btn btn-sm btn-danger">Reject</a>
+                                                @endif
                                                 {{--<a href="#" class="btn btn-primary">Terima</a>--}}
                                                 {{--<a href="#" class="btn btn-danger">Tolak</a>--}}
                                             </td>

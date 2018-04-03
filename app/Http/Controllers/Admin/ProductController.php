@@ -264,10 +264,35 @@ class ProductController extends Controller
             $newProduct->prospectus_path = $filenamePDF;
             $newProduct->save();
 
-
         });
 
         return Redirect::route('vendor-list');
+    }
+
+    public function AcceptRequest($id){
+        DB::transaction(function() use ($id){
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+            $product = Product::find($id);
+            $product->status_id = 21;
+            $product->due_date = $dateTimeNow->addDays($product->days_left);
+            $product->save();
+
+            Session::flash('message', 'Project Accepted!');
+        });
+        return Redirect::route('product-request');
+    }
+
+    public function RejectRequest($id){
+        DB::transaction(function() use ($id){
+
+            $product = Product::find($id);
+            $product->status_id = 7;
+            $product->save();
+
+            Session::flash('message', 'Project Rejected!');
+        });
+        return Redirect::route('product-request');
     }
 
     public function edit($id){

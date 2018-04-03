@@ -19,7 +19,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div id="title-header" class="x_title">
-                            <h2>Buat Vendor dan Proyek</h2>
+                            <h2>Buat Borrower dan Proyek</h2>
                             <div class="clearfix"></div>
                         </div>
 

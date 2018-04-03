@@ -30,7 +30,7 @@
                                 <tr>
                                     <th>No</th>
                                     {{--<th>Invoice</th>--}}
-                                    <th>Customer Name</th>
+                                    <th>Lender Name</th>
                                     <th>Payment Method</th>
                                     <th>Project Name</th>
                                     <th>Total Price</th>

@@ -36,7 +36,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Vendor List</h2>
+                            <h2>Borrower List</h2>
                             {{--<ul class="nav navbar-right panel_toolbox">--}}
                             {{--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>--}}
                             {{--</li>--}}
@@ -60,7 +60,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>User Name</th>
-                                    <th>Company Name</th>
+                                    <th>Borrower Name</th>
                                     {{--<th>Description</th>--}}
                                     <th>Created Date</th>
                                     <th>Option</th>
@@ -76,7 +76,7 @@
                                             {{--<td>{{ $vendor->description }}</td>--}}
                                             <td>{{ \Carbon\Carbon::parse($vendor->created_at)->format('j M Y G:i:s') }}</td>
                                             <td>
-                                                {{--<a href="{{ route('product-create', ['id'=>$vendor->id]) }}" class="btn btn-success">Tambah Produk</a>--}}
+                                                <a href="{{ route('product-create', ['id'=>$vendor->id]) }}" class="btn btn-success">Tambah Produk</a>
                                                 <a href="/admin/vendor/detail/{{ $vendor->id }}" class="btn btn-primary">Detail</a>
 
                                                 {{--@if(\Illuminate\Support\Facades\Auth::guard('user_admins')->user()->id == $user->id)--}}

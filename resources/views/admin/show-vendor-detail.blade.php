@@ -15,7 +15,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Vendor & Project Detail</h3>
+                    <h3>Borrower & Project Detail</h3>
                 </div>
 
                 {{--<div class="title_right">--}}
@@ -142,7 +142,7 @@
 
                                             <p class="title">Status</p>
                                             <p>{{$product->status->description}}</p>
-                                            <p class="title">Project Owner</p>
+                                            <p class="title">Project Owner (Lender)</p>
                                             <p>{{ $user->first_name. ' ' . $user->last_name }}</p>
                                         </div>
 

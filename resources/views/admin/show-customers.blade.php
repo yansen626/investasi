@@ -36,7 +36,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Investor List</h2>
+                            <h2>Lender List</h2>
                             <div class="nav navbar-right">
                                 <a href="{{ route('download-mcm') }}" class="btn btn-app">
                                     <i class="fa fa-download"></i> Download MCM to Excel
@@ -65,6 +65,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>E-mail</th>
+                                    <th>Phone</th>
                                     <th>First name</th>
                                     <th>Last name</th>
                                     <th>Wallet Amount</th>
@@ -77,6 +78,7 @@
                                     <tr>
                                         <td>{{ $idx }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->phone }}</td>
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>Rp {{ $user->wallet_amount }}</td>
