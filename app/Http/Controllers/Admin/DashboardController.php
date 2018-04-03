@@ -54,10 +54,12 @@ class DashboardController extends Controller
         $raisingDone = Product::where('status_id', 22)->get()->count();
 
         //get 2 days transfer
-        $startDate = Carbon::now('Asia/Jakarta')->subDay();
-        $finishDate = Carbon::now('Asia/Jakarta')->addDay();
+        $startDate = Carbon::now('Asia/Jakarta')->startOfDay();
+        $finishDate = Carbon::now('Asia/Jakarta')->addDays(1)->endOfDay();
+//        dd($startDate." | ".$finishDate);
         $twoDayTransfer = Transaction::where('payment_method_id', 1)
             ->where('status_id', 5)
+            ->where('two_day_due_date_flag', 0)
             ->whereBetween('two_day_due_date', [$startDate, $finishDate])
             ->get()->count();
 

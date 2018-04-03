@@ -12,6 +12,8 @@
 */
 
 Route::get('/testing', "Frontend\TestingController@TestingSendEmail")->name('testing');
+
+
 //Home, contact us, term, etc
 Route::get('/', 'Frontend\HomeController@Home')->name('index');
 Route::get('/contact-us', 'Frontend\HomeController@ContactUs')->name('contact');
@@ -144,6 +146,9 @@ Route::prefix('admin/transaction')->group(function(){
     Route::get('/', 'Admin\TransactionController@index')->name('transaction-list');
     Route::get('/detail/{id}', 'Admin\TransactionController@detail')->name('transaction-detail');
 });
+Route::get('/admin/VAtoRDN', 'Admin\TransactionController@VAtoRDN')->name('VA-RDN-list');
+Route::get('/admin/VAtoRDN/accept/{id}', 'Admin\TransactionController@acceptVAtoRDN')->name('VA-RDN-accept');
+
 Route::get('/admin/neworder', 'Admin\TransactionController@newOrder')->name('new-order-list');
 Route::get('/admin/neworder/accept/{id}', 'Admin\TransactionController@acceptOrder')->name('new-order-accept');
 Route::post('/admin/neworder/reject', 'Admin\TransactionController@rejectOrder')->name('new-order-accept');
@@ -152,6 +157,7 @@ Route::get('/admin/payment/confirm/{id}', 'Admin\TransactionController@confirmPa
 Route::get('/admin/delivery', 'Admin\TransactionController@deliveryRequest')->name('delivery-list');
 Route::post('/admin/delivery/confirm', 'Admin\TransactionController@confirmDelivery')->name('delivery-confirm');
 Route::get('/track/{id}', 'Admin\TransactionController@track')->name('track');
+
 
 // Slider Banner
 Route::prefix('/admin/banner/slider')->group(function(){

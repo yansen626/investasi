@@ -41,6 +41,34 @@ class TransactionController extends Controller
         return View('admin.show-transaction-details', compact('transaction'));
     }
 
+    public function VAtoRDN(){
+        //get 2 days transfer
+        $startDate = Carbon::now('Asia/Jakarta')->startOfDay();
+        $finishDate = Carbon::now('Asia/Jakarta')->addDays(1)->endOfDay();
+//        dd($startDate." | ".$finishDate);
+        $twoDayTransfer = Transaction::where('payment_method_id', 1)
+            ->where('status_id', 5)
+            ->where('two_day_due_date_flag', 0)
+            ->whereBetween('two_day_due_date', [$startDate, $finishDate])
+            ->orderByDesc('created_on')
+            ->get();
+
+        return View('admin.show-VA-RDN', compact('twoDayTransfer'));
+    }
+
+    public function acceptVAtoRDN($id){
+
+        $trx = Transaction::find($id);
+
+        //change two_day_due_date_flag
+        $trx->two_day_due_date_flag = 1;
+        $trx->save();
+
+        Session::flash('message', 'Transfer dari VA ke RDN telah Diterima!');
+
+        return redirect::route('VA-RDN-list');
+    }
+
     public function newOrder(){
         $transactions = Transaction::where('status_id', 3)->orderByDesc('created_on')->get();
 

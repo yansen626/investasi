@@ -46,6 +46,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $accept_date
  * @property \Carbon\Carbon $two_day_due_date
  * @property \Carbon\Carbon $finish_date
+ * @property int $two_day_due_date_flag
  * @property string $reject_note
  * @property int $status_id
  * @property string $created_by
@@ -68,6 +69,7 @@ class Transaction extends Eloquent
     public $timestamps = false;
 
     protected $casts = [
+        'two_day_due_date_flag' => 'int',
         'payment_method_id' => 'int',
         'payment_code' => 'int',
         'total_payment' => 'float',
@@ -128,6 +130,7 @@ class Transaction extends Eloquent
         'finish_date',
         'reject_note',
         'two_day_due_date',
+        'two_day_due_date_flag',
         'status_id',
         'created_by',
         'created_on',

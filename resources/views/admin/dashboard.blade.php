@@ -84,7 +84,7 @@
                         @if($twoDayTransfer > 0)
                             <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                 Terdapat {{ $twoDayTransfer }} Jatuh Tempo pemindahan VA ke RDN
-                                , Anda dapat mengecek <a style="color: dodgerblue;" href="#"><strong>disini</strong></a>
+                                , Anda dapat mengecek <a style="color: dodgerblue;" href="{{ route('VA-RDN-list') }}"><strong>disini</strong></a>
                             </div>
                         @endif
 
