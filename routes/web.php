@@ -126,19 +126,23 @@ Route::get('/admin/logout', 'Auth\LoginAdminController@logout')->name('admin-log
 
 // Product
 Route::prefix('/admin/product')->group(function (){
-    Route::get('/', 'Admin\ProductController@index')->name('product-list');
-    Route::get('/request', 'Admin\ProductController@ProductRequest')->name('product-request');
-    Route::get('/request-news/{productId}', 'Admin\ProductController@RequestBlogProduct')->name('product-news-request');
 
+    Route::get('/', 'Admin\ProductController@index')->name('product-list');
     Route::get('/create/{id}', 'Admin\ProductController@create')->name('product-create');
     Route::post('/create-submit', 'Admin\ProductController@store')->name('product-request-submit');
+
     Route::get('/request-accept/{id}', 'Admin\ProductController@AcceptRequest');
     Route::get('/request-reject/{id}', 'Admin\ProductController@RejectRequest');
     Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('product-edit');
     Route::post('/{id}', 'Admin\ProductController@update');
 
+    Route::get('/request', 'Admin\ProductController@ProductRequest')->name('product-request');
+    Route::get('/request-news/{productId}', 'Admin\ProductController@RequestBlogProduct')->name('product-news-request');
+
     Route::get('/collected-fund', 'Admin\ProductController@ProductCollectedFund')->name('product-collected-fund');
     Route::get('/collected-fund/accept/{id}', 'Admin\ProductController@AcceptCollectedFund');
+    Route::get('/failed-fund', 'Admin\ProductController@ProductFailedFund')->name('product-failed-fund');
+    Route::get('/failed-fund/accept/{id}', 'Admin\ProductController@AcceptFailedFund');
     Route::get('/investors/{id}', 'Admin\ProductController@ProductInvestorList')->name('product-investors');
 
 });
@@ -268,6 +272,7 @@ Route::get('/admin/logout', 'Auth\LoginAdminController@logout')->name('admin-log
 Route::prefix('admin/vendor')->group(function(){
     Route::get('/', 'Admin\VendorController@index')->name('vendor-list');
     Route::get('/detail/{id}', 'Admin\VendorController@GetDetailVendor')->name('vendor-detail');
+
     Route::get('/request', 'Admin\VendorController@RequestList')->name('vendor-request');
     Route::get('/request-accept/{id}', 'Admin\VendorController@AcceptRequest');
     Route::get('/request-reject/{id}', 'Admin\VendorController@RejectRequest');
@@ -339,11 +344,11 @@ Route::get('/verifysignaturephoto', 'Frontend\VerificationController@VerifySigna
 Route::post('/verifysignaturephoto', 'Frontend\VerificationController@UploadSignaturePhoto');
 // Photo Verification
 
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/map', 'Frontend\ProfileController@GoogleMap')->name('map');
 Route::post('/map', 'Frontend\ProfileController@GoogleMapSubmit')->name('map-submit');
 
+//from external to access website
 Route::post('/checkout-notification', [
     'uses' => 'MidtransController@notification',
     'as' => 'checkoutNotification'

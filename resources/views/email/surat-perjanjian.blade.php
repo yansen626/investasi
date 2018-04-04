@@ -60,7 +60,7 @@
 
                                 <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="166"><tr><td align="center" valign="top"><![endif]-->
                                 <div class="mobile-full" style="display: inline-block; max-width: 166px; vertical-align: top; width: 100%;">
-                                    <a target="_new" href="www.indofund.id" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #f3f3f3; text-decoration: none;"><img width="166" vspace="0" hspace="0" border="0" alt="" style="border: 0px;display: block;width: 100%;max-width: 166px;" src="https://mosaico.io/srv/f-dtn0k95/img?src=https%3A%2F%2Fmosaico.io%2Ffiles%2Fdtn0k95%2Flogo%2520%25281%2529.png&method=resize&params=350%2Cnull"></a>
+                                    <a target="_new" href="www.indofund.id" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #f3f3f3; text-decoration: none;"><img width="166" vspace="0" hspace="0" border="0" alt="" style="border: 0px;display: block;width: 100%;max-width: 166px;" src="https://mosaico.io/srv/f-dtn0k95/img?src=https%3A%2F%2Fmosaico.io%2Ffiles%2Fdtn0k95%2Flogo%2520%25282%2529.png&amp;method=resize&amp;params=350%2Cnull"></a>
                                 </div>
                                 <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
 

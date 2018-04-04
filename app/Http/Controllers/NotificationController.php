@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Mail;
 
 class NotificationController extends Controller
 {
-    public function notification(){
+    public function notificationMCM(){
         try
         {
             $json_result = file_get_contents('php://input');
@@ -35,19 +35,35 @@ class NotificationController extends Controller
 
             Utilities::ExceptionLog($json);
 
-//            $notif = $vt->status($json->order_id);
+            $jsonTransactions =  $json->Transactions;
+            foreach ($jsonTransactions as $jsonTransaction){
+                $trxDesc = $jsonTransaction->description;
+                $trxDescPart = trim($trxDesc. "UBP66668879501FFFFFF");
+                $trxDescPart2 = explode(" ", $trxDescPart);
+                $vaNumber = $trxDescPart2[0];
 
-            $vaNumber = $json->transaction->ref;
+                Utilities::ExceptionLog($vaNumber);
 
-            sleep(15);
+                $trxKredit = $jsonTransaction->kredit;
+                $trxKredit2 = explode(".", $trxKredit);
+                $amount = (double) str_replace('.', '',$trxKredit2[0]);
 
-            DB::transaction(function() use ($vaNumber, $json){
+                Utilities::ExceptionLog($amount);
+
+                DB::transaction(function() use ($vaNumber, $amount, $json){
 
 //                Utilities::ExceptionLog($orderid);
+                    $dateTimeNow = Carbon::now('Asia/Jakarta');
 
-                $dateTimeNow = Carbon::now('Asia/Jakarta');
+                    $transactionDB = Transaction::where('va_number', $vaNumber)
+                        ->where('status_id', 3)
+                        ->where('total_payment', $amount)
+                        ->first();
+                    $transactionDB->status_id = 5;
+                    $transactionDB->save();
 
-            }, 5);
+                }, 5);
+            }
         }
         catch (\Exception $ex){
             Utilities::ExceptionLog($ex);
@@ -71,7 +87,6 @@ class NotificationController extends Controller
                     $temporary->save();
                 }
             }
-
             return "Sukses";
         }
         catch (Exception $ex){

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Excel\ExcelExport;
 use App\Http\Controllers\Controller;
+use App\Libs\SendEmail;
 use App\Mail\AcceptPenarikan;
 use App\Models\Transaction;
 use App\Models\TransferConfirmation;
@@ -64,8 +65,11 @@ class WalletController extends Controller
 
             //Send Email
             $userData = User::find($trx->user_id);
-            $acceptEmail = new AcceptPenarikan($trx, $userData);
-            Mail::to($userData->email)->send($acceptEmail);
+            $data = array(
+                'user' => $userData,
+                'walletStatement' => $trx
+            );
+            SendEmail::SendingEmail('withdrawalAccepted', $data);
         });
 
         return redirect::route('dompet-request');

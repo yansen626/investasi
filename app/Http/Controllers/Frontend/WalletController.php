@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Libs\Midtrans;
+use App\Libs\SendEmail;
 use App\Libs\TransactionUnit;
 use App\Libs\UrgentNews;
 use App\Mail\RequestWithdrawInvestor;
@@ -244,7 +245,13 @@ class WalletController extends Controller
                         'created_on'        => $dateTimeNow->toDateTimeString()
                     ]);
 
-                    Mail::to($user->email)->send(new RequestWithdrawInvestor($newStatement, $user, request()->ip()));
+
+                    $data = array(
+                        'newStatement' => $newStatement,
+                        'user' => $user,
+                        'ip' => request()->ip()
+                    );
+                    SendEmail::SendingEmail('withdrawalRequest', $data);
 
                     $user->wallet_amount = $userFinalWallet;
                     $user->save();

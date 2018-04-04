@@ -92,17 +92,17 @@
                         </tr>
                         <tr>
                             <td bgcolor="#ffffff" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">
-                                <b>Biaya</b> : 0
+                                <b>Biaya</b> : Rp {{ $statement->fee }}
                             </td>
                         </tr>
                         <tr>
                             <td bgcolor="#ffffff" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">
-                                <b>Terima Bersih</b> : Rp {{ $statement->amount }}
+                                <b>Terima Bersih</b> : Rp {{ $statement->transfer_amount }}
                             </td>
                         </tr>
                         <tr>
                             <td bgcolor="#ffffff" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">
-                                <b>Bank</b> : {{$statement->description}}
+                                <b>Bank</b> : {{$statement->bank_name}}
                             </td>
                         </tr>
                         <tr>

@@ -28,7 +28,7 @@
                             <img src="{{ URL::asset('frontend_images/default-profile.jpg') }}" style="height:30%;width:30%;border-radius: 50%;">
                             <p data-toggle="modal" data-target="#profileModal" class="font-14" style="cursor: pointer;">
                                 <b>{{ $product->Vendor->name }}</b> <br>
-                                {{$projectCount}} Project
+                                {{$projectCount}} Proyek
                             </p>
                         </div>
                     </div>
@@ -231,7 +231,7 @@
                             <br><br>
                             <span>Suku Bunga : {{$product->interest_rate}}% </span>
                             <br><br>
-                            <span>Jatuh Tempo Pinjaman : {{$product->days_left}} </span>
+                            <span>Jatuh Tempo Pinjaman : {{$product->days_left}} Hari</span>
                             <br><br>
                             <span>Industri : {{$product->vendor->business_type}}</span>
                             <br><br>

@@ -51,7 +51,11 @@ class DashboardController extends Controller
             ->where('status_id', 3)->orWhere('status_id', 4)
             ->get()->count();
 
-        $raisingDone = Product::where('status_id', 22)->get()->count();
+        //success funding
+        $fundingDone = Product::where('status_id', 22)->get()->count();
+
+        //failed funding
+        $fundingFailed = Product::where('status_id', 26)->get()->count();
 
         //get 2 days transfer
         $startDate = Carbon::now('Asia/Jakarta')->startOfDay();
@@ -69,7 +73,8 @@ class DashboardController extends Controller
             'newOrderTotal'         => $newOrderTotal,
             'walletWithdraw'         => $walletWithdraw,
             'onGoingPaymentTotal'   => $onGoingPaymentTotal,
-            'raisingDone'   => $raisingDone,
+            'fundingDone'   => $fundingDone,
+            'fundingFailed'         => $fundingFailed,
             'onGoingPaymentBankTotal'   => $onGoingPaymentBankTotal,
             'twoDayTransfer'   => $twoDayTransfer
         ];

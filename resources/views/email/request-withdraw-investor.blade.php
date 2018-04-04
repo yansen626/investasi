@@ -77,7 +77,7 @@
                         <tbody>
                         <tr>
                             <td bgcolor="#ffffff" align="center" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;">
-                                <span>Hai {{ $user->first_name . ' ' . $user->last_name }}</span>
+                                <span>Kepada Yth Bapak/Ibu {{ $user->first_name . ' ' . $user->last_name }}</span>
                             </td>
                         </tr>
                         <tr>

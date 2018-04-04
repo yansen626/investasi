@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Libs\SendEmail;
 use App\Libs\UrgentNews;
 use App\Models\Blog;
 use App\Models\GuestProspectus;
@@ -144,17 +145,17 @@ class ProductController extends Controller
                 ]);
                 $newGuestProspectus->save();
 
-                //change valid file name
-                $file_path = public_path('files/test.pdf');
-
-                $emailVerify = new SendProspectus($file_path);
-                Mail::to($email)->send($emailVerify);
+                $data = array(
+                    'email' => $email,
+                    'filename' => ""
+                );
+                SendEmail::SendingEmail('sendProspectus', $data);
 
                 return redirect()->route('project-detail', ['id' => $id]);
             }
             catch (\Exception $ex)
             {
-                Utilities::ExceptionLog('GetProspectus EX = '. $ex);
+                Utilities::ExceptionLog('ProductController.php > GetProspectus ========> '.$ex);
                 return redirect()->route('project-detail', ['id' => $id]);
             }
         }

@@ -187,7 +187,7 @@ class MidtransController extends Controller
             }, 5);
         }
         catch (\Exception $ex){
-            Utilities::ExceptionLog($ex);
+            Utilities::ExceptionLog('MidtransController.php > notification ========> '.$ex);
         }
     }
 }

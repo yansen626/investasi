@@ -17,7 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/checkout-notification', [
-    'uses' => 'MidtransController@notification',
-    'as' => 'checkoutNotification'
-]);
+
+Route::post('/mcm-notification', 'NotificationController@notificationMCM');

@@ -67,6 +67,7 @@ class TransactionUnit
             return true;
         }
         catch(\Exception $ex){
+            Utilities::ExceptionLog('TransactionUnit.php > createTransaction ========> '.$ex);
             Utilities::ExceptionLog($ex);
             return false;
         }
@@ -94,9 +95,17 @@ class TransactionUnit
             $payment = PaymentMethod::find($transaction->payment_method_id);
             $product = Product::find($transaction->product);
 
+            $data = array(
+                'transaction' => $transaction,
+                'user'=>$userData,
+                'paymentMethod' => $payment,
+                'product' => $product
+            );
+
             $raisingDB = (double) str_replace('.','', $productDB->raising);
             if(($raisedDB + $newRaise) >= $raisingDB){
                 $productDB->status_id = 22;
+                SendEmail::SendingEmail('collectedFund', $data);
 
 //            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
 //            Mail::to($userData->email)->send($perjanjianLayananEmail);
@@ -104,13 +113,14 @@ class TransactionUnit
             }
             $productDB->save();
 
-            //Send Email,
+            //Send Email for accepted fund
+            SendEmail::SendingEmail('successTransaction', $data);
 
-            $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
-            Mail::to($userData->email)->send($invoiceEmail);
-
-            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
-            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
+//            $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
+//            Mail::to($userData->email)->send($invoiceEmail);
+//
+//            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
+//            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
 
             return true;
         });

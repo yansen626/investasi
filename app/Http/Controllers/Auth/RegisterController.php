@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Libs\SendEmail;
 use App\Libs\Utilities;
 use App\Models\AutoNumber;
 use App\Models\Referral;
@@ -160,8 +161,10 @@ class RegisterController extends Controller
         }
 
         //Send Email
-        $emailVerify = new EmailVerification($user);
-        Mail::to($user->email)->send($emailVerify);
+        $data = array(
+            'user' => $user
+        );
+        SendEmail::SendingEmail('emailVerification', $data);
 
         $email = Input::get('email');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Libs\SendEmail;
 use App\Libs\UrgentNews;
 use App\Libs\Utilities;
 use App\Mail\ContactUs;
@@ -149,8 +150,11 @@ class HomeController extends Controller
             'status_id' => 1,
         ]);
 
-        $subscribeEmail = new Subscribe($name, $email);
-        Mail::to($email)->send($subscribeEmail);
+        $data = array(
+            'email' => $email,
+            'name' => $name
+        );
+        SendEmail::SendingEmail('subscribe', $data);
 
         return response()->json(['success' => true]);
     }
@@ -173,8 +177,13 @@ class HomeController extends Controller
         $description = $request->get('description');
         $dateTimeNow = Carbon::now('Asia/Jakarta');
 
-        $contactUsEmail = new ContactUs($name, $email, $phone, $description);
-        Mail::to("contact@investasi.me")->send($contactUsEmail);
+        $data = array(
+            'email' => $email,
+            'name' => $name,
+            'phone' => $phone,
+            'description' => $description
+        );
+        SendEmail::SendingEmail('contactUs', $data);
 
 //        return response()->json(['success' => true]);
         return redirect()->route('index');

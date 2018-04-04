@@ -77,6 +77,10 @@ class ProductController extends Controller
 
             DB::transaction(function() use ($product){
 
+                $product->confirmation_2 = 1;
+                $product->status_id = 23;
+                $product->save();
+
                 //send fund to project owner
                 $userDB = User::find($product->user_id);
                 $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
@@ -84,11 +88,8 @@ class ProductController extends Controller
                 $userDB->wallet_amount = $userWalletDB + $collectedFund;
                 $userDB->save();
 
-                $product->confirmation_2 = 1;
-                $product->status_id = 23;
-                $product->save();
 
-                //send email notfication to project owner
+                //send email notfication to project owner, fund collected
 
                 Session::flash('message', 'Superadmin Berhasil konfirmasi!');
             });
@@ -100,13 +101,14 @@ class ProductController extends Controller
         return Redirect::route('product-collected-fund');
     }
 
-    public function ProductExpiredFund(){
+    public function ProductFailedFund(){
         $adminType = Auth::guard('user_admins')->user()->user_type;
-        $products = Product::Where('status_id', 22)->get()->sortByDesc('created_on');
+        $products = Product::Where('status_id', 26)->get()->sortByDesc('created_on');
 
-        return View('admin.show-product-expired-funds', compact('products', 'adminType'));
+        return View('admin.show-product-failed-funds', compact('products', 'adminType'));
     }
-    public function AcceptExpiredFund($id){
+
+    public function AcceptFailedFund($id){
 
         $product = Product::find($id);
 
@@ -123,17 +125,22 @@ class ProductController extends Controller
 
             DB::transaction(function() use ($product){
                 $product->confirmation_2 = 1;
+                $product->status_id = 25;
                 $product->save();
 
-                //send fund to project owner
-                $userDB = User::find($product->user_id);
-                $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
-                $collectedFund = (double) str_replace('.','', $product->raised);
-                $userDB->wallet_amount = $userWalletDB + $collectedFund;
-                $userDB->status_id = 23;
-                $userDB->save();
+                $transactionDB = Transaction::where('product_id', $product->id)->get();
 
-                //send email notfication to project owner
+                foreach ($transactionDB as $trx){
+                    //send fund to original lender
+                    $userDB = User::find($trx->user_id);
+                    $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
+                    $collectedFund = (double) str_replace('.','', $trx->total_price);
+                    $userDB->wallet_amount = $userWalletDB + $collectedFund;
+                    $userDB->save();
+
+                    //send email notfication to every lender if project failed
+
+                }
 
                 Session::flash('message', 'Superadmin Berhasil konfirmasi!');
             });
@@ -142,7 +149,7 @@ class ProductController extends Controller
             Session::flash('message', 'Gagal dalam melakukan tindakan!');
         }
 
-        return Redirect::route('product-collected-fund');
+        return Redirect::route('product-failed-fund');
     }
 
     public function ProductInvestorList($id){

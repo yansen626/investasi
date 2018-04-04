@@ -88,7 +88,7 @@
                     <table width="570" border="0" cellpadding="0" cellspacing="18" class="vb-container fullpad" bgcolor="#ffffff" style="border-collapse: separate;border-spacing: 18px;padding-left: 0;padding-right: 0;width: 100%;max-width: 570px;background-color: #fff;"><tbody><tr>
                             <td align="left" class="long-text links-color" style="text-align: left; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">
                                 <p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;" data-mce-style="text-align: center;">
-                                    Terima kasih telah mendaftar di investasi me.
+                                    Terima kasih telah mendaftar di indofund id.
                                     Untuk menyelesaikan proses pendaftaran, kami membutuhkan konfirmasi alamat email anda.
                                     Mohon membuka tautan di berikut untuk mengkonfirmasi data anda.
                                     <span style="color: rgb(129, 185, 81);" data-mce-style="color: #81b951;">

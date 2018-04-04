@@ -14,7 +14,7 @@
         <!-- top tiles -->
         <div class="row tile_count">
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Investor Baru 1 Bulan terakhir</span>
+                <span class="count_top"><i class="fa fa-user"></i> Investor Baru (1 Bulan)</span>
                 <div class="count">{{ $newCustomerTotal }}</div>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -74,10 +74,17 @@
                             </div>
                         @endif
 
-                        @if($raisingDone > 0)
+                        @if($fundingDone > 0)
                             <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                Terdapat {{ $raisingDone }} Dana proyek telah terkumpul
+                                Terdapat {{ $fundingDone }} Dana proyek BERHASIL terkumpul
                                 , Anda dapat mengecek <a style="color: dodgerblue;" href="{{ route('product-collected-fund') }}"><strong>disini</strong></a>
+                            </div>
+                        @endif
+
+                        @if($fundingFailed > 0)
+                            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                Terdapat {{ $fundingFailed }} Dana proyek GAGAL terkumpul
+                                , Anda dapat mengecek <a style="color: dodgerblue;" href="{{ route('product-failed-fund') }}"><strong>disini</strong></a>
                             </div>
                         @endif
 
