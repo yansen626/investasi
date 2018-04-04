@@ -94,7 +94,7 @@
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
                         <tbody>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Halo, berikut ini proyek anda yang masih dalam proses pengumpulan dana.</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Halo, berikut ini proyek anda yang gagal dalam proses pengumpulan dana.</span></td>
                         </tr>
                         <tr>
                             <td><hr/></td>
@@ -103,16 +103,8 @@
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;">
                                 <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
                                     <tr>
-                                        <td style="width: 50%;"><a style="text-decoration: underline;" href="#">Project 1</a></td>
-                                        <td style="width: 50%;">Dana terkumpul 70%</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 50%;"><a style="text-decoration: underline;" href="#">Project 2</a></td>
-                                        <td style="width: 50%;">Dana terkumpul 40%</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 50%;"><a style="text-decoration: underline;" href="#">Project 3</a></td>
-                                        <td style="width: 50%;">Dana terkumpul 30%</td>
+                                        <td style="width: 50%;"><a style="text-decoration: underline;" href="#">{{ $project->name }}</a></td>
+                                        <td style="width: 50%;">Dana terkumpul {{ $percentage }}%</td>
                                     </tr>
                                 </table>
                             </td>
@@ -121,7 +113,7 @@
                             <td><hr/></td>
                         </tr>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="#">sini</a> atau pada masing-masing proyek untuk informasi lebih detil.</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="https://indofund.id">sini</a> atau pada masing-masing proyek untuk informasi lebih detil.</span></td>
                         </tr>
                         </tbody>
                     </table>

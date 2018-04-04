@@ -140,10 +140,36 @@ class SendEmail
                         $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
                     });
 
+                    break;
+
+                case 'acceptCollectedFund' :
+                    $project = $objData->project;
+                    $vendorData = $objData->vendorData;
+                    $data = array(
+                        'vendor'    => $vendorData,
+                        'project'   => $project
+                    );
+
+                    Mail::send('email.proyek-terpenuhi', $data, function ($message) use ($project, $vendorData) {
+                        $message->to($vendorData->email)->subject('Dana project telah terkumpul di Indofund');
+                    });
 
                     break;
 
-                case 'failedFund' :
+                case 'acceptFailedFund' :
+                    $project = $objData->project;
+                    $vendorData = $objData->vendorData;
+                    $percentage = $objData->percentage;
+                    $data = array(
+                        'vendor'        => $vendorData,
+                        'project'       => $project,
+                        'percentage'    => $percentage
+                    );
+
+                    Mail::send('email.proyek-dalam-proses', $data, function ($message) use ($project, $vendorData) {
+                        $message->to($vendorData->email)->subject('Dana project gagal terkumpul di Indofund');
+                    });
+
                     break;
 
                 case 'testing' :

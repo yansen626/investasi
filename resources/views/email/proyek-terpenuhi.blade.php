@@ -99,14 +99,12 @@
                         <tr>
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: left;">
                                 <ul>
-                                    <li><a style="text-decoration: underline;" href="#">Project 1</a></li>
-                                    <li><a style="text-decoration: underline;" href="#">Project 2</a></li>
-                                    <li><a style="text-decoration: underline;" href="#">Project 3</a></li>
+                                    <li><a style="text-decoration: underline;" href="#">{{ $project->name }}</a></li>
                                 </ul>
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="#">sini</a> atau pada masing-masing proyek untuk informasi lebih detil.</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="https://indofund.id">sini</a> atau pada masing-masing proyek untuk informasi lebih detil.</span></td>
                         </tr>
                         </tbody>
                     </table>

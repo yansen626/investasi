@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Libs\SendEmail;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -90,6 +91,11 @@ class ProductController extends Controller
 
 
                 //send email notfication to project owner, fund collected
+                $data = array(
+                    'vendorData'    => $userDB,
+                    'project'       => $product
+                );
+                SendEmail::SendingEmail('acceptCollectedFund', $data);
 
                 Session::flash('message', 'Superadmin Berhasil konfirmasi!');
             });
@@ -139,7 +145,14 @@ class ProductController extends Controller
                     $userDB->save();
 
                     //send email notfication to every lender if project failed
-
+                    //Calculate Percentage
+                    $percentage = $product->raised / $product->raising * 100;
+                    $data = array(
+                        'vendorData'    => $userDB,
+                        'project'       => $product,
+                        'percentage'    => $percentage
+                    );
+                    SendEmail::SendingEmail('acceptFailedFund', $data);
                 }
 
                 Session::flash('message', 'Superadmin Berhasil konfirmasi!');
