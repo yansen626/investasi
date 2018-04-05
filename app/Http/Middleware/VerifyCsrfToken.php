@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'checkout-notification'
+        'checkout-notification',
+        'mcm-notification',
     ];
 }

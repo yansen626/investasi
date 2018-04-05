@@ -353,6 +353,10 @@ Route::post('/checkout-notification', [
     'uses' => 'MidtransController@notification',
     'as' => 'checkoutNotification'
 ]);
+Route::post('/mcm-notification', [
+    'uses' => 'NotificationController@notificationMCM',
+    'as' => 'mcmNotification'
+]);
 
 //Checking routing
 Route::get('/limit-transaction', 'NotificationController@limitTransferCheck')->name('limit-transaction');

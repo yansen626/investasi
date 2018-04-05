@@ -38,7 +38,8 @@ class NotificationController extends Controller
             $jsonTransactions =  $json->Transactions;
             foreach ($jsonTransactions as $jsonTransaction){
                 $trxDesc = $jsonTransaction->description;
-                $trxDescPart = trim($trxDesc. "UBP66668879501FFFFFF");
+                $trxDescPart = str_replace("UBP66668879501FFFFFF", '',$trxDesc);
+//                $trxDescPart = trim($trxDesc. "UBP66668879501FFFFFF");
                 $trxDescPart2 = explode(" ", $trxDescPart);
                 $vaNumber = $trxDescPart2[0];
 
@@ -46,7 +47,7 @@ class NotificationController extends Controller
 
                 $trxKredit = $jsonTransaction->kredit;
                 $trxKredit2 = explode(".", $trxKredit);
-                $amount = (double) str_replace('.', '',$trxKredit2[0]);
+                $amount = (double) str_replace(',', '',$trxKredit2[0]);
 
                 Utilities::ExceptionLog($amount);
 
@@ -59,9 +60,10 @@ class NotificationController extends Controller
                         ->where('status_id', 3)
                         ->where('total_payment', $amount)
                         ->first();
-                    $transactionDB->status_id = 5;
-                    $transactionDB->save();
-
+                    if(!empty($transactionDB)){
+                        $transactionDB->status_id = 5;
+                        $transactionDB->save();
+                    }
                 }, 5);
             }
         }

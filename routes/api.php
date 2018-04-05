@@ -17,5 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post('/mcm-notification', 'NotificationController@notificationMCM');
+//Route::post('/mcm-notification', [
+//    'uses' => 'NotificationController@notificationMCM',
+//    'as' => 'mcmNotification'
+//]);
