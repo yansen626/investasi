@@ -12,7 +12,6 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="comment-form-wrapper contact-from clearfix">
-
                                 <div class="field col-sm-12 {{ $errors->has('name') ? ' has-error' : '' }}">
                                     <h5>Nama</h5>
                                     <input type="text" name="name">

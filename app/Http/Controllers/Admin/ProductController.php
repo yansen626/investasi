@@ -146,7 +146,9 @@ class ProductController extends Controller
 
                     //send email notfication to every lender if project failed
                     //Calculate Percentage
-                    $percentage = $product->raised / $product->raising * 100;
+                    $productRaised = (double) str_replace('.','', $product->raised);
+                    $productRaising = (double) str_replace('.','', $product->raising);
+                    $percentage = $productRaised / $productRaising * 100;
                     $data = array(
                         'vendorData'    => $userDB,
                         'project'       => $product,

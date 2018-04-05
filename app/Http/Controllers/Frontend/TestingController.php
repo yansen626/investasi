@@ -46,33 +46,6 @@ class TestingController extends Controller
 //
 //            SendEmail::SendingEmail('testing', $data);
 
-
-//            $data7 = array(
-//                'email' => $userData->email,
-//                'filename' => "PT testing 5_20180331040340.pdf"
-//            );
-////            dd($data7);
-//            SendEmail::SendingEmail('sendProspectus', $data7);
-
-            $trx = WalletStatement::find('039d8320-30a4-11e8-9f72-a7f6da35017a');
-
-            $data6 = array(
-                'user' => $userData,
-                'walletStatement' => $trx
-            );
-            SendEmail::SendingEmail('withdrawalAccepted', $data6);
-
-//
-//            $data8 = array(
-//                'transaction' => $transaction,
-//                'user'=>$userData,
-//                'paymentMethod' => $payment,
-//                'product' => $product
-//            );
-//            SendEmail::SendingEmail('successTransaction', $data8);
-//
-//            SendEmail::SendingEmail('collectedFund', $data8);
-
             return "success";
         }
         catch (\Exception $ex){

@@ -145,9 +145,11 @@ class ProductController extends Controller
                 ]);
                 $newGuestProspectus->save();
 
+                //send email
+                $productDB = Product::find($id);
                 $data = array(
                     'email' => $email,
-                    'filename' => ""
+                    'filename' => $productDB->prospectus_path
                 );
                 SendEmail::SendingEmail('sendProspectus', $data);
 

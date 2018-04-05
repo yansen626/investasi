@@ -53,7 +53,7 @@ class SendEmail
                     $description = $objData->description;
 
                     $contactUsEmail = new ContactUs($name, $email, $phone, $description);
-                    Mail::to("contact@investasi.me")->send($contactUsEmail);
+                    Mail::to("contact@indofund.id")->send($contactUsEmail);
                     break;
 
                 case 'subscribe' :
@@ -74,10 +74,10 @@ class SendEmail
 
                 case 'withdrawalAccepted' :
                     $walletStatement = $objData->walletStatement;
-                    $userData = $objData->userData;
+                    $userData = $objData->user;
 
-                    $acceptEmail = new AcceptPenarikan($walletStatement, $userData);
-                    Mail::to($userData->email)->send($acceptEmail);
+                    $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData);
+                    Mail::to($userData->email)->send($acceptWithdrawalEmail);
                     break;
 
                 case 'sendProspectus' :
@@ -88,22 +88,22 @@ class SendEmail
                     //change valid file name
                     $file_path = public_path('storage/project/'.$fileName);
 
-                    $emailVerify = new SendProspectus($file_path);
-                    Mail::to($email)->send($emailVerify);
+                    $sendProspectus = new SendProspectus($file_path);
+                    Mail::to($email)->send($sendProspectus);
                     break;
 
                 case 'successTransaction' :
 
                     $transaction = $objData->transaction;
-                    $userData = $objData->userData;
-                    $payment = $objData->payment;
+                    $userData = $objData->user;
+                    $payment = $objData->paymentMethod;
                     $product = $objData->product;
 
                     $vendor = Vendor::where('user_id', $userData->id)->first();
                     $data = array(
                         'transaction' => $objData->transaction,
-                        'user'=>$objData->userData,
-                        'paymentMethod' => $objData->payment,
+                        'user'=>$objData->user,
+                        'paymentMethod' => $objData->paymentMethod,
                         'product' => $objData->product,
                         'vendor' => $vendor
                     );
@@ -122,12 +122,12 @@ class SendEmail
 
                 case 'collectedFund' :
 
-                    $userData = $objData->userData;
+                    $userData = $objData->user;
                     $vendor = Vendor::where('user_id', $userData->id)->first();
                     $data = array(
                         'transaction' => $objData->transaction,
-                        'user'=>$objData->userData,
-                        'paymentMethod' => $objData->payment,
+                        'user'=>$objData->user,
+                        'paymentMethod' => $objData->paymentMethod,
                         'product' => $objData->product,
                         'vendor' => $vendor
                     );
@@ -139,7 +139,6 @@ class SendEmail
 
                         $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
                     });
-
                     break;
 
                 case 'acceptCollectedFund' :

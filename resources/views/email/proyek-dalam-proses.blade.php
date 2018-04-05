@@ -104,7 +104,7 @@
                                 <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
                                     <tr>
                                         <td style="width: 50%;"><a style="text-decoration: underline;" href="#">{{ $project->name }}</a></td>
-                                        <td style="width: 50%;">Dana terkumpul {{ $percentage }}%</td>
+                                        <td style="width: 50%;">Dana yanng terkumpul Rp {{$project->raised}} dari Rp {{$project->raising}} ({{ $percentage }}%)</td>
                                     </tr>
                                 </table>
                             </td>
@@ -113,7 +113,7 @@
                             <td><hr/></td>
                         </tr>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="https://indofund.id">sini</a> atau pada masing-masing proyek untuk informasi lebih detil.</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="https://indofund.id">sini</a> untuk informasi lebih detil.</span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -132,7 +132,7 @@
                         <tbody>
                         <tr>
                             <td class="long-text links-color" style="text-align: center; font-size: 13px; color: #919191; font-weight: normal; text-align: center; font-family: Verdana, Geneva, sans-serif;">
-                                <p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">indofund.id @ 2018&nbsp;All rights reserved.</p>
+                                <p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px; color: #fff;">indofund.id © 2018&nbsp;All Rights Reserved.</p>
                             </td>
                         </tr>
                         </tbody>

@@ -104,7 +104,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="https://indofund.id">sini</a> atau pada masing-masing proyek untuk informasi lebih detil.</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Klik di <a style="text-decoration: underline;" href="https://indofund.id">sini</a> untuk informasi lebih detil.</span></td>
                         </tr>
                         </tbody>
                     </table>

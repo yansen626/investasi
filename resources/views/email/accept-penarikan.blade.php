@@ -117,8 +117,7 @@
                         </tr>
                         <tr>
                             <td bgcolor="#ffffff" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">
-                                Transfer dilakukan melalui jaringan LLG (kliring) atau RTGS. Dana akan sampai pada rekening Anda dalam 1 hari kerja bank.<br/>
-                                Terima kasih telah berinvestasi bersama indofund.id!
+                                Transfer dilakukan melalui jaringan LLG (kliring) atau RTGS. Dana akan sampai pada rekening Anda dalam 1 hari kerja bank.
                             </td>
                         </tr>
                         </tbody>
