@@ -22,10 +22,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 use Maatwebsite\Excel\Facades;
 
 class WalletController extends Controller
@@ -70,6 +71,8 @@ class WalletController extends Controller
                 'walletStatement' => $trx
             );
             SendEmail::SendingEmail('withdrawalAccepted', $data);
+
+            Session::flash('message', 'Penarikan Dana Accepted!');
         });
 
         return redirect::route('dompet-request');
@@ -94,6 +97,60 @@ class WalletController extends Controller
 
             Session::flash('message', 'Penarikan Dana Rejected!');
         });
+
+        return redirect::route('dompet-request');
+    }
+
+
+    public function MultipleProcessOrder(Request $request){
+        $checkboxs = $request["submitCheckbox"];
+        $action = $request["action"];
+
+        if($action == "accept"){
+            foreach ($checkboxs as $checkboxID){
+                if(!empty($checkboxID)){
+                    DB::transaction(function() use ($checkboxID){
+                        $trx = WalletStatement::find($checkboxID);
+
+                        $trx->status_id = 6;
+                        $trx->date = Carbon::now('Asia/Jakarta');
+                        $trx->save();
+
+                        //Send Email
+                        $userData = User::find($trx->user_id);
+                        $data = array(
+                            'user' => $userData,
+                            'walletStatement' => $trx
+                        );
+                        SendEmail::SendingEmail('withdrawalAccepted', $data);
+
+                        Session::flash('message', 'Penarikan Dana Accepted!');
+                    });
+                }
+            }
+        }
+        else{
+            foreach ($checkboxs as $checkboxID){
+                if(!empty($checkboxID)){
+                    DB::transaction(function() use ($checkboxID){
+                        $trx = WalletStatement::find($checkboxID);
+
+                        $trx->status_id = 7;
+                        $trx->date = Carbon::now('Asia/Jakarta');
+                        $trx->save();
+
+                        $user = User::find($trx->user_id);
+                        $userWallet = (double) str_replace('.','', $user->wallet_amount);
+                        $amount = (double) str_replace('.','', $trx->amount);
+                        $userWalletFinal = $userWallet + $amount;
+                        $user->wallet_amount = $userWalletFinal;
+                        $user->save();
+
+                        Session::flash('message', 'Penarikan Dana Rejected!');
+                    });
+                }
+            }
+        }
 
         return redirect::route('dompet-request');
     }

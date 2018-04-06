@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        @if($newOrderTotal == 0 && $onGoingPaymentTotal == 0)
+                        @if($fundingDone == 0 && $fundingFailed == 0 && $twoDayTransfer == 0 && $newOrderTotal == 0 && $walletWithdraw == 0)
                             <div class="alert alert-info alert-dismissible fade in" role="alert">
                                 <strong>Halo!</strong> Saat ini tidak ada yang memerlukan tindakan Anda
                             </div>

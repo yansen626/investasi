@@ -175,12 +175,60 @@
             }
         ]
     } );
+    $(document).ready(function() {
+        var table = $('#datatable-responsive').DataTable();
+
+        $('#datatable-responsive tbody').on( 'click', 'tr', function () {
+            var id = $(this).attr('id');
+
+            var checkBoxes = $('#checkbox'+id);
+            checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+
+            var checkboxValue = checkBoxes.val();
+            $('#checkboxvalue'+id).val(checkboxValue);
+        } );
+
+        $('#btn-accept').click( function () {
+            $('#actionSelector').val('accept');
+
+            var title = "Warning";
+            var content = "Apakah Anda yakin untuk melanjutkan / menerima?"
+            var yes = "Accept";
+
+            $("#small-modal-title").html(title);
+            $("#small-modal-body").html(content);
+            $("#small-modal-yes").html(yes);
+
+            $("#small-modal-yes").attr('onclick', 'clickPopup()');
+            $("#small-modal").modal();
+        });
+        $('#btn-decline').click( function () {
+            $('#actionSelector').val('decline');
+
+            var title = "Warning";
+            var content = "Apakah Anda yakin untuk menolak / menghapus?"
+            var yes = "Delete";
+
+            $("#small-modal-yes").attr("class","btn btn-danger");
+            $("#small-modal-title").html(title);
+            $("#small-modal-body").html(content);
+            $("#small-modal-yes").html(yes);
+
+            $("#small-modal-yes").onclick('clickPopup()');
+            $("#small-modal").modal();
+
+        });
+    });
+
+    function clickPopup(){
+        $("#multiple-wallet-form").submit();
+    }
 
     $(function() {
         $('.summernote').summernote({
             height: 400
         });
-//
+
 //        $('form').on('submit', function (e) {
 //            e.preventDefault();
 //            alert($('.summernote').summernote('code'));

@@ -32,9 +32,17 @@
                         </div>
                         <div class="x_content">
                             @include('admin.partials._success')
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <form class="comment-form row altered" id="multiple-wallet-form" method="POST" action="{{route('multiple-process')}}">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" id="actionSelector" name="action" value="">
+                                <a class="btn btn-success" id="btn-accept">Terima Semua</a>
+                                <a class="btn btn-danger" id="btn-decline">Tolak Semua</a>
+
+                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>No</th>
                                         <th>Tanggal</th>
                                         <th>Deskripsi</th>
@@ -46,25 +54,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                 @php( $idx = 1 )
-                                    @foreach($statements as $statement)
-                                        <tr>
-                                            <td>{{ $idx }}</td>
-                                            <td>{{ $statement->date }}</td>
-                                            <td>{{ $statement->description }}</td>
-                                            <td class="text-right">Rp {{ $statement->saldo }}</td>
-                                            <td class="text-right">Rp {{ $statement->amount }}</td>
-                                            <td class="text-right">Rp {{ $statement->fee }}</td>
-                                            <td class="text-right">Rp {{ $statement->transfer_amount }}</td>
-                                            <td>
-                                                <a onclick="modalPop('{{ $statement->id }}', 'accept', '/admin/dompet/accept/')" class="btn btn-success">Terima</a>
-                                                <a onclick="modalPop('{{ $statement->id }}', 'cancel', '/admin/dompet/reject/')" class="btn btn-danger">Tolak</a>
-                                            </td>
-                                        </tr>
-                                        @php( $idx++ )
-                                            @endforeach
+                                @foreach($statements as $statement)
+
+                                    <tr id="{{$idx}}">
+                                        <td>
+                                            <input id="checkbox{{$idx}}" type="checkbox" value="{{$statement->id}}">
+                                            <input id="checkboxvalue{{$idx}}" name="submitCheckbox[]" type="hidden" value="">
+                                        </td>
+                                        <td>{{ $idx }}</td>
+                                        <td>{{ $statement->date }}</td>
+                                        <td>{{ $statement->description }}</td>
+                                        <td class="text-right">Rp {{ $statement->saldo }}</td>
+                                        <td class="text-right">Rp {{ $statement->amount }}</td>
+                                        <td class="text-right">Rp {{ $statement->fee }}</td>
+                                        <td class="text-right">Rp {{ $statement->transfer_amount }}</td>
+                                        <td>
+                                            <a onclick="modalPop('{{ $statement->id }}', 'accept', '/admin/dompet/accept/')" class="btn btn-success">Terima</a>
+                                            <a onclick="modalPop('{{ $statement->id }}', 'cancel', '/admin/dompet/reject/')" class="btn btn-danger">Tolak</a>
+                                        </td>
+                                    </tr>
+                                    @php( $idx++ )
+                                @endforeach
                                 </tbody>
                             </table>
+
+                            </form>
                         </div>
                     </div>
                 </div>

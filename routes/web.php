@@ -286,6 +286,7 @@ Route::prefix('admin/dompet')->group(function(){
     Route::get('/', 'Admin\WalletController@index')->name('dompet-list');
     Route::get('/request', 'Admin\WalletController@newRequest')->name('dompet-request');
     Route::get('/detail/{id}', 'Admin\TransactionController@detail')->name('transaction-detail');
+    Route::post('/multiple-process', 'Admin\WalletController@MultipleProcessOrder')->name('multiple-process');
     Route::get('/accept/{id}', 'Admin\WalletController@AcceptOrder');
     Route::get('/reject/{id}', 'Admin\WalletController@RejectOrder');
     Route::get('/download-wallet', 'Admin\WalletController@downloadExcel')->name('download-wallet');
