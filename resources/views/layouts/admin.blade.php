@@ -156,6 +156,9 @@
 <script src="{{ URL::asset('js/admin/summernote/summernote.js') }}"></script>
 
 
+<!-- string builder js -->
+<script src="{{ URL::asset('js/admin/stringbuilder.js') }}"></script>
+
 <!-- Custom Theme Scripts -->
 <script src="{{ URL::asset('js/admin/custom.js') }}"></script>
 
@@ -214,7 +217,7 @@
             $("#small-modal-body").html(content);
             $("#small-modal-yes").html(yes);
 
-            $("#small-modal-yes").onclick('clickPopup()');
+            $("#small-modal-yes").attr('onclick', 'clickPopup()');
             $("#small-modal").modal();
 
         });

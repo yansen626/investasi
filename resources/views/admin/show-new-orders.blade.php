@@ -84,12 +84,12 @@
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Reason for rejecting</h4>
+                        <h4 class="modal-title" id="myModalLabel">Alasan Penolakan</h4>
                     </div>
                     <div class="modal-body">
                         <textarea id="reject-reason" name="reject-reason" style="width: 100%"></textarea>
                     </div>
-                    {{ Form::hidden('reject-trx-id', '', array('id' => 'reject-trx-id')) }}
+                    {{ Form::hidden('reject-trx-id', '', array('id' => 'reject_trx_id')) }}
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <input type="submit" class="btn btn-danger" value="Confirm">

@@ -35,7 +35,7 @@
                                 <span class="help-block" style="color: red;">Nominal harus kelipatan dari Rp 250.000 dan minimal Rp 500.000</span>
                             </div>
                             <div class="field col-sm-12 text-center error-div-wallet" style="display: none;">
-                                <span class="help-block" style="color: red;">Nominal harus lebih kecil dari dana Anda</span>
+                                <span class="help-block" style="color: red;">Nominal harus lebih kecil dari saldo Anda</span>
                             </div>
                             <div class="field col-sm-12 price-format">
                                 <h5>Nominal</h5>
@@ -53,16 +53,22 @@
                             </div>
                             <div class="field col-sm-12">
                                 <h5>Pilihan Sumber Dana</h5>
-                                <h5>Dana Anda Rp {{$userData->wallet_amount}}</h5>
+                                <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
                                 <div class="radio-inputs">
                                     <input type="radio" id="payment-1" name="payment" value="wallet" checked>
-                                    <label for="payment-1"><span></span>Dana Saya</label>
+                                    <label for="payment-1"><span></span>Saldo Saya</label>
                                     <input type="radio" id="payment-2" name="payment" value="credit_card">
                                     <label for="payment-2"><span></span>Kartu Kredit</label>
                                     <input type="radio" id="payment-3" name="payment" value="bank_transfer">
-                                    <label for="payment-3"><span></span>Akun Virtual</label>
+                                    <label for="payment-3"><span></span>Transfer bank</label>
                                 </div>
                             </div>
+                            {{--<div class="field col-sm-12">--}}
+                                {{--<h5>Nama Sesuai KTP</h5>--}}
+                                {{--<h5>Ketikkan nama Anda sebagai pengganti tanda tangan</h5>--}}
+                                {{--<input id="name_sign" type="text" name="name_sign">--}}
+
+                            {{--</div>--}}
 
                             <input id="notCompletedData" value="{{$notCompletedData}}" type="hidden">
                             <input id="wallet" value="{{$userData->wallet_amount}}" type="hidden">
@@ -139,7 +145,7 @@
                             <div class="field col-sm-12">
                                 <h5>Kewarganegaraan</h5>
                                 <select class="form-control" id="citizen">
-                                    <option value="-1">Pilih Kewarganegaraan!</option>
+                                    <option value="-1">Pilih Kewarganegaraan</option>
                                     <option value="Indonesia">Warga Negara Indonesia</option>
                                     <option value="Asing">Warga Negara Asing</option>
                                 </select>
@@ -248,7 +254,7 @@
                         <div class="col-sm-12">
                             <label>
                                 <input type="checkbox" name="check1" id="check1" onclick="check()">
-                                Saya telah membaca dan memahami isi dari prospektus produk investasi ini
+                                Saya telah membaca dan memahami isi dari prospektus produk ini
                                 (<a href="{{route('download', ['filename' => $product->prospectus_path])}}"><span>Download Product Disclosure Statement</span></a>),
                                 dan saya telah menyetujui <a target="_blank" href="{{route('term-condition')}}">syarat dan ketentuan</a> dari indofund.id
 

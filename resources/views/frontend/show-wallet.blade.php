@@ -6,10 +6,10 @@
         <div class="container">
             <div class="parallax-mask"></div>
             <div class="section-name">
-                <h2>Total Dana Saya</h2>
+                <h2>Total Saldo Saya</h2>
                 <div class="short-text">
                     <h5><a href="{{route('index')}}">Beranda</a>
-                        <i class="fa fa-angle-double-right"></i>Total Dana Saya</h5>
+                        <i class="fa fa-angle-double-right"></i>Total Saldo Saya</h5>
                 </div>
             </div>
         </div>
@@ -23,18 +23,23 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="row">
                         <div class="col-md-7 col-xs-12 center">
+                            <a href="{{route('withdraw')}}" class="btn btn-big btn-warning">Penarikan Saldo</a>
+                            <br>
+                            <h5>*Penarikan saldo akan di kenakan {{$feePercentage}}% atau minimum Rp {{$fee}}</h5>
+                            <br>
                             <h3>
-                                <a href="{{route('withdraw')}}" class="btn btn-big btn-warning">Penarikan Dana</a>
-                                <br>
-                                <i class="fa fa-money fa-1x"></i> Total Dana = Rp {{$user->wallet_amount}}
+                                Nomor Virtual Akun Anda = {{$user->va_acc}}
                             </h3>
                             <h3>
-                                <i class="fa fa-money fa-1x"></i> Investme Point = {{$user->investme_point}}
+                                <i class="fa fa-money fa-1x"></i> Total Saldo = Rp {{$user->wallet_amount}}
+                            </h3>
+                            <h3>
+                                <i class="fa fa-money fa-1x"></i> Indofund Point = {{$user->investme_point}}
                             </h3>
 
                         </div>
                         {{--<div class="col-md-5 col-xs-12 center" style="padding-top:3%;">--}}
-                            {{--<a href="{{route('deposit')}}" class="btn btn-big btn-success">Top Up Dana</a>--}}
+                            {{--<a href="{{route('deposit')}}" class="btn btn-big btn-success">Top Up Saldo</a>--}}
 
                         {{--</div>--}}
                     </div>
@@ -124,7 +129,6 @@
                                                             @else
                                                                 <td>Selesai</td>
                                                             @endif
-
                                                         </tr>
                                                         @php( $idx++ )
                                                             @endforeach

@@ -9,7 +9,7 @@
                 <h2>Pembayaran</h2>
                 <div class="short-text">
                     <h5><a href="{{route('index')}}">Beranda</a>
-                        <i class="fa fa-angle-double-right"></i><a href="{{route('project-list')}}">Daftar Investasi</a>
+                        <i class="fa fa-angle-double-right"></i><a href="{{ route('project-list', ['tab' => 'debt']) }}">Daftar Investasi</a>
                         <i class="fa fa-angle-double-right"></i>Pembayaran
                     </h5>
                 </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="info-block" style="margin: 0; padding: 0;">
-                        <a href="{{ route('project-detail', ['id' => $investId]) }}" class="btn btn-big btn-solid" style="margin-left: 10px;">Kembali ke Halaman Investasi</a>
+                        <a href="{{ route('project-detail', ['id' => $investId]) }}" class="btn btn-big btn-solid" style="margin-left: 10px;">Kembali ke Halaman Proyek</a>
                         <a href="{{ route('project-list', ['tab' => 'debt']) }}" class="btn btn-big btn-solid">Daftar Investasi</a>
                     </div>
                 </div>

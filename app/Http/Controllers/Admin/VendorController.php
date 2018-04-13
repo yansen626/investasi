@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Libs\Utilities;
+use App\Models\ProductInstallment;
 use App\Models\Vendor;
 use App\Models\Category;
 use App\Models\Product;
@@ -43,8 +44,10 @@ class VendorController extends Controller
         $vendor = Vendor::find($id);
         $user = User::find($vendor->user_id);
         $product = Product::where('vendor_id', $vendor->id)->first();
+        $productInstallments = ProductInstallment::where('product_id', $product->id)->get();
 
-        return View('admin.show-vendor-detail', compact('vendor', 'user', 'product'));
+
+        return View('admin.show-vendor-detail', compact('vendor', 'user', 'product', 'productInstallments'));
     }
 
     public function RequestList(){
@@ -110,9 +113,10 @@ class VendorController extends Controller
             'tenor_loan'            => 'required',
             'description'           => 'required',
             'interest_rate'           => 'required',
-            'installment_per_month'           => 'required',
-            'interest_per_month'           => 'required',
+//            'installment_per_month'           => 'required',
+//            'interest_per_month'           => 'required',
             'prospectus'           => 'required',
+            'business_class'           => 'required|max:2',
 
             'email'                 => 'required|email|max:100|unique:users',
             'phone'                 => 'required|max:20|unique:users',
@@ -169,15 +173,17 @@ class VendorController extends Controller
                 'project_image.required'   => 'Gambar Proyek harus diisi',
                 'project_name.required'   => 'Nama Proyek harus diisi',
                 'project_tagline.required'   => 'Tagline Proyek harus diisi',
-                'category.required'   => 'Ketegori harus diisi',
+                'category.required'   => 'Kategori harus diisi',
                 'raising.required'   => 'Total Pendanaan harus diisi',
                 'days_left.required'   => 'Durasi Pengumpulan Dana harus diisi',
                 'tenor_loan.required'   => 'Durasi Pinjaman harus diisi',
                 'description.required'   => 'Deskripsi Proyek harus diisi',
                 'interest_rate.required'   => 'Suku Bunga Proyek harus diisi',
-                'installment_per_month.required'   => 'Cicilan / Bulan harus diisi',
-                'interest_per_month.required'   => 'Bunga / Bulan harus diisi',
+//                'installment_per_month.required'   => 'Cicilan / Bulan harus diisi',
+//                'interest_per_month.required'   => 'Bunga / Bulan harus diisi',
                 'prospectus.required'   => 'Product Disclosure Statement Proyek harus diisi',
+                'business_class.required'   => 'Kelas harus diisi',
+                'business_class.max'   => 'Kelas Maksimal 2 huruf',
 
                 'vendor_image.required'   => 'Gambar Perusahaan harus diisi',
                 'name_vendor.required'   => 'Nama Perusahaan harus diisi',
@@ -203,10 +209,24 @@ class VendorController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        DB::transaction(function() use ($request){
+        if ($request['category'] == "-1") {
+            return back()->withErrors("Kategori harus dipilih")->withInput();
+        }
+
+        $interestPerMonths = "";
+        $installmentPerMonths = "";
+        $interestPerMonths = $request['interest_per_month'];
+        $installmentPerMonths = $request['installment_per_month'];
+        $isNullMemberInterest = in_array(null, $interestPerMonths, true);
+        $isNullMemberInstallment = in_array(null, $installmentPerMonths, true);
+        if($isNullMemberInterest && $isNullMemberInstallment)
+            return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
+
+        DB::transaction(function() use ($request, $interestPerMonths, $installmentPerMonths){
 //            dd($request);
             $userID = Uuid::generate();
             $vendorID = Uuid::generate();
+            $productID = Uuid::generate();
             $dateTimeNow = Carbon::now('Asia/Jakarta');
 
 //        create new user
@@ -270,19 +290,19 @@ class VendorController extends Controller
 
 //        create new product
             $newProduct = Product::create([
-                'id' =>Uuid::generate(),
+                'id' => $productID,
                 'category_id' => $request['category'],
                 'name' => $request['project_name'],
                 'user_id' => $userID,
                 'vendor_id' => $vendorID,
-                'tagline' => $request['project_tagline'],
                 'raising' => $request['raising'],
                 'days_left' => $request['days_left'],
+                'tagline' => $request['project_tagline'],
                 'description' => $request['description'],
                 'interest_rate' => $request['interest_rate'],
                 'business_class' => $request['business_class'],
-                'installment_per_month' => $request['installment_per_month'],
-                'interest_per_month' => $request['interest_per_month'],
+//                'installment_per_month' => $request['installment_per_month'],
+//                'interest_per_month' => $request['interest_per_month'],
                 'tenor_loan' => $request['tenor_loan'],
                 'is_secondary' => 0,
                 'status_id' => 3,
@@ -330,6 +350,18 @@ class VendorController extends Controller
             $newProduct->save();
 
 
+//        create product ciclan & bunga
+            for($i=0;$i<$request['tenor_loan'];$i++){
+                $newProduct = ProductInstallment::create([
+                    'id'            =>Uuid::generate(),
+                    'product_id'    => $productID,
+                    'month'         => $i + 1,
+                    'amount'        => $installmentPerMonths[$i],
+                    'interest_amount'        => $interestPerMonths[$i],
+                    'status_id'     => 1,
+                    'created_on'    => $dateTimeNow->toDateTimeString()
+                ]);
+            }
         });
 //
 //        if ($validator->fails()) {

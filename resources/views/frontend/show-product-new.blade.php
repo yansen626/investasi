@@ -35,7 +35,7 @@
                     <div class="col-md-10">
                         <h2>{{$product->name}}</h2>
 
-                        <div style="max-height: 45px;">{!! \App\Libs\Utilities::TruncateString($product->description) !!}</div>
+                        <div style="max-height: 45px;">{{$product->tagline}}</div>
                     </div>
 
                 </div>
@@ -83,6 +83,7 @@
                             <div class="col-md-7" style="font-size:16px !important;">
                                 @if(auth()->check())
                                     <a href="{{route('download', ['filename' => $product->prospectus_path])}}" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>
+                                    {{--<a href="https://drive.google.com/file/d/17fbW4Rt62N06oo2xVaHnswj5zLPKtwke/view?usp=sharing" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>--}}
                                 @else
                                     <a data-toggle="modal" data-target="#prospektusModal" style="cursor: pointer;">Download Product Disclosure Statement</a>
                                 @endif

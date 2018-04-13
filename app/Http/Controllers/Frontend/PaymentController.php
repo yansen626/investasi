@@ -105,8 +105,12 @@ class PaymentController extends Controller
                     if($isSuccess){
                         return redirect()->route('pageVA', ['orderId' => $orderId]);
                     }
+                    else{
+                        return View('frontend.checkout-failed', compact('investId'));
+                    }
                 }
                 else{
+                    $isSuccess = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
                     //set data to request
                     $transactionDataArr = Midtrans::setRequestData($userId, Input::get('checkout-payment-method-input'), $orderId, $cartCreate);
 //                dd($transactionDataArr);
@@ -120,7 +124,8 @@ class PaymentController extends Controller
             //if pay with dompet
             else{
                 $userDB = User::find($userId);
-                if($userDB->wallet_amount < $investAmount){
+                $userWallet = (double) str_replace('.','', $userDB->wallet_amount);
+                if($investAmount <= $userWallet){
                     $isSuccess = TransactionUnit::createTransaction($userId, $cart->id + 1, $cart->order_id);
 
                     //change status, date etc
@@ -132,12 +137,10 @@ class PaymentController extends Controller
                 else{
                     return View('frontend.checkout-failed', compact('investId'));
                 }
-
             }
-
         }
         catch(\Exception $ex){
-
+            return View('frontend.checkout-failed', compact('investId'));
         }
     }
 

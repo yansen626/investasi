@@ -73,31 +73,39 @@
 
                                             {{--tab 3--}}
                                             <div class="tab-pane" id="user">
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>E-mail</h4>
                                                     <input type="email" name="email" value="{{old('email')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Nomor Handphone</h4>
                                                     <input type="number" name="phone" value="{{old('phone')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Password</h4>
+                                                    <input type="password" name="password" value="{{old('password')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Konfirmasi Password</h4>
+                                                    <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
                                                 <div class="field col-sm-12">
-                                                    <h4>Nama seusai KTP</h4>
+                                                    <h4>Nama sesuai KTP</h4>
                                                     <input type="text" name="name" value="{{old('name')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
+                                                    <h4>Alamat Rumah sesuai KTP</h4>
+                                                    <input type="text" name="address_ktp" value="{{old('address_ktp')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Tanggal Lahir sesuai KTP</h4>
                                                     <input type="text" name="dob" value="{{old('dob')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Alamat Rumah seusai KTP</h4>
-                                                    <input type="text" name="address_ktp" value="{{old('address_ktp')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Status Pernikahan</h4>
                                                     <input type="text" name="marital_status" value="{{old('marital_status')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Pendidikan Terakhir</h4>
                                                     <input type="text" name="education" value="{{old('education')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -105,39 +113,31 @@
                                                     <h4>Username</h4>
                                                     <input type="text" name="username" value="{{old('username')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Password</h4>
-                                                    <input type="password" name="password" value="{{old('password')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Konfirmasi Password</h4>
-                                                    <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
                                             </div>
 
                                             {{--tab 4--}}
                                             <div class="tab-pane" id="sosmed">
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Alamat akun facebook *</h4>
                                                     <input type="text" name="fb_acc" value="{{old('fb_acc')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Alamat akun Instagram *</h4>
-                                                    <input type="text" name="ig_acc" value="{{old('ig_acc')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div style="margin-top: 0;" class="field col-sm-12">
-                                                    <h4>Alamat akun Twitter *</h4>
-                                                    <input type="text" name="twitter_acc" value="{{old('twitter_acc')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Alamat akun facebook usaha</h4>
                                                     <input type="text" name="vendor_fb" value="{{old('vendor_fb')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Alamat akun Instagram *</h4>
+                                                    <input type="text" name="ig_acc" value="{{old('ig_acc')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Alamat akun Instagram usaha</h4>
                                                     <input type="text" name="vendor_ig" value="{{old('vendor_ig')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div style="margin-top: 0;" class="field col-md-6 col-sm-12">
+                                                    <h4>Alamat akun Twitter *</h4>
+                                                    <input type="text" name="twitter_acc" value="{{old('twitter_acc')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Alamat akun Twitter usaha</h4>
                                                     <input type="text" name="vendor_tw" value="{{old('vendor_tw')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -149,18 +149,14 @@
 
                                             {{--tab 1--}}
                                             <div class="tab-pane active" id="project">
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Gambar Proyek / Produk</h4>
                                                     {!! Form::file('project_image', array('id' => 'photo', 'class' => 'file')) !!}
                                                 </div>
 
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Upload product disclosure statement</h4>
                                                     {!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Link Video Youtube</h4>
-                                                    <input type="text" name="youtube" value="{{old('youtube')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
                                                     <h4>Nama Proyek / Produk</h4>
@@ -175,60 +171,65 @@
                                                     <input type="hidden" id="description" name="description" value="{{old('description')}}">
                                                     <textarea class="summernote" id="description_text" title="description">{{old('description')}}</textarea>
                                                 </div>
-                                                <div style="margin-top: 0;" class="field col-sm-12 ">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Link Video Youtube</h4>
+                                                    <input type="text" name="youtube" value="{{old('youtube')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div style="margin-top: 0;" class="field col-md-6 col-sm-12 ">
                                                     <h4>Kategori</h4>
                                                     <select id="category" name="category" class="form-control">
                                                         <option value="-1">Pilih Kategori</option>
-
                                                         @foreach($categories as $category)
-                                                            <option value="{{ $category->id }}" {{ old('category') == $category->id ? "selected":"" }} >{{ $category->name }}</option>
+                                                            <option {{ old('category') == $category->id ? "selected":"" }} value="{{ $category->id }}">{{ $category->name }}</option>
                                                         @endforeach
 
                                                     </select>
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Total Pendanaan</h4>
-                                                    <input type="number" name="raising" value="{{old('raising')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Durasi Pinjaman (bulan)</h4>
-                                                    <input type="number" name="tenor_loan" value="{{old('tenor_loan')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Durasi Pengumpulan Dana (hari)</h4>
                                                     <input type="number" name="days_left" value="{{old('days_left')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Suku Bunga</h4>
-                                                    <input type="number" name="interest_rate" value="{{old('interest_rate')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Kelas</h4>
-                                                    <select id="business_class" name="business_class" class="form-control">
-                                                        <option {{ old('business_class') == "-1" ? "selected":"" }} value="-1">Pilih</option>
-                                                        <option {{ old('business_class') == "A" ? "selected":"" }} value="A">A</option>
-                                                        <option {{ old('business_class') == "B" ? "selected":"" }} value="B">B</option>
-                                                        <option {{ old('business_class') == "C" ? "selected":"" }} value="C">C</option>
-                                                        <option {{ old('business_class') == "D" ? "selected":"" }} value="D">D</option>
-                                                    </select>
+                                                    <input type="text" name="business_class" value="{{old('business_class')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Cicilan/bulan</h4>
-                                                    <input type="number" name="installment_per_month" value="{{old('installment_per_month')}}" class="form-control col-md-7 col-xs-12">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Suku Bunga (desimal gunakan titik ".")</h4>
+                                                    <input type="number" name="interest_rate" step=".01" value="{{old('interest_rate')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Bunga/bulan</h4>
-                                                    <input type="number" name="interest_per_month" value="{{old('interest_per_month')}}" class="form-control col-md-7 col-xs-12">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Total Pendanaan</h4>
+                                                    <input type="number" name="raising" value="{{old('raising')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Durasi Pinjaman (bulan)</h4>
+                                                    <input type="number" id="tenor_loan" name="tenor_loan" value="{{old('tenor_loan')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                {{--<div class="field col-md-6 col-sm-12">--}}
+                                                    {{--<h4>Cicilan/bulan</h4>--}}
+                                                    {{--<input type="number" name="installment_per_month" value="{{old('installment_per_month')}}" class="form-control col-md-7 col-xs-12">--}}
+                                                {{--</div>--}}
+                                                {{--<div class="field col-md-6 col-sm-12">--}}
+                                                    {{--<h4>Bunga/bulan</h4>--}}
+                                                    {{--<input type="number" name="interest_per_month" value="{{old('interest_per_month')}}" class="form-control col-md-7 col-xs-12">--}}
+                                                {{--</div>--}}
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>&nbsp;</h4>
+                                                    <a class="btn btn-primary col-md-5 col-xs-12" onclick="interestPerMonth()">Cicilan&Bunga / bulan</a>
+                                                </div>
+                                                <div class="field col-md-12 col-sm-12">
+                                                    <table id="interest-month">
+                                                    </table>
                                                 </div>
                                             </div>
 
                                             {{--tab 2--}}
                                             <div class="tab-pane" id="owner">
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Gambar Profil</h4>
                                                     {!! Form::file('vendor_image', array('id' => 'photo_profile', 'class' => 'file')) !!}
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Tipe Perusahaan * </h4>
                                                     <select id="vendor_type" name="vendor_type" class="form-control">
                                                         <option {{ old('vendor_type') == "-1" ? "selected":"" }} value="-1">Pilih</option>
@@ -241,11 +242,11 @@
                                                     <h4>Nama Perusahaan * </h4>
                                                     <input type="text" name="name_vendor" value="{{old('name_vendor')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Merk / Nama Dagang * </h4>
                                                     <input type="text" name="brand" value="{{old('brand')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Tipe Usaha * </h4>
                                                     <select id="business_type" name="business_type" class="form-control">
                                                         <option {{ old('business_type') == "-1" ? "selected":"" }} value="-1">Pilih</option>
@@ -254,15 +255,23 @@
                                                         <option {{ old('business_type') == "perdagangan" ? "selected":"" }} value="perdagangan">Perdagangan</option>
                                                     </select>
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Lama Usaha (Tahun) * </h4>
                                                     <input type="text" name="establish_since" value="{{old('establish_since')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Lama Usaha (Bulan)</h4>
                                                     <input type="text" name="establish_since_month" value="{{old('establish_since_month')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Rata-rata penjualan per bulan *</h4>
+                                                    <input type="number" name="monthly_income" value="{{old('monthly_income')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Rata-rata keuntungan  per bulan *</h4>
+                                                    <input type="number" name="monthly_profit" value="{{old('monthly_profit')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Besar Kepemilikan Saham Anda (%) * </h4>
                                                     <input type="text" name="ownership" value="{{old('ownership')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -275,38 +284,34 @@
                                                     <h4>Alamat Kantor * </h4>
                                                     <input type="text" name="address"value="{{old('address')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Kode Pos * </h4>
-                                                    <input type="text" name="postal_code"value="{{old('postal_code')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Kota * </h4>
                                                     <input type="text" name="city"value="{{old('city')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Provinsi * </h4>
                                                     <input type="text" name="province"value="{{old('province')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Kode Pos * </h4>
+                                                    <input type="text" name="postal_code"value="{{old('postal_code')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Nomor Telepon Kantor * </h4>
                                                     <input type="text" name="phone_office"value="{{old('phone_office')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Alamat Website</h4>
                                                     <input type="text" name="website" value="{{old('website')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Rata-rata penjualan per bulan *</h4>
-                                                    <input type="number" name="monthly_income" value="{{old('monthly_income')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Rata-rata keuntungan  per bulan *</h4>
-                                                    <input type="number" name="monthly_profit" value="{{old('monthly_profit')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
 
                                             {{--tab 5--}}
                                             <div class="tab-pane" id="bank">
+                                                <div class="field col-sm-12">
+                                                    <h4>Nama Pemilik Rekening</h4>
+                                                    <input type="text" name="acc_bank"value="{{old('acc_bank')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
                                                 <div class="field col-sm-12">
                                                     <h4>Nama Bank</h4>
                                                     <input type="text" name="bank"value="{{old('bank')}}" class="form-control col-md-7 col-xs-12">
@@ -314,10 +319,6 @@
                                                 <div class="field col-sm-12">
                                                     <h4>Nomor Rekening</h4>
                                                     <input type="text" name="no_rek"value="{{old('no_rek')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Nama Pemilik Rekening</h4>
-                                                    <input type="text" name="acc_bank"value="{{old('acc_bank')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
                                                     <br>
@@ -351,13 +352,35 @@
             var content = $('#description_text').val();
             var replaceContent = content.replace("\n", "<br/>");
             $('#description').val(replaceContent);
-//            alert(replaceContent);
+
             var contentVendor = $('#description_vendor_text').val();
             var replaceContentVendor = contentVendor.replace("\n", "<br/>");
             $('#description_vendor').val(replaceContentVendor);
-//            alert(replaceContentVendor);
+        }
 
-//            $('#owner-form').submit();
+        function interestPerMonth(){
+            var divAmount = $("#tenor_loan").val();
+
+            var sbAdd = new stringbuilder();
+            $('#interest-month').empty();
+
+            sbAdd.append("<tr>");
+            sbAdd.append("<td> <h4>Bulan</h4></td>");
+            sbAdd.append("<td style='padding-left:5%;'><h4>Cicilan/bulan</h4></td>");
+            sbAdd.append("<td style='padding-left:5%;'><h4>Bunga/bulan</h4></td>");
+            sbAdd.append("</tr>");
+
+            for(var i=1;i<=divAmount;i++){
+                sbAdd.append("<tr>");
+                sbAdd.append("<td> Bulan "+ i + "</td>");
+                sbAdd.append("<td style='padding-left:5%;'>");
+                sbAdd.append("<input type='number' name='installment_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
+                sbAdd.append("<td style='padding-left:5%;'>");
+                sbAdd.append("<input type='number' name='interest_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
+                sbAdd.append("</tr>");
+            }
+
+            $('#interest-month').append(sbAdd.toString());
         }
 
     </script>

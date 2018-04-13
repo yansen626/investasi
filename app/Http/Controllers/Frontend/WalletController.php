@@ -47,7 +47,11 @@ class WalletController extends Controller
         $user = User::find($userId);
         $statementsWithdraw = WalletStatement::where('user_id', $userId)->orderByDesc('created_on')->get();
         $statementsTopup = TransactionWallet::where('user_id', $userId)->orderByDesc('created_at')->get();
-        return View ('frontend.show-wallet', compact('statementsWithdraw','statementsTopup', 'user'));
+
+        $fee = number_format(env('FEE'),0, ",", ".");
+        $feePercentage = env('FEE_PERCENTAGE') * 100;
+
+        return View ('frontend.show-wallet', compact('statementsWithdraw','statementsTopup', 'user', 'fee', 'feePercentage'));
     }
 
 //    public function DepositShow()
@@ -204,7 +208,6 @@ class WalletController extends Controller
                 $userWallet = (double) str_replace('.','', $user->wallet_amount);
 
                 if($amount > $userWallet){
-                    dd($amount." ". $userWallet);
                     return back()->withErrors("Jumlah Penarikan harus lebih kecil dari Dana yang tersedia")->withInput();
                 }
 
@@ -221,12 +224,21 @@ class WalletController extends Controller
 
                     //check for fee and admin
                     $fee = (double) env('FEE');
-                    $fee_percentage = (double) $amount*env('FEE_PERSENTAGE');
+                    $fee_percentage = (double) $amount*env('FEE_PERCENTAGE');
                     if($fee_percentage > $fee) $fee = $fee_percentage;
                     $transfer_amount = $amount - $fee;
 
                     $userFinalWallet = $userWallet - $amount;
+//                    dd($amount." | ".$fee." | ".$transfer_amount." | ".$userFinalWallet);
 
+                    //if user bank account not registred
+                    if(empty($user->bank_name) || empty($user->bank_acc_number) || empty($user->bank_acc_name)){
+                        $user->bank_name = $bank;
+                        $user->bank_acc_name = $accName;
+                        $user->bank_acc_number = $accNumber;
+
+                        $user->save();
+                    }
 
                     //status 3=pending, 6=accepted, 7=rejected
                     $newStatement = WalletStatement::create([

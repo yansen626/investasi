@@ -2,8 +2,8 @@
 <!-- header -->
 <header>
     <nav class="navigation" style="background:black !important;">
-        <div class="container" >
-            <div class="row">
+        <div class="container">
+            <div class="row" style="margin-top: 10px;z-index:999;">
                 @if(auth()->check())
                     <a style="color:white;cursor:pointer;" href="{{route('my-profile', ['tab' => 'profile'])}}">Profil Saya</a>
                     &nbsp;&nbsp;

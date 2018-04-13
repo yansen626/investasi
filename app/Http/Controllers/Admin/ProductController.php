@@ -217,6 +217,10 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
+//        $interestPerMonths = $request['interest_per_month'];
+//        $isNullMember = in_array(null, $interestPerMonths, true);
+//        if($isNullMember)
+//            return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
 
         DB::transaction(function() use ($request){
 //            dd($request);
@@ -286,6 +290,17 @@ class ProductController extends Controller
             $newProduct->prospectus_path = $filenamePDF;
             $newProduct->save();
 
+//        create product ciclan & bunga
+//            foreach ($interestPerMonths as $interestPerMonth){
+//                $newProduct = ProductInstallment::create([
+//                    'id'            =>Uuid::generate(),
+//                    'product_id'    => $productID,
+//                    'month'         => $interestPerMonth,
+//                    'amount'        => $interestPerMonth,
+//                    'status_id'     => 1,
+//                    'created_on'    => $dateTimeNow->toDateTimeString()
+//                ]);
+//            }
         });
 
         return Redirect::route('vendor-list');

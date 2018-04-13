@@ -1,4 +1,4 @@
-// Bootstrap File Input
+    // Bootstrap File Input
 $("#product-photos").fileinput({
     maxFilePreviewSize: 10240,
     showUpload: false,

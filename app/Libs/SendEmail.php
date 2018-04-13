@@ -109,17 +109,22 @@ class SendEmail
                     );
 
                     // send to lender email
+                    // pendanaan baru anda status masih 3
                     $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
                     Mail::to($userData->email)->send($invoiceEmail);
 
-                    $pdf2 = PDF::loadView('email.perjanjian-pinjaman', $data);
-                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf2, $userData) {
-                        $message->to($userData->email)->subject('Perjanjian Pinjaman di Indofund');
+                    $pdf = PDF::loadView('email.perjanjian-layanan', $data);
+                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf, $userData) {
+                        $message->to($userData->email)->subject('Perjanjian Layanan Pinjam Meminjam di Indofund');
 
-                        $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
+                        $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
                     });
                     break;
 
+                    // dana telah diterima status = 5
+                case 'acceptedTransaction' :
+
+                    break;
                 case 'collectedFund' :
 
                     $userData = $objData->user;
@@ -132,15 +137,23 @@ class SendEmail
                         'vendor' => $vendor
                     );
 
-                    // send to borower email
-                    $pdf = PDF::loadView('email.perjanjian-layanan', $data);
-                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf, $userData) {
-                        $message->to($userData->email)->subject('Perjanjian Layanan Pinjam Meminjam di Indofund');
+//                    // send to borower email
+//                    $pdf = PDF::loadView('email.perjanjian-layanan', $data);
+//                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf, $userData) {
+//                        $message->to($userData->email)->subject('Perjanjian Layanan Pinjam Meminjam di Indofund');
+//
+//                        $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
+//                    });
 
-                        $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
+
+                    $pdf2 = PDF::loadView('email.perjanjian-pinjaman', $data);
+                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf2, $userData) {
+                        $message->to($userData->email)->subject('Perjanjian Pinjaman di Indofund');
+
+                        $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
                     });
                     break;
-
+                //proyek berjalan
                 case 'acceptCollectedFund' :
                     $project = $objData->project;
                     $vendorData = $objData->vendorData;
@@ -154,7 +167,7 @@ class SendEmail
                     });
 
                     break;
-
+                // proyek tidak berjalan
                 case 'acceptFailedFund' :
                     $project = $objData->project;
                     $vendorData = $objData->vendorData;
@@ -170,7 +183,12 @@ class SendEmail
                     });
 
                     break;
-
+                // pembayaran pinjaman proyek di indofund.id
+                case 'installmentPayment' :
+                    break;
+                //tagihan pinjaman proyek
+                case 'reminderIntallmentPayment' :
+                    break;
                 case 'testing' :
 
                     $userData = $objData->userData;

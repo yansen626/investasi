@@ -62,7 +62,7 @@ function modalCheckout(){
             // adminFee += 4000;
             $("#checkout-admin-fee-input").val(0);
             $("#checkout-admin-fee").html("GRATIS");
-            $("#checkout-payment-method").html("Akun Virtual");
+            $("#checkout-payment-method").html("Transfer Bank");
 
             // Set total invest amount
             var total = parseInt(invest) + adminFee;
@@ -73,13 +73,14 @@ function modalCheckout(){
         else if(payment === "wallet"){
 
             var walletVal = $("#wallet").val();
+            walletVal = walletVal.replace('.', '');
             if(walletVal < invest){
                 $(".error-div-wallet").show();
             }
             else{
                 $("#checkout-admin-fee-input").val(0);
                 $("#checkout-admin-fee").html("GRATIS");
-                $("#checkout-payment-method").html("Dompet");
+                $("#checkout-payment-method").html("Saldo Saya");
 
                 // Set total invest amount
                 var total = parseInt(invest) + adminFee;

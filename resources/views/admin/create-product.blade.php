@@ -62,18 +62,15 @@
                                             <div class="tab-pane active" id="project">
 
                                                 <input type="hidden" name="vendor_id" value="{{ $vendorDB->id }}" class="form-control col-md-7 col-xs-12">
-                                                <div class="field col-sm-12">
+
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Gambar Proyek / Produk</h4>
                                                     {!! Form::file('project_image', array('id' => 'photo', 'class' => 'file')) !!}
                                                 </div>
 
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Upload product disclosure statement</h4>
                                                     {!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Link Video Youtube</h4>
-                                                    <input type="text" name="youtube" value="{{old('youtube')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
                                                     <h4>Nama Proyek / Produk</h4>
@@ -88,7 +85,11 @@
                                                     <input type="hidden" id="description" name="description" value="{{old('description')}}">
                                                     <textarea class="summernote" id="description_text" title="description">{{old('description')}}</textarea>
                                                 </div>
-                                                <div style="margin-top: 0;" class="field col-sm-12 ">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Link Video Youtube</h4>
+                                                    <input type="text" name="youtube" value="{{old('youtube')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div style="margin-top: 0;" class="field col-md-6 col-sm-12 ">
                                                     <h4>Kategori</h4>
                                                     <select id="category" name="category" class="form-control">
                                                         <option value="-1">Pilih Kategori</option>
@@ -99,23 +100,11 @@
 
                                                     </select>
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Total Pendanaan</h4>
-                                                    <input type="number" name="raising" value="{{old('raising')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Durasi Pinjaman (bulan)</h4>
-                                                    <input type="number" name="tenor_loan" value="{{old('tenor_loan')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Durasi Pengumpulan Dana (hari)</h4>
                                                     <input type="number" name="days_left" value="{{old('days_left')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
-                                                    <h4>Suku Bunga</h4>
-                                                    <input type="number" name="interest_rate" value="{{old('interest_rate')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Kelas</h4>
                                                     <select id="business_class" name="business_class" class="form-control">
                                                         <option {{ old('business_class') == "-1" ? "selected":"" }} value="-1">Pilih</option>
@@ -125,13 +114,33 @@
                                                         <option {{ old('business_class') == "D" ? "selected":"" }} value="D">D</option>
                                                     </select>
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Suku Bunga</h4>
+                                                    <input type="number" name="interest_rate" value="{{old('interest_rate')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Total Pendanaan</h4>
+                                                    <input type="number" name="raising" value="{{old('raising')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>Durasi Pinjaman (bulan)</h4>
+                                                    <input type="number" id="tenor_loan" name="tenor_loan" value="{{old('tenor_loan')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Cicilan/bulan</h4>
                                                     <input type="number" name="installment_per_month" value="{{old('installment_per_month')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-sm-12">
+                                                <div class="field col-md-6 col-sm-12">
                                                     <h4>Bunga/bulan</h4>
                                                     <input type="number" name="interest_per_month" value="{{old('interest_per_month')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                {{--<div class="field col-md-6 col-sm-12">--}}
+                                                {{--<h4>&nbsp;</h4>--}}
+                                                {{--<a class="btn btn-primary col-md-5 col-xs-12" onclick="interestPerMonth()">Cicilan&Bunga / bulan</a>--}}
+                                                {{--</div>--}}
+                                                <div class="field col-sm-12">
+                                                    <table id="interest-month">
+                                                    </table>
                                                 </div>
                                                 <div class="field col-sm-12">
                                                     <br>
@@ -171,5 +180,21 @@
 //            $('#owner-form').submit();
         }
 
+        // function interestPerMonth(){
+        //     var divAmount = $("#tenor_loan").val();
+        //
+        //     var sbAdd = new stringbuilder();
+        //     $('#interest-month').empty();
+        //
+        //     for(var i=1;i<=divAmount;i++){
+        //         sbAdd.append("<tr>");
+        //         sbAdd.append("<td> Bulan "+ i + "</td>");
+        //         sbAdd.append("<td style='padding-left:5%;'>");
+        //         sbAdd.append("<input type='number' name='interest_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
+        //         sbAdd.append("</tr>");
+        //     }
+        //
+        //     $('#interest-month').append(sbAdd.toString());
+        // }
     </script>
 @endsection

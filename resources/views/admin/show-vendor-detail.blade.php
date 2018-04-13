@@ -80,14 +80,6 @@
                                         <span class="name"> Kelas (Suku Bunga) </span>
                                         <span class="value text-success"> {{$product->business_class}} ( {{$product->interest_rate}}% ) </span>
                                     </li>
-                                    <li>
-                                        <span class="name"> Cicilan/Bulan </span>
-                                        <span class="value text-success"> Rp {{$product->installment_per_month}} </span>
-                                    </li>
-                                    <li class="hidden-phone">
-                                        <span class="name"> Bunga/Bulan </span>
-                                        <span class="value text-success"> Rp {{$product->interest_per_month}} </span>
-                                    </li>
                                 </ul>
                                 <br />
 
@@ -102,6 +94,25 @@
                                 <div>
 
                                     <br/>
+                                    <!-- end of user messages -->
+                                    @if(!empty($productInstallments))
+                                        <ul class="messages">
+                                            <li>
+                                                <div class="message_wrapper">
+                                                    <h2 class="heading">Cicilan / Bunga per bulan</h2>
+                                                    <br />
+                                                    <div class="col-md-12">
+                                                        @foreach($productInstallments as $productInstallment)
+                                                            <div class="col-md-6">
+                                                                Bulan {{$productInstallment->month}} = {{$productInstallment->amount}} / {{$productInstallment->interest_amount}}
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <br/>
+                                    @endif
                                     <!-- end of user messages -->
                                     <ul class="messages">
                                         <li>

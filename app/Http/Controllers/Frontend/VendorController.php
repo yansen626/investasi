@@ -112,6 +112,9 @@ class VendorController extends Controller
             'phone' => $request['phone'],
             'username' => $request['username'],
             'email_token' => base64_encode($request['email']),
+            'bank_name' => $request['bank'],
+            'bank_acc_name' => $request['acc_bank'],
+            'bank_acc_number' => $request['no_rek'],
             'status_id' => 3,
             'password' => bcrypt($request['password']),
             'created_at'        => $dateTimeNow->toDateTimeString()

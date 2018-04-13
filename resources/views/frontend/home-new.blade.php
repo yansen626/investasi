@@ -9,7 +9,7 @@
                     <h2>
                         Halo Selamat Datang , {{ \Illuminate\Support\Facades\Auth::User()->first_name }} {{ \Illuminate\Support\Facades\Auth::user()->last_name }}
                         <br>
-                        Saat ini Anda memiliki {{$onGoingProducts}} proyek berjalan
+                        Saat ini Anda memiliki {{$onGoingProductCount}} proyek berjalan
                     </h2>
                 </div>
                 <div class="row features">
@@ -31,9 +31,9 @@
                         <a href="{{route('my-wallet')}}">
                             <div class="feature clearfix">
                                 <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-2.png') }}">
-                                <h4>Penarikan & Penambahan Dana</h4>
+                                <h4>Penarikan Saldo</h4>
                                 <div class="feature-div">
-                                    <p>Total Dana Anda saat ini Rp. {{$user->wallet_amount}}</p>
+                                    <p>Total Saldo Anda saat ini Rp. {{$user->wallet_amount}}</p>
                                 </div>
                             </div>
                         </a>
@@ -50,6 +50,70 @@
                             </div>
                         </a>
                     </div>
+                </div>
+
+
+                <div class="one">
+                    <h2>Proyek yang Anda Danai</h2>
+                </div>
+                <div style="margin: 40px; !important">
+
+                    @foreach($onGoingProducts as $product)
+
+                        @php( $togo = $product->product->getOriginal('raising') - $product->product->getOriginal('raised') )
+                        @php( $togo = number_format($togo,0, ",", ".") )
+                        @php( $percentage = ($product->product->getOriginal('raised') * 100) / $product->product->getOriginal('raising') )
+                        @php( $percentage = number_format($percentage, 0) )
+                        <a href="{{ route('project-detail', ['id' => $product->product->id]) }}">
+                            <div class="col-md-12 project-border">
+                                <div class="col-md-2">
+                                    <span>Nama Project</span>
+                                    <br>
+                                    <span style="color: #ff7a00">{{ $product->product->name }}</span>
+                                    <br>
+                                    <span>{{ $product->product->Category->name }}</span>
+                                </div>
+                                <div class="col-md-2">
+                                    Jumlah Pendanaan
+                                    <br>
+                                    <span style="color: #ff7a00">{{ $product->total_price }}</span>
+                                </div>
+                                <div class="col-md-2">
+                                    Rating Rate
+                                    <br>
+                                    <span style="color: #ff7a00">{{$product->product->business_class}} {{$product->product->interest_rate}}%</span>
+                                </div>
+                                <div class="col-md-2">
+                                    Waktu
+                                    <br>
+                                    <span style="color: #ff7a00">{{$product->product->tenor_loan}} Bulan </span>
+                                </div>
+                                <div class="col-md-2">
+                                    Progress {{$percentage}}%
+                                    <br>
+                                    <div class="min">
+                                        <div class="progress-bar-outer">
+                                            <div class="progress-bar-inner">
+                                                <div class="progress-bar">
+                                                    <span data-percent="{{$percentage}}"><span class="pretng">{{$percentage}}%</span> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    Masa Penawaran
+                                    <br>
+                                    <span style="color: #ff7a00">{{ $product->product->days_left }} hari lagi</span>
+                                </div>
+
+                            </div>
+                        </a>
+
+                    @endforeach
+                </div>
+                <div class="text-center">
+                    <a href="{{route('portfolio', ['tab' => 'pending'])}}" class="btn btn-min btn-solid"><span>Proyek yang Anda Danai</span></a>
                 </div>
             </div>
         </div>
@@ -71,43 +135,6 @@
                 </div>
             </div>
         </div>
-        <!-- basic-slider start -->
-        {{--<div class="slider-section">--}}
-            {{--<div class="slider-active owl-carousel">--}}
-                {{--<div class="single-slider slider-screen nrbop" style="background-image: url({{ URL::asset('frontend_images/slides/Banner1.jpg') }});background-size: 100%;">--}}
-                    {{--<div class="container">--}}
-                        {{--<div class="slider-content text-white">--}}
-                            {{--<h2 class="b_faddown1 cd-headline clip is-full-width" >Apakah Anda tau? </h2>--}}
-                            {{--<p class="b_faddown2">Tidak ada satupun zebra memiliki pola belang yang sama.--}}
-                                {{--<br />Demikian juga dalam setiap bisnis dan investasi <br> Oleh karena itu kami ada </p>--}}
-                            {{--<div class="slider_button b_faddown3"><a href="#">Investasi Sekarang</a></div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="single-slider slider-screen nrbop" style="background-image: url({{ URL::asset('frontend_images/slides/Banner2.jpg') }});background-size: 100%;">--}}
-                    {{--<div class="container">--}}
-                        {{--<div class="slider-content text-white">--}}
-                            {{--<h2 class="b_faddown1 cd-headline clip is-full-width" >Sukses dimulai dari hal kecil  </h2>--}}
-                            {{--<p class="b_faddown2">Investasi yang sukses dimulai dari bisnis yang sukses--}}
-                                {{--<br />semua kesuksesan selalu dimulai dari awal yang kosong. <br>Kami menghargai setiap bisnis dan investasi Anda</p>--}}
-                            {{--<div class="slider_button b_faddown3"><a href="#">Investasi Sekarang</a></div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-                {{--<div class="single-slider slider-screen nrbop" style="background-image: url({{ URL::asset('frontend_images/slides/Banner3.jpg') }});background-size: 100%;">--}}
-                    {{--<div class="container">--}}
-                        {{--<div class="slider-content text-white">--}}
-                            {{--<h2 class="b_faddown1 cd-headline clip is-full-width" >Berinvestasilah pada proyek terbaru kami </h2>--}}
-                            {{--<p class="b_faddown2">Pabrik XYZ adalah pabrik pembuatan obat-obatan yang dapat anda investasikan dana Anda hari ini juga.--}}
-                                {{--<br />Silahkan akses link untuk mendapatkan info lengkap!</p>--}}
-                            {{--<div class="slider_button b_faddown3"><a href="#">Investasi Sekarang</a></div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-
 
         <!-- apa itu indofund.id -->
         <div class="special-cause fullpage_background2">

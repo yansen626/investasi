@@ -52,22 +52,14 @@
                                         <td>Rp {{ $trx->total_payment }}</td>
                                         <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j M Y G:i:s') }}</td>
                                         <td>
-                                            @if($trx->status_id == 3)
-                                                Pending Payment
-                                            @elseif($trx->status_id == 4)
-                                                Payment Verification
-                                            @elseif($trx->status_id == 5)
-                                                Payment Confirmed
-                                            @elseif($trx->status_id == 6)
-                                                In Process
-                                            @elseif($trx->status_id == 7)
-                                                Rejected
-                                            @elseif($trx->status_id == 8)
-                                                In Delivery
-                                            @elseif($trx->status_id == 9)
-                                                <span style="color: #42b549;">Success</span>
+                                            @if($trx->status_id == 9)
+                                                <span style="color: #42b549;">{{$trx->status->description}}</span>
                                             @elseif($trx->status_id == 10)
-                                                <span style="color: red;">Failed</span>
+                                                <span style="color: red;">{{$trx->status->description}}</span>
+                                                <br>
+                                                ({{$trx->reject_note}})
+                                            @else
+                                                {{$trx->status->description}}
                                             @endif
                                         </td>
                                         <td>
@@ -78,8 +70,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-
-
                         </div>
                     </div>
                 </div>

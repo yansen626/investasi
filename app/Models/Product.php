@@ -25,11 +25,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $days_left
  * @property int $tenor_loan
  * @property float $minimum_per_investor
+ * @property string $tagline
  * @property string $description
  * @property string $youtube_link
  * @property string $image_path
  * @property string $prospectus_path
- * @property string $interest_rate
+ * @property float $interest_rate
  * @property string $installment_per_month
  * @property string $interest_per_month
  * @property string $business_class
@@ -66,7 +67,7 @@ class Product extends Eloquent
 		'equity_offered' => 'int',
 		'days_left' => 'int',
 		'tenor_loan' => 'int',
-        'interest_rate' => 'int',
+        'interest_rate' => 'float',
         'installment_per_month'  => 'float',
         'interest_per_month'  => 'float',
         'minimum_per_investor' => 'float',
@@ -92,6 +93,7 @@ class Product extends Eloquent
         'tenor_loan',
         'minimum_per_investor',
         'due_date',
+        'tagline',
         'description',
         'youtube_link',
         'image_path',

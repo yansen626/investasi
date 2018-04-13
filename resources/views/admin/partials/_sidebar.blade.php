@@ -82,12 +82,12 @@
                             <li><a href="{{ route ('admin-blog-update-list') }}">Pending</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-credit-card"></i> Coupon <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('coupon-index') }}">Tampilkan</a></li>
-                            <li><a href="{{ route ('coupon-create') }}">Tambah</a></li>
-                        </ul>
-                    </li>
+                    {{--<li><a><i class="fa fa-credit-card"></i> Coupon <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('coupon-index') }}">Tampilkan</a></li>--}}
+                            {{--<li><a href="{{ route ('coupon-create') }}">Tambah</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     <li><a><i class="fa fa-shopping-cart"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('transaction-list') }}">Histori</a></li>

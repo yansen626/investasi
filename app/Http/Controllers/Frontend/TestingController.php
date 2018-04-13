@@ -46,6 +46,15 @@ class TestingController extends Controller
 //
 //            SendEmail::SendingEmail('testing', $data);
 
+            $data = array(
+                'transaction' => $transaction,
+                'user'=>$userData,
+                'paymentMethod' => $payment,
+                'product' => $product
+            );
+
+            SendEmail::SendingEmail('testing', $data);
+
             return "success";
         }
         catch (\Exception $ex){

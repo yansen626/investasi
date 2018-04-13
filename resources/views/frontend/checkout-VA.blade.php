@@ -26,14 +26,15 @@
                         <img class="img-responsive" src="assets/img/causes/single-cause.jpg" alt="">
                     </div>
                     <div class="meta">
-                        <h2>Pembayaran Virtual Akun</h2>
+                        <h2>Pembayaran Transfer Bank</h2>
                     </div>
                     <div class="clearfix text-center">
                         <div class="foundings">
                             <h4>Nomor Virtual Akun = {{ $user->va_acc }}</h4>
-                            <h4>Nama Akun = {{ $user->first_name }} {{$user->last_name}}</h4>
+                            <h4>Nama Akun = Indofund.id({{ $user->first_name }} {{$user->last_name}})</h4>
                             <h4>Total Pembayaran = Rp {{ $transaction->total_payment}}</h4>
-                            <p>Pembayaran maksimal 24 jam</p>
+                            <p>Pembayaran maksimal 24 jam</p><br>
+                            <p>*Nama akun anda akan terupdate menjadi nama anda setelah pendaftaran 2x24 jam</p>
                             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">ATM Mandiri</button>
                             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">ATM Bersama</button>
                         </div>

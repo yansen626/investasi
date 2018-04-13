@@ -88,11 +88,11 @@ class TransactionController extends Controller
 
     public function rejectOrder(Request $request){
 
-        $trx = Transaction::find(Input::get('reject-trx-id'));
+        $trx = Transaction::find($request['reject-trx-id']);
 
         $trx->status_id = 10;
-        if(!empty(Input::get('reject-reason'))){
-            $trx->reject_note = Input::get('reject-reason');
+        if(!empty($request['reject-reason'])){
+            $trx->reject_note = $request['reject-reason'];
         }
         $trx->save();
         Session::flash('message', 'Transaksi telah ditolak!');

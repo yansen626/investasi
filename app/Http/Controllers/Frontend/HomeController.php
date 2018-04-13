@@ -57,6 +57,7 @@ class HomeController extends Controller
         $finishTransaction = null;
         $recentProductCount = null;
         $onGoingProducts = null;
+        $onGoingProductCount = null;
 
         if(auth()->check()){
             $user = Auth::user();
@@ -75,8 +76,9 @@ class HomeController extends Controller
                 return View('frontend.show-blog-urgents', compact('blogs', 'section_Popup'));
             }
 
-            $recentProductCount = Product::where('status_id', 1)->orderByDesc('created_on')->take(5)->count();
-            $onGoingProducts = Product::where('status_id', 1)->count();
+            $recentProductCount = Product::where('status_id', 21)->orderByDesc('created_on')->count();
+            $onGoingProducts = Transaction::where('user_id', $userId)->orderByDesc('created_on')->take(3)->get();
+            $onGoingProductCount = Transaction::where('user_id', $userId)->orderByDesc('created_on')->count();
 
         }
 
@@ -90,6 +92,7 @@ class HomeController extends Controller
             'finishTransaction' => $finishTransaction,
             'recentProductCount' => $recentProductCount,
             'onGoingProducts' => $onGoingProducts,
+            'onGoingProductCount' => $onGoingProductCount,
             'section_1' => $section1,
             'section_2' => $section2,
             'section_3' => $section3,

@@ -90,7 +90,7 @@
                                 <p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;" data-mce-style="text-align: center;">
                                     Terima kasih telah mendaftar di indofund id.
                                     Untuk menyelesaikan proses pendaftaran, kami membutuhkan konfirmasi alamat email anda.
-                                    Mohon membuka tautan di berikut untuk mengkonfirmasi data anda.
+                                    Mohon membuka tautan berikut ini untuk mengkonfirmasi data anda.
                                     <span style="color: rgb(129, 185, 81);" data-mce-style="color: #81b951;">
                                         <strong><a title="here" href="{{ url('/verifyemail/'.$email_token)}}" style="color: #81b951;text-decoration: underline;" data-mce-style="color: #81b951;">Klik Disini</a></strong>
                                     </span>
