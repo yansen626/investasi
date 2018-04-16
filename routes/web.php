@@ -80,6 +80,8 @@ Route::get('/project-request', 'Frontend\ProductController@ProductList')->name('
 //payment
 Route::prefix('/payment')->group(function (){
     Route::get('/checkout/{id}', 'Frontend\PaymentController@checkout')->name('checkout');
+    Route::get('/checkout/data/{id}', 'Frontend\PaymentController@settingData')->name('setting-data');
+    Route::post('/checkout/data', 'Frontend\PaymentController@storeData')->name('store-data');
     Route::post('/confirm/{investId}', 'Frontend\PaymentController@pay');
     Route::get('/pageVA/{orderId}', 'Frontend\PaymentController@pageVA')->name('pageVA');
     Route::get('/success/cc/{userId}', 'Frontend\PaymentController@successCC');

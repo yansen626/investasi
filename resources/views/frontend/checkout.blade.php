@@ -39,7 +39,7 @@
                             </div>
                             <div class="field col-sm-12 price-format">
                                 <h5>Nominal</h5>
-                                <input id="amount" type="text" name="amount">
+                                <input id="amount" type="text" name="amount" />
                                 <h5>Minimum Pendanaan : Rp 500.000</h5>
                                 <h5>Kelipatan : Rp 250.000</h5>
                             </div>
@@ -78,15 +78,33 @@
                             </div>
 
                             @if($notCompletedData == 1)
-                            <div class="field col-sm-12 text-right" >
-                                @if(auth()->check())
-                                    {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
-                                    {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
-                                    <button type="button" onclick="modalCheckout()" class="btn btn-big btn-solid "><span>Proses Sekarang</span></button>
-                                @else
-                                    <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
-                                @endif
-                            </div>
+                                <div class="field col-sm-12 text-left" >
+                                    @if(auth()->check())
+                                        {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
+                                        {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
+                                        @if(\Illuminate\Support\Facades\Session::has('message'))
+                                            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>{{ \Illuminate\Support\Facades\Session::get('message') }}</strong>
+                                            </div>
+                                        @endif
+                                        <button type="button" onclick="modalCheckout()" class="btn btn-big btn-solid "><span>Proses Sekarang</span></button>
+                                    @else
+                                        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
+                                    @endif
+                                </div>
+                            @endif
+                            @if($notCompletedData == 0)
+                                <div class="field col-sm-12 text-right" >
+                                    @if(auth()->check())
+                                        {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
+                                        {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
+                                        <a href="{{ route('setting-data', ['id' => $product->id]) }}" onclick="modalCheckout()" class="btn btn-big btn-solid "><span>Ubah Data</span></a>
+                                    @else
+                                        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
+                                    @endif
+                                </div>
                             @endif
                         </form>
                     </div>
@@ -114,64 +132,6 @@
                             <li>Bila dana tidak terkumpul apa yang terjadi</li>
                         </ul>
                     </div>
-
-                    @if($notCompletedData == 0)
-                    <div class="comment-form-wrapper contact-from clearfix col-md-12 col-sm-12">
-                        <h2>Mohon melengkapi data berikut ini sesuai dengan KTP Anda.</h2>
-                        <form class="comment-form row altered">
-                            <div class="field col-sm-12">
-                                <h5>Nomor KTP</h5>
-                                <input id="KTP" type="text">
-                            </div>
-                            {{--<div class="field col-sm-4">--}}
-                                {{--<h5>Tanggal Lahir</h5>--}}
-                                {{--<input id="date" type="text" name="date" >--}}
-                            {{--</div>--}}
-                            {{--<div class="field col-sm-4">--}}
-                                {{--<h5>Bulan Lahir</h5>--}}
-                                {{--<input id="date" type="text" name="date" >--}}
-                            {{--</div>--}}
-                            {{--<div class="field col-sm-4">--}}
-                                {{--<h5>Tahun Lahir</h5>--}}
-                                {{--<input id="date" type="text" name="date" >--}}
-                            {{--</div>--}}
-                            <div class="field col-sm-12">
-                                <h5>Kewarganegaraan</h5>
-                                <select class="form-control" id="citizen">
-                                    <option value="-1">Pilih Kewarganegaraan</option>
-                                    <option value="Indonesia">Warga Negara Indonesia</option>
-                                    <option value="Asing">Warga Negara Asing</option>
-                                </select>
-                            </div>
-                            <div class="field col-sm-12">
-                                <h5>Alamat</h5>
-                                <input id="address-home" type="text">
-                            </div>
-                            <div class="field col-sm-12">
-                                <h5>Kota</h5>
-                                <input id="city" type="text">
-                            </div>
-                            <div class="field col-sm-12">
-                                <h5>Provinsi</h5>
-                                <input id="province" type="text">
-                            </div>
-                            <div class="field col-sm-12">
-                                <h5>Kode Pos</h5>
-                                <input id="zip" type="text">
-                            </div>
-
-                            <div class="field col-sm-12 text-right" >
-                                @if(auth()->check())
-                                    {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
-                                    {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
-                                    <button type="button" onclick="modalCheckout()" class="btn btn-big btn-solid "><span>Proses Sekarang</span></button>
-                                @else
-                                    <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
-                                @endif
-                            </div>
-                        </form>
-                    </div>
-                        @endif
                 </div>
             </div>
         </div>
@@ -260,6 +220,7 @@
                     {{ Form::hidden('checkout-payment-method-input', '', array('id' => 'checkout-payment-method-input')) }}
 
                     {{ Form::hidden('checkout-notCompletedData', '', array('id' => 'checkout-notCompletedData')) }}
+                    {{ Form::hidden('checkout-name-KTP', '', array('id' => 'checkout-name-KTP')) }}
                     {{ Form::hidden('checkout-KTP', '', array('id' => 'checkout-KTP')) }}
                     {{ Form::hidden('checkout-citizen', '', array('id' => 'checkout-citizen')) }}
                     {{ Form::hidden('checkout-address', '', array('id' => 'checkout-address')) }}

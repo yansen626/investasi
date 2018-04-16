@@ -19,9 +19,79 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class PaymentController extends Controller
 {
+    public function storeData(Request $request){
+        $validator = Validator::make($request->all(),[
+            'ktp'               => 'required',
+            'citizen'           => 'required',
+            'address_ktp'       => 'required',
+            'city_ktp'          => 'required',
+            'province_ktp'      => 'required',
+            'postal_code_ktp'   => 'required',
+            'name_ktp'          => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        //Update Data
+        $productId = $request->get('product_id');
+        $user = Auth::user();
+
+        //User KTP Image
+        // Get image extension
+        $userData = User::find($user->id);
+
+        if($request->file('photo_ktp') != null) {
+            $img = Image::make($request->file('photo_ktp'));
+            $extStr = $img->mime();
+            $ext = explode('/', $extStr, 2);
+
+            $filename = 'ktp_' . $userData->identity_number . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $ext[1];
+
+            $img->save(public_path('storage/ktp/' . $filename), 75);
+            $userData->img_ktp = $filename;
+        }
+
+        $userData->identity_number = $request->get('ktp');
+        $userData->citizen = $request->get('citizen');
+        $userData->address_ktp = $request->get('address_ktp');
+        $userData->city_ktp = $request->get('city_ktp');
+        $userData->province_ktp = $request->get('province_ktp');
+        $userData->postal_code_ktp = $request->get('postal_code_ktp');
+        $userData->name_ktp = $request->get('name_ktp');
+        $userData->save();
+
+        $user = $userData;
+        Auth::logout();
+        Auth::login($user);
+
+        Session::flash('message', 'Berhasil mengubah Data!');
+
+        //Back to the Payment
+        return redirect()->route('checkout', ['id' => $productId]);
+    }
+
+    public function settingData($id){
+        $product = Product::find($id);
+        if(!auth()->check()){
+            return redirect()->route('project-detail', ['id' => $id]);
+        }
+
+        $user = Auth::user();
+
+        return View('frontend.checkout-setting-data', compact('product', 'user'));
+    }
+
     public function checkout($id){
         $product = Product::find($id);
         if(!auth()->check()){
@@ -31,11 +101,11 @@ class PaymentController extends Controller
         $userId = $user->id;
         $userData = User::find($userId);
         $notCompletedData = 1;
-        if($userData->identity_number== null &&
-            $userData->dob == null &&
-            $userData->address_ktp== null &&
-            $userData->kecamatan_ktp== null &&
-            $userData->postal_code_ktp== null)
+        if($userData->identity_number== null ||
+            $userData->address_ktp== null ||
+            $userData->postal_code_ktp== null ||
+            $userData->name_ktp == null ||
+            $userData->img_ktp == null)
         {
             $notCompletedData = 0;
         }
