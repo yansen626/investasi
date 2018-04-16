@@ -155,8 +155,9 @@
                                                 </div>
 
                                                 <div class="field col-md-6 col-sm-12">
-                                                    <h4>Upload product disclosure statement</h4>
-                                                    {!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}
+                                                    <h4>Link product disclosure statement</h4>
+                                                    <input type="text" name="prospectus" value="{{old('prospectus')}}" class="form-control col-md-7 col-xs-12">
+                                                    {{--{!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}--}}
                                                 </div>
                                                 <div class="field col-sm-12">
                                                     <h4>Nama Proyek / Produk</h4>

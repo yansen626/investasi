@@ -103,7 +103,8 @@
 <script src="{{ URL::asset('js/admin/summernote/summernote.js') }}"></script>
     <link rel="stylesheet" href="{{ URL::asset('css/admin/summernote/summernote.css') }}">
 <!-- autoNumeric -->
-<script src="{{ URL::asset('js/autoNumeric/autoNumeric.min.js') }}"></script>
+{{--<script src="{{ URL::asset('js/autoNumeric/autoNumeric.min.js') }}"></script>--}}
+<script src="https://unpkg.com/autonumeric"></script>
 
 
 <script type="text/javascript" src="{{ URL::asset('js/frontend/custom-maps.js') }}"></script>

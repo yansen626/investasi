@@ -32,6 +32,9 @@
     #chart_wrap {
         padding-bottom: 60%;
     }
+    .section-name{
+        margin-top: 50px;
+    }
     .read-more-description{
         margin-bottom: 25%;
     }
@@ -45,6 +48,9 @@
 @media screen and (max-width: 465px)  {
     #chart_wrap {
         padding-bottom: 75%;
+    }
+    .section-name{
+        margin-top: 50px;
     }
 
     .page-banner {
@@ -88,7 +94,7 @@
 }
 
 .top_logo{
-    width:70%;
+    width:50%;
 }
 
 .project-border{

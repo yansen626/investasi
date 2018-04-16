@@ -31,7 +31,7 @@ class TestingController extends Controller
 {
     public function TestingSendEmail(){
         try{
-            $transaction = Transaction::find("90ac2000-34f4-11e8-9363-af798c1f2be7");
+            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
             //Send Email,
             $userData = User::find($transaction->user_id);
             $payment = PaymentMethod::find($transaction->payment_method_id);
@@ -46,14 +46,11 @@ class TestingController extends Controller
 //
 //            SendEmail::SendingEmail('testing', $data);
 
-            $data = array(
-                'transaction' => $transaction,
-                'user'=>$userData,
-                'paymentMethod' => $payment,
-                'product' => $product
-            );
-
-            SendEmail::SendingEmail('testing', $data);
+//            $data = array(
+//                'email' => $userData->email,
+//                'filename' => $product->prospectus_path
+//            );
+//            SendEmail::SendingEmail('sendProspectus', $data);
 
             return "success";
         }

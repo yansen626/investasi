@@ -74,7 +74,13 @@
                 <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
                 <div class="oldwebkit" style="max-width: 570px;">
                     <table width="570" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" bgcolor="#ffffff" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;background-color: #fff;"><tbody><tr><td bgcolor="#ffffff" align="center" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;">
-                                <span>Halo, berikut ini lampiran untuk Product Disclosure Statement pilihan Anda.</span>
+                                <p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;" data-mce-style="text-align: center;">
+                                    Halo,
+                                    <span style="color: rgb(129, 185, 81);" data-mce-style="color: #81b951;">
+                                        <strong><a href="{{ url($filePath) }}" style="color: #81b951;text-decoration: underline;" data-mce-style="color: #81b951;">Klik Disini</a></strong>
+                                    </span>
+                                    untuk melihat Product Disclosure Statement pilihan Anda.
+                                </p>
                             </td>
                         </tr></tbody></table></div>
                 <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->

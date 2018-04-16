@@ -301,6 +301,7 @@ class VendorController extends Controller
                 'description' => $request['description'],
                 'interest_rate' => $request['interest_rate'],
                 'business_class' => $request['business_class'],
+                'prospectus_path' => $request['prospectus'],
 //                'installment_per_month' => $request['installment_per_month'],
 //                'interest_per_month' => $request['interest_per_month'],
                 'tenor_loan' => $request['tenor_loan'],
@@ -340,14 +341,15 @@ class VendorController extends Controller
 
             $img->save(public_path('storage/project/'. $filename), 75);
             $newProduct->image_path = $filename;
+            $newProduct->save();
 
             // save pdf
-            $filenamePDF = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms').'.pdf';
-            $destinationPath = public_path('storage/project/');
-
-            $request->file('prospectus')->move($destinationPath, $filenamePDF);
-            $newProduct->prospectus_path = $filenamePDF;
-            $newProduct->save();
+//            $filenamePDF = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms').'.pdf';
+//            $destinationPath = public_path('storage/project/');
+//
+//            $request->file('prospectus')->move($destinationPath, $filenamePDF);
+//            $newProduct->prospectus_path = $filenamePDF;
+//            $newProduct->save();
 
 
 //        create product ciclan & bunga

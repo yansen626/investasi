@@ -86,7 +86,7 @@ class SendEmail
                     $fileName = $objData->filename;
 
                     //change valid file name
-                    $file_path = public_path('storage/project/'.$fileName);
+                    $file_path = $fileName;
 
                     $sendProspectus = new SendProspectus($file_path);
                     Mail::to($email)->send($sendProspectus);

@@ -113,7 +113,7 @@
                     @endforeach
                 </div>
                 <div class="text-center">
-                    <a href="{{route('portfolio', ['tab' => 'pending'])}}" class="btn btn-min btn-solid"><span>Proyek yang Anda Danai</span></a>
+                    <a href="{{route('portfolio', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Proyek yang Anda Danai</span></a>
                 </div>
             </div>
         </div>

@@ -35,21 +35,13 @@
                                 <span class="help-block" style="color: red;">Nominal harus kelipatan dari Rp 250.000 dan minimal Rp 500.000</span>
                             </div>
                             <div class="field col-sm-12 text-center error-div-wallet" style="display: none;">
-                                <span class="help-block" style="color: red;">Nominal harus lebih kecil dari saldo Anda</span>
+                                <span class="help-block" style="color: red;">Saldo Anda tidak mencukupi</span>
                             </div>
                             <div class="field col-sm-12 price-format">
                                 <h5>Nominal</h5>
                                 <input id="amount" type="text" name="amount">
                                 <h5>Minimum Pendanaan : Rp 500.000</h5>
                                 <h5>Kelipatan : Rp 250.000</h5>
-                                <div class="radio-inputs">
-                                    {{--<input type="radio" id="amount-1" name="amount" value="50000" checked>--}}
-                                    {{--<label for="amount-1"><span></span>Rp 50.000</label>--}}
-                                    {{--<input type="radio" id="amount-2" name="amount" value="100000">--}}
-                                    {{--<label for="amount-2"><span></span>Rp 100.000</label>--}}
-                                    {{--<input type="radio" id="amount-3" name="amount" value="150000">--}}
-                                    {{--<label for="amount-3"><span></span>Rp 150.000</label>--}}
-                                </div>
                             </div>
                             <div class="field col-sm-12">
                                 <h5>Pilihan Sumber Dana</h5>
@@ -79,7 +71,8 @@
                                     </h5>
                                     <h4>
                                         <br>
-                                        <a href="{{route('download', ['filename' => $product->prospectus_path])}}">Download Product Disclosure Statement</a>
+{{--                                        <a href="{{route('download', ['filename' => $product->prospectus_path])}}">Download Product Disclosure Statement</a>--}}
+                                        <a href="{{$product->prospectus_path}}" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>
                                     </h4>
                                 </div>
                             </div>
@@ -255,7 +248,8 @@
                             <label>
                                 <input type="checkbox" name="check1" id="check1" onclick="check()">
                                 Saya telah membaca dan memahami isi dari prospektus produk ini
-                                (<a href="{{route('download', ['filename' => $product->prospectus_path])}}"><span>Download Product Disclosure Statement</span></a>),
+                                {{--(<a href="{{route('download', ['filename' => $product->prospectus_path])}}"><span>Download Product Disclosure Statement</span></a>),--}}
+                                (<a href="{{$product->prospectus_path}}" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>),
                                 dan saya telah menyetujui <a target="_blank" href="{{route('term-condition')}}">syarat dan ketentuan</a> dari indofund.id
 
                             </label>

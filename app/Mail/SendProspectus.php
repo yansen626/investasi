@@ -37,6 +37,8 @@ class SendProspectus extends Mailable
     public function build()
     {
         return $this->subject("Prospektus Proyek di Indofund")
-            ->view('email.send-prospectus')->attach($this->file_path);
+            ->view('email.send-prospectus')->with([
+                'filePath' => $this->file_path
+            ]);
     }
 }

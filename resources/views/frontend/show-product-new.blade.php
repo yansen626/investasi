@@ -82,8 +82,8 @@
                         <div class="col-md-12 col-xs-12" style="margin-top: 5%;">
                             <div class="col-md-7" style="font-size:16px !important;">
                                 @if(auth()->check())
-                                    <a href="{{route('download', ['filename' => $product->prospectus_path])}}" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>
-                                    {{--<a href="https://drive.google.com/file/d/17fbW4Rt62N06oo2xVaHnswj5zLPKtwke/view?usp=sharing" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>--}}
+                                    {{-- <a href="{{route('download', ['filename' => $product->prospectus_path])}}" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>--}}
+                                    <a href="{{$product->prospectus_path}}" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>
                                 @else
                                     <a data-toggle="modal" data-target="#prospektusModal" style="cursor: pointer;">Download Product Disclosure Statement</a>
                                 @endif
