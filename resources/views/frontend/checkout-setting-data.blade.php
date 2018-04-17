@@ -38,6 +38,7 @@
 
                             <div class="field col-sm-12">
                                 <h5>Nama Sesuai KTP</h5>
+                                <h5 style="color:red;">Ketikkan nama Anda sebagai pengganti tanda tangan</h5>
                                 <input type="text" id="KTP" name="name_ktp"  value="{{ $user->name_ktp }}" required/>
                                 @if ($errors->has('ktp'))
                                     <span class="help-block">

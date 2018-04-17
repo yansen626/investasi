@@ -43,41 +43,41 @@
                                 <h5>Minimum Pendanaan : Rp 500.000</h5>
                                 <h5>Kelipatan : Rp 250.000</h5>
                             </div>
-                            <div class="field col-sm-12">
-                                <h5>Pilihan Sumber Dana</h5>
-                                <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
-                                <div class="radio-inputs">
-                                    <input type="radio" id="payment-1" name="payment" value="wallet" checked>
-                                    <label for="payment-1"><span></span>Saldo Saya</label>
-                                    <input type="radio" id="payment-2" name="payment" value="credit_card">
-                                    <label for="payment-2"><span></span>Kartu Kredit</label>
-                                    <input type="radio" id="payment-3" name="payment" value="bank_transfer">
-                                    <label for="payment-3"><span></span>Transfer bank</label>
+
+                            @if($notCompletedData == 1)
+                                <div class="field col-sm-12">
+                                    <h5>Pilihan Sumber Dana</h5>
+                                    <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
+                                    <div class="radio-inputs">
+                                        <input type="radio" id="payment-1" name="payment" value="wallet" checked>
+                                        <label for="payment-1"><span></span>Saldo Saya</label>
+                                        <input type="radio" id="payment-2" name="payment" value="credit_card">
+                                        <label for="payment-2"><span></span>Kartu Kredit</label>
+                                        <input type="radio" id="payment-3" name="payment" value="bank_transfer">
+                                        <label for="payment-3"><span></span>Transfer bank</label>
+                                    </div>
                                 </div>
-                            </div>
-                            {{--<div class="field col-sm-12">--}}
+                                {{--<div class="field col-sm-12">--}}
                                 {{--<h5>Nama Sesuai KTP</h5>--}}
                                 {{--<h5>Ketikkan nama Anda sebagai pengganti tanda tangan</h5>--}}
                                 {{--<input id="name_sign" type="text" name="name_sign">--}}
 
-                            {{--</div>--}}
+                                {{--</div>--}}
 
-                            <input id="notCompletedData" value="{{$notCompletedData}}" type="hidden">
-                            <input id="wallet" value="{{$userData->wallet_amount}}" type="hidden">
-                            <div class="field col-sm-12">
-                                <div class="col-sm-12">
-                                    <h5 style="color:red;">
-                                        Catatan<br>Harap membaca Product Disclosure Statement dari tiap produk, terutama yang berhubungan dengan aturan dan resiko berinvestasi.
-                                    </h5>
-                                    <h4>
-                                        <br>
-{{--                                        <a href="{{route('download', ['filename' => $product->prospectus_path])}}">Download Product Disclosure Statement</a>--}}
-                                        <a href="{{$product->prospectus_path}}" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>
-                                    </h4>
+                                <input id="notCompletedData" value="{{$notCompletedData}}" type="hidden">
+                                <input id="wallet" value="{{$userData->wallet_amount}}" type="hidden">
+                                <div class="field col-sm-12">
+                                    <div class="col-sm-12">
+                                        <h5 style="color:red;">
+                                            Catatan<br>Harap membaca Product Disclosure Statement dari tiap produk, terutama yang berhubungan dengan aturan dan resiko berinvestasi.
+                                        </h5>
+                                        <h4 style="margin-top: -25px;">
+                                            <br>
+                                            {{-- <a href="{{route('download', ['filename' => $product->prospectus_path])}}">Download Product Disclosure Statement</a>--}}
+                                            <a href="{{$product->prospectus_path}}" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>
+                                        </h4>
+                                    </div>
                                 </div>
-                            </div>
-
-                            @if($notCompletedData == 1)
                                 <div class="field col-sm-12 text-left" >
                                     @if(auth()->check())
                                         {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
@@ -96,11 +96,15 @@
                                 </div>
                             @endif
                             @if($notCompletedData == 0)
-                                <div class="field col-sm-12 text-right" >
+                                <div class="field col-sm-12 text-left" >
                                     @if(auth()->check())
                                         {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
                                         {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
-                                        <a href="{{ route('setting-data', ['id' => $product->id]) }}" onclick="modalCheckout()" class="btn btn-big btn-solid "><span>Ubah Data</span></a>
+
+                                        <h4 style="color:red;">
+                                            Harap melengkapi data-data Anda untuk melanjutkan pendaaan dengan <a href="{{ route('setting-data', ['id' => $product->id]) }}"><span>klik disini</span></a>
+                                        </h4>
+
                                     @else
                                         <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
                                     @endif

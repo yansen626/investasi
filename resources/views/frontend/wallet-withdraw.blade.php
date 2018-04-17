@@ -47,7 +47,7 @@
                                 <h4>Penarikan Saldo</h4>
                                 <span style="color:red;font-size:14px;">Nomor rekening untuk penarikan harus sama dengan nama yang terdaftar pada profil akun</span>
                             </div>
-                            <form class="comment-form row altered" method="POST" action="{{ route('withdrawSubmit') }}">
+                            <form id="withdraw-form" class="comment-form row altered" method="POST" action="{{ route('withdrawSubmit') }}">
                                 {{ csrf_field() }}
 
                                 @if(count($errors))
@@ -65,7 +65,7 @@
                                 @endif
                                 <div class="field col-sm-12 price-format {{ $errors->has('amount') ? ' has-error' : '' }}">
                                     <h4>Jumlah Penarikan</h4>
-                                    <input type="text" name="amount" value="{{old('amount')}}">
+                                    <input type="text" id="amount" name="amount"  value="{{old('amount')}}">
                                 </div>
                                 @if(empty($user->bank_name) || empty($user->bank_acc_number) || empty($user->bank_acc_name))
                                     <div class="field col-sm-12 {{ $errors->has('acc_number') ? ' has-error' : '' }}">
@@ -90,15 +90,16 @@
                                     <h4>PIN Google Auth</h4>
                                     <input type="number" name="google" value="{{old('google')}}">
                                 </div>
-                                <div class="field col-sm-12">
-                                    <br/>
-                                    <button class="btn btn-big btn-solid"><i class="fa fa-paper-plane"></i><span>Tarik Saldo</span></button>
-                                </div>
                             </form>
+                            <div class="field col-sm-12">
+                                <br/>
+                                <button class="btn btn-big btn-solid" onclick="modalWalletWithdraw()"><i class="fa fa-paper-plane"></i><span>Tarik Saldo</span></button>
+                            </div>
                         </div>
                     </div>
                 @endif
             </div>
         </div>
     </div>
+    @include('frontend.partials._modal-wallet-withdraw')
 @endsection

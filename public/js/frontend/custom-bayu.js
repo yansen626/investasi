@@ -129,6 +129,19 @@ function modalWalletDeposit(){
     $("#modal_wallet_deposit").modal();
 }
 
+function modalWalletWithdraw(){
+    var amount = $("#amount").val();
+    $("#withdraw-amount").html(amount);
+
+    $("#withdrawModal").modal();
+}
+
+function modalWalletWithdrawSubmit(){
+    $("#withdraw-form").submit();
+}
+
+
+
 $(function(){
     $('#subscribe-form').on('submit',function(e){
 
