@@ -33,7 +33,7 @@
                         <p>Secara berkala, kegiatan dan praktek usaha kami akan ditelaah untuk memeriksa apakah sudah sesuai dengan prosedur dan kebijakan yang mengatur kerahasiaan informasi. Pemeriksaan ini dapat dilakukan oleh staf internal kami sendiri, jasa akuntan dan audit eksternal, dan pemerintah. Termasuk di dalamnya adalah penilaian terhadap perlindungan konsumen terkait dengan privasi.</p>
 
                         <blockquote>
-                            <p>APA YANG INVESTASI.ME LAKUKAN DENGAN INFORMASI PRIBADI ANDA?</p>
+                            <p>APA YANG INDOFUND.ID LAKUKAN DENGAN INFORMASI PRIBADI ANDA?</p>
                         </blockquote>
 
                         <h4 class="subheader orange">Apa?</h4>

@@ -26,7 +26,7 @@
                             <h4>Apa itu Indofund.id ?</h4>
                         </div>
                         <p class="first">
-                            Indofund.id adalah sebuah platform fintech lending di Indonesia pertama yang memiliki akses solusi permodalan dan investasi yang paling lengkap. Kami menyadari bahwa setiap usaha adalah unik, sehingga akses permodalan yang dilakukan tidak selalu cocok satu model dengan yang lainnya. Dan demikian juga sebagai investor, memiliki keinginan dan profil yang berbeda-beda. Pelajari Lebih Lanjut
+                            Indofund.id adalah sebuah platform fintech lending di Indonesia pertama yang memiliki akses solusi permodalan dan investasi yang paling lengkap. Kami menyadari bahwa setiap usaha adalah unik, sehingga akses permodalan yang dilakukan tidak selalu cocok satu model dengan yang lainnya. Dan demikian juga sebagai lender, memiliki keinginan dan profil yang berbeda-beda. Pelajari Lebih Lanjut
                         </p>
                         <a href="#" class="btn btn-min btn-secondary"><span>Pelajari Lebih Lanjut</span></a>
                     </div>

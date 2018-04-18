@@ -204,6 +204,7 @@ class WalletController extends Controller
 
     public function downloadExcel(){
         try {
+
             $newFileName = "List Penarikan Dana_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
 
             return Facades\Excel::download(new ExcelExport('wallet'), $newFileName.'.xlsx');

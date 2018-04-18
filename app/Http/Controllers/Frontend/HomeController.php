@@ -80,6 +80,19 @@ class HomeController extends Controller
             $onGoingProducts = Transaction::where('user_id', $userId)->orderByDesc('created_on')->take(3)->get();
             $onGoingProductCount = Transaction::where('user_id', $userId)->orderByDesc('created_on')->count();
 
+
+            $onGoingProductIds = Transaction::select('product_id')->where('user_id', $userId)->get();
+            $recentBlogProducts = Blog::where('status_id', 1)
+                ->wherein('product_id', $onGoingProductIds)
+                ->orderByDesc('created_at')
+                ->take(4)
+                ->get();
+            dd($recentBlogProducts);
+
+            if($recentBlogProducts->count() < 4){
+
+            }
+
         }
 
         $data = [

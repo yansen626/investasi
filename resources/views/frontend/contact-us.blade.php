@@ -41,7 +41,7 @@
                         <div class="col-sm-4 widget">
                             <h4>E-mail</h4>
                             <i class="fa fa-envelope"></i>
-                            <p>contact@investasi.me</p>
+                            <p>contact@indofund.id</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="field col-sm-4">
                                 <h4>Subyek</h4>
-                                <input type="email" name="first-name">
+                                <input type="text" name="first-name">
                             </div>
                             <div class="field col-sm-12">
                                 <h4>Pesan</h4>
