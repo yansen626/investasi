@@ -267,12 +267,12 @@
                                 <div class="col-md-2">
                                     Nominal
                                     <br>
-                                    <span style="color: #ff7a00">{{ $product->raising }}</span>
+                                    <span style="color: #ff7a00">Rp {{ $product->raising }}</span>
                                 </div>
                                 <div class="col-md-2">
                                     Rating Rate
                                     <br>
-                                    <span style="color: #ff7a00">{{$product->business_class}} {{$product->interest_rate}}%</span>
+                                    <span style="color: #ff7a00">{{$product->business_class}} {{$product->interest_rate}}% / tahun</span>
                                 </div>
                                 <div class="col-md-2">
                                     Waktu

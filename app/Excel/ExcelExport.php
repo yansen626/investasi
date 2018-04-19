@@ -25,6 +25,15 @@ class ExcelExport implements FromCollection
         {
             return Subscribe::all();
         }
+        else if($this->type == 'mcm'){
+            $customerListDB =
+                DB::select('SELECT va_acc, upper(concat(first_name, " ", last_name)) as name  FROM investasi.users;');
+            $customerListDB = collect($customerListDB)->map(function ($item){
+                return get_object_vars($item);
+            });
+
+            return collect($customerListDB);
+        }
         else if($this->type == 'wallet'){
             $walletStatementDB =
                 DB::select('SELECT CONCAT(b.first_name, \' \', b.last_name) AS name, a.description, a.amount, a.fee, a.transfer_amount 

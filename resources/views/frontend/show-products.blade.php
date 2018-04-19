@@ -58,7 +58,7 @@
                                                                         <td>{{ $product->name }}</td>
                                                                         <td>Rp {{ $product->raising }}</td>
                                                                         <td>{{ $product->days_left }} Hari</td>
-                                                                        <td>Rp {{ $product->raised }}</td>
+                                                                        <td>Rp {{ $product->raised == null ? 0 : $product->raised }}</td>
                                                                         <td class="hidden-xs hidden-sm">
                                                                             <div class="progress-bar-inner">
                                                                                 <div class="progress-bar">

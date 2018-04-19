@@ -59,8 +59,11 @@
                                     </div>
                                 </div>
                             @endif
-
-                            <input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">
+                            @if($product == "")
+                                <input type="hidden" id="product_id" name="product_id" value="">
+                            @else
+                                <input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">
+                            @endif
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Judul Artikel <span class="required">*</span>
