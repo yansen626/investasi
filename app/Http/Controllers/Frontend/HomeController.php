@@ -28,19 +28,13 @@ class HomeController extends Controller
 {
     //
     public function Home(){
-
+        $blogCount = 4;
         $recentProducts = Product::where('category_id','=', 2)->where('status_id', 21)->orderByDesc('created_on')->take(3)->get();
 
-        $recentBlogs = Blog::where('status_id', 1)
+        $randomBlogs = Blog::where('status_id', 1)
             ->orderByDesc('created_at')
-            ->take(4)
+            ->take($blogCount)
             ->get();
-        $highlightBlog = array();
-        foreach ($recentBlogs as $blog){
-            $string = Utilities::TruncateString($blog->description);
-
-            $highlightBlog = array_add($highlightBlog,$blog->id, $string);
-        }
 
         // get content from DB
         $section1 = Content::where('section', 'home_1')->first();
@@ -58,6 +52,7 @@ class HomeController extends Controller
         $recentProductCount = null;
         $onGoingProducts = null;
         $onGoingProductCount = null;
+        $recentBlogs = $randomBlogs;
 
         if(auth()->check()){
             $user = Auth::user();
@@ -80,19 +75,34 @@ class HomeController extends Controller
             $onGoingProducts = Transaction::where('user_id', $userId)->orderByDesc('created_on')->take(3)->get();
             $onGoingProductCount = Transaction::where('user_id', $userId)->orderByDesc('created_on')->count();
 
-
+            //lender blog base on funded project
             $onGoingProductIds = Transaction::select('product_id')->where('user_id', $userId)->get();
             $recentBlogProducts = Blog::where('status_id', 1)
                 ->wherein('product_id', $onGoingProductIds)
                 ->orderByDesc('created_at')
-                ->take(4)
+                ->take($blogCount)
                 ->get();
-            dd($recentBlogProducts);
+            $randomBlogs = Blog::where('status_id', 1)
+                ->wherenotin('product_id', $onGoingProductIds)
+                ->orderByDesc('created_at')
+                ->take($blogCount+$blogCount)
+                ->get();
 
-            if($recentBlogProducts->count() < 4){
-
+            if($recentBlogProducts->count() < $blogCount){
+                $recentBlogs = $recentBlogProducts;
+                $count =0;
+                for($i=$recentBlogProducts->count();$i<$blogCount;$i++){
+                    $recentBlogs->add($randomBlogs[$count]);
+                    $count++;
+                }
             }
+        }
 
+        $highlightBlog = array();
+        foreach ($recentBlogs as $blog){
+            $string = Utilities::TruncateString($blog->description);
+
+            $highlightBlog = array_add($highlightBlog,$blog->id, $string);
         }
 
         $data = [
@@ -113,7 +123,6 @@ class HomeController extends Controller
             'section_4_2' => $section4_2,
             'section_4_3' => $section4_3,
             'section_Popup' => $section_Popup
-
         ];
 
         return View('frontend.home-new')->with($data);

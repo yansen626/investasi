@@ -64,10 +64,10 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Name</th>
                                     <th>E-mail</th>
                                     <th>Phone</th>
-                                    <th>First name</th>
-                                    <th>Last name</th>
+                                    <th>VA Number</th>
                                     <th>Wallet Amount</th>
                                     <th>Join Date</th>
                                 </tr>
@@ -77,10 +77,10 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{ $idx }}</td>
+                                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->first_name }}</td>
-                                        <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->va_acc == null ? "-" : $user->va_acc }}</td>
                                         <td>Rp {{ $user->wallet_amount }}</td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('j M Y G:i:s') }}</td>
                                     </tr>

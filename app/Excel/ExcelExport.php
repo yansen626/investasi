@@ -28,6 +28,8 @@ class ExcelExport implements FromCollection
         else if($this->type == 'mcm'){
             $customerListDB =
                 DB::select('SELECT va_acc, upper(concat(first_name, " ", last_name)) as name  FROM investasi.users;');
+//            $customerListDB =
+//                DB::select('SELECT va_acc, upper(concat(first_name, " ", last_name)) as name  FROM invc8134_investasi.users;');
             $customerListDB = collect($customerListDB)->map(function ($item){
                 return get_object_vars($item);
             });
@@ -39,6 +41,10 @@ class ExcelExport implements FromCollection
                 DB::select('SELECT CONCAT(b.first_name, \' \', b.last_name) AS name, a.description, a.amount, a.fee, a.transfer_amount 
                             FROM investasi.wallet_statements as a, investasi.users as b
                             where a.user_id = b.id;');
+//            $walletStatementDB =
+//                DB::select('SELECT CONCAT(b.first_name, \' \', b.last_name) AS name, a.description, a.amount, a.fee, a.transfer_amount
+//                            FROM invc8134_investasi.wallet_statements as a, invc8134_investasi.users as b
+//                            where a.user_id = b.id;');
             $walletStatementDB = collect($walletStatementDB)->map(function ($item){
                 return get_object_vars($item);
             });

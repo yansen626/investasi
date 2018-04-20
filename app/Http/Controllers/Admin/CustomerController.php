@@ -29,7 +29,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::orderByDesc('created_at')->get();
 
         return View('admin.show-customers', compact('users'));
         //return view('admin.show_users')->with('users', $users);
