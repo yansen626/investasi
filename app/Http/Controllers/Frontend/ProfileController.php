@@ -66,7 +66,7 @@ class ProfileController extends Controller
             $google2fa = new Google2FA();
             $user->google2fa_secret = $google2fa->generateSecretKey();
             $google2fa_url = $google2fa->getQRCodeGoogleUrl(
-                'investasi.me - '.$user->username.' - ',
+                'indofund.id - '.$user->username.' - ',
                 $user->email,
                 $user->google2fa_secret
             );

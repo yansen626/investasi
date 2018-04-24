@@ -100,30 +100,33 @@
                                             <li>
                                                 <div class="message_wrapper">
                                                     <h2 class="heading">Cicilan / Bunga per bulan</h2>
+                                                    <blockquote class="message">
+                                                        <div class="col-md-12">
+                                                            @foreach($productInstallments as $productInstallment)
+                                                                <div class="col-md-6">
+                                                                    Bulan {{$productInstallment->month}} = Rp {{$productInstallment->amount}} / Rp {{$productInstallment->interest_amount}}
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </blockquote>
+
                                                     <br />
-                                                    <div class="col-md-12">
-                                                        @foreach($productInstallments as $productInstallment)
-                                                            <div class="col-md-6">
-                                                                Bulan {{$productInstallment->month}} = {{$productInstallment->amount}} / {{$productInstallment->interest_amount}}
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
                                                 </div>
                                             </li>
                                         </ul>
+                                        <br/>
                                         <br/>
                                     @endif
                                     <!-- end of user messages -->
                                     <ul class="messages">
                                         <li>
-                                            <img src="{{ asset('storage\owner_picture\\'.$vendor->profile_picture) }}" class="avatar" alt="Avatar">
                                             <div class="message_date">
                                                 <h3 class="date text-info">{{ \Carbon\Carbon::parse($vendor->created_at)->format('j') }}</h3>
                                                 <p class="month">{{ \Carbon\Carbon::parse($vendor->created_at)->format('M Y') }}</p>
                                             </div>
                                             <div class="message_wrapper">
-                                                <h2 class="heading">{{$vendor->name}}</h2>
-                                                <blockquote class="message">{!! $vendor->description !!}</blockquote>
+                                                <h2 class="heading">Project Description</h2>
+                                                <blockquote class="message">{!! $product->description !!}</blockquote>
                                                 <br />
                                             </div>
                                         </li>
@@ -142,11 +145,12 @@
                                 <section class="panel">
 
                                     <div class="x_title">
-                                        <h2>Project Description</h2>
+                                        <img src="{{ asset('storage\owner_picture\\'.$vendor->profile_picture) }}" class="avatar" alt="Avatar">
+                                        <h2>{{$vendor->name}}</h2>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="panel-body">
-                                        <p>{!! $product->description !!}</p>
+                                        <p>{!! $vendor->description !!}</p>
                                         <br />
 
                                         <div class="project_detail">

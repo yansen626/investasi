@@ -49,6 +49,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(),[
             'title'              => 'required',
             'category'              => 'required',
+            'img'              => 'required',
             'content'            => 'required'
         ]);
 
@@ -62,6 +63,7 @@ class BlogController extends Controller
         $blogCreate = Blog::create([
             'id'            => Uuid::generate(),
             'title'         => $request->input('title'),
+            'img_path'         => $request->input('img'),
             'description'   => $request->input('content'),
             'category_id'   => $request->input('category'),
             'read_count'    => 0,
@@ -97,6 +99,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(),[
             'title'              => 'required',
             'category'              => 'required',
+            'img'              => 'required',
             'content'            => 'required']);
 
         if ($validator->fails()) {
@@ -107,6 +110,7 @@ class BlogController extends Controller
 
         $blog = Blog::find($id);
         $blog->title = Input::get('title');
+        $blog->img_path = Input::get('img');
         $blog->description = Input::get('content');
         $blog->category_id = Input::get('category');
         $blog->status_id = Input::get('status');

@@ -105,7 +105,6 @@ class WalletController extends Controller
     public function MultipleProcessOrder(Request $request){
         $checkboxs = $request["submitCheckbox"];
         $action = $request["action"];
-
         if($action == "accept"){
             foreach ($checkboxs as $checkboxID){
                 if(!empty($checkboxID)){

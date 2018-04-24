@@ -27,72 +27,117 @@
                     <li>
                         <a href="{{ route('admin-dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
                     </li>
-                    <li>
-                        <a href="{{ route('vendor-request') }}">
-                            <i class="fa fa-exclamation-triangle"></i> Request Borrower
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('product-request') }}">
-                            <i class="fa fa-exclamation-triangle"></i> Request Produk Investasi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('dompet-request') }}">
-                            <i class="fa fa-exclamation-triangle"></i> Request Penarikan Dana
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('customer-list') }}">
-                            <i class="fa fa-user"></i> Lender List
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('subscribe-list') }}">
-                            <i class="fa fa-user"></i> Subscribe List
-                        </a>
-                    </li>
-                    <li><a><i class="fa fa-tags"></i> Borrower List <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-tags"></i> User <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('vendor-list') }}">Tampilkan Borrower</a></li>
-                            <li><a href="{{ route('vendor-request-form') }}">Tambah Borrower</a></li>
+                            <li><a href="{{ route('customer-list') }}">User List</a></li>
+                            <li><a href="{{ route('subscribe-list') }}">Subscriber List</a></li>
                             {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-tags"></i> Proyek List <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-tags"></i> Borrower <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('product-list') }}">Tampilkan</a></li>
+                            <li><a href="{{ route('vendor-request-form') }}">Submit New Borrower</a></li>
+                            <li><a href="{{ route('vendor-list') }}">Borrower List</a></li>
+                            <li><a href="{{ route('product-request') }}">Project Launch</a></li>
+                                <li><a href="{{ route('product-list') }}">Project List</a></li>
+                            <li><a href="{{ route('product-collected-fund') }}">Project Success Funding</a></li>
+                            <li><a href="{{ route('product-failed-fund') }}">Project Failed Funding</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-tags"></i> Lender <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('VA-RDN-list') }}">VA To RDN List</a></li>
+                            <li><a href="{{ route('dompet-request') }}">Withdraw Request</a></li>
+                            <li><a href="{{ route('dompet-list') }}">Withdraw List</a></li>
+                            <li><a href="#">Submit Coupun</a></li>
+                            <li><a href="{{ route('new-order-list') }}">New Transaction List</a></li>
+                            <li><a href="{{ route('transaction-list') }}">Transaction List</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-tags"></i> News & Blog <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('admin-blog-list') }}">News List</a></li>
+                            <li><a href="{{ route ('blog-create') }}">Submit News</a></li>
+                            <li><a href="{{ route ('admin-blog-update-list') }}">Pending News</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-tags"></i> Content <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('content-edit') }}">Edit Content</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-user-secret"></i> Admin <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('admin-list') }}">Admin List</a></li>
+                            <li><a href="{{ route('admin-create') }}">Submit Admin</a></li>
+                        </ul>
+                    </li>
+                    {{--<li>--}}
+                        {{--<a href="{{ route('vendor-request') }}">--}}
+                            {{--<i class="fa fa-exclamation-triangle"></i> Request Borrower--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ route('product-request') }}">--}}
+                            {{--<i class="fa fa-exclamation-triangle"></i> Request Produk Investasi--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ route('dompet-request') }}">--}}
+                            {{--<i class="fa fa-exclamation-triangle"></i> Request Penarikan Dana--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ route('customer-list') }}">--}}
+                            {{--<i class="fa fa-user"></i> Lender List--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ route('subscribe-list') }}">--}}
+                            {{--<i class="fa fa-user"></i> Subscribe List--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li><a><i class="fa fa-tags"></i> Borrower List <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('vendor-list') }}">Tampilkan Borrower</a></li>--}}
+                            {{--<li><a href="{{ route('vendor-request-form') }}">Tambah Borrower</a></li>--}}
                             {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{ route('content-edit') }}">
-                            <i class="fa fa-file-text"></i> Edit Content
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('dompet-list') }}">
-                            <i class="fa fa-money"></i> Semua Penarikan Dana
-                        </a>
-                    </li>
-                    <li><a><i class="fa fa-tags"></i> Blog <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('admin-blog-list') }}">Tampilkan</a></li>
-                            <li><a href="{{ route ('blog-create') }}">Tambah</a></li>
-                            <li><a href="{{ route ('admin-blog-update-list') }}">Pending</a></li>
-                        </ul>
-                    </li>
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li><a><i class="fa fa-tags"></i> Proyek List <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('product-list') }}">Tampilkan</a></li>--}}
+                            {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ route('content-edit') }}">--}}
+                            {{--<i class="fa fa-file-text"></i> Edit Content--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ route('dompet-list') }}">--}}
+                            {{--<i class="fa fa-money"></i> Semua Penarikan Dana--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li><a><i class="fa fa-tags"></i> Blog <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('admin-blog-list') }}">Tampilkan</a></li>--}}
+                            {{--<li><a href="{{ route ('blog-create') }}">Tambah</a></li>--}}
+                            {{--<li><a href="{{ route ('admin-blog-update-list') }}">Pending</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     {{--<li><a><i class="fa fa-credit-card"></i> Coupon <span class="fa fa-chevron-down"></span></a>--}}
                         {{--<ul class="nav child_menu">--}}
                             {{--<li><a href="{{ route('coupon-index') }}">Tampilkan</a></li>--}}
                             {{--<li><a href="{{ route ('coupon-create') }}">Tambah</a></li>--}}
                         {{--</ul>--}}
                     {{--</li>--}}
-                    <li><a><i class="fa fa-shopping-cart"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('transaction-list') }}">Histori</a></li>
-                        </ul>
-                    </li>
+                    {{--<li><a><i class="fa fa-shopping-cart"></i> Transaksi <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('transaction-list') }}">Histori</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     {{--<li><a><i class="fa fa-edit"></i> Banner <span class="fa fa-chevron-down"></span></a>--}}
                         {{--<ul class="nav child_menu">--}}
                             {{--<li><a>Slider Banner<span class="fa fa-chevron-down"></span></a>--}}
@@ -114,12 +159,12 @@
                             {{--<li><a href="{{ route('status-create') }}">Tambah</a></li>--}}
                         {{--</ul>--}}
                     {{--</li>--}}
-                    <li><a><i class="fa fa-user-secret"></i> Admin <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('admin-list') }}">Tampilkan</a></li>
-                            <li><a href="{{ route('admin-create') }}">Tambah</a></li>
-                        </ul>
-                    </li>
+                    {{--<li><a><i class="fa fa-user-secret"></i> Admin <span class="fa fa-chevron-down"></span></a>--}}
+                        {{--<ul class="nav child_menu">--}}
+                            {{--<li><a href="{{ route('admin-list') }}">Tampilkan</a></li>--}}
+                            {{--<li><a href="{{ route('admin-create') }}">Tambah</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                 </ul>
             </div>
         </div>

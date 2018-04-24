@@ -176,7 +176,10 @@
                     }
                 }
             }
-        ]
+        ],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian-Alternative.json"
+        }
     } );
     $(document).ready(function() {
         var table = $('#datatable-responsive').DataTable();
@@ -188,7 +191,13 @@
             checkBoxes.prop("checked", !checkBoxes.prop("checked"));
 
             var checkboxValue = checkBoxes.val();
-            $('#checkboxvalue'+id).val(checkboxValue);
+            var isNull = $('#checkboxvalue'+id).val();
+            if(isNull != ""){
+                $('#checkboxvalue'+id).val("");
+            }
+            else{
+                $('#checkboxvalue'+id).val(checkboxValue);
+            }
         } );
 
         $('#btn-accept').click( function () {

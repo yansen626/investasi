@@ -50,6 +50,9 @@
     .homepage-section4-img{
         width: 25% !important;
     }
+    .section-name-first{
+        margin-left: 5% !important;
+    }
 }
 @media screen and (max-width: 465px)  {
     #chart_wrap {
@@ -97,6 +100,10 @@
     }
     .subscribe_popup_image{
         width: 45%;
+    }
+    .section-name-first{
+        margin-left: 10% !important;
+        padding-top: 20% !important;
     }
 }
 

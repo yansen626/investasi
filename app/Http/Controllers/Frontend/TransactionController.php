@@ -44,9 +44,9 @@ class TransactionController extends Controller
         $productSahamHasil = Product::select('id')->wherein('category_id', [1, 3])->where('status_id', 1)->get();
         $productHutang = Product::select('id')->where('category_id', 2)->wherein('status_id', [21,22,23])->get();
 
-        $transactionPending = Transaction::where('user_id', $userId)->where('status_id', 3)->get();
-        $transactionSahamHasil = Transaction::where('user_id', $userId)->wherein('product_id', $productSahamHasil)->get();
-        $transactionHutang = Transaction::where('user_id', $userId)->where('status_id', 5)->wherein('product_id', $productHutang)->get();
+        $transactionPending = Transaction::where('user_id', $userId)->where('status_id', 3)->orderByDesc('created_on')->get();
+        $transactionSahamHasil = Transaction::where('user_id', $userId)->wherein('product_id', $productSahamHasil)->orderByDesc('created_on')->get();
+        $transactionHutang = Transaction::where('user_id', $userId)->where('status_id', 5)->wherein('product_id', $productHutang)->orderByDesc('created_on')->get();
 
         $userDompet = $user->wallet_amount;
         $userPendapatan = $user->income;

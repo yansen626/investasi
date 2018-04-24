@@ -27,7 +27,7 @@
                         </div>
                         <p class="first">
                             Apakah Anda ingin mengajukan produk atau proyek ke website kami?
-                            <a href="https://goo.gl/forms/EzQ4QPgIWnmLp6ry1"> Klik disini </a>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1"> Klik disini </a>
                             atau hubungi kami melalui chat box atau email untuk informasi lebih lanjut.
                         </p>
                         <br>

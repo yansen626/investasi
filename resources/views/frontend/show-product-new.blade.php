@@ -25,7 +25,7 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="col-md-2" style="float: left;">
                         <div class="col-md-12">
-                            <img src="{{ URL::asset('frontend_images/default-profile.jpg') }}" style="height:30%;width:30%;border-radius: 50%;">
+                            <img src="{{ asset('storage\owner_picture\\'.$product->Vendor->profile_picture) }}" style="height:30%;width:30%;border-radius: 50%;">
                             <p data-toggle="modal" data-target="#profileModal" class="font-14" style="cursor: pointer;">
                                 <b>{{ $product->Vendor->name }}</b> <br>
                                 {{$projectCount}} Proyek
@@ -37,7 +37,6 @@
 
                         <div style="max-height: 45px;">{{$product->tagline}}</div>
                     </div>
-
                 </div>
                 <div class="col-md-12 col-xs-12" style="margin-top: 2%;">
                     <div class="col-md-7 col-xs-12" style="padding-left: 5%;">
@@ -156,7 +155,7 @@
                                             <img class="img-responsive" src="{{ URL::asset('storage/project/'.$product->image_path) }}" alt="" style="width: 320px;">
                                         </div>
                                         <p>
-                                            {!! $vendor->description !!}
+                                            {!! $product->description !!}
                                         </p>
                                     </div>
                                 </div>

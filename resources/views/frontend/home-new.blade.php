@@ -306,7 +306,7 @@
 
                 <div>
                     <a href="{{route('project-list', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
-                    <a href="https://goo.gl/forms/EzQ4QPgIWnmLp6ry1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;"><span>Daftarkan Proyek</span></a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;"><span>Daftarkan Proyek</span></a>
                 </div>
         </div>
 
@@ -324,19 +324,22 @@
 
             @foreach($recentBlogs as $recentBlog)
                 <!-- Blog Single -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="blog-box">
-                        <div class="blog-top-desc"><strong> {{ \Carbon\Carbon::parse($recentBlog->created_at)->format('j M Y ') }} - Kategori : Progress Project</strong>
-                        </div>
-                        <img src="{{ URL::asset('storage/project/Kerupuk_Top.jpg') }}" alt="">
-                        <div class="blog-btm-desc">
-                            <p>
-                                {{ $highlightBlog[$recentBlog->id] }}
-                                - <a href="{{ route('blog', ['id' => $recentBlog->id]) }}" class="read-more">Baca Selanjutnya</a>
-                            </p>
+                <a href="{{ route('blog', ['id' => $recentBlog->id]) }}">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="blog-box">
+                            <div class="blog-top-desc" style="color:white;">
+                                <strong> {{ \Carbon\Carbon::parse($recentBlog->created_at)->format('j M Y ') }} - Kategori : {{$recentBlog->Category->name}}</strong>
+                            </div>
+                            <div class="blog-btm-desc">
+                                <img src="{{$recentBlog->img_path}}" alt="" style="max-height: 200px; width: 200px;">
+                                <p>
+                                    {{ $highlightBlog[$recentBlog->id] }}
+                                    <br><span class="read-more">Baca Selanjutnya</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 <!-- Blog Single -->
             @endforeach
 

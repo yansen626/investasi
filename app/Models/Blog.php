@@ -15,6 +15,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $id
  * @property string $title
  * @property string $alias
+ * @property string $img_path
  * @property string $description
  * @property int $category_id
  * @property string $product_id
@@ -47,6 +48,7 @@ class Blog extends Eloquent
 	    'id',
 		'title',
 		'alias',
+		'img_path',
 		'description',
 		'category_id',
 		'product_id',
