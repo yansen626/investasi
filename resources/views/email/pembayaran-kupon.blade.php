@@ -87,62 +87,72 @@
     </table>
     <table bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="vb-outer" id="ko_titleBlock_3" style="background-color: #fff;" width="100%">
         <tbody>
-        <tr>
-            <td align="center" bgcolor="#fff" class="vb-outer" style="padding-left: 9px;padding-right: 9px;background-color: #fff;" valign="top">
-                <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
-                <div class="oldwebkit" style="max-width: 650px;">
-                    <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
-                        <tbody>
+            <tr>
+                <td align="center" bgcolor="#fff" class="vb-outer" style="padding-left: 9px;padding-right: 9px;background-color: #fff;" valign="top">
+                    <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
+                    <div class="oldwebkit" style="max-width: 650px;">
+                        <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
+                            <tbody>
                             <tr>
                                 <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
-                                    <p>Kepada Yth : (Nama)</p>
-                                    <p>Kami telah menerima dana yang telah anda bayarkan untuk proyek dengan detail sebagai berikut :<br/>
-                                        Nama Proyek<br/>
-                                        Masa Penawaran<br/>
-                                        Sebesar Rp. Xxx
+                                    <p>Kepada Yth :</p>
+                                    <p>Kami informasikan bahwa proyek dengan detail sebagai berikut :<br/><br/>
+                                        <b>Nama Proyek</b><br/><br/>
+                                        Telah melakukan pembayaran untuk bulan xxx sebesar Rp. Xxx yang pembayarannya telah kami update pada saldo di indofund.id.<br/>
+                                        Silahkan login untuk melakukan pengecekan lebih lanjut.
                                     </p>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk mendapatkan update proyek secara berkala, anda dapat mengunjungi website indofund.id pada menu portfolio saya.<br/>
-                                    Bila proyek ini sudah berjalan, kami akan mengirimkan email notifikasi kembali kepada anda beserta dengan detail agreement </span></td>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
+                                    <span>Kami memiliki proyek yang sedang berjalan saat ini, diantaranya adalah :</span>
+                                </td>
                             </tr>
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Terkait dengan perjanjian antara anda (Lender) dengan kami sebagai penyelenggara (indofund.id) tercantum pada “Perjanjian Pinjam-Meminjam Uang Berbasis Teknologi Nomor xxxx” yang dapat ana unduh pada lampiran di email ini.</span></td>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
+                                    <ul style="list-style-type: none;">
+                                        <li><a style="text-decoration: underline;" href="#">Proyek 1</a></li>
+                                        <li><a style="text-decoration: underline;" href="#">Proyek 1</a></li>
+                                        <li><a style="text-decoration: underline;" href="#">Proyek 1</a></li>
+                                    </ul>
+                                </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
-            </td>
-        </tr>
+                            <tr>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Silahkan lakukan pendanaan atas proyek-proyek menarik diatas</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
+                </td>
+            </tr>
         </tbody>
     </table>
     <hr style="margin: 0;"/>
     <table bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="vb-outer" id="ko_titleBlock_3" style="background-color: #fff;" width="100%">
         <tbody>
-        <tr>
-            <td align="center" bgcolor="#fff" class="vb-outer" style="padding-left: 9px;padding-right: 9px;background-color: #fff;" valign="top">
-                <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
-                <div class="oldwebkit" style="max-width: 650px;">
-                    <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
-                        <tbody>
-                        <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk pertanyaan terkait pinjam-meminjam berbasis teknologi, silahkan hubungi wa/email/phone/fanpage/ig/youtube</span></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
-            </td>
-        </tr>
+            <tr>
+                <td align="center" bgcolor="#fff" class="vb-outer" style="padding-left: 9px;padding-right: 9px;background-color: #fff;" valign="top">
+                    <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]-->
+                    <div class="oldwebkit" style="max-width: 650px;">
+                        <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
+                            <tbody>
+                            <tr>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk pertanyaan terkait pinjam-meminjam berbasis teknologi, silahkan hubungi wa/email/phone/fanpage/ig/youtube</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
+                </td>
+            </tr>
         </tbody>
     </table>
     <table bgcolor="#FFF" border="0" cellpadding="0" cellspacing="0" class="vb-outer" id="ko_bigSocialBlock_1" style="background-color: #fff;" width="100%">
         <tbody>
         <tr>
             <td align="center" class="vb-outer" style="padding-left: 9px; padding-right: 9px; font-size: 0;" valign="top">
-                <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]--><!---->
+                <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]--><!--
+-->
                 <div style="margin: 0 auto; max-width: 570px; -mru-width: 0px;">
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="18" class="vb-container links-color socialLinks mobile-textcenter" style="font-size: 6px; border-collapse: separate; width: 100%; background-color: #ffffff; mso-cellspacing: 18px; border-spacing: 18px; max-width: 570px; -mru-width: 0px;" width="570">
                         <tbody>
@@ -153,8 +163,8 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
-                <!----><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
+                </div><!--
+    --><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
             </td>
         </tr>
         </tbody>
@@ -175,8 +185,7 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
-                <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
+                </div><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
             </td>
         </tr>
         </tbody>
