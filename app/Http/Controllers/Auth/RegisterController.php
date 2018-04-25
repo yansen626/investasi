@@ -124,9 +124,9 @@ class RegisterController extends Controller
 
         $messages = array(
             'not_contains'  => 'Email tidak boleh memiliki karakter +',
-            'phone.max'     => 'Nomor Handphone tidak boleh lebih dari 12 karakter!'
-//            'username.unique'   => 'Username sudah pernah terdaftar',
-//            'phone.unique'   => 'Nomor Handphone sudah pernah terdaftar',
+            'phone.max'     => 'Nomor Handphone tidak boleh lebih dari 12 karakter',
+            'username.unique'   => 'Username sudah pernah terdaftar',
+            'phone.unique'   => 'Nomor Handphone sudah pernah terdaftar',
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -145,6 +145,13 @@ class RegisterController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
+        //Check Referral
+        if($request->referral != null){
+            $parent = User::where('username', $request->referral)->first();
+            if(empty($parent)) {
+                return back()->withErrors(['msg' => ['Username Referal tidak terdaftar']])->withInput();
+            }
+        }
 
         $user = $this->create($request->all());
 
@@ -153,7 +160,6 @@ class RegisterController extends Controller
             //Add Referrals
             $parent = User::where('username', $request->referral)->first();
             $child = User::Where('username', $user->username)->first();
-
             Referral::create([
                 'user_id_parent' => $parent->id,
                 'user_id_child' => $child->id
@@ -184,6 +190,7 @@ class RegisterController extends Controller
         $user->save();
 
         Session::put("user-data", $user);
+        Session::flash('message', 'Email Anda telah diverifikasi, silahkan login dengan email dan password Anda');
         return Redirect::route('login');
 //        if($user->save()){
 ////            return Redirect::route('verify-phone-show');

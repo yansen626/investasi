@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Excel\ExcelExport;
+use App\Excel\ExcelExportFromView;
 use App\Http\Controllers\Controller;
 use App\Models\Subscribe;
 use App\Models\User;
@@ -59,9 +60,7 @@ class CustomerController extends Controller
 
     public function downloadMCMData(){
         try {
-            $newFileName = "List MCM_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
-
-            return Facades\Excel::download(new ExcelExport('mcm'), $newFileName.'.xlsx');
+            return Facades\Excel::download(new ExcelExportFromView('mcm'), '88795.xlsx');
         }
         catch (Exception $ex){
             //Utilities::ExceptionLog($ex);

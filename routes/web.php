@@ -36,6 +36,9 @@ Route::get('/blog/{id}', 'Frontend\BlogController@SingleBlog')->name('blog');
 //profile
 Route::get('/my-profile/{tab}', 'Frontend\ProfileController@Profile')->name('my-profile');
 Route::get('/pendapatan', 'Frontend\ProfileController@Pendapatan')->name('pendapatan');
+Route::post('/change-name', 'Frontend\ProfileController@changeName')->name('change-name');
+Route::post('/change-password', 'Frontend\ProfileController@changePassword')->name('change-password');
+Route::post('/change-phone', 'Frontend\ProfileController@changePhone')->name('change-phone');
 
 //Google Authenticator
 Route::post('/google2fa', 'Frontend\ProfileController@VerifyGoogleAuthenticator')->name('verify-google-authenticator');
@@ -297,6 +300,10 @@ Route::prefix('admin/dompet')->group(function(){
 // Blog
 Route::prefix('admin/blog')->group(function(){
     Route::get('/', 'Admin\BlogController@index')->name('admin-blog-list');
+    Route::get('/blog-urgents', 'Admin\BlogController@indexBlogUrgent')->name('admin-blog-urgent-list');
+    Route::get('/create-urgent/{id}', 'Admin\BlogController@storeUrgent');
+    Route::get('/change-urgent/{id}', 'Admin\BlogController@changeStatusUrgent');
+
     Route::get('/create', 'Admin\BlogController@create')->name('blog-create');
     Route::post('/create/save', 'Admin\BlogController@store');
     Route::get('/edit/{id}', 'Admin\BlogController@edit')->name('blog-edit');

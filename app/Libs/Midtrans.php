@@ -141,20 +141,20 @@ class Midtrans
             $vtWebArr = array_add($vtWebArr, 'enabled_payments', [$enabledPayments]);
 
             if($type[0] == 'WALLET'){
-                $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. '/deposit/topup/success/'. $enabledPayments. '/'. $userId);
-                $vtWebArr = array_add($vtWebArr, 'unfinish_redirect_url', $hostUrl. '/payment/failed/'. $cart->product_id);
-                $vtWebArr = array_add($vtWebArr, 'error_redirect_url', $hostUrl. '/payment/failed/'. $cart->product_id);
+                $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. 'deposit/topup/success/'. $enabledPayments. '/'. $userId);
+                $vtWebArr = array_add($vtWebArr, 'unfinish_redirect_url', $hostUrl. 'payment/failed/'. $cart->product_id);
+                $vtWebArr = array_add($vtWebArr, 'error_redirect_url', $hostUrl. 'payment/failed/'. $cart->product_id);
             }
             else{
                 if($enabledPayments == 'bank_transfer'){
                     $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. '/payment/success/va');
                 }
                 else{
-                    $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. '/payment/success/cc/'.$userId);
+                    $vtWebArr = array_add($vtWebArr, 'finish_redirect_url', $hostUrl. 'payment/success/cc/'.$userId);
                 }
 
-                $vtWebArr = array_add($vtWebArr, 'unfinish_redirect_url', $hostUrl. '/payment/failed/'. $cart->product_id);
-                $vtWebArr = array_add($vtWebArr, 'error_redirect_url', $hostUrl. '/payment/failed/'. $cart->product_id);
+                $vtWebArr = array_add($vtWebArr, 'unfinish_redirect_url', $hostUrl. 'payment/failed/'. $cart->product_id);
+                $vtWebArr = array_add($vtWebArr, 'error_redirect_url', $hostUrl. 'payment/failed/'. $cart->product_id);
             }
 
 

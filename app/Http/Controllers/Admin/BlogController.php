@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\BlogUrgent;
 use App\Models\Category;
 use App\Models\Vendor;
 use Carbon\Carbon;
@@ -32,8 +33,15 @@ class BlogController extends Controller
 
     public function index(){
         $blogs = Blog::orderByDesc('created_at')->get();
+        $blogUrgentIds = BlogUrgent::select('blog_id')->get();
+//    dd($blogUrgentIds);
+        return View('admin.show-blogs', compact('blogs', 'blogUrgentIds'));
+    }
 
-        return View('admin.show-blogs', compact('blogs'));
+    public function indexBlogUrgent(){
+        $blogs = BlogUrgent::all();
+
+        return View('admin.show-blog-urgents', compact('blogs'));
     }
 
 
@@ -80,6 +88,37 @@ class BlogController extends Controller
         Session::flash('message', 'Blog telah berhasil dibuat!');
 
         return redirect()->route('admin-blog-list');
+    }
+
+    public function storeUrgent($id){
+
+        //Save Data
+        $blogDB = BlogUrgent::select('id')->orderbyDesc('id')->first();
+
+        $blogCreate = BlogUrgent::create([
+            'blog_id'       => $id,
+            'status_id'     => 3
+        ]);
+
+        Session::flash('message', 'Blog telah dijadikan Urgent!');
+
+        return redirect()->route('admin-blog-urgent-list');
+    }
+    public function changeStatusUrgent($id){
+
+        //Save Data
+        $blogDB = BlogUrgent::find($id);
+        if($blogDB->status_id = 3){
+            $blogDB->status_id = 1;
+        }
+        else{
+            $blogDB->status_id = 3;
+        }
+        $blogDB->save();
+
+        Session::flash('message', 'Blog telah dijadikan Urgent!');
+
+        return redirect()->route('admin-blog-urgent-list');
     }
 
     public function edit($id){

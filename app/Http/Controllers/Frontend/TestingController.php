@@ -37,6 +37,13 @@ class TestingController extends Controller
             $payment = PaymentMethod::find($transaction->payment_method_id);
             $product = Product::find($transaction->product_id);
 
+//            $user = User::find("a97fc8c0-482f-11e8-b1c5-335500b6b827");
+//
+//            $data = array(
+//                'user' => $user
+//            );
+//            SendEmail::SendingEmail('emailVerification', $data);
+
 //            $data = array(
 //                'transaction' => $transaction,
 //                'user'=>$userData,
@@ -51,6 +58,15 @@ class TestingController extends Controller
 //                'filename' => $product->prospectus_path
 //            );
 //            SendEmail::SendingEmail('sendProspectus', $data);
+
+            $data = array(
+                'transaction' => $transaction,
+                'user'=>$userData,
+                'paymentMethod' => $payment,
+                'product' => $product
+            );
+            //Send Email for accepted fund
+            SendEmail::SendingEmail('successTransaction', $data);
 
             return "success";
         }

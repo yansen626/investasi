@@ -57,6 +57,7 @@
                     <li><a><i class="fa fa-tags"></i> News & Blog <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('admin-blog-list') }}">News List</a></li>
+                            <li><a href="{{ route('admin-blog-urgent-list') }}">News Urgent List</a></li>
                             <li><a href="{{ route ('blog-create') }}">Submit News</a></li>
                             <li><a href="{{ route ('admin-blog-update-list') }}">Pending News</a></li>
                         </ul>

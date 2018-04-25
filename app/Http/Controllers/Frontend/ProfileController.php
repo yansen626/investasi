@@ -12,10 +12,14 @@ use App\Http\Controllers\Controller;
 use App\Libs\UrgentNews;
 use App\Models\Transaction;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
+//use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use PragmaRX\Google2FA\Google2FA;
 
 class ProfileController extends Controller
@@ -138,6 +142,92 @@ class ProfileController extends Controller
         return View ('frontend.show-pendapatan', compact('transactions'));
     }
 
+    public function changeName(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'fname'              => 'required',
+            'lname'              => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $user = Auth::user();
+        $userId = $user->id;
+
+        $userDB = User::find($userId);
+        $userDB->first_name = Input::get('fname');
+        $userDB->last_name = Input::get('lname');
+        $userDB->save();
+
+        Session::flash('message', 'Nama Berhasil di Update');
+
+        return Redirect::route('my-profile', ['tab' => 'profile']);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'currentPass'              => 'required',
+            'newPass'              => 'required',
+            'confirmPass'              => 'required|same:newPass'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $user = Auth::user();
+
+        $curentPassword = $user->password;
+        if(Hash::check(Input::get('currentPass'), $curentPassword))
+        {
+            $user_id = Auth::user()->id;
+            $obj_user = User::find($user_id);
+            $obj_user->password = Hash::make(Input::get('newPass'));
+            $obj_user->save();
+
+            Session::flash('message', 'Password Berhasil di Update');
+
+            return Redirect::route('my-profile', ['tab' => 'password']);
+        }
+        else{
+            return Redirect::back()->withErrors(['msg' => ['Password Anda Salah']]);
+//            return Redirect::route('my-profile', ['tab' => 'password'])->withErrors('Password Anda Salah', 'default');
+        }
+
+    }
+
+    public function changePhone(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'phone'              => 'required|unique:users',
+            'pass'              => 'required',
+            'confirmPassPhone'              => 'required|same:pass'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::route('my-profile', ['tab' => 'phone'])->withErrors($validator)->withInput();
+//            return back()->withErrors($validator)->withInput();
+        }
+        $user = Auth::user();
+
+        $curentPassword = $user->password;
+        if(Hash::check(Input::get('pass'), $curentPassword))
+        {
+            $user_id = Auth::user()->id;
+            $obj_user = User::find($user_id);
+            $obj_user->phone = Input::get('phone');
+            $obj_user->save();
+
+            Session::flash('message', 'Nomor Telepon Berhasil di Update');
+
+            return Redirect::route('my-profile', ['tab' => 'phone']);
+        }
+        else{
+            return Redirect::back()->withErrors(['msg' => ['Password Anda Salah']]);
+//            return redirect()->back()->withErrors('Password Anda Salah', 'default');
+        }
+    }
 
     public function GoogleMap()
     {

@@ -2,6 +2,7 @@ function modalCheckout(){
     // Set invest amount
     // var invest = $("input[name=amount]:checked").val();
     var invest = $("#amount").val();
+    var remainning = $("#remaining").val();
 
     while(true)
     if(invest.includes('.')){

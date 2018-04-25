@@ -77,6 +77,9 @@ class TransactionUnit
 
         DB::transaction(function() use ($orderid){
             $transaction = Transaction::where('order_id', $orderid)->first();
+            if($transaction->status_id == 5){
+                return false;
+            }
             $dateTimeNow = Carbon::now('Asia/Jakarta');
 
             $transaction->status_id = 5;

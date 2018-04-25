@@ -37,7 +37,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             @include('admin.partials._success')
-                            <h2>Daftar Blog</h2>
+                            <h2>Daftar Blog Urgent</h2>
                             <div class="nav navbar-right">
                                 <a href="{{ route('blog-create') }}" class="btn btn-app">
                                     <i class="fa fa-plus"></i> Tambah
@@ -63,9 +63,9 @@
                                 @foreach($blogs as $blog)
                                     <tr>
                                         <td>{{ $idx}}</td>
-                                        <td>{{ $blog->title}}</td>
-                                        <td>{{ $blog->category->name }}</td>
-                                        <td>{{ $blog->read_count }}</td>
+                                        <td>{{ $blog->blog->title}}</td>
+                                        <td>{{ $blog->blog->category->name }}</td>
+                                        <td>{{ $blog->blog->read_count }}</td>
                                         <td>
                                             @if($blog->status_id == 1)
                                                 Publish
@@ -75,12 +75,9 @@
                                                 Unpublish
                                             @endif
                                         </td>
-                                        <td>{{ \Carbon\Carbon::parse($blog->created_at)->format('j F y')}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($blog->blog->created_at)->format('j F y')}}</td>
                                         <td>
-                                            <a href="{{ route('blog-edit', ['id' => $blog->id]) }}" target="_blank" class="btn btn-primary">Ubah</a>
-                                            @if(!$blogUrgentIds->contains('blog_id', $blog->id))
-                                                <a onclick="modalPop('{{ $blog->id }}', 'blog-urgent', '/admin/blog/create-urgent/')" class="btn btn-danger">Jadikan Urgent</a>
-                                            @endif
+                                            <a onclick="modalPop('{{ $blog->id }}', 'blog-urgent-change', '/admin/blog/change-urgent/')" class="btn btn-danger">Ganti Status</a>
                                         </td>
                                     </tr>
                                     @php ($idx++)

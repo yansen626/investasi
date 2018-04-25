@@ -125,7 +125,8 @@
                                                         <input type="text" disabled="disabled" value="{{ $user->google2fa_secret }}"/>
                                                     </div>
                                                     </form>
-                                                    <p>Scan Gambar atau copy text di atas untuk mengaktifkan Google Authenticator!</p>
+                                                    <p>Scan Gambar atau copy text di atas untuk mengaktifkan Google Authenticator, lalu</p>
+                                                    <p>Masukkan Kode Google Authenticator untuk mengaktifkan</p>
                                                 </div>
                                                 <form class="comment-form row altered" method="POST" action="{{route('verify-google-authenticator')}}">
                                                     @if($errors->has('msg'))
@@ -134,9 +135,8 @@
                                                         </div>
                                                     @endif
                                                     {{ csrf_field() }}
-
                                                     <div class="field col-sm-12">
-                                                        <h5>Code</h5>
+                                                        <h5>Kode</h5>
                                                         <input type="number" name="secret">
                                                     </div>
 
@@ -178,9 +178,14 @@
                                             <div class="widget-title ">
                                                 <h4>Ubah Profil</h4>
                                             </div>
-                                            <form class="comment-form row altered" method="POST" action="{{ route('withdrawSubmit') }}">
+                                            <form class="comment-form row altered" method="POST" action="{{ route('change-name') }}">
                                                 {{ csrf_field() }}
-
+                                                @include('admin.partials._success')
+                                                @if($errors->has('msg'))
+                                                    <div class="field col-sm-12 text-center">
+                                                        <span class="help-block" style="color: red;">{{$errors->first()}}</span>
+                                                    </div>
+                                                @endif
                                                 <div class="field col-sm-6 {{ $errors->has('fname') ? ' has-error' : '' }}">
                                                     <h5>Nama Depan</h5>
                                                     <input type="text" name="fname" value="{{$user->first_name}}">
@@ -201,12 +206,7 @@
                                                 </div>
                                                 <div class="field col-sm-12 {{ $errors->has('email') ? ' has-error' : '' }}">
                                                     <h5>Email</h5>
-                                                    <input type="text" name="email" value="{{$user->email}}">
-                                                    @if ($errors->has('email'))
-                                                        <span class="help-block">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                                    @endif
+                                                    <input type="text" name="email" value="{{$user->email}}" disabled="disabled">
                                                 </div>
                                                 <div class="field col-sm-12">
                                                     <br/>
@@ -223,9 +223,14 @@
                                             <div class="widget-title ">
                                                 <h4>Ubah Password</h4>
                                             </div>
-                                            <form class="comment-form row altered" method="POST" action="{{ route('withdrawSubmit') }}">
+                                            <form class="comment-form row altered" method="POST" action="{{ route('change-password') }}">
                                                 {{ csrf_field() }}
-
+                                                @include('admin.partials._success')
+                                                @if($errors->has('msg'))
+                                                    <div class="field col-sm-12 text-center">
+                                                        <span class="help-block" style="color: red;">{{$errors->first()}}</span>
+                                                    </div>
+                                                @endif
                                                 <div class="field col-sm-12 {{ $errors->has('currentPass') ? ' has-error' : '' }}">
                                                     <h5>Password Sekarang</h5>
                                                     <input type="password" name="currentPass">
@@ -268,15 +273,20 @@
                                             <div class="widget-title ">
                                                 <h4>Ubah Nomor Telepon</h4>
                                             </div>
-                                            <form class="comment-form row altered" method="POST" action="{{ route('withdrawSubmit') }}">
+                                            <form class="comment-form row altered" method="POST" action="{{ route('change-phone') }}">
                                                 {{ csrf_field() }}
-
-                                                <div class="field col-sm-12 {{ $errors->has('newNum') ? ' has-error' : '' }}">
+                                                @include('admin.partials._success')
+                                                @if($errors->has('msg'))
+                                                    <div class="field col-sm-12 text-center">
+                                                        <span class="help-block" style="color: red;">{{$errors->first()}}</span>
+                                                    </div>
+                                                @endif
+                                                <div class="field col-sm-12 {{ $errors->has('phone') ? ' has-error' : '' }}">
                                                     <h5>Nomor Telepon Baru</h5>
-                                                    <input type="text" name="newNum">
-                                                    @if ($errors->has('newNum'))
+                                                    <input type="text" name="phone" value="{{$user->phone}}">
+                                                    @if ($errors->has('phone'))
                                                         <span class="help-block">
-                                                    <strong>{{ $errors->first('newNum') }}</strong>
+                                                    <strong>{{ $errors->first('phone') }}</strong>
                                                 </span>
                                                     @endif
                                                 </div>
@@ -289,12 +299,12 @@
                                                 </span>
                                                     @endif
                                                 </div>
-                                                <div class="field col-sm-12 {{ $errors->has('confirmPass') ? ' has-error' : '' }}">
+                                                <div class="field col-sm-12 {{ $errors->has('confirmPassPhone') ? ' has-error' : '' }}">
                                                     <h5>Konfirmasi Password</h5>
-                                                    <input type="password" name="confirmPass">
-                                                    @if ($errors->has('confirmPass'))
+                                                    <input type="password" name="confirmPassPhone">
+                                                    @if ($errors->has('confirmPassPhone'))
                                                         <span class="help-block">
-                                                    <strong>{{ $errors->first('confirmPass') }}</strong>
+                                                    <strong>{{ $errors->first('confirmPassPhone') }}</strong>
                                                 </span>
                                                     @endif
                                                 </div>

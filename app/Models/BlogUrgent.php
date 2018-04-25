@@ -26,7 +26,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class BlogUrgent extends Eloquent
 {
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [

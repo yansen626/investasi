@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Excel\ExcelExport;
+use App\Excel\ExcelExportFromView;
 use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
 use App\Mail\AcceptPenarikan;
@@ -206,7 +207,7 @@ class WalletController extends Controller
 
             $newFileName = "List Penarikan Dana_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
 
-            return Facades\Excel::download(new ExcelExport('wallet'), $newFileName.'.xlsx');
+            return Facades\Excel::download(new ExcelExportFromView('wallet'), $newFileName.'.xlsx');
         }
         catch (Exception $ex){
             //Utilities::ExceptionLog($ex);

@@ -143,7 +143,8 @@
     numberFormat = new AutoNumeric('.price-format > input', {
         decimalCharacter: ',',
         digitGroupSeparator: '.',
-        decimalPlaces: 0
+        decimalPlaces: 0,
+        modifyValueOnWheel: false
     });
 
     $('#datatable-responsive-debt').DataTable({

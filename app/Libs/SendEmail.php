@@ -41,7 +41,6 @@ class SendEmail
             switch ($option) {
                 case 'emailVerification' :
                     $user = $objData->user;
-
                     $emailVerify = new EmailVerification($user);
                     Mail::to($user->email)->send($emailVerify);
                     break;
@@ -162,7 +161,7 @@ class SendEmail
                         'project'   => $project
                     );
 
-                    Mail::send('email.proyek-terpenuhi', $data, function ($message) use ($project, $vendorData) {
+                    Mail::send('email.proyek-berjalan', $data, function ($message) use ($project, $vendorData) {
                         $message->to($vendorData->email)->subject('Dana project telah terkumpul di Indofund');
                     });
 
@@ -178,7 +177,7 @@ class SendEmail
                         'percentage'    => $percentage
                     );
 
-                    Mail::send('email.proyek-dalam-proses', $data, function ($message) use ($project, $vendorData) {
+                    Mail::send('email.proyek-tidak-berjalan', $data, function ($message) use ($project, $vendorData) {
                         $message->to($vendorData->email)->subject('Dana project gagal terkumpul di Indofund');
                     });
 

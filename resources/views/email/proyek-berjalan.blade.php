@@ -95,9 +95,9 @@
                         <tbody>
                         <tr>
                             <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
-                                <p>Kepada Yth : (Nama)</p>
+                                <p>Kepada Yth : {{$vendor->user->first_name}} {{$vendor->user->last_name}}</p>
                                 <p>Kami informasikan bahwa proyek dengan detail sebagai berikut :<br/>
-                                    Nama Proyek
+                                    Nama Proyek : {{$project->name}}
                                 </p>
                             </td>
                         </tr>

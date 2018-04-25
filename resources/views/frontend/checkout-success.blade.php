@@ -22,9 +22,6 @@
         <div class="container" style="margin-bottom: 20px;">
             <div class="row cause">
                 <div class="col-md-10 col-md-offset-1">
-                    <div class="image-wrapper">
-                        <img class="img-responsive" src="assets/img/causes/single-cause.jpg" alt="">
-                    </div>
                     <div class="meta">
                         <h2>Pembayaran Berhasil</h2>
                     </div>

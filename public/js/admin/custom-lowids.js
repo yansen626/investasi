@@ -57,14 +57,16 @@ $("#product-featured").on('fileloaded', function(event, file, previewId, index, 
 numberFormat = AutoNumeric.multiple('.price-format > input', {
     decimalCharacter: ',',
     digitGroupSeparator: '.',
-    decimalPlaces: 0
+    decimalPlaces: 0,
+    modifyValueOnWheel: false
 });
 
 if($('#discount-percent').length > 0){
     numberFormat2 = new AutoNumeric('#discount-percent', {
         maximumValue: 100,
         minimumValue: 0,
-        decimalPlaces: 0
+        decimalPlaces: 0,
+        modifyValueOnWheel: false
     });
 }
 
@@ -72,7 +74,8 @@ if($('#qty').length > 0){
     numberFormat2 = new AutoNumeric('#qty', {
         maximumValue: 9999,
         minimumValue: 0,
-        decimalPlaces: 0
+        decimalPlaces: 0,
+        modifyValueOnWheel: false
     });
 }
 
@@ -187,7 +190,7 @@ function modalPop(id, mode, url){
     if(mode === "accept"){
         var title = "Warning";
         var content = "Apakah Anda yakin untuk melanjutkan / menerima?"
-        var yes = "Accept"
+        var yes = "Lanjutkan"
 
         $("#small-modal-title").html(title);
         $("#small-modal-body").html(content);
@@ -221,7 +224,7 @@ function modalPop(id, mode, url){
     else if(mode === "cancel"){
         var title = "Warning";
         var content = "Apakah Anda yakin untuk menolak / menghapus?"
-        var yes = "Delete"
+        var yes = "Lanjutkan"
 
         $("#small-modal-yes").attr("class","btn btn-danger");
         $("#small-modal-title").html(title);
@@ -258,6 +261,30 @@ function modalPop(id, mode, url){
         var title = "Peringatan";
         var content = "Apakah anda yakin menerima pembaharuan blog ini?"
         var yes = "Terima"
+
+        $("#small-modal-yes").attr("class","btn btn-success");
+        $("#small-modal-title").html(title);
+        $("#small-modal-body").html(content);
+        $("#small-modal-yes").html(yes);
+        $("#small-modal-yes").attr('href', url + id);
+        $("#small-modal").modal();
+    }
+    else if(mode === "blog-urgent"){
+        var title = "Peringatan";
+        var content = "Apakah anda yakin membuat berita ini Urgent?"
+        var yes = "Lanjutkan"
+
+        $("#small-modal-yes").attr("class","btn btn-success");
+        $("#small-modal-title").html(title);
+        $("#small-modal-body").html(content);
+        $("#small-modal-yes").html(yes);
+        $("#small-modal-yes").attr('href', url + id);
+        $("#small-modal").modal();
+    }
+    else if(mode === "blog-urgent-change"){
+        var title = "Peringatan";
+        var content = "Apakah anda yakin mengganti status berita ini?"
+        var yes = "Lanjutkan"
 
         $("#small-modal-yes").attr("class","btn btn-success");
         $("#small-modal-title").html(title);

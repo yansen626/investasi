@@ -21,10 +21,12 @@
     <div class="causes-page-wrapper single-cause">
         <div class="container" style="margin-bottom: 20px;">
             <div class="row cause">
+                {{--<div class="col-md-12 col-sm-12">--}}
+                    {{--<h3>Nama Project = {{$product->name}}</h3>--}}
+                    {{--<h3>Sisa Pengumpulan Dana = Rp {{$remaining}}</h3>--}}
+
+                {{--</div>--}}
                 <div class="col-md-10 col-md-offset-1">
-                    <div class="image-wrapper">
-                        <img class="img-responsive" src="assets/img/causes/single-cause.jpg" alt="">
-                    </div>
                     <div class="meta">
                         <h2>Danai Sekarang</h2>
                     </div>
@@ -36,6 +38,9 @@
                             </div>
                             <div class="field col-sm-12 text-center error-div-wallet" style="display: none;">
                                 <span class="help-block" style="color: red;">Saldo Anda tidak mencukupi</span>
+                            </div>
+                            <div class="field col-sm-12 text-center error-remaining" style="display: none;">
+                                <span class="help-block" style="color: red;">Nominal Harus lebih kecil dari sisa pendanaan</span>
                             </div>
                             <div class="field col-sm-12 price-format">
                                 <h5>Nominal</h5>
@@ -66,6 +71,7 @@
 
                                 <input id="notCompletedData" value="{{$notCompletedData}}" type="hidden">
                                 <input id="wallet" value="{{$userData->wallet_amount}}" type="hidden">
+                                <input id="remaining" value="{{$remaining}}" type="hidden">
                                 <div class="field col-sm-12">
                                     <div class="col-sm-12">
                                         <h5 style="color:red;">

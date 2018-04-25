@@ -100,6 +100,9 @@ class PaymentController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $userData = User::find($userId);
+        $productRaising = (double)$product->getOriginal('raising');
+        $productRaised = (double)$product->getOriginal('raised');
+        $remaining = $productRaising - $productRaised;
         $notCompletedData = 1;
         if($userData->identity_number== null ||
             $userData->address_ktp== null ||
@@ -110,7 +113,7 @@ class PaymentController extends Controller
             $notCompletedData = 0;
         }
 
-        return View('frontend.checkout', compact('product', 'userData', 'notCompletedData'));
+        return View('frontend.checkout', compact('product', 'userData', 'notCompletedData', 'remaining'));
     }
 
     public function pay(Request $request, $investId){
@@ -216,8 +219,8 @@ class PaymentController extends Controller
 
     public function successCC($userId){
         try{
-            $cart = Cart::where('user_id', $userId)->first();
-            $isSuccess = TransactionUnit::createTransaction($userId, $cart->id, $cart->order_id);
+//            $cart = Cart::where('user_id', $userId)->first();
+//            $isSuccess = TransactionUnit::createTransaction($userId, $cart->id, $cart->order_id);
 
             $paymentMethod = 'credit_card';
             return View('frontend.checkout-success', compact('paymentMethod'));

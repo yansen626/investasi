@@ -11,6 +11,11 @@
                             <h4>Registrasi</h4>
                         </div>
                         <form class="comment-form row altered" method="POST" action="{{ route('register') }}">
+                            @if($errors->has('msg'))
+                                <div class="field col-sm-12 text-center">
+                                    <span class="help-block" style="color: red;">{{$errors->first()}}</span>
+                                </div>
+                            @endif
                             {{ csrf_field() }}
 
                             <div class="field col-sm-12 {{ $errors->has('email') ? ' has-error' : '' }}">
