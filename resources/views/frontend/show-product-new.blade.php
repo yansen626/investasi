@@ -154,9 +154,7 @@
                                         <div class="image-wrapper">
                                             <img class="img-responsive" src="{{ URL::asset('storage/project/'.$product->image_path) }}" alt="" style="width: 320px;">
                                         </div>
-                                        <p>
-                                            {!! $product->description !!}
-                                        </p>
+                                        {!! $product->description !!}
                                     </div>
                                 </div>
                                 <div class="tab-pane row" id="tab-2">

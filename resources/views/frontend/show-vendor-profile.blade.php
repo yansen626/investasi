@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-xs-12 text-center">
-                    <img src="{{ URL::asset('frontend_images/default-profile.jpg') }}" style="height: 100px; width: auto;">
+                    <img src="{{ asset('storage\owner_picture\\'.$vendor->profile_picture) }}" style="height: 100px; width: auto;">
                     <h3>{{ $vendor->name }}</h3>
                 </div>
             </div>

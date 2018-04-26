@@ -108,7 +108,7 @@ class TransactionUnit
             $raisingDB = (double) str_replace('.','', $productDB->raising);
             if(($raisedDB + $newRaise) >= $raisingDB){
                 $productDB->status_id = 22;
-                SendEmail::SendingEmail('collectedFund', $data);
+//                SendEmail::SendingEmail('collectedFund', $data);
 
 //            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
 //            Mail::to($userData->email)->send($perjanjianLayananEmail);

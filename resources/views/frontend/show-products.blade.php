@@ -23,7 +23,7 @@
             <div id="tabs" class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
-                        <li {{$isActiveTabDebt}}><a href="{{route('project-list', ['tab' => 'debt'])}}" >Hutang</a></li>
+                        <li {{$isActiveTabDebt}}><a href="{{route('project-list', ['tab' => 'debt'])}}" >Produk Konvensional & Produk Syariah</a></li>
 {{--                        <li {{$isActiveTabEquity}}><a href="{{route('project-list', ['tab' => 'equity'])}}" >Saham</a></li>--}}
                         {{--<li {{$isActiveTabSharing}}><a href="{{route('project-list', ['tab' => 'sharing'])}}" >Bagi Hasil / Produk</a></li>--}}
                     </ul>
@@ -52,28 +52,28 @@
                                                 @foreach($product_debts as $product)
 
                                                     @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
-                                                        @php( $percentage = number_format($percentage, 0) )
-                                                            <tr class="row-clickable" data-href='{{ route('project-detail', ['id' => $product->id]) }}'>
-                                                                        <td>{{ $idx }}</td>
-                                                                        <td>{{ $product->name }}</td>
-                                                                        <td>Rp {{ $product->raising }}</td>
-                                                                        <td>{{ $product->days_left }} Hari</td>
-                                                                        <td>Rp {{ $product->raised == null ? 0 : $product->raised }}</td>
-                                                                        <td class="hidden-xs hidden-sm">
-                                                                            <div class="progress-bar-inner">
-                                                                                <div class="progress-bar">
-                                                                                    <span data-percent="{{$percentage}}"><span class="pretng">{{$percentage}}%</span> </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <a href="{{ route('project-detail', ['id' => $product->id]) }}">
-                                                                                <button class="btn btn-primary">Detail</button>
-                                                                            </a>
-                                                                        </td>
-                                                                    </tr>
-                                                            @php( $idx++ )
-                                                                @endforeach
+                                                    @php( $percentage = number_format($percentage, 0) )
+                                                        <tr class="row-clickable" data-href='{{ route('project-detail', ['id' => $product->id]) }}'>
+                                                            <td>{{ $idx }}</td>
+                                                            <td>{{ $product->name }}</td>
+                                                            <td>Rp {{ $product->raising }}</td>
+                                                            <td>{{ $product->days_left }} Hari</td>
+                                                            <td>Rp {{ $product->raised == null ? 0 : $product->raised }}</td>
+                                                            <td class="hidden-xs hidden-sm">
+                                                                <div class="progress-bar-inner">
+                                                                    <div class="progress-bar">
+                                                                        <span data-percent="{{$percentage}}"><span class="pretng">{{$percentage}}%</span> </span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('project-detail', ['id' => $product->id]) }}">
+                                                                    <button class="btn btn-primary">Detail</button>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @php( $idx++ )
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

@@ -115,6 +115,7 @@
         </tr>
         </tbody>
     </table>
+    <!-- footerBlock -->
     <hr style="margin: 0;"/>
     <table bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="vb-outer" id="ko_titleBlock_3" style="background-color: #fff;" width="100%">
         <tbody>
@@ -125,7 +126,7 @@
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
                         <tbody>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk pertanyaan terkait pinjam-meminjam berbasis teknologi, silahkan hubungi wa/email/phone/fanpage/ig/youtube</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk pertanyaan terkait pinjam-meminjam berbasis teknologi, silahkan hubungi</span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -156,7 +157,7 @@
         </tr>
         </tbody>
     </table>
-    <!-- footerBlock -->
+
     <table bgcolor="#3F3F3F" border="0" cellpadding="0" cellspacing="0" id="ko_footerBlock_2" style="background-color: #3f3f3f;" width="100%">
         <tbody>
         <tr>

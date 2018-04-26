@@ -20,109 +20,91 @@
         <div class="container">
             <div class="row">
                 <div class="blog-posts col-md-8 col-md-offset-2 col-sm-12">
-                    <div class="blog-post single-post">
-                        <p>Selamat datang di Indofund.id. Terima kasih telah mengunjungi www.indofund.id Sebelum menggunakan, mengakses atau memanfaatkan Web Site ini, pastikan Anda sudah membaca dengan baik seluruh Syarat dan Ketentuan Umum ini.</p>
-                        <p>Syarat dan Ketentuan Umum ini berisi mengenai aturan, pedoman, panduan, pemberitahuan, kebijakan dan instruksi yang berkaitan dengan penggunaan Web Site beserta Layanan yang terdapat dalam Web Site. Dengan tetap mengakses dan menggunakan Web Site ini Anda menyatakan bahwa Anda telah membaca, memahami dan menyetujui setiap dan seluruh isi Syarat dan Ketentuan Umum ini.</p>
-                        <p>Kami akan mempublikasikan setiap perubahan atau amandemen yang bersifat substansial dari Syarat dan Ketentuan Umum ini (apabila ada) melalui Web Site dan Anda diwajibkan untuk membaca dengan baik setiap perubahan atau amandemen tersebut sehingga apabila Anda tetap menggunakan, mengakses atau memanfaatkan Web Site, Anda dianggap telah mengetahui, memahami dan menyetujui perubahan atau amandemen tersebut.</p>
+                    <div class="blog-post single-post" style="text-align: justify;">
+                        <p>PT Bursa Akselerasi Indonesia</p>
+                        <p>Selamat datang di Indofund.id, Dengan tetap mengakses dan menggunakan Web Site ini Anda menyatakan bahwa Anda telah membaca, memahami dan menyetujui setiap dan seluruh isi Syarat dan Ketentuan Umum ini.</p>
+                        <p>PT Bursa Akselerasi Indonesia, suatu perseroan terbatas yang didirikan berdasarkan hukum Negara Republik Indonesia.</p>
+                        <p>Penyelenggara memiliki bidang usaha yang bergerak di bidang penyelenggaraan Layanan Pinjam Meminjam Uang Berbasis Teknologi Informasi;</p>
 
-                        <h3 class="subheader orange">1. Definisi</h3>
-                        <p>Kecuali konteksnya menentukan lain, istilah-istilah dalam Syarat dan Ketentuan di bawah ini akan memiliki arti sebagai berikut:</p>
+                        <h3 class="subheader orange">1.	DEFINISI DAN PENAFSIRAN</h3>
+                        <p>1.1	Kecuali secara tegas dinyatakan lain, semua istilah yang didefinisikan dalam Perjanjian ini mempunyai pengertian sebagai berikut:</p>
                         <ol type="a">
-                            <li>a. Perusahaan atau Kami adalah PT Bursa Akselerasi Indonesia suatu perusahaan yang menyediakan Web Site untuk melaksanakan kegiatan pinjaman secara peer to peer (peer to peer lending).</li>
-                            <li>b. Layanan adalah jasa penyediaan ruang yang disediakan oleh Perusahaan pada Web Site untuk mempertemukan Kreditur dan Debitur dalam rangka melaksanakan kegiatan pinjaman secara peer to peer (peer to peer lending).</li>
-                            <li>c. Kreditur adalah Pengguna yang menggunakan Layanan yang bermaksud untuk memberikan Pinjaman melalui Web Site.</li>
-                            <li>d. Debitur adalah setiap Pengguna yang menggunakan Layanan yang bermaksud untuk menerima Pinjaman melalui Web Site.</li>
-                            <li>e. Pengguna atau Anda adalah setiap orang yang mengunjungi, mengakses dan/atau menggunakan Web Site.</li>
-                            <li>f. Fitur Pinjaman adalah aplikasi Pinjaman dari Debitur yang ditempatkan di dalam Web Site untuk ditawarkan kepada Kreditur.</li>
-                            <li>g. Klasifikasi Fitur Pinjaman adalah Jenis Pinjaman berdasarkan bentuk pengembalian atas pinjaman.</li>
-                            <li>h. Pinjaman adalah dana yang diberikan oleh Kreditur untuk ditujukan kepada Debitur melalui dompet Indofund.id.</li>
-                            <li>i. Web Site adalah Indofund.id</li>
-                            <li>j. Dompet Indofund.id adalah rekening Perusahaan yang difungsikan secara khusus kepada Kreditur dan Debitur dalam rangka penyediaan Layanan.</li>
-                            <li>k. Perjanjian Kredit adalah perjanjian pinjam meminjam antara Kreditur dan Debitur sehubungan dengan Pinjaman dalam rangka penyediaan Layanan yang diberikan oleh Perusahaan.</li>
+                            <li><strong>“Pinjaman" </strong> berarti fasilitas keuangan yang diberikan oleh Pemberi Pinjaman kepada Penerima Pinjaman secara langsung berdasarkan syarat serta ketentuan yang termuat dalam Perjanjian Pinjaman yang bentuk dan isinya sesuai dengan format dalam lampiran I Perjanjian ini;</li>
+                            <li><strong>“Hari Kerja”</strong> adalah hari, selain hari Sabtu, Minggu dan hari libur resmi nasional, dimana bank buka untuk melakukan kegiatan usahanya sesuai dengan ketentuan Bank Indonesia;</li>
+                            <li><strong>“Layanan Pinjam Meminjam Uang Berbasis Teknologi Informasi”</strong> berarti penyelenggaraan layanan jasa keuangan untuk mempertemukan Pemberi Pinjaman dengan Penerima Pinjaman dalam rangka melakukan Perjanjian Pinjaman dalam mata uang rupiah secara langsung melalui sistem Situs. </li>
+                            <li><strong>“Penerima Pinjaman”</strong> berarti pihak yang melakukan registrasi di Situs guna memperoleh pinjaman dari Pemberi Pinjaman atau pemberi pinjaman lainnya dengan sistem Layanan Pinjam Meminjam Uang Berbasis Teknologi Informasi; </li>
+                            <li><strong>“Perjanjian Pinjaman”</strong> perjanjian pinjaman yang dibuat dan ditandatangani oleh Pemberi Pinjaman atau Penyelenggara selaku kuasanya dengan Penerima Pinjaman yang telah setuju untuk menerima Pinjaman melalui Penyelenggara, sebagaimana dapat diubah dari waktu ke waktu termasuk lampiran-lampiran dan tambahannya; </li>
+                            <li><strong>“Rekening Virtual Pemberi Pinjaman”</strong> berarti rekening bank yang dibuka oleh Penyelenggara untuk kepentingan Pemberi Pinjaman dalam penyediaan Pinjaman; </li>
+                            <li><strong>“Situs”</strong> berarti situs [www.Indofund.id] yang dikelola oleh Penyelenggara;</li>
+                            <li><strong>“Tingkat Pengembalian Dana”</strong> berarti nilai yang diperoleh oleh Pemberi Pinjaman atas dana yang disalurkan sebagai Pinjaman kepada Penerima Pinjaman. </li>
+                        </ol>
+                        <p>1.2	Kecuali ditentukan lain, referensi pada ketentuan peraturan perundang-undangan adalah ketentuan peraturan perundang-undangan yang bersangkutan beserta perubahannya dari waktu ke waktu. </p>
+
+                        <h3 class="subheader orange">2.	RUANG LINGKUP DAN JANGKA WAKTU PERJANJIAN</h3>
+                        <p>2.1	Penyelenggara menyediakan Situs untuk mempertemukan Pemberi Pinjaman dan Penerima Pinjaman dalam rangka melakukan perjanjian pinjam meminjam secara langsung melalaui Situs.</p>
+                        <p>2.2	Pemberi Pinjaman wajib melakukan registrasi di Situs untuk dapat menggunakan jasa yang disediakan oleh Penyelenggara. Pemberi Pinjaman dalam melakukan registrasi wajib memenuhi seluruh ketentuan persyaratan baku yang terdapat dalam Situs. Dalam rangka memberikan Layanan Jasa Pinjam Meminjam Berbasis Teknologi Informasi ini, Penyelenggara akan menyediakan Rekening Virtual Pemberi Pinjaman untuk digunakan sebagai fasilitas dalam bertransaksi di Situs.</p>
+                        <p>2.3	Setelah melakukan registrasi di Situs, Pemberi Pinjaman dapat mulai melakukan pemilihan, melalui Situs, Penerima Pinjaman yang akan diberikan Pinjaman dari dana yang ditempatkan oleh Pemberi Pinjaman dengan menggunakan sistem yang dibuat oleh Penyelenggara. </p>
+                        <p>2.4	Perjanjian ini akan berlaku sepanjang Pemberi Pinjaman menjadi anggota Situs, kecuali apabila hal-hal berikut ini terjadi:</p>
+                        <ol type="a">
+                            <li>(a)	salah satu Pihak mengakhiri Perjanjian ini dengan memberikan pemberitahuan terlebih dahulu kepada Pihak lainnya dalam waktu tiga puluh (30) hari kalender sebelum efektifnya pengakhiran tersebut;</li>
+                            <li>(b)	salah satu Pihak melakukan wanprestasi atas Perjanjian ini dan/atau Perjanjian Pinjaman dimana Para Pihak yang melakukan wanprestasi tidak dapat menghilangkan kejadian wanprestasi tersebut dalam waktu 10 (sepuluh) hari setelah diketahuinya kejadian wanprestasi tersebut; atau</li>
+                            <li>(c)	salah satu Pihak dinyatakan pailit oleh suatu keputusan pengadilan yang bersifat final.</li>
+                        </ol>
+                        <p>2.5	Pengakhiran Perjanjian ini tidak menghilangkan hak dan kewajiban Para Pihak yang timbul dari Perjanjian ini sebelum berlakunya pengakhiran secara efektif.</p>
+                        <p>2.6	Para Pihak dengan ini sepakat untuk mengesampingkan keberlakuan dari Pasal 1266 Kitab Undang-undang Hukum Perdata Indonesia sehingga persetujuan dari Pengadilan Indonesia tidak diperlukan untuk mengakhiri Perjanjian ini.</p>
+
+                        <h3 class="subheader orange">3.	PEMBERIAN KUASA KEPADA PENYELENGGARA</h3>
+                        <p>3.1	Pemberi Pinjaman dengan ini memberikan kuasa yang tidak dapat ditarik kembali kepada Penyelenggara dengan hak substitusi untuk:</p>
+                        <ol type="a">
+                            <li>(a)	menandatangani Perjanjian Pinjaman dan setiap perubahannya dari waktu ke waktu, untuk dan atas nama Pemberi Pinjaman dalam rangka setiap pemberian Pinjaman kepada Penerima Pinjaman yang dipilih oleh Pemberi Pinjaman melalui Situs; dan</li>
+                            <li>(b)	mengatur transaksi pemberian Pinjaman, yang menggunakan dana yang telah ditempatkan oleh Pemberi Pinjaman ke Rekening Virtual Pemberi Pinjaman, oleh Pemberi Pinjaman kepada Penerima Pinjaman dalam setiap Perjanjian Pinjaman.</li>
+                        </ol>
+                        <p>3.2	Jika Perjanjian ini dan/atau Perjanjian Pinjaman tidak mengatur atau tidak cukup mengatur mengenai suatu tindakan, maka Penyelenggara hanya berwenang untuk melakukan tindakan berdasarkan instruksi tertulis dari Pemberi Pinjaman.</p>
+                        <p>3.3	Pembayaran lunas suatu Perjanjian Pinjaman yang dipilih oleh Pemberi Pinjaman akan dibuktikan dari surat pernyataan yang diterbitkan oleh Penyelenggara yang menyatakan bahwa semua jumlah uang yang terhutang dan wajib dibayar oleh Penerima Pinjaman dan/atau Penyelenggara kepada Pemberi Pinjaman telah lunas dan dibayar dengan semestinya. </p>
+
+
+                        <h3 class="subheader orange">4.	PERNYATAAN DAN JAMINAN SERTA PENGGANTI KERUGIAN</h3>
+                        <p>4.1	Pernyataan dan jaminan serta pengganti kerugian Penyelenggara berdasarkan Perjanjian ini adalah sebagai berikut:</p>
+                        <ol type="a">
+                            <li>(a)	Penyelenggara tidak mempunyai kewajiban lain kepada siapapun berdasarkan Perjanjian ini dan/atau Perjanjian Pinjaman, kecuali kewajiban yang secara tegas ditetapkan dalam Perjanjian ini dan/atau Perjanjian Pinjaman;</li>
+                            <li>(b)	Penyelenggara menyatakan dan menegaskan kepada Pemberi Pinjaman bahwa Penyelenggara hanya bertindak sebagai perantara Pemberi Pinjaman dalam pemberian Pinjaman kepada Penerima Pinjaman dan Penyelenggara tidak menjamin dana yang ditempatkan oleh Pemberi Pinjaman akan tersalurkan kepada Penerima Pinjaman. Untuk menghindari keragu-raguan dana tersebut baru akan dapat disalurkan kepada Penerima Pinjaman apabila Penerima Pinjaman telah menandatangani Perjanjian Pinjaman; </li>
+                            <li>(c)	Penyelenggara tidak berkewajiban memeriksa atau menyelidiki terjadinya suatu peristiwa kelalaian sehubungan dengan transaksi pemberian Pinjaman;</li>
+                            <li>(d)	Penyelenggara tidak bertanggung jawab mengenai tindakan yang dilakukan atau tidak dilakukan olehnya dalam mengatur pemberian pinjaman oleh Pemberi Pinjaman kepada Penerima Pinjaman berdasarkan Perjanjian Pinjaman, kecuali jika terjadi kesengajaan atau kelalaian dari Penyelenggara;</li>
+                            <li>(e)	Penyelenggara tidak bertanggung jawab mengenai kebenaran, ketepatan atau kelengkapan informasi yang diberikan oleh Penerima Pinjaman kepada Penyelenggara pada waktu dan selama Penyelenggara mengatur pemberian Pinjaman oleh Pemberi Pinjaman berdasarkan Perjanjian Pinjaman;</li>
+                            <li>(f)	Penyelenggara tidak bertanggung jawab mengenai kebenaran atau ketepatan suatu pernyataan, jaminan atau ketentuan yang termuat dalam Perjanjian Pinjaman, atau mengenai segala sesuatu yang berhubungan dengan pembuatan, berlakunya, keaslian, kekuatan mengikat atau pelaksanaan Perjanjian Pinjaman, sepanjang telah disepakati oleh Pemberi Pinjaman;</li>
+                            <li>(g)	Dalam membuat pengaturan mengenai pemberian Pinjaman kepada Penerima Pinjaman, Penyelenggara berhak mempercayai setiap informasi, pemberitahuan dan dokumen yang secara wajar dianggapnya asli, benar atau ditandatangani, dibuat atau dikirim oleh pihak yang berhak untuk itu serta berhak untuk bertindak sesuai dengan nasihat penasihat hukum dan ahli lain yang dipilih oleh Penyelenggara mengenai segala sesuatu yang berhubungan dengan negosiasi, persiapan, pembuatan dan penandatanganan Perjanjian Pinjaman, Perjanjian ini dan perjanjian untuk memberikan pinjaman lain yang bertalian dengan Perjanjian Pinjaman dan Perjanjian ini dan Penyelenggara juga tidak bertanggung jawab kepada setiap Pemberi Pinjaman atau Penerima Pinjaman mengenai setiap akibat yang timbul dari atau karena kepercayaan tersebut di atas; dan</li>
+                            <li>(h)	Penyelenggara dapat menyediakan kepada Pemberi Pinjaman segala pemberitahuan, surat atau laporan yang diterima Penyelenggara dari Penerima Pinjaman atau pihak lain mengenai atau yang berhubungan dengan Perjanjian Pinjaman melalui Situs. </li>
+                        </ol>
+                        <p>4.2	Pernyataan dan jaminan dan pengganti kerugian Pemberi Pinjaman berdasarkan Perjanjian ini adalah:</p>
+                        <ol type="a">
+                            <li>(a)	Pemberi Pinjaman menyatakan dan menegaskan kepada Penyelenggara bahwa dalam meminjamkan pinjaman dana kepada Penerima Pinjaman berdasarkan Perjanjian Pinjaman, Pemberi Pinjaman telah membuat pemeriksaan, penilaian/evaluasi, analisa sendiri mengenai Penerima Pinjaman dan memilih Penerima Pinjaman sendiri melalui informasi yang disediakan oleh Penyelenggara melalui Situs dan Pemberi Pinjaman telah melakukan pemeriksaan dan penilaian/evaluasi, analisa sendiri atas Perjanjian Pinjaman yang akan ditandatangani oleh Penyelenggara atas nama Pemberi Pinjaman; </li>
+                            <li>(b)	Pemberi Pinjaman menyatakan dan menegaskan kepada Penyelenggara bahwa dana yang ditempatkan Pemberi Pinjaman di Rekening Virtual Pemberi Pinjaman merupakan milik Pemberi Pinjaman sendiri dan diperoleh dengan cara yang tidak bertentangan dengan hukum yang berlaku di Indonesia, termasuk namun tidak terbatas pada Undang-undang No. 8 tentang Tindak Pidana Pencucian Uang; </li>
+                            <li>(c)	Pemberi Pinjaman dengan ini melepaskan, membebaskan dan mengganti kerugian Penyelenggara terhadap setiap dan semua tuntutan atau pertanggungjawaban yang diajukan oleh pihak ketiga terkait dengan dana yang ditempatkan Pemberi Pinjaman di Rekening Virtual Pemberi Pinjaman;</li>
+                            <li>(d)	Pemberi Pinjaman dengan ini melepaskan, membebaskan dan mengganti kerugian Penyelenggara terhadap setiap dan semua tuntutan atau pertanggungjawaban yang diajukan oleh Penerima Pinjaman, Pemberi Pinjaman ataupun pihak ketiga terkait dengan penggunaan jasa Penyelenggara, Situs, Perjanjian ini dan pelaksanaan Perjanjian Pinjaman;</li>
+                            <li>(e)	Pemberi Pinjaman dengan ini melepaskan, membebaskan dan mengganti kerugian Penyelenggara dari semua kewajiban dan tanggung jawab apapun terhadap dana yang ditempatkan Pemberi Pinjaman, termasuk dana yang diperoleh kembali dari hasil Pinjaman yang belum ditarik oleh Pemberi Pinjaman, di Rekening Virtual Pemberi Pinjaman; </li>
+                            <li>(f)	Pemberi Pinjaman akan membebaskan Penyelenggara dari segala tanggung jawab sehubungan dengan pengembalian Pinjaman oleh Penerima Pinjaman, dan Penyelenggara hanya akan melaksanakan tindakan yang diatur dalam Perjanjian Pinjaman yang mengatur mengenai pengembalian Pinjaman oleh Penerima Pinjaman; dan</li>
+                            <li>(g)	Dalam hal Penerima Pinjaman gagal melakukan pembayaran kembali, maka Penyelenggara akan melakukan upaya pemulihan Pinjaman dengan cara sebagaimana diatur dalam Perjanjian Pinjaman.</li>
                         </ol>
 
-                        <h3 class="subheader orange">2. Ketentuan Umum</h3>
-                        <p>Dengan mengakses dan menggunakan Web Site ini Anda menyatakan bahwa diri Anda telah membaca dan memahami Syarat dan Ketentuan Umum ini.</p>
-                        <p>Selain dari Syarat dan Ketentuan Umum ini, Anda juga dapat mengikatkan diri pada:</p>
-                        <ol type="a">
-                            <li>a. Syarat dan Ketentuan Kreditur (khusus Pengguna sekaligus Kreditur);</li>
-                            <li>b. Syarat dan Ketentuan Debitur (Khusus Pengguna sekaligus Debitur);</li>
-                            <li>c. Perjanjian lainnya dengan Perusahaan yang akan mengatur mengenai penggunaan Anda atas Layanan.</li>
-                        </ol>
-                        <p>Dalam hal terdapat pertentangan atau perbedaan penafsiran antara Syarat dan Ketentuan Umum ini dengan Syarat dan Ketentuan/Perjanjian lain, maka yang berlaku adalah Syarat dan Ketentuan/Perjanjian yang berlaku spesifik.</p>
 
-                        <h3 class="subheader orange">3. Penggunaan Umum</h3>
-                        <p>Web Site ini ditujukan untuk digunakan oleh Pengguna individu berusia minimal 21 tahun. Dengan menggunakan Platfom dan/atau memanfaatkan Layanan pada Web Site, Anda menyatakan dan menjamin bahwa Anda berusia 21 tahun ke atas dan akan mematuhi seluruh isi Syarat dan Ketentuan Umum ini. Segala bentuk penggunaan Platfom dan Layanan oleh Pengguna berusia di bawah 21 tahun adalah tidak sah dan merupakan pelanggaran terhadap Syarat dan Ketentuan Umum ini sehingga Kami berhak untuk tidak menyediakan Layanan yang Kami sediakan dalam Web Site lebih lanjut.</p>
-                        <p>Anda tidak dapat memanfaatkan Web Site maupun Layanan untuk keperluan-keperluan yang bertentangan dengan hukum.</p>
+                        <h3 class="subheader orange">5	PAJAK DAN BIAYA</h3>
+                        <p>5.1	Para Pihak setuju bahwa Pemberi Pinjaman akan membayar dan membebaskan Penyelenggara dari seluruh pajak yang timbul (kecuali pajak penghasilan Penyelenggara yang merupakan kewajiban Penyelenggara) dan pungutan-pungutan lainnya berdasarkan atau berkaitan dengan Perjanjian ini dan Perjanjian Pinjaman.</p>
+                        <p>5.2	Semua upah, biaya dan ongkos yang wajar yang telah dibayar oleh Penyelenggara kepada pihak lain dalam rangka mengatur pemberian Pinjaman oleh Pemberi Pinjaman kepada Penerima Pinjaman berdasarkan Perjanjian Pinjaman, sepanjang upah, biaya dan ongkos tersebut belum atau tidak dibayar kembali oleh Penerima Pinjaman kepada Penyelenggara dalam waktu 14 (empat belas) hari kalender setelah ditagih oleh Penyelenggara kepada Penerima Pinjaman, akan dibayar kembali oleh Pemberi Pinjaman kepada Penyelenggara secara pro rata dengan jumlah tagihan masing-masing pemberi pinjaman dalam hal Pinjaman juga diberikan oleh pemberi pinjaman lainnya selain Pemberi Pinjaman melalui Penyelenggara terhadap Penerima Pinjaman berdasarkan Perjanjian Pinjaman dalam waktu 14 (empat belas) hari kalender setelah ditagih oleh Penyelenggara kepada Pemberi Pinjaman.</p>
+
+                        <h3 class="subheader orange">6	HUKUM YANG MENGATUR DAN PENYELESAIAN SENGKETA</h3>
+                        <p>6.1	Perjanjian ini dan pelaksanaan atasnya diatur berdasarkan hukum Negara Republik Indonesia.</p>
+                        <p>6.2	Setiap dan seluruh perselisihan, kontroversi atau konflik yang timbul dari atau sehubungan dengan Perjanjian ini, termasuk sengketa keabsahan, kesimpulan, daya mengikat, pelanggaran, perubahan, kadaluwarsa dan pengakhiran (bersama-sama, "Sengketa") harus, sedapat mungkin, diselesaikan secara musyawarah oleh Para Pihak. Jika Sengketa itu tidak dapat diselesaikan secara musyawarah dalam waktu 1 (satu) bulan dari tanggal Pihak yang satu memberitahukan kepada Pihak lainnya bahwa terdapat Sengketa, Para Pihak setuju bahwa Sengketa tersebut akan dirujuk ke dan akhirnya diselesaikan pada Pengadilan Negeri Jakarta Selatan.</p>
+                        <p>Terlepas dari ketentuan mana pun tersebut di atas, Pemberi Pinjaman setuju bahwa Penyelenggara dapat, menurut kebijaksanaannya yang mutlak, mengajukan sengketa apa pun yang dapat timbul sehubungan dengan Perjanjian ini ke Pengadilan Negeri lain di Jakarta atau ke pengadilan mana pun di Republik Indonesia atau di tempat lain yang memiliki yurisdiksi atas Pemberi Pinjaman.</p>
 
 
-                        <h3 class="subheader orange">4. Perubahan atas Syarat dan Ketentuan Penggunaan</h3>
-                        <p>Perusahaan berhak untuk mengubah Syarat dan Ketentuan Umum atas kebijakannya sendiri dari waktu ke waktu. Segala perubahan atas Syarat dan Ketentuan Umum ini akan berlaku serta merta setelah Perusahaan mencantumkannya pada Web Site. Perusahaan akan mencantumkan tanggal perubahan terakhir atas Syarat dan Ketentuan Umum pada halaman depan Web Site.</p>
-                        <p>Anda memahami dan menyetujui bahwa ketika Anda melanjutkan penggunaan Web Site atau Layanan setelah dilakukan perubahan atas Syarat dan Ketentuan Umum ini menjadikan Anda tunduk dan terikat pada Syarat dan Ketentuan yang baru.</p>
+                        <h3 class="subheader orange">7	KETENTUAN-KETENTUAN LAIN</h3>
+                        <p>Setiap pemberitahuan dan komunikasi lainnya akan hanya disampaikan melalui surat elektronik yang terdaftar pada Situs dan/atau diumumkan pada Situs dianggap telah diterima oleh Para Pihak secara benar dan tanpa kesalahan, pada hari yang sama pesan dikirimkan.</p>
+                        <p>7.1	 Apabila terdapat perubahan terhadap surat elektronik yang terdaftar pada Situs dan/atau Perjanjian ini, Para Pihak wajib untuk memberikan pemberitahuan dengan mengirimkan surat elektronik kepada Pihak lainnya.</p>
+                        <p>7.2	Ketentuan-ketentuan Perjanjian ini hanya dapat diubah, dikesampingkan, dibebaskan atau diakhiri melalui instrumen tertulis yang ditandatangani oleh Para Pihak.</p>
+                        <p>7.3	Apabila satu atau lebih ketentuan dalam Perjanjian ini tidak berlaku, tidak sah atau tidak dapat dilaksanakan dalam cara apa pun berdasarkan hukum atau keputusan yang berlaku, maka keabsahan, legalitas, dan dapat dilaksanakannya ketentuan-ketentuan yang tercantum dalam Perjanjian ini tidak akan dipengaruhi atau dikurangi dalam cara apa pun juga. </p>
+                        <p>7.4	Para Pihak setuju bahwa, tanpa adanya persetujuan tertulis dari Pihak lainnya, tidak akan secara langsung maupun tidak langsung membuka informasi mengenai dan/atau yang ada hubungannya dengan Perjanjian ini termasuk semua transaksi dan dokumen yang terkait, selain kepada: (i) penasihat hukum, penasihat keuangan, dan akuntan Pihak yang bersangkutan; dan/atau (ii) instansi atau pihak yang berwenang berdasarkan peraturan perundang-undangan yang berlaku.</p>
+                        <p>7.5	Tidak ada satu pihakpun yang berhak untuk menuntut ganti rugi yang bersifat tidak langsung atau yang merupakan suatu konsekuensi, termasuk namun tidak terbatas pada kehilangan keuntungan, kehilangan penghasilan, kehilangan pendapatan, yang diderita Pihak tersebut berkaitan dengan Perjanjian ini terlepas dari penyebabnya, termasuk wanprestasi dari Pihak lain.</p>
 
-
-                        <h3 class="subheader orange">5. Persetujuan Terhadap Penggunaan Transaksi Elektronik</h3>
-                        <p>Dengan menggunakan dan mengakses Web Site sebagai Pengguna, Anda memahami dan menyetujui bahwa segala bentuk komunikasi dari Perusahaan berkaitan dengan Layanan kepada Anda melalui Web Site akan diberikan secara elektronik baik melalui e-mail atau dipublikasikan melalui Web Site.</p>
-                        <p>Anda sepakat untuk menerima seluruh dokumen, pemberitahuan dan perjanjian secara elektronik yang timbul atas penggunaan Web Site dan Layanan, termasuk untuk Layanan sebagai Kreditur maupun sebagai Debitur. Segala persetujuan dari Anda terhadap setiap dokumen, pemberitahuan dan perjanjian secara elektronik yang timbul atas penggunaan Web Site dan Layanan tersebut diberikan dengan melakukan tanda tangan secara elektronik.</p>
-                        <p>Setiap persetujuan yang telah Anda berikan secara elektronik melalui Web Site adalah sepenuhnya tanggung jawab dan mengikat Anda selaku pengguna Layanan, baik hak maupun kewajiban yang timbul atas persetujuan tersebut.</p>
-
-
-                        <h3 class="subheader orange">6. Kebijakan Privasi</h3>
-                        <p>Kami menghormati perlindungan atas privasi Anda. Kami tidak mengumpulkan informasi pribadi tentang Anda kecuali Anda secara khusus dan sengaja memilih untuk memberikan informasi tersebut kepada Kami antara lain untuk hal-hal sebagai berikut:</p>
-                        <ol type="a">
-                            <li>a. data-data pribadi yang Anda berikan kepada Kami; dan</li>
-                            <li>b. data-data yang dibutuhkan untuk mengakses akun Anda sebagai Pengguna, termasuk namun tidak terbatas pada IP address, hardware, dll. sejak Anda mengunjungi dan mengakses Web Site.</li>
-                        </ol>
-
-                        <h3 class="subheader orange">7. Konten Pengguna pada Web Site</h3>
-                        <p>Anda bertanggung jawab sepenuhnya atas segala materi dan informasi yang Anda berikan, unggah, publikasikan, sediakan atau tampilkan pada Platfom serta materi dan informasi yang Anda kirimkan atau berikan pada Pengguna lain (“Konten Pengguna”).</p>
-                        <p>Anda memahami dan menyetujui bahwa Perusahaan berhak, namun tidak berkewajiban, untuk atas kebijakannya sendiri meninjau dan menghapus (tanpa pemberitahuan) segala Konten Pengguna, termasuk namun tidak terbatas pada, Konten Pengguna yang atas kebijakan Perusahaan digolongkan sebagai pelanggaran atas Syarat dan Ketentuan Umum, bertentangan dengan hukum dan peraturan perundang-undangan yang berlaku, atau dapat melanggar atau membahayakan hak dan keamanan Pengguna lain.</p>
-                        <p>Dengan menggunakan Web Site ini Anda memberikan hak kepada Perusahaan untuk menggunakan, menyalin, menampilkan secara publik, memformat ulang, dan mendistribusikan Konten Pengguna untuk tujuan lain (pemasaran dan/atau promosi) atau terkait dengan penggunaan Web Site. Anda berhak untuk menarik Konten Pengguna Anda setiap saat. Apabila Anda menarik Konten Pengguna Anda dari Web Site, segala hak yang telah Anda berikan pada Perusahaan sebagaimana dimaksud di atas tetap berlaku.</p>
-
-                        <h3 class="subheader orange">8. Tindakan Yang Dilarang</h3>
-                        <p>Anda menyatakan dan menjamin bahwa Anda tidak akan menggunakan dan mengakses Web Site, kecuali mendapat persetujuan Perusahaan terlebih dahulu untuk melakukan hal-hal sebagai berikut:</p>
-                        <ol type="a">
-                            <li>a. menggunakan, mengakses, mengumpulkan dan/atau mengambil data pada Web Site, baik dengan suatu tujuan secara khusus maupun tanpa tujuan tertentu;</li>
-                            <li>b. menggunakan sarana dan/atau program otomatis apapun untuk mengakses Web Site dan/atau mengumpulkan informasi dari Web Site;</li>
-                            <li>c. mengunggah, mempublikasikan, mengirim email dan menyediakan iklan, promosi, junk mail, spam, dan/atau segala bentuk apapun lainnya baik untuk komersial ataupun non-komersial, pada Web Site, Pengguna Web Site dan/atau pihak ketiga;</li>
-                            <li>d. mengubah tampilan Web Site;</li>
-                            <li>e. membuat pop-up untuk setiap akses terhadap Web Site;</li>
-                            <li>f. melakukan hal-hal lain yang memiliki dampak terhadap dan dapat merugikan Kami dan fasilitas dalam Web Site.</li>
-                        </ol>
-
-                        <h3 class="subheader orange">9. Pengakhiran</h3>
-                        <p>Anda sepakat bahwa dalam hal terdapat pelanggaran yang Anda lakukan atas ketentuan dalam Syarat dan Ketentuan ini atau terhadap hukum yang berlaku, maka Perusahaan dapat secara sepihak dan tanpa pemberitahuan terlebih dahulu menghapus Akun Anda pada Web Site, membatasi akses Anda pada Web Site dan mengakhiri Layanan kepada Anda. Anda sepakat bahwa segala kerugian baik materiil ataupun imateril yang timbul dari penghapusan Akun dan/atau pembatasan akses Anda sebagaimana dimaksud di atas sepenuhnya merupakan tanggung jawab Anda.</p>
-
-                        <h3 class="subheader orange">10. Keakuratan Data</h3>
-                        <p>Anda sepakat bahwa dengan mengakses Web Site dan menggunakan Layanan, Anda menjamin keaslian dan keakuratan data-data yang Anda berikan melalui Web Site. Data-data yang Anda berikan adalah data yang benar, akurat, lengkap, terbaru dan tidak menyesatkan.</p>
-                        <p>Anda sepakat bahwa dengan mengakses Web Site dan menggunakan Layanan, Anda menjamin keaslian dan keakuratan data-data yang Anda berikan melalui Web Site. Data-data yang Anda berikan adalah data yang benar, akurat, lengkap, terbaru dan tidak menyesatkan.</p>
-                        <ol type="a">
-                            <li>a. memperbaharui dan menginformasikan kepada Perusahaan atas setiap data-data yang yang mengalami perubahan, segera setelah perubahan tersebut;</li>
-                            <li>b. menjaga password dan data pribadi Anda;</li>
-                            <li>c. Dalam hal Anda bertindak untuk organisasi, asosiasi atau perusahaan, Anda bertanggung jawab penuh atas setiap penggunaan Layanan, termasuk namun tidak terbatas untuk melakukan hal-hal sebagaimana diatur dalam huruf a dan b di atas.</li>
-                        </ol>
-                        <p>Apabila Perusahaan menemukan, baik langsung maupun di kemudian hari, bahwa data-data atau informasi yang Anda berikan kepada Perusahaan tidak benar, diduga palsu dan/atau tidak akurat, maka Perusahaan berhak untuk memblokir akses Anda terhadap Web Site. Anda akan bertanggung jawab penuh terhadap setiap kerusakan yang timbul maupun yang akan timbul, baik materiil maupun immaterial, atas setiap ketidakakuratan data yang Anda berikan.</p>
-
-                        <h4 class="subheader orange">11. Pernyataan dan Jaminan</h4>
-                        <p>Perusahaan adalah penyedia Web Site yang melakukan kegiatan peer to peer lending dan memberikan jasa konsultasi bisnis kepada pengguna Web Site. Dalam hal ini, Pinjaman langsung diberikan oleh Kreditur kepada Debitur, namun difasilitasi oleh Perusahaan sebagai penyedia Web Site.</p>
-                        <p>Hubungan pinjam-meminjam antara Kreditur dan Debitur diatur dalam Perjanjian Kredit yang disepakati oleh para pihak.</p>
-                        <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                        <p>Perusahaan tidak melakukan tindakan penghimpunan maupun pengelolaan dana masyarakat, baik itu untuk simpanan ataupun investasi.</p>
-                        <p>Perusahaan tidak memberikan janji, pernyataan dan jaminan mengenai suatu hasil apapun yang dapat diperoleh melalui penggunaan Web Site ini. Segala keputusan yang diambil oleh Pengguna dalam menggunakan Layanan dalam Web Site sepenuhnya adalah keputusan Pengguna.</p>
-
-                        <h3 class="subheader orange">12. Hak Kekayaan Intelektual</h3>
-                        <p>Jika Anda merasa hak kekayaan intelektual Anda di dalam Web Site dilanggar, mohon melaporkan kepada Perusahaan disertai dengan bukti-bukti yang cukup. Perusahaan akan memeriksa permohonan Anda, dan apabila Perusahaan, atas pertimbangan pribadinya, menganggap bahwa permohonan Anda dapat dipenuhi, Perusahaan akan menghubungi pihak yang dianggap telah melakukan pelanggaran untuk meminta dihentikannya tindakan dimaksud, atau untuk mencabut akses pihak tersebut ke dalam Web Site. Keputusan Perusahaan sepenuhnya merupakan kebijakan Perusahaan dan tidak dapat diganggu-gugat.</p>
-                        <p>Anda sepakat jika Perusahaan menganggap tidak ada dasar yang cukup untuk memenuhi permintaan Anda, Anda tidak dapat meminta pertanggungjawaban Perusahaan dan Anda hanya akan meminta pertanggungjawaban langsung kepada pihak yang Anda anggap telah melanggar hak Anda.</p>
-
-                        <h3 class="subheader orange">13. Ganti Rugi</h3>
-                        <p>Anda sepakat untuk melepaskan, membebaskan dan mengganti kerugian Perusahaan, afiliasinya, pemegang sahamnya, direktur, komisaris, karyawan, subkontraktor, pemasok, agen dari dan atas segala bentuk tuntuan, gugatan, klaim, kerugian, ganti rugi, termasuk biaya konsultan hukum, yang disebabkan oleh pelanggaran Syarat dan Ketentuan Umum ini oleh Anda dan ketentuan lain yang ditetapkan oleh Perusahaan.</p>
-
-
-                        <h3 class="subheader orange">14. Batasan Tanggung Jawab</h3>
-                        <p>Sebagai penyedia Web Site, tanggung jawab Perusahaan hanya sebatas memfasilitasi kebutuhan dan keluhan antar masing-masing Pengguna (antara Kreditur dengan Debitur). Perusahaan menyediakan fasilitas Customer Service dalam waktu kerja 09.00 s/d 17.00 Waktu Indonesia Barat (WIB) untuk melayani Pengguna dalam Layanan yang diberikan melalui Web Site.</p>
-
-                        <h3 class="subheader orange">15. Hukum yang Berlaku</h3>
-                        <p>Syarat dan Ketentuan Umum ini dan ketentuan lain yang ditetapkan oleh Perusahaan diatur oleh dan ditafsirkan sesuai dengan hukum Republik Indonesia. Anda sepakat bahwa tindakan hukum apapun atau sengketa yang mungkin timbul dari, berhubungan dengan, penggunaan Web Site akan diselesaikan secara eksklusif dalam yurisdiksi Pengadilan Negeri Jakarta Selatan Republik Indonesia.</p>
                     </div>
                 </div>
 

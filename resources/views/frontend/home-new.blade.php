@@ -118,6 +118,50 @@
         <div class="special-cause fullpage_background">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-12 col-xs-12 text-center">
+                        <div class=" parallax one" style="text-align:center;">
+                            <br>
+                            <h3 style="color: white !important;line-height: 25px;">
+                                Mari membangun usaha dan potensi di Indonesia langsung dari tangan kita bersama<br>
+                                Ajukan pinjaman dengan bunga bersahabat dan berikan pinjaman denga return yang
+                                menarik bersama Indofund.id - peer to peer lending & business acceleration<br>
+                                Terdaftar & diawasi oleh
+                                <br>
+                                <br>
+                            </h3>
+                            <img src="{{ URL::asset('frontend_images/homepage/logo-ojk.png') }}" height="15%">
+                            <br><br>
+                            <div class="col-md-6 text-right hidden-sm hidden-xs">
+                                <a href="{{ route('register') }}" class="btn btn-big btn-custom" style="margin-right:2%;">
+                                    <span style="font-size: 16px;">Berikan Pinjaman</span>
+                                </a>
+                            </div>
+                            <div class="col-md-6 text-left hidden-sm hidden-xs">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-big btn-custom">
+                                    <span style="font-size: 16px;">Ajukan Pinjaman</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-12 text-center hidden-md hidden-lg" style="margin-bottom:3%;">
+                                <a href="{{ route('register') }}" class="btn btn-big btn-custom" style="margin-right:2%;">
+                                    <span style="font-size: 16px;">Berikan Pinjaman</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-12 text-center hidden-md hidden-lg">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-big btn-custom">
+                                    <span style="font-size: 16px;">Ajukan Pinjaman</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- selamat datang -->
+        <div class="special-cause fullpage_background1">
+            <div class="container">
+                <div class="row">
                     <div class="col-md-6 col-xs-12">
                         <div class="section-name-first parallax one" style="line-height: 1.3;padding-top:10%;margin-bottom: 5%;color:white !important; margin-left: 15%;">
                             <h1 style="color: white !important;">{{ $section_1->content_1 }}</h1>
@@ -135,9 +179,12 @@
 
         <!-- apa itu indofund.id -->
         <div class="special-cause fullpage_background2">
+            <div class="col-md-6 col-xs-12 no-margin-left hidden-xs hidden-sm">
+                <img class="homepage-section2-img" src="{{ URL::asset('frontend_images/homepage/bg2-asset.png') }}">
+            </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-offset-6 col-md-6 col-xs-12">
+                    <div class="col-md-6 col-xs-12">
                         <div class="section-name-first parallax one" style="line-height: 1.3;padding-top:5%;margin-bottom: 3%;">
                             {{--<h2 style="color: white !important;">Apa itu Investasi.me</h2>--}}
                             <h1>{{ $section_2->content_1 }}</h1>
@@ -160,8 +207,8 @@
         <div class="special-cause fullpage_background3">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-xs-12 donet__area" style="background: none; border: none;padding-left: 10%;">
-                        <div class="section-name parallax one" style="color: white !important; padding-bottom:5%;">
+                    <div class="col-md-6 col-xs-12" style="background: none; border: none;padding-left: 10%;">
+                        <div class="section-name parallax one" style="color: white !important; padding-bottom:5%;text-align: left;">
                             <h2>{{ $section_3->content_1 }} </h2>
                             <h1 class="homepage-section3-h1">{{ $section_3->content_2 }}</h1>
                             <img src="{{ URL::asset('frontend_images/homepage/border.png') }}" style="padding: 5% 5% 5% 0;">
@@ -172,6 +219,9 @@
                         <div class="btns-wrapper">
                             <a href="{{ $section_3->link }}" class="btn btn-big btn-solid "><span style="font-size: 20px;">{{ $section_3->content_5 }}</span></a>
                         </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12 no-margin-right hidden-xs hidden-sm">
+                        <img class="homepage-section3-img" src="{{ URL::asset('frontend_images/homepage/bg3-asset.png') }}">
                     </div>
                 </div>
             </div>
@@ -203,13 +253,19 @@
                             <h2 style="color: white !important;">{{ $section_4_2->content_1 }}</h2>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12 center">
-                            <img src="{{ URL::asset('frontend_images/homepage/'.$section_4_2->content_2) }}" alt="" class="homepage-section4-img">
+                            <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-1.png') }}" alt="" class="homepage-section4-img">
+                            <br>
+                            <span style="color: white !important;">Daftarkan Diri Anda</span>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12 center">
-                            <img src="{{ URL::asset('frontend_images/homepage/'.$section_4_2->content_3) }}" alt="" class="homepage-section4-img">
+                            <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-2.png') }}" alt="" class="homepage-section4-img">
+                            <br>
+                            <span style="color: white !important;">Pilih Pinjaman Sesuai Risiko Anda</span>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12 center">
-                            <img src="{{ URL::asset('frontend_images/homepage/'.$section_4_2->content_4) }}"alt="" class="homepage-section4-img">
+                            <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-3.png') }}"alt="" class="homepage-section4-img">
+                            <br>
+                            <span style="color: white !important;">Dapatkan Return dan Laporan Setiap Bulan</span>
                         </div>
                     </div>
                     <div class="team-members row" style="padding: 0 10% 0 10%;">
@@ -227,13 +283,19 @@
                             <h2 style="color: white !important;">{{ $section_4_3->content_1 }}</h2>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12 center">
-                            <img src="{{ URL::asset('frontend_images/homepage/'.$section_4_3->content_2) }}"alt="" class="homepage-section4-img">
+                            <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-1.png') }}"alt="" class="homepage-section4-img">
+                            <br>
+                            <span style="color: white !important;">Ajukan Pinjaman Anda</span>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12 center">
-                            <img src="{{ URL::asset('frontend_images/homepage/'.$section_4_3->content_3) }}" alt="" class="homepage-section4-img">
+                            <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-2.png') }}" alt="" class="homepage-section4-img">
+                            <br>
+                            <span style="color: white !important;">Aplikasi Diproses dengan Cepat oleh Tim</span>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12 center">
-                            <img src="{{ URL::asset('frontend_images/homepage/'.$section_4_3->content_4) }}" alt="" class="homepage-section4-img">
+                            <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-3.png') }}" alt="" class="homepage-section4-img">
+                            <br>
+                            <span style="color: white !important;">Dapatkan Pendanaan dengan Bunga Kompetitif</span>
                         </div>
                     </div>
                 </div>
@@ -307,9 +369,20 @@
                     @endforeach
                 </div>
 
-                <div>
+                <div class="col-md-6 text-right hidden-sm hidden-xs">
                     <a href="{{route('project-list', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
+                </div>
+                <div class="col-md-6 text-left hidden-sm hidden-xs">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;"><span>Daftarkan Proyek</span></a>
+                </div>
+                <div class="col-sm-12 text-center hidden-md hidden-lg" style="margin-bottom:3%;">
+                    <a href="{{route('project-list', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
+                </div>
+                <div class="col-sm-12 text-center hidden-md hidden-lg">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;"><span>Daftarkan Proyek</span></a>
+                </div>
+
+                <div>
                 </div>
             </div>
         </div>
@@ -335,8 +408,10 @@
                             <div class="blog-top-desc" style="color:white;">
                                 <strong> {{ \Carbon\Carbon::parse($recentBlog->created_at)->format('j M Y ') }} - Kategori : {{$recentBlog->Category->name}}</strong>
                             </div>
+                            <div style="height: 30%;">
+                                <img src="{{$recentBlog->img_path}}" alt="" style="max-height: 100%;max-width: 100%;">
+                            </div>
                             <div class="blog-btm-desc">
-                                <img src="{{$recentBlog->img_path}}" alt="" style="max-height: 200px; width: 200px;">
                                 <p>
                                     {{ $highlightBlog[$recentBlog->id] }}
                                     <br><span class="read-more">Baca Selanjutnya</span>
@@ -376,4 +451,4 @@
 @endsection
 
 
-@include('frontend.partials._modal-ads', compact('section_Popup'))
+{{--@include('frontend.partials._modal-ads', compact('section_Popup'))--}}

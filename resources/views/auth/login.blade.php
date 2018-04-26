@@ -42,9 +42,9 @@
                                 </label>
                             </div>
                             <div class="field col-sm-4">
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
+                                {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
+                                    {{--Forgot Your Password?--}}
+                                {{--</a>--}}
                                 <br/>
                                 <button class="btn btn-big btn-solid"><i class="fa fa-paper-plane"></i><span>Login</span></button>
                             </div>

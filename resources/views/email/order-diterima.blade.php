@@ -100,7 +100,7 @@
                                         Nama Proyek : {{$product->name}}<br/>
                                         Masa Penawaran : {{$product->tenor_loan}}<br/>
                                         Sebesar Rp. {{$transaction->total_price}}
-                                    </p>
+                                    <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
                                 </td>
                             </tr>
                             <tr>

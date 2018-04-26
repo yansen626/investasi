@@ -79,6 +79,14 @@ class SendEmail
                     Mail::to($userData->email)->send($acceptWithdrawalEmail);
                     break;
 
+                case 'OrderAccepted' :
+                    $walletStatement = $objData->walletStatement;
+                    $userData = $objData->user;
+
+                    $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData);
+                    Mail::to($userData->email)->send($acceptWithdrawalEmail);
+                    break;
+
                 case 'sendProspectus' :
 
                     $email = $objData->email;

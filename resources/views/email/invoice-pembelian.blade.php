@@ -101,14 +101,20 @@
                                         Masa Penawaran : {{$product->tenor_loan}}<br/>
                                         Sebesar Rp. {{$transaction->total_price}}
                                     </p>
+                                    <p>
+                                        Untuk membaca product disclosure statement, silahkan
+                                        <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{$product->prospectud_path}}" style="color: #81b951;text-decoration: underline;" title="here">klik disini</a></strong></span>
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk mendapatkan update proyek secara berkala, anda dapat mengunjungi website indofund.id pada menu portfolio saya.<br/>
-                                    Bila proyek ini sudah berjalan, kami akan mengirimkan email notifikasi kembali kepada anda beserta dengan detail agreement </span></td>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
+                                    Silahkan lakukan pembayaran ke : {{$user->va_acc}} an indofund.id ({{$user->first_name}} {{$user->last_name}}) (Bank Mandiri Virtual Account)<br>
+                                    Sebesar Rp. {{$transaction->total_price}}  </span></td>
                             </tr>
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Terkait dengan perjanjian antara anda (Lender) dengan kami sebagai penyelenggara (indofund.id) tercantum pada email “Perjanjian Pinjam-Meminjam Uang Berbasis Teknologi” yang dapat anda unduh pada lampiran di email tersebut.</span></td>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
+                                    <span>Pembayaran akan tervalidasi secara otomatis melalui sistem dalam waktu ±15menit.</span></td>
                             </tr>
                         </tbody>
                     </table>

@@ -23,7 +23,7 @@
                         <ul class="nav nav-tabs">
                             <li {{$isActiveTabPending}}><a href="{{route('portfolio', ['tab' => 'pending'])}}">Pending Transaksi</a></li>
 {{--                            <li {{$isActiveTabEquity}}><a href="{{route('portfolio', ['tab' => 'equity'])}}">Saham / Bagi Produk</a></li>--}}
-                            <li {{$isActiveTabDebt}}><a href="{{route('portfolio', ['tab' => 'debt'])}}">Hutang Portfolio</a></li>
+                            <li {{$isActiveTabDebt}}><a href="{{route('portfolio', ['tab' => 'debt'])}}">Portfolio</a></li>
                             <li><a href="#portfolio" data-toggle="tab">Portfolio Breakdown</a></li>
                         </ul>
                     </div>
@@ -115,7 +115,7 @@
 
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Hutang</h2>
+                                        <h2>Produk Konvensional & Produk Syariah</h2>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content table-responsive">
@@ -162,7 +162,7 @@
                             <div class="tab-pane fade" id="portfolio">
                                 <h2>Portfolio Breakdown</h2>
                                 <h5>Dana : Rp {{ $userDompet }}</h5>
-                                <h5>Investasi : Rp {{ $userInvestasi }}</h5>
+                                <h5>Pendanaan : Rp {{ $userInvestasi }}</h5>
                                 <h5>Pendapatan : Rp {{ $userPendapatan }}</h5>
 
                                 <input type="hidden" id="dana" value="{{ $userDompet }}">

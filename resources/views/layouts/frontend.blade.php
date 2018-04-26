@@ -81,7 +81,7 @@
 
 <script type="text/javascript" src="{{ URL::asset('js/frontend/jquery.meanmenu.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/frontend/progress-bar-appear.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('owl-carousel/owl.carousel.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/owl-carousel/owl.carousel.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/frontend/nivo-lightbox.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/frontend/isotope.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/frontend/countdown.js') }}"></script>
@@ -129,6 +129,22 @@
         $('.row-clickable').on('click', function () {
             window.location = $(this).data("href");
         } );
+
+
+        $('.fdi-Carousel .item').each(function () {
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+
+            if (next.next().length > 0) {
+                next.next().children(':first-child').clone().appendTo($(this));
+            }
+            else {
+                $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+            }
+        });
     });
     $(window).bind('scroll', function () {
         if ($(window).scrollTop() > 850) {
