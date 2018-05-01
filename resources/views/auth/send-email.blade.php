@@ -2,7 +2,7 @@
 
 @section('body-content')
     <!-- contact wrapper -->
-    <div style="padding-top:3%;"></div>
+    <div style="padding-top:10%;"></div>
     <div class="contact-page-wrapper">
         <div class="container">
             <div class="row">

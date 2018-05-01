@@ -19,6 +19,7 @@ use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -112,6 +113,16 @@ class ProductController extends Controller
         if($userWishlist){
             $isWishlist = 1;
         }
+
+
+//        $productDescription = DB::select(
+//            "SELECT description FROM investasi.products where id='".$id."';"
+//        );
+//        dd($productDescription);
+//
+//        $arrayofDescription = str_split($product->description, 25000);
+////        dd($product->description);
+//        dd($arrayofDescription);
 
         return View ('frontend.show-product-new', compact('product', 'vendor', 'vendorDesc', 'projectNews', 'projectCount', 'userId', 'isWishlist'));
     }

@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-
+                @if($onGoingProducts->count() > 0)
                 <div class="one">
                     <h2>Proyek yang Anda Danai</h2>
                 </div>
@@ -110,6 +110,7 @@
                 <div class="text-center">
                     <a href="{{route('portfolio', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Proyek yang Anda Danai</span></a>
                 </div>
+                @endif
             </div>
         </div>
     @else
@@ -121,18 +122,18 @@
                     <div class="col-md-12 col-xs-12 text-center">
                         <div class=" parallax one" style="text-align:center;">
                             <br>
-                            <h3 style="color: white !important;line-height: 25px;">
+                            <h3 class="background-h3" style="color: white !important;line-height: 25px;">
                                 Mari membangun usaha dan potensi di Indonesia langsung dari tangan kita bersama<br>
-                                Ajukan pinjaman dengan bunga bersahabat dan berikan pinjaman denga return yang
-                                menarik bersama Indofund.id - peer to peer lending & business acceleration<br>
-                                Terdaftar & diawasi oleh
+                                Ajukan pinjaman dengan bunga bersahabat dan berikan pinjaman dengan return yang menarik <br>
+                                bersama Indofund.id - peer to peer lending & business acceleration<br>
+                                Terdaftar & diawasi oleh :
                                 <br>
                                 <br>
                             </h3>
-                            <img src="{{ URL::asset('frontend_images/homepage/logo-ojk.png') }}" height="15%">
+                            <img class="background-img" src="{{ URL::asset('frontend_images/homepage/logo-ojk.png') }}" height="15%">
                             <br><br>
                             <div class="col-md-6 text-right hidden-sm hidden-xs">
-                                <a href="{{ route('register') }}" class="btn btn-big btn-custom" style="margin-right:2%;">
+                                <a data-toggle="modal" data-target="#loginModalPopup" class="btn btn-big btn-custom" style="margin-right:2%;">
                                     <span style="font-size: 16px;">Berikan Pinjaman</span>
                                 </a>
                             </div>
@@ -142,7 +143,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-12 text-center hidden-md hidden-lg" style="margin-bottom:3%;">
-                                <a href="{{ route('register') }}" class="btn btn-big btn-custom" style="margin-right:2%;">
+                                <a data-toggle="modal" data-target="#loginModalPopup" class="btn btn-big btn-custom" style="margin-right:2%;">
                                     <span style="font-size: 16px;">Berikan Pinjaman</span>
                                 </a>
                             </div>
@@ -159,31 +160,31 @@
         </div>
 
         <!-- selamat datang -->
-        <div class="special-cause fullpage_background1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-xs-12">
-                        <div class="section-name-first parallax one" style="line-height: 1.3;padding-top:10%;margin-bottom: 5%;color:white !important; margin-left: 15%;">
-                            <h1 style="color: white !important;">{{ $section_1->content_1 }}</h1>
-                            <br>
-                            <h3 style="color: white !important;line-height: 25px;">
-                                {!! $section_1->content_2 !!}
-                            </h3>
-                            <br><br>
-                            <a href="{{ $section_1->link }}" class="btn btn-big btn-solid "><span style="font-size: 16px;">{{ $section_1->content_3 }}</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{--<div class="special-cause fullpage_background1">--}}
+            {{--<div class="container">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-md-6 col-xs-12">--}}
+                        {{--<div class="section-name-first parallax one" style="line-height: 1.3;padding-top:10%;margin-bottom: 5%;color:white !important; margin-left: 15%;">--}}
+                            {{--<h1 style="color: white !important;">{{ $section_1->content_1 }}</h1>--}}
+                            {{--<br>--}}
+                            {{--<h3 style="color: white !important;line-height: 25px;">--}}
+                                {{--{!! $section_1->content_2 !!}--}}
+                            {{--</h3>--}}
+                            {{--<br><br>--}}
+                            {{--<a href="{{ $section_1->link }}" class="btn btn-big btn-solid "><span style="font-size: 16px;">{{ $section_1->content_3 }}</span></a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
         <!-- apa itu indofund.id -->
         <div class="special-cause fullpage_background2">
-            <div class="col-md-6 col-xs-12 no-margin-left hidden-xs hidden-sm">
-                <img class="homepage-section2-img" src="{{ URL::asset('frontend_images/homepage/bg2-asset.png') }}">
-            </div>
             <div class="container">
                 <div class="row">
+                    <div class="col-md-6 col-xs-12 hidden-xs hidden-sm">
+                        <img src="{{ URL::asset('frontend_images/homepage/bg2-asset.png') }}" style="width: 75%;">
+                    </div>
                     <div class="col-md-6 col-xs-12">
                         <div class="section-name-first parallax one" style="line-height: 1.3;padding-top:5%;margin-bottom: 3%;">
                             {{--<h2 style="color: white !important;">Apa itu Investasi.me</h2>--}}
@@ -191,9 +192,9 @@
                             <h2 style="color:black;">{!! $section_2->content_2 !!}</h2>
                             <img src="{{ URL::asset('frontend_images/homepage/border.png') }}" style="padding: 5% 5% 5% 0;">
                             <br>
-                            <span style="font-size:14px;">
+                            <span style="font-size:14px;text-align:justify;">
                             {!! $section_2->content_3 !!}
-                        </span>
+                            </span>
                         </div>
                         <div class="btns-wrapper">
                             <a href="{{ $section_2->link }}" class="btn btn-big btn-solid "><span>{{ $section_2->content_4 }}</span></a>
@@ -208,20 +209,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-xs-12" style="background: none; border: none;padding-left: 10%;">
-                        <div class="section-name parallax one" style="color: white !important; padding-bottom:5%;text-align: left;">
-                            <h2>{{ $section_3->content_1 }} </h2>
-                            <h1 class="homepage-section3-h1">{{ $section_3->content_2 }}</h1>
+                        <div class="section-name-first parallax one" style="color: white !important; padding-bottom:5%;text-align: left;">
+                            <h2 style="color: white !important;">{{ $section_3->content_1 }} </h2>
+                            <br>
+                            <h3 style="color: white !important;line-height: 30px;" class="homepage-section3-h1">{{ $section_3->content_2 }}</h3>
                             <img src="{{ URL::asset('frontend_images/homepage/border.png') }}" style="padding: 5% 5% 5% 0;">
                             <br>
-                            <h2>{{ $section_3->content_3 }}</h2>
+                            <h2 style="color: white !important;">{{ $section_3->content_3 }}</h2>
                             <span>{{ $section_3->content_4 }}</span>
                         </div>
                         <div class="btns-wrapper">
                             <a href="{{ $section_3->link }}" class="btn btn-big btn-solid "><span style="font-size: 20px;">{{ $section_3->content_5 }}</span></a>
                         </div>
                     </div>
-                    <div class="col-md-6 col-xs-12 no-margin-right hidden-xs hidden-sm">
-                        <img class="homepage-section3-img" src="{{ URL::asset('frontend_images/homepage/bg3-asset.png') }}">
+                    <div class="col-md-6 col-xs-12 hidden-xs hidden-sm">
+                        <img src="{{ URL::asset('frontend_images/homepage/bg3-asset.png') }}" style="width: 75%;">
                     </div>
                 </div>
             </div>
@@ -231,11 +233,11 @@
         <div class="special-cause fullpage_background4">
             <div class="container">
                 <div class="row">
-                    <div class="section-name one">
+                    <div class="section-name parallax one">
                         <div class="short-text">
                             <span style="color: white !important;font-size: 24px;">{{ $section_4_1->content_1 }}</span>
                         </div>
-                        <h1 style="color: white !important;font-size:70px;">{{ $section_4_1->content_2 }}</h1>
+                        <h1 style="color: white !important;">{{ $section_4_1->content_2 }}</h1>
                     </div>
 
                     <div class="team-members row" style="padding: 5% 10% 0 10%;">

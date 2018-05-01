@@ -331,7 +331,7 @@ p{
 .no-margin-right {
     margin-top: -5.8%;
     margin-right: -8%;
-    margin-bottom: -5%;
+    margin-bottom: -5.8%;
     margin-left: 3%;
 }
 .fullpage_background2 {
@@ -350,7 +350,7 @@ p{
 }
 .fullpage_background3 {
     /*background: url("../../frontend_images/homepage/bg3.jpg") no-repeat center center;*/
-    background: #003333;
+    background: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -388,7 +388,7 @@ p{
 
 .homepage-section3-h1{
     font-family: inherit !important;
-    font-size: 36px !important;
+    font-size: 28px !important;
     font-weight: normal !important;
 }
 
@@ -482,7 +482,7 @@ p{
 }
 .subscribe-footer{
     text-align: center;
-    border-bottom: 10px solid #ff7a00;
+    border-bottom: 5px solid #ff7a00;
     padding-bottom: 10px;
 }
 
@@ -493,6 +493,10 @@ p{
     }
     .homepage-section3-img{
         width: 120% !important;
+    }
+    .no-margin-right {
+        margin-top: -5.3%;
+        margin-bottom: -5.3%;
     }
 
 }@media screen and (min-width: 752px) and (max-width: 1023px)  {
@@ -566,7 +570,12 @@ p{
     .homepage-footer-contact-us{
         text-align: center !important;
     }
-
+    .background-h3{
+        padding-top:25%;
+    }
+    .background-img{
+        height: 65px !important;
+    }
     .top_logo{
         width:99% !important;
     }

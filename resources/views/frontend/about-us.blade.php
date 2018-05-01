@@ -23,7 +23,7 @@
                 <div class="col-md-12 ">
                     <div class="about-right-text" style="padding-top:0;text-align: justify;">
                         <div class="widget-title">
-                            <h4>Indofund.id adalah perusahaan P2P (peer to peer) landing yang terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK).</h4>
+                            <h4>Indofund.id adalah perusahaan P2P (peer to peer) lending yang terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK).</h4>
                         </div>
                         <h3>Sebenarnya apa itu P2P?</h3>
                         <p class="first">
@@ -31,13 +31,18 @@
                             <br>
                             Atau mungkin pernah juga <strong>meminjamkan uang</strong> kepada rekan Anda?
                             <br>
+                            <br>
                             Bisa jadi Anda juga pernah mengajukan pinjaman ke bank namun <strong>terkendala oleh serangkaian</strong> ketentuan dari bank?
+                            <br>
                             <br>
                             <strong>Indofund.id</strong> adalah sebuah <strong>tempat yang mempertemukan orang</strong> yang ingin meminjam uang (kemudian disebut dengan <i>borrower</i>) dengan orang yang ingin meminjamkan uang (disebut dengan <i>lender</i>).
                             <br>
+                            <br>
                             Apakah Anda <strong>pernah membeli maupun menjual barang</strong> di <i>marketplace</i>?
                             <br>
+                            <br>
                             <strong>Ada ribuan barang bisa Anda pilih</strong> sesuai dengan keperluan Anda, dimana ada juga ribuan pembeli dan penjual bertemu di <i>marketplace online</i> setiap harinya.
+                            <br>
                             <br>
                             Demikian juga dengan Indofund.id kami <strong>mempertemukan pihak</strong> yang membutuhkan bantuan atas pendanaan proyek dan bisnis yang mereka miliki dengan orang-orang yang ingin memberikan pendanaan.
                             <br>
@@ -61,7 +66,10 @@
                             <br>
                             Selain itu Indonesia juga memiliki bonus demografi :
                         </p>
-                        <img class="img-responsive" src="{{ URL::asset('frontend_images/aboutus/demografi.jpg') }}" alt="" style="width:80%">
+
+                        <div class="col-md-offset-2 col-md-10 col-sm-12">
+                            <img class="img-responsive" src="{{ URL::asset('frontend_images/aboutus/demografi.jpg') }}" alt="" style="width:80%">
+                        </div>
                         <p class="first">
                             Namun yang menjadi menarik pada sebuah survei yang dilakukan pada tahun 2013, akses masyarakat Indonesia yang menggunakan bantuan perusahaan keuangan (industri keuangan) adalah sebagai berikut:
 
@@ -98,7 +106,7 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="single-member">
                             <div class="best-volunteer">
-                                <h2>Ryan Filbert</h2>
+                                <h4><strong>Ryan Filbert</strong></h4>
                                 <h4><i>CEO & Founder – Indofund.id</i></h4>
                                 <p>
                                     Terkenal sebagai salah seorang praktisi dan inspirator investasi di Indonesia, Ryan Filbert berpengalaman lebih dari 10 tahun dalam bidang investasi, khususnya saham dan derivative.
@@ -112,7 +120,7 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="single-member">
                             <div class="best-volunteer">
-                                <h2>David Alusinsing</h2>
+                                <h4><strong>David Alusinsing</strong></h4>
                                 <h4><i>CFO – Indofund.id</i></h4>
                                 <p>
                                     Berpengalaman lebih dari 10 tahun di pasar modal sebagai <i>Corporate Finance</i> dan Investment Banker.
@@ -126,13 +134,16 @@
                     <div class="col-md-3 col-sm-6 col-xs-12 hidden-sm">
                         <div class="single-member">
                             <div class="best-volunteer">
-                                <h2>Hevy Yaffany</h2>
+                                <h4><strong>Hevy Yafanny (Fanny)</strong></h4>
                                 <h4><i>Founder – Indofund.id</i></h4>
                                 <p>
                                     Memulai karir sebagai auditor di Deloitte, Fanny memiliki kemampuan & pengalaman yang tinggi dalam bidang keuangan, akuntansi & <i>fraud detection</i>.
                                 </p>
                                 <p>
-                                    Fanny juga berpengalaman selama hampir 20 tahun dalam berbagai industri, baik pertambangan, properti, keuangan dan investasi. Kemampuan dan pengalaman beliau dalam melihat potensi dan kelayakan usaha akan sangat berharga dalam menjalankan <i>investment & crowdfunding</i>.
+                                    Fanny juga berpengalaman selama hampir 20 tahun dalam berbagai industri, baik pertambangan, properti, keuangan dan investasi.
+                                </p>
+                                <p id="p2p">
+                                    Kemampuan dan pengalaman beliau dalam melihat potensi dan kelayakan usaha akan sangat berharga dalam menjalankan <i>investment & crowdfunding</i>.
                                 </p>
                             </div>
                         </div>
@@ -140,7 +151,7 @@
                     <div class="col-md-3 col-sm-6 col-xs-12 hidden-sm">
                         <div class="single-member">
                             <div class="best-volunteer">
-                                <h2>Steffen Fang</h2>
+                                <h4><strong>Steffen Fang</strong></h4>
                                 <h4><i>Founder  – Indofund.id</i></h4>
                                 <p>
                                     Berpengalaman lebih dari 17 tahun di bidang investasi & keuangan, baik sebagai advisor, <i>banker</i>, maupun pelaku usaha.
@@ -162,7 +173,7 @@
                         <div class="single-member">
                             <div class="best-volunteer">
                                 <p>
-                                    Menjadi Borrower
+                                    <strong>Menjadi Borrower</strong>
                                 </p>
                             </div>
                         </div>
@@ -171,7 +182,7 @@
                         <div class="single-member">
                             <div class="best-volunteer">
                                 <p>
-                                    Menjadi Lender
+                                    <strong>Menjadi Lender</strong>
                                 </p>
                             </div>
                         </div>
@@ -250,49 +261,23 @@
             <div class="description" style="padding: 0 18%;">
                 <h3>Mitra – mitra Indofund.id </h3>
                 <div class="row">
-                    <div class="span12">
-                        <div class="well">
-                            <div id="myCarousel" class="carousel fdi-Carousel slide">
-                                <!-- Carousel items -->
-                                <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
-                                    <div class="carousel-inner onebyone-carosel">
-                                        <div class="item active">
-                                            <div class="col-md-4 col-sm-12">
-                                                <a href="#"><img src="{{ URL::asset('frontend_images/aboutus/mitra-1.png') }}" style="height:100%; width: auto;" class="img-responsive center-block"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-4 col-sm-12">
-                                                <a href="#"><img src="{{ URL::asset('frontend_images/aboutus/mitra-2.png') }}" style="height:100%; width: auto;" class="img-responsive center-block"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-4 col-sm-12">
-                                                <a href="#"><img src="{{ URL::asset('frontend_images/aboutus/mitra-3.png') }}" style="height:100%; width: auto;" class="img-responsive center-block"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-4 col-sm-12">
-                                                <a href="#"><img src="{{ URL::asset('frontend_images/aboutus/mitra-4.png') }}" style="height:100%; width: auto;" class="img-responsive center-block"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-4 col-sm-12">
-                                                <a href="#"><img src="{{ URL::asset('frontend_images/aboutus/mitra-5.png') }}" style="height:100%; width: auto;" class="img-responsive center-block"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-4 col-sm-12">
-                                                <a href="#"><img src="{{ URL::asset('frontend_images/aboutus/mitra-6.png') }}" style="height:100%; width: auto;" class="img-responsive center-block"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
-                                    <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
-                                </div>
-                                <!--/carousel-inner-->
-                            </div><!--/myCarousel-->
-                        </div><!--/well-->
+                    <div class="col-md-4 col-sm-12">
+                        <a href="http://idxincubator.com/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-1.png') }}" class="img-responsive center-block"></a>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <a href="http://sfcapgroup.com/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-2.png') }}"  class="img-responsive center-block"></a>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <a href="http://www.megasekuritas.id/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-3.png') }}" class="img-responsive center-block"></a>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <a href="https://kayadgnsehat.com/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-4.png') }}"  class="img-responsive center-block"></a>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <a href="http://elexmedia.id"><img src="{{ URL::asset('frontend_images/aboutus/mitra-5.png') }}"  class="img-responsive center-block"></a>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <a href="https://rumahinvestasi.org/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-6.png') }}"  class="img-responsive center-block"></a>
                     </div>
                 </div>
                 <br>

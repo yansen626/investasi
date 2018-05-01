@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 class BlogController extends Controller
 {
     public function BlogList(){
+        $blogDBs = Blog::all();
         return View('frontend.show-blogs');
     }
 

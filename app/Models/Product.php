@@ -26,7 +26,6 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $tenor_loan
  * @property float $minimum_per_investor
  * @property string $tagline
- * @property string $description
  * @property string $youtube_link
  * @property string $image_path
  * @property string $prospectus_path

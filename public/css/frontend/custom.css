@@ -58,11 +58,12 @@
     }
 
     .modal{
+        bottom: 40px !important;
         padding-top:40% !important;
     }
 
     #modal-checkout-confirm .modal-body{
-        height: 150px;
+
         overflow-y: auto;
     }
 
@@ -405,7 +406,7 @@ p{
 }
 .subscribe-footer{
     text-align: center;
-    border-bottom: 10px solid #ff7a00;
+    border-bottom: 5px solid #ff7a00;
     padding-bottom: 10px;
 }
 .carousel-inner.onebyone-carosel { margin: auto; width: 90%; }

@@ -4,27 +4,38 @@
     <div class="container subscribe-footer">
         <div class="col-md-12" style="padding-top: 3%;padding-bottom: 3%;">
             <img src="{{ URL::asset('frontend_images/logo.png') }}" style="width:250px">
-            {{--<br>--}}
-            {{--<br>--}}
-            {{--<h2>Terdaftar dan diawasi oleh</h2>--}}
-            {{--<br>--}}
-            {{--<img src="{{ URL::asset('frontend_images/homepage/ojk.png') }}" style="width:250px">--}}
-            {{--<br>--}}
         </div>
-
-        <div class="col-md-6 col-sm-12 homepage-footer-contact-us">
-            <button class="btn btn-big btn-solid" data-toggle="modal" data-target="#contactUsPopup">Hubungi Kami</button>
+        <div class="col-md-12 col-sm-12 text-left" style="border-bottom: 2px solid #ff7a00;margin-bottom:1%;padding-bottom: 2%;">
+            <div class="col-md-6 col-sm-12 homepage-footer-contact-us">
+                <button class="btn btn-big btn-solid" data-toggle="modal" data-target="#contactUsPopup">Hubungi Kami</button>
+            </div>
+            <div class="col-md-6 col-sm-12" style="text-align: left;">
+                PT BURSA AKSELERASI INDONESIA
+                <br>
+                Satrio Tower Lantai 14 unit 5
+                <br>
+                Jalan Prof. DR. Satrio Kav. 1-4 Blok C4
+                <br>
+                Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950, Indonesia
+                <br>
+                Telepon (021)-25981342
+            </div>
         </div>
-        <div class="col-md-6 col-sm-12" style="text-align: left;">
-            PT BURSA AKSELERASI INDONESIA
-            <br>
-            Menara Satrio Lantai 14 unit 5
-            <br>
-            Jalan Prof. DR. Satrio Kav. 1-4 Blok C4
-            <br>
-            Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950, Indonesia
-            <br>
-            Telepon (021)25981342
+        <div class="col-md-12 col-sm-12 text-left">
+            <p style="font-size: 15px;text-align:justify;">Disclaimer:
+                <br>
+                Indofund.id adalah website dan merk dagang dari PT Bursa Akselerasi Indonesia. Bagi semua pengguna website ini perlu memberikan perhatian terhadap beberapa hal:
+                <br>
+                1. Layanan peer to peer landing (pinjam meminjam uang berbasis teknologi) pada Indofund.id adalah persetujuan dan kesepakatan antara pemberi dan penerima pinjaman, segala risiko akan ditanggung oleh masing-masing pihak.
+                <br>
+                2. Pihak pemberi pinjaman (lender) yang tidak memiliki pemahaman terhadap risiko dan keuntungan dalam meminjamkan dana, disarankan membaca semua keterangan dan proposal penawaran serta perjanjian dengan seksama.
+                <br>
+                3. Risiko kredit atau gagal bayar menjadi tanggung jawab sepenuhnya dari pemberi pinjaman. Indofund.id berupaya untuk menampilkan semua data dan informasi yang aktual namun tidak bisa menjadi sebuah rekomendasi ataupun saran yang secara mutlak membebaskan setiap pihak dari risiko.
+                <br>
+                4. Penerima pinjaman (borrower) wajib mempertimbangkan suku bunga dan biaya atas kemampuan melakukan pelunasan. Kegagalan bayar pada peer to peer landing juga akan didaftarkan pada SLIK (Sistem Layanan Informasi Keuangan) di OJK (Otoritas Jasa Keuangan) dan akan mengurangi reputasi borrower di dunia keuangan di Indonesia.
+                <br>
+                5. Indofund.id selalu berupaya menjadi portal untuk memberikan kenyamanan bagi pihak borrower dan lender dengan melakukan literasi dan sosialisasi secara berkala, pastikan setiap anggota yang terdaftar bisa ikut berpartisipasi dan terlibat pada semua program yang diadakan oleh perusahaan
+                <br>
         </div>
     </div>
     <div class="footer-bar" style="background: white; color: #ff7a00;margin-top: 0;font-size: 16px !important;">
