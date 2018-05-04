@@ -198,6 +198,18 @@ class RegisterController extends Controller
 ////            return View('auth.email-confirm',['user'=>$user]);
 //        }
     }
+    public function verifyByAdmin($token)
+    {
+        $user = User::where('email_token',$token)->first();
+        $user->status_id = 11;
+        $user->save();
+
+//        if($user->save()){
+////            return Redirect::route('verify-phone-show');
+////            return View('auth.send-email', compact('email'));
+////            return View('auth.email-confirm',['user'=>$user]);
+//        }
+    }
 
 
 }

@@ -47,6 +47,7 @@
                                                 <th>Jenis</th>
                                                 <th>Status Pembayaran</th>
                                                 <th>Update Proyek</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -62,13 +63,44 @@
                                                         <td>{{ $trx->Product->Category->name }}</td>
                                                         <td>{{ $trx->Status->description }}</td>
                                                         <td>{{ $trx->Product->Status->description }}</td>
+                                                        @if($trx->payment_method_id == 1)
+                                                        <td>Transfer ke nomor rekening {{ $user->va_acc }} <br>
+                                                            dengan nama akun : Indofund.id ({{ $user->first_name }} {{$user->last_name}}) </td>
+                                                        @else
+                                                        <td> {{$trx->payment_method->description}} </td>
+                                                        @endif
                                                     </tr>
                                                     @php( $idx++ )
                                                         @endforeach
                                             </tbody>
                                         </table>
+                                    </div>
 
-
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">Bank Mandiri</button>
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">Bank Lain</button>
+                                    <div class="info-block" style="margin: 0; padding: 0;">
+                                        <div id="mandiri" class="collapse">
+                                            <h3>Pembayaran dengan Bank Mandiri</h3>
+                                            <h5>*Pembayaran tidak dapat dilakukan dengan mobile banking gunakan ATM atau Internet banking</h5>
+                                            <ol>
+                                                <li>1. Masukkan kartu ATM dan PIN MANDIRI Anda</li>
+                                                <li>2. Masuk ke menu BAYAR/BELI > menu LAINNYA > menu LAINNYA > menu MULTIPAYMENT</li>
+                                                <li>3. Masukkan KODE PERUSAHAAN yaitu 88795</li>
+                                                <li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>
+                                                <li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>
+                                                <li>6. Ikuti instruksi untuk menyelesaikan transaksi</li>
+                                            </ol>
+                                        </div>
+                                        <div id="bank_lain" class="collapse">
+                                            <h3>Pembayaran dengan Bank Lain</h3>
+                                            <ol>
+                                                <li>1. Masukkan kartu ATM dan PIN ATM Anda</li>
+                                                <li>2. Pilih menu transfer</li>
+                                                <li>3. Masukkan kode Bank Mandiri 008</li>
+                                                <li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>
+                                                <li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>
+                                            </ol>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +147,7 @@
 
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Produk Konvensional & Produk Syariah</h2>
+                                        <h2>Produk Konvensional</h2>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content table-responsive">

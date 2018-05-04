@@ -30,18 +30,27 @@
                     </div>
                     <div class="clearfix text-center">
                         <div class="foundings">
-                            <h4>Nomor Virtual Akun = {{ $user->va_acc }}</h4>
-                            <h4>Nama Akun = Indofund.id({{ $user->first_name }} {{$user->last_name}})</h4>
-                            <h4>Total Pembayaran = Rp {{ $transaction->total_payment}}</h4>
-                            <p>Pembayaran maksimal 24 jam</p><br>
-                            <p>*Nama akun anda akan terupdate menjadi nama anda setelah pendaftaran 2x24 jam</p>
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">ATM Mandiri</button>
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">ATM Bersama</button>
+                            <h4>
+                                Silahkan melakukan pembayaran senilai Rp {{ $transaction->total_payment}}
+                                ke nomor rekening {{ $user->va_acc }}
+                            </h4>
+                            <h4>dengan nama akun : Indofund.id({{ $user->first_name }} {{$user->last_name}})*
+                            </h4>
+                            <h4>pembayaran dapat dilakukan maksimal 24 jam</h4>
+                            <p>*Nama akun akan menjadi nama anda setelah pendaftaran 2x24 jam, nama akun default adalah indofund.id</p>
+                            {{--<h4>Nomor Virtual Akun = {{ $user->va_acc }}</h4>--}}
+                            {{--<h4>Nama Akun = Indofund.id({{ $user->first_name }} {{$user->last_name}})*</h4>--}}
+                            {{--<h4>Total Pembayaran = Rp {{ $transaction->total_payment}}</h4>--}}
+                            {{--<p>Pembayaran maksimal 24 jam</p><br>--}}
+                            {{--<p>*Nama akun anda akan terupdate menjadi nama anda setelah pendaftaran 2x24 jam</p>--}}
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">Bank Mandiri</button>
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">Bank Lain</button>
                         </div>
                     </div>
                     <div class="info-block" style="margin: 0; padding: 0;">
                         <div id="mandiri" class="collapse">
-                            <h3>Pembayaran dengan ATM Mandiri</h3>
+                            <h3>Pembayaran dengan Bank Mandiri</h3>
+                            <h5>*Pembayaran tidak dapat dilakukan dengan mobile banking gunakan ATM atau Internet banking</h5>
                             <ol>
                                 <li>1. Masukkan kartu ATM dan PIN MANDIRI Anda</li>
                                 <li>2. Masuk ke menu BAYAR/BELI > menu LAINNYA > menu LAINNYA > menu MULTIPAYMENT</li>
@@ -52,7 +61,7 @@
                             </ol>
                         </div>
                         <div id="bank_lain" class="collapse">
-                            <h3>Pembayaran dengan ATM Bersama</h3>
+                            <h3>Pembayaran dengan Bank Lain</h3>
                             <ol>
                                 <li>1. Masukkan kartu ATM dan PIN ATM Anda</li>
                                 <li>2. Pilih menu transfer</li>

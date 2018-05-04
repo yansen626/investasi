@@ -93,29 +93,70 @@
                 <div class="oldwebkit" style="max-width: 650px;">
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
                         <tbody>
+                        <tr>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
+                                <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
+                                <p>Kami telah menerima dana yang telah anda bayarkan untuk proyek dengan detail sebagai berikut :<br/>
+                                    Nama Proyek : {{$product->name}}<br/>
+                                    Masa Penawaran : {{$product->tenor_loan}}<br/>
+                                    Sebesar Rp. {{$transaction->total_price}}
+                                </p>
+                                <p>
+                                    Untuk membaca product disclosure statement, silahkan
+                                    <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{$product->prospectud_path}}" style="color: #81b951;text-decoration: underline;" title="here">klik disini</a></strong></span>
+                                </p>
+                            </td>
+                        </tr>
+                        @if($transaction->payment_method_id != 1)
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
-                                    <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
-                                    <p>Kami telah menerima dana yang telah anda bayarkan untuk proyek dengan detail sebagai berikut :<br/>
-                                        Nama Proyek : {{$product->name}}<br/>
-                                        Masa Penawaran : {{$product->tenor_loan}}<br/>
-                                        Sebesar Rp. {{$transaction->total_price}}
-                                    </p>
-                                    <p>
-                                        Untuk membaca product disclosure statement, silahkan
-                                        <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{$product->prospectud_path}}" style="color: #81b951;text-decoration: underline;" title="here">klik disini</a></strong></span>
-                                    </p>
-                                </td>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
+                                    Sebesar Rp. {{$transaction->total_price}}  </span></td>
                             </tr>
+                        @else
                             <tr>
                                 <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
                                     Silahkan lakukan pembayaran ke : {{$user->va_acc}} an indofund.id ({{$user->first_name}} {{$user->last_name}}) (Bank Mandiri Virtual Account)<br>
                                     Sebesar Rp. {{$transaction->total_price}}  </span></td>
                             </tr>
                             <tr>
+                                <td align="left" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: left; line-height: 1.6;">
+                                    <span>Pembayaran dengan Bank Mandiri</span>
+                                    <br>
+                                    <span>*Pembayaran tidak dapat dilakukan dengan mobile banking gunakan ATM atau Internet banking</span>
+                                    <br>
+                                    <span>1. Masukkan kartu ATM dan PIN MANDIRI Anda</span>
+                                    <br>
+                                    <span>2. Masuk ke menu BAYAR/BELI > menu LAINNYA > menu LAINNYA > menu MULTIPAYMENT</span>
+                                    <br>
+                                    <span>3. Masukkan KODE PERUSAHAAN yaitu 88795</span>
+                                    <br>
+                                    <span>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</span>
+                                    <br>
+                                    <span>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</span>
+                                    <br>
+                                    <span>6. Ikuti instruksi untuk menyelesaikan transaksi</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: left; line-height: 1.6;">
+                                    <span>Pembayaran dengan Bank Lain</span>
+                                    <br>
+                                    <span>1. Masukkan kartu ATM dan PIN ATM Anda</span>
+                                    <br>
+                                    <span>2. Pilih menu transfer</span>
+                                    <br>
+                                    <span>3. Masukkan kode Bank Mandiri 008</span>
+                                    <br>
+                                    <span>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</span>
+                                    <br>
+                                    <span>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
                                     <span>Pembayaran akan tervalidasi secara otomatis melalui sistem dalam waktu ±15menit.</span></td>
                             </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>

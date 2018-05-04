@@ -131,18 +131,54 @@
         } );
 
 
-        $('.fdi-Carousel .item').each(function () {
-            var next = $(this).next();
-            if (!next.length) {
-                next = $(this).siblings(':first');
+        $('#datatable-responsive-debt').DataTable({
+            "responsive": {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    type: ''
+                },
             }
-            next.children(':first-child').clone().appendTo($(this));
-
-            if (next.next().length > 0) {
-                next.next().children(':first-child').clone().appendTo($(this));
+        });
+        $('#datatable-responsive-equity').DataTable({
+            "responsive": {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    type: ''
+                }
             }
-            else {
-                $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+        });
+        $('#datatable-responsive-pending').DataTable({
+            "responsive": {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    type: ''
+                }
+            }
+        });
+        $('#datatable-responsive-sharing').DataTable({
+            "responsive": {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    type: ''
+                }
+            }
+        });
+        $('#datatable-responsive-blog').DataTable({
+            "responsive": {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    type: ''
+                }
+            },
+            "paging": false,
+            "searching": false,
+        });
+        $('#datatable-responsive').DataTable({
+            "responsive": {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    type: ''
+                }
             }
         });
     });
@@ -161,57 +197,6 @@
         digitGroupSeparator: '.',
         decimalPlaces: 0,
         modifyValueOnWheel: false
-    });
-
-    $('#datatable-responsive-debt').DataTable({
-        "responsive": {
-            details: {
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                type: ''
-            }
-        }
-    });
-    $('#datatable-responsive-equity').DataTable({
-        "responsive": {
-            details: {
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                type: ''
-            }
-        }
-    });
-    $('#datatable-responsive-pending').DataTable({
-        "responsive": {
-            details: {
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                type: ''
-            }
-        }
-    });
-    $('#datatable-responsive-sharing').DataTable({
-        "responsive": {
-            details: {
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                type: ''
-            }
-        }
-    });
-    $('#datatable-responsive-blog').DataTable({
-        "responsive": {
-            details: {
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                type: ''
-            }
-        },
-        "paging": false,
-        "searching": false,
-    });
-    $('#datatable-responsive').DataTable({
-        "responsive": {
-            details: {
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                type: ''
-            }
-        }
     });
 
     $('#verification-photo').fileinput();

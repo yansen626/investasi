@@ -50,7 +50,7 @@ class TransactionController extends Controller
 
         $userDompet = $user->wallet_amount;
         $userPendapatan = $user->income;
-        $userInvestasi = Transaction::where('user_id', $userId)->sum('total_price');
+        $userInvestasi = Transaction::where('user_id', $userId)->where('status_id', 5)->sum('total_price');
         $userInvestasiFormated = number_format($userInvestasi,0, ",", ".");
 
 
@@ -75,6 +75,7 @@ class TransactionController extends Controller
             'transactionPending'=>$transactionPending,
             'transactionSahamHasil'=>$transactionSahamHasil,
             'transactionHutang'=>$transactionHutang,
+            'user'=>$user,
             'userDompet'=>$userDompet,
             'userPendapatan'=>$userPendapatan,
             'userInvestasi'=>$userInvestasiFormated,

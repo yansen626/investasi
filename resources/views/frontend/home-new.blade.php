@@ -19,7 +19,7 @@
                                 <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-1.png') }}">
                                 <h4>Danai Proyek</h4>
                                 <div class="feature-div">
-                                    <p>Saat ini terdapat {{$recentProductCount}} proyek bisa Anda danai</p>
+                                    <p>Saat ini terdapat {{$recentProductCount}} proyek bisa Anda danai, klik disini</p>
                                     {{--<p>3 hampir selesai, 3 selesai</p>--}}
                                 </div>
                             </div>
@@ -58,35 +58,33 @@
                 </div>
                 <div style="margin: 40px; !important">
 
-                    @foreach($onGoingProducts as $product)
+                    @foreach($onGoingProducts as $transaction)
 
-                        @php( $togo = $product->product->getOriginal('raising') - $product->product->getOriginal('raised') )
+                        @php( $togo = $transaction->product->getOriginal('raising') - $transaction->product->getOriginal('raised') )
                         @php( $togo = number_format($togo,0, ",", ".") )
-                        @php( $percentage = ($product->product->getOriginal('raised') * 100) / $product->product->getOriginal('raising') )
+                        @php( $percentage = ($transaction->product->getOriginal('raised') * 100) / $transaction->product->getOriginal('raising') )
                         @php( $percentage = number_format($percentage, 0) )
-                        <a href="{{ route('project-detail', ['id' => $product->product->id]) }}">
+                        <a href="{{ route('project-detail', ['id' => $transaction->product->id]) }}">
                             <div class="col-md-12 project-border">
                                 <div class="col-md-3">
                                     <span>Nama Project</span>
                                     <br>
-                                    <span style="color: #ff7a00">{{ $product->product->name }}</span>
-                                    <br>
-                                    <span>{{ $product->product->Category->name }}</span>
+                                    <span style="color: #ff7a00">{{ $transaction->product->name }}</span>
                                 </div>
                                 <div class="col-md-3">
                                     Jumlah Pendanaan
                                     <br>
-                                    <span style="color: #ff7a00">Rp {{ $product->total_price }}</span>
+                                    <span style="color: #ff7a00">Rp {{ $transaction->total_price }}</span>
                                 </div>
                                 <div class="col-md-2">
                                     Rating Rate
                                     <br>
-                                    <span style="color: #ff7a00">{{$product->product->business_class}} {{$product->product->interest_rate}}% / tahun</span>
+                                    <span style="color: #ff7a00">{{$transaction->product->business_class}} {{$transaction->product->interest_rate}}% / tahun</span>
                                 </div>
                                 <div class="col-md-2">
-                                    Waktu
+                                    Status
                                     <br>
-                                    <span style="color: #ff7a00">{{$product->product->tenor_loan}} Bulan </span>
+                                    <span style="color: #ff7a00">{{$transaction->Status->description}} </span>
                                 </div>
                                 <div class="col-md-2">
                                     Progress {{$percentage}}%
@@ -208,8 +206,8 @@
         <div class="special-cause fullpage_background3">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-xs-12" style="background: none; border: none;padding-left: 10%;">
-                        <div class="section-name-first parallax one" style="color: white !important; padding-bottom:5%;text-align: left;">
+                    <div class="col-md-6 col-xs-12" style="background: none; border: none;">
+                        <div class="section-name-first parallax one" style="color: white !important; padding-bottom:5%;text-align: left;padding-left: 10%;">
                             <h2 style="color: white !important;">{{ $section_3->content_1 }} </h2>
                             <br>
                             <h3 style="color: white !important;line-height: 30px;" class="homepage-section3-h1">{{ $section_3->content_2 }}</h3>

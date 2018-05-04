@@ -286,6 +286,7 @@ p{
 
 .features-wrapper.one{
     background: #fff none repeat scroll 0 0 !important;
+    padding-top: 150px!important;
 }
 
 .features-wrapper.one .features {
@@ -403,6 +404,7 @@ p{
     background: white;
     border: 2px solid #ff7a00;
     padding:10px;
+    padding-bottom: 30px !important;
     margin:10px;
     color:black;
     transition: border-width 1s linear;
@@ -583,7 +585,7 @@ p{
         width: 45%;
     }
     .section-name-first{
-        margin-left: 10% !important;
+        padding-left: 0 !important;
         padding-top: 25% !important;
     }
 }

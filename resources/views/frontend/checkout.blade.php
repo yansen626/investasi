@@ -31,6 +31,13 @@
                         <h2>Danai Sekarang</h2>
                     </div>
                     <div class="col-md-6 col-sm-12">
+                        @if(\Illuminate\Support\Facades\Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>{{ \Illuminate\Support\Facades\Session::get('message') }}</strong>
+                            </div>
+                        @endif
                         <form class="donation-form">
                             <h3>Masukkan Jumlah Pendanaan</h3>
                             <div class="field col-sm-12 text-center error-div" style="display: none;">
@@ -49,19 +56,19 @@
                                 <h5>Kelipatan : Rp 250.000</h5>
                             </div>
 
-                            @if($notCompletedData == 1)
-                                <div class="field col-sm-12">
-                                    <h5>Pilihan Sumber Dana</h5>
-                                    <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
-                                    <div class="radio-inputs">
-                                        <input type="radio" id="payment-1" name="payment" value="wallet" checked>
-                                        <label for="payment-1"><span></span>Saldo Saya</label>
-                                        <input type="radio" id="payment-2" name="payment" value="credit_card">
-                                        <label for="payment-2"><span></span>Kartu Kredit</label>
-                                        <input type="radio" id="payment-3" name="payment" value="bank_transfer">
-                                        <label for="payment-3"><span></span>Transfer bank</label>
-                                    </div>
+                            <div class="field col-sm-12">
+                                <h5>Pilihan Sumber Dana</h5>
+                                <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
+                                <div class="radio-inputs">
+                                    <input type="radio" id="payment-1" name="payment" value="wallet" checked>
+                                    <label for="payment-1"><span></span>Saldo Saya</label>
+                                    <input type="radio" id="payment-2" name="payment" value="credit_card">
+                                    <label for="payment-2"><span></span>Kartu Kredit</label>
+                                    <input type="radio" id="payment-3" name="payment" value="bank_transfer">
+                                    <label for="payment-3"><span></span>Transfer bank</label>
                                 </div>
+                            </div>
+                            @if($notCompletedData == 1)
                                 {{--<div class="field col-sm-12">--}}
                                 {{--<h5>Nama Sesuai KTP</h5>--}}
                                 {{--<h5>Ketikkan nama Anda sebagai pengganti tanda tangan</h5>--}}
@@ -88,14 +95,7 @@
                                     @if(auth()->check())
                                         {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
                                         {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
-                                        @if(\Illuminate\Support\Facades\Session::has('message'))
-                                            <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                                                </button>
-                                                <strong>{{ \Illuminate\Support\Facades\Session::get('message') }}</strong>
-                                            </div>
-                                        @endif
-                                        <button type="button" onclick="modalCheckout()" class="btn btn-big btn-solid "><span>Proses Sekarang</span></button>
+                                        <button type="button" onclick="modalCheckout()" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
                                     @else
                                         <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
                                     @endif
@@ -107,10 +107,7 @@
                                         {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
                                         {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
 
-                                        <h4 style="color:red;">
-                                            Harap melengkapi data-data Anda untuk melanjutkan pendaaan dengan <a href="{{ route('setting-data', ['id' => $product->id]) }}"><span>klik disini</span></a>
-                                        </h4>
-
+                                        <a href="{{ route('setting-data', ['id' => $product->id]) }}" class="btn btn-big btn-solid"><span>Proses Sekarang</span></a>
                                     @else
                                         <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
                                     @endif

@@ -213,4 +213,13 @@ class HomeController extends Controller
 //        return response()->json(['success' => true]);
         return redirect()->route('index');
     }
+
+    public function RequestVerification($email){
+
+        $userDB = User::where('email', $email)->first();
+        $data = array(
+            'user' => $userDB
+        );
+        SendEmail::SendingEmail('requestVerification', $data);
+    }
 }

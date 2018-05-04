@@ -19,6 +19,8 @@
                     <div class="comment-form-wrapper contact-from clearfix">
                         <div class="widget-title ">
                             <p>Kami telah mengirimkan email verifikasi ke {{$email}}</p>
+                            <p>Silahkan cek email dari kami di inbox Anda atau dapat cek di folder spam </p>
+                            <p>Bila dalam 5 menit belum menerima email dari kami, Anda bisa klik link <a>disini</a></p>
                         </div>
                     </div>
                 </div>

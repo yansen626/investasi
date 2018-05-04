@@ -14,6 +14,7 @@ use App\Mail\EmailVerification;
 use App\Mail\InvoicePembelian;
 use App\Mail\PerjanjianLayanan;
 use App\Mail\PerjanjianPinjaman;
+use App\Mail\RequestVerification;
 use App\Mail\RequestWithdrawInvestor;
 use App\Mail\SendProspectus;
 use App\Mail\Subscribe;
@@ -45,6 +46,14 @@ class SendEmail
                     Mail::to($user->email)->send($emailVerify);
                     break;
 
+                case 'requestVerification' :
+                    $user = $objData->user;
+
+                    $requestVerification = new RequestVerification($user);
+//                    Mail::to($user->email)->send($requestVerification);
+                    Mail::to("contact@indofund.id")->send($requestVerification);
+                    break;
+
                 case 'contactUs' :
                     $name = $objData->name;
                     $email = $objData->email;
@@ -54,6 +63,7 @@ class SendEmail
                     $contactUsEmail = new ContactUs($name, $email, $phone, $description);
                     Mail::to("contact@indofund.id")->send($contactUsEmail);
                     break;
+
 
                 case 'subscribe' :
                     $email = $objData->email;
@@ -120,12 +130,12 @@ class SendEmail
                     $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
                     Mail::to($userData->email)->send($invoiceEmail);
 
-                    $pdf = PDF::loadView('email.perjanjian-layanan', $data);
-                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf, $userData) {
-                        $message->to($userData->email)->subject('Perjanjian Layanan Pinjam Meminjam di Indofund');
-
-                        $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
-                    });
+//                    $pdf = PDF::loadView('email.perjanjian-layanan', $data);
+//                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf, $userData) {
+//                        $message->to($userData->email)->subject('Perjanjian Layanan Pinjam Meminjam di Indofund');
+//
+//                        $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
+//                    });
                     break;
 
                     // dana telah diterima status = 5

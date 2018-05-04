@@ -23,7 +23,8 @@
             <div id="tabs" class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
-                        <li {{$isActiveTabDebt}}><a href="{{route('project-list', ['tab' => 'debt'])}}" >Produk Konvensional & Produk Syariah</a></li>
+                        <li {{$isActiveTabDebt}}><a href="{{route('project-list', ['tab' => 'debt'])}}" >Produk Konvensional</a></li>
+                        <li><a href="#" >Produk Syariah</a></li>
 {{--                        <li {{$isActiveTabEquity}}><a href="{{route('project-list', ['tab' => 'equity'])}}" >Saham</a></li>--}}
                         {{--<li {{$isActiveTabSharing}}><a href="{{route('project-list', ['tab' => 'sharing'])}}" >Bagi Hasil / Produk</a></li>--}}
                     </ul>

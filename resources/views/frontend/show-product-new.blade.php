@@ -115,8 +115,8 @@
         <div class="donation-wrapper">
             <div class="container" >
                 <div class="row">
-                    <div class="col-md-12 submenu">
-                        <div class="col-md-6">
+                    <div class="col-md-12 col-sm-12 submenu">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
                             <ul class="tabs-switcher nav nav-tabs clearfix ">
                                 <li class="active">
                                     <a data-toggle="tab" href="#tab-1">Detil</a>
@@ -126,8 +126,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-md-6 text-right">
-                            <div class="col-md-8">
+                        <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                            <div class="col-md-8 col-sm-8">
 
                                 @if(auth()->check())
                                     <a href="{{route('checkout',['id' => $product->id])}}" class="col-md-6 btn btn-big btn-solid" style="margin-bottom:18px;"><span>Danai Sekarang</span></a>
@@ -135,10 +135,10 @@
                                     <button type="button" data-toggle="modal" data-target="#loginModalPopup" class="btn btn-big btn-solid"><i class="fa fa-archive"></i><span>Bayar</span></button>
                                 @endif
                             </div>
-                            <div class="col-md-4 text-center" style="margin-top:18px;color:#4a4a4a;">
+                            <div class="col-md-4 col-sm-4 text-center" style="margin-top:18px;color:#4a4a4a;">
                                 <a href="{{route('wishlist', ['id'=>$product->id])}}" style="color:#4a4a4a;"><i class="fa fa-heart"></i>&nbsp;&nbsp;
                                     @if($isWishlist == 0)
-                                        <span> Tambah Favorit</span>
+                                        <span class="hidden-sm hidden-xs"> Tambah </span><span>Favorit</span>
                                     @else
                                         <span> Hilangkan Favorit</span>
                                     @endif
@@ -150,7 +150,7 @@
                         <div class="donation clearfix">
                             <div class="tab-content">
                                 <div class="tab-pane row active" id="tab-1">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div id="description-html" class="col-md-12 col-xs-12">
                                         <div class="image-wrapper">
                                             <img class="img-responsive" src="{{ URL::asset('storage/project/'.$product->image_path) }}" alt="" style="width: 320px;">
                                         </div>

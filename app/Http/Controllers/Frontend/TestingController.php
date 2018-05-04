@@ -37,12 +37,13 @@ class TestingController extends Controller
             $payment = PaymentMethod::find($transaction->payment_method_id);
             $product = Product::find($transaction->product_id);
 
-            $user = User::find("46089230-b57c-11e7-a6f4-8733a9e6ca0a");
+            $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
 
             $data = array(
                 'user' => $user
             );
-            SendEmail::SendingEmail('emailVerification', $data);
+            SendEmail::SendingEmail('requestVerification', $data);
+//            SendEmail::SendingEmail('emailVerification', $data);
 
 //            $data = array(
 //                'transaction' => $transaction,

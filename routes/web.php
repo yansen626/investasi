@@ -27,6 +27,8 @@ Route::post('/subscribe-email', [
     'uses' => 'Frontend\HomeController@Subscribe',
     'as' => 'subscribeEmail'
 ]);
+Route::get('/request-verification/{email}', 'Frontend\HomeController@RequestVerification')->name('request-verification');
+
 
 //blog
 Route::get('/blog-list', 'Frontend\BlogController@BlogList')->name('blog-list');
@@ -346,6 +348,7 @@ Route::view('/send-email', 'auth.send-email');
 Auth::routes();
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
+Route::get('/verifyByAdmin/{token}', 'Auth\RegisterController@verifyByAdmin');
 
 // Photo Verification
 Route::get('/verifyphoto', 'Frontend\VerificationController@VerifyPhoto')->name("verify-photo");

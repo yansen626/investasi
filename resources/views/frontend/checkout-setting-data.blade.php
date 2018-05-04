@@ -23,7 +23,7 @@
             <div class="row cause">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="comment-form-wrapper contact-from clearfix col-md-12 col-sm-12">
-                        <h2>Mohon melengkapi data berikut ini sesuai dengan KTP Anda.</h2>
+                        <h2>Mohon melengkapi data berikut ini sesuai dengan KTP Anda untuk melanjutkan pendaaan.</h2>
                         {{ Form::open(['route'=>['store-data'],'method' => 'post','class'=>'comment-form row altered', 'style'=>'margin-bottom: 10px;', 'enctype'=>'multipart/form-data']) }}
                             <div class="field col-sm-12">
                                 <h5>Nomor KTP</h5>
@@ -50,12 +50,12 @@
                             <div class="field col-sm-12" style="margin-top: -3px;">
                                 <h5>Kewarganegaraan</h5>
                                 <select class="form-control" id="citizen" name="citizen">
-                                    @if($user->citizen == "Indonesia")
-                                        <option value="Indonesia" selected>Warga Negara Indonesia</option>
-                                        <option value="Asing">Warga Negara Asing</option>
-                                    @else
+                                    @if($user->citizen == "Asing")
                                         <option value="Indonesia">Warga Negara Indonesia</option>
                                         <option value="Asing" selected>Warga Negara Asing</option>
+                                    @else
+                                        <option value="Indonesia" selected>Warga Negara Indonesia</option>
+                                        <option value="Asing">Warga Negara Asing</option>
                                     @endif
                                 </select>
                             </div>

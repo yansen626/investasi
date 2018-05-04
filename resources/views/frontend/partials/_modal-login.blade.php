@@ -42,10 +42,11 @@
                                     </label>
                                 </div>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-link" href="{{ route('password.request') }}" style="color: #ff7a00;">
-                                        Forgot Your Password?
-                                    </a>
-                                    <br>
+                                    <a id="forgot-pass" href="{{ route('password.request') }}"  class="btn btn-big btn-success"><span>Lupa Password?</span></a>
+                                    {{--<a class="btn btn-link" href="{{ route('password.request') }}" style="color: #ff7a00;">--}}
+                                        {{--Forgot Your Password?--}}
+                                    {{--</a>--}}
+                                    {{--<br>--}}
                                     <button class="btn btn-big btn-solid"><i class="fa fa-paper-plane"></i><span>Login</span></button>
                                 </div>
                             </form>
