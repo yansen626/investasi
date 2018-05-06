@@ -67,7 +67,7 @@
                                                         <td>Transfer ke nomor rekening {{ $user->va_acc }} <br>
                                                             dengan nama akun : Indofund.id ({{ $user->first_name }} {{$user->last_name}}) </td>
                                                         @else
-                                                        <td> {{$trx->payment_method->description}} </td>
+                                                        <td> Pembayaran dengan {{$trx->payment_method->description}} </td>
                                                         @endif
                                                     </tr>
                                                     @php( $idx++ )
@@ -76,6 +76,9 @@
                                         </table>
                                     </div>
 
+                                </div>
+                                <div style="padding-top:5%;">
+                                    <h4>Cara Pembayaran</h4>
                                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">Bank Mandiri</button>
                                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">Bank Lain</button>
                                     <div class="info-block" style="margin: 0; padding: 0;">

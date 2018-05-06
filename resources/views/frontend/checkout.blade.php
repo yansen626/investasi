@@ -21,11 +21,6 @@
     <div class="causes-page-wrapper single-cause">
         <div class="container" style="margin-bottom: 20px;">
             <div class="row cause">
-                {{--<div class="col-md-12 col-sm-12">--}}
-                    {{--<h3>Nama Project = {{$product->name}}</h3>--}}
-                    {{--<h3>Sisa Pengumpulan Dana = Rp {{$remaining}}</h3>--}}
-
-                {{--</div>--}}
                 <div class="col-md-10 col-md-offset-1">
                     <div class="meta">
                         <h2>Danai Sekarang</h2>
@@ -39,7 +34,9 @@
                             </div>
                         @endif
                         <form class="donation-form">
-                            <h3>Masukkan Jumlah Pendanaan</h3>
+                            <h3>Masukkan Jumlah Pendanaan <br>{{$product->name}}</h3>
+                            <h4>Sisa Pengumpulan Dana = Rp {{$remainingStr}}</h4>
+
                             <div class="field col-sm-12 text-center error-div" style="display: none;">
                                 <span class="help-block" style="color: red;">Nominal harus kelipatan dari Rp 250.000 dan minimal Rp 500.000</span>
                             </div>
@@ -69,12 +66,6 @@
                                 </div>
                             </div>
                             @if($notCompletedData == 1)
-                                {{--<div class="field col-sm-12">--}}
-                                {{--<h5>Nama Sesuai KTP</h5>--}}
-                                {{--<h5>Ketikkan nama Anda sebagai pengganti tanda tangan</h5>--}}
-                                {{--<input id="name_sign" type="text" name="name_sign">--}}
-
-                                {{--</div>--}}
 
                                 <input id="notCompletedData" value="{{$notCompletedData}}" type="hidden">
                                 <input id="wallet" value="{{$userData->wallet_amount}}" type="hidden">
@@ -95,29 +86,28 @@
                                     @if(auth()->check())
                                         {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
                                         {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
-                                        <button type="button" onclick="modalCheckout()" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
+                                        <button type="button" onclick="modalCheckout()" class="btn btn-big btn-solid" style="margin-top:0;"><span>Proses Sekarang</span></button>
                                     @else
-                                        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
+                                        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid" style="margin-top:0;"><span>Proses Sekarang</span></button>
                                     @endif
                                 </div>
-                            @endif
-                            @if($notCompletedData == 0)
-                                <div class="field col-sm-12 text-left" >
+                            @else
+                                <div class="field col-sm-12 text-left">
                                     @if(auth()->check())
                                         {{--<button type="button" class="btn btn-big btn-solid" onclick="modalCheckout()"><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
                                         {{--<button type="button" data-toggle="modal" data-target="#readProspectusModal" data-backdrop="static" data-keyboard="false" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Bayar</span></button>--}}
 
-                                        <a href="{{ route('setting-data', ['id' => $product->id]) }}" class="btn btn-big btn-solid"><span>Proses Sekarang</span></a>
+                                        <a href="{{ route('setting-data', ['id' => $product->id]) }}" class="btn btn-big btn-solid" style="margin-top:0;"><span>Proses Sekarang</span></a>
                                     @else
-                                        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid"><span>Proses Sekarang</span></button>
+                                        <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-big btn-solid" style="margin-top:0;"><span>Proses Sekarang</span></button>
                                     @endif
                                 </div>
                             @endif
                         </form>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div id="faq-checkout" class="col-md-6 col-sm-12">
                         <span>
-                            Indofund.id bukan lembaga investasi
+                            <b>Indofund.id bukan lembaga investasi</b>
                             <br><br>
                             Kami adalah sebuah portal yang mempertemukan pikah yang membutuhkan
                             bantuan pendanaan dengan pihak yang mau memberikan bantuan akan pendanaan.
@@ -187,26 +177,26 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-offset-3 col-md-offset-3 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4 col-sm-12">
                             <label>Jumlah Investasi:</label>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <span id="checkout-invest-amount" ></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-offset-3 col-md-offset-3 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4 col-sm-12">
                             <label>Biaya Admin:</label>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <span id="checkout-admin-fee"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-offset-3 col-md-offset-3 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4 col-sm-12">
                             <label>Total:</label>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <span id="checkout-total-invest"></span>
                         </div>
                     </div>

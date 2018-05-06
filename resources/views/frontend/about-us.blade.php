@@ -18,7 +18,7 @@
 
     <!-- about wrapper -->
     <div class="about-page-wrapper">
-        <div class="description" style="padding: 0 18%;">
+        <div class="description description-padding">
             <div class="row ">
                 <div class="col-md-12 ">
                     <div class="about-right-text" style="padding-top:0;text-align: justify;">
@@ -94,7 +94,7 @@
         </div>
         <!-- team -->
         <div class="team-wrapper" style="padding: 10px 0;text-align: justify;">
-            <div class="description" style="padding: 0 18%;">
+            <div class="description description-padding">
 
                 <h2>Apa yang membedakan Indofund.id dengan P2P lending lainnya?</h2>
                 <h3>Expert & Solid Team</h3>

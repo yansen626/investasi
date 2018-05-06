@@ -51,16 +51,6 @@ class PaymentController extends Controller
         // Get image extension
         $userData = User::find($user->id);
 
-        if($request->file('photo_ktp') != null) {
-            $img = Image::make($request->file('photo_ktp'));
-            $extStr = $img->mime();
-            $ext = explode('/', $extStr, 2);
-
-            $filename = 'ktp_' . $userData->identity_number . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $ext[1];
-
-            $img->save(public_path('storage/ktp/' . $filename), 75);
-            $userData->img_ktp = $filename;
-        }
 
         $userData->identity_number = $request->get('ktp');
         $userData->citizen = $request->get('citizen');
@@ -69,6 +59,20 @@ class PaymentController extends Controller
         $userData->province_ktp = $request->get('province_ktp');
         $userData->postal_code_ktp = $request->get('postal_code_ktp');
         $userData->name_ktp = $request->get('name_ktp');
+
+        if($request->file('photo_ktp') != null) {
+            $img = Image::make($request->file('photo_ktp'));
+            $extStr = $img->mime();
+            $ext = explode('/', $extStr, 2);
+            if($ext[1] == 'jpeg')
+                $ext[1] = 'jpg';
+
+            $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $ext[1];
+
+            $img->save(public_path('storage/ktp/' . $filename), 75);
+            $userData->img_ktp = $filename;
+        }
+
         $userData->save();
 
         $user = $userData;
@@ -103,6 +107,8 @@ class PaymentController extends Controller
         $productRaising = (double)$product->getOriginal('raising');
         $productRaised = (double)$product->getOriginal('raised');
         $remaining = $productRaising - $productRaised;
+        $remainingStr = number_format($remaining, 0, ",", ".");
+
         $notCompletedData = 1;
         if($userData->identity_number== null ||
             $userData->address_ktp== null ||
@@ -112,8 +118,15 @@ class PaymentController extends Controller
         {
             $notCompletedData = 0;
         }
+        $data = array(
+            'userData'    => $userData,
+            'product'       => $product,
+            'notCompletedData'    => $notCompletedData,
+            'remaining'    => $remaining,
+            'remainingStr'    => $remainingStr
+        );
 
-        return View('frontend.checkout', compact('product', 'userData', 'notCompletedData', 'remaining'));
+        return View('frontend.checkout')->with($data);
     }
 
     public function pay(Request $request, $investId){

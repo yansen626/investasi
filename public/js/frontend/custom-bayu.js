@@ -2,7 +2,7 @@ function modalCheckout(){
     // Set invest amount
     // var invest = $("input[name=amount]:checked").val();
     var invest = $("#amount").val();
-    var remainning = $("#remaining").val();
+    var remaining = $("#remaining").val();
 
     while(true)
     if(invest.includes('.')){
@@ -29,59 +29,37 @@ function modalCheckout(){
         $("#checkout-zip").val(zip);
     }
 
-    // alert(invest);
-
-    if(invest%250000 === 0 && invest >= 500000){
+    //check remaining
+    if(parseInt(invest)  > parseInt(remaining)){
         $(".error-div").hide();
+        $(".error-remaining").hide();
         $(".error-div-wallet").hide();
+        $(".error-remaining").show();
+    }
+    else{
+        //check amount
+        if(invest%250000 === 0 && invest >= 500000){
+            $(".error-div").hide();
+            $(".error-remaining").hide();
+            $(".error-div-wallet").hide();
 
-        var investStr = addCommas(invest);
-        $("#checkout-invest-amount").html(investStr);
-        $("#checkout-invest-amount-input").val(invest);
+            var investStr = addCommas(invest);
+            $("#checkout-invest-amount").html(investStr);
+            $("#checkout-invest-amount-input").val(invest);
 
-        var adminFee = 0;
+            var adminFee = 0;
 
-        // Set admin fee
-        var payment = $("input[name=payment]:checked").val();
-        $("#checkout-payment-method-input").val(payment);
-        if(payment === "credit_card"){
-            var investFeeInt = (parseInt(invest) / 100) * 3;
-            $("#checkout-admin-fee-input").val(investFeeInt);
-            adminFee += investFeeInt;
-            investStr = addCommas(investFeeInt);
-            $("#checkout-admin-fee").html(investStr);
+            // Set admin fee
+            var payment = $("input[name=payment]:checked").val();
+            $("#checkout-payment-method-input").val(payment);
+            if(payment === "credit_card"){
+                var investFeeInt = (parseInt(invest) / 100) * 3;
+                $("#checkout-admin-fee-input").val(investFeeInt);
+                adminFee += investFeeInt;
+                investStr = addCommas(investFeeInt);
+                $("#checkout-admin-fee").html(investStr);
 
-            $("#checkout-payment-method").html("Kartu Kredit");
-
-            // Set total invest amount
-            var total = parseInt(invest) + adminFee;
-            $("#checkout-total-invest").html(addCommas(total));
-
-            $("#modal-checkout-confirm").modal();
-        }
-        else if(payment === "bank_transfer"){
-            // adminFee += 4000;
-            $("#checkout-admin-fee-input").val(0);
-            $("#checkout-admin-fee").html("GRATIS");
-            $("#checkout-payment-method").html("Transfer Bank");
-
-            // Set total invest amount
-            var total = parseInt(invest) + adminFee;
-            $("#checkout-total-invest").html(addCommas(total));
-
-            $("#modal-checkout-confirm").modal();
-        }
-        else if(payment === "wallet"){
-
-            var walletVal = $("#wallet").val();
-            walletVal = walletVal.replace('.', '');
-            if(walletVal < invest){
-                $(".error-div-wallet").show();
-            }
-            else{
-                $("#checkout-admin-fee-input").val(0);
-                $("#checkout-admin-fee").html("GRATIS");
-                $("#checkout-payment-method").html("Saldo Saya");
+                $("#checkout-payment-method").html("Kartu Kredit");
 
                 // Set total invest amount
                 var total = parseInt(invest) + adminFee;
@@ -89,11 +67,46 @@ function modalCheckout(){
 
                 $("#modal-checkout-confirm").modal();
             }
-        }
+            else if(payment === "bank_transfer"){
+                // adminFee += 4000;
+                $("#checkout-admin-fee-input").val(0);
+                $("#checkout-admin-fee").html("GRATIS");
+                $("#checkout-payment-method").html("Transfer Bank");
 
-    }
-    else{
-        $(".error-div").show();
+                // Set total invest amount
+                var total = parseInt(invest) + adminFee;
+                $("#checkout-total-invest").html(addCommas(total));
+
+                $("#modal-checkout-confirm").modal();
+            }
+            else if(payment === "wallet"){
+
+                var walletVal = $("#wallet").val();
+                walletVal = walletVal.replace('.', '');
+                if(walletVal < invest){
+                    $(".error-div-wallet").show();
+                }
+                else{
+                    $("#checkout-admin-fee-input").val(0);
+                    $("#checkout-admin-fee").html("GRATIS");
+                    $("#checkout-payment-method").html("Saldo Saya");
+
+                    // Set total invest amount
+                    var total = parseInt(invest) + adminFee;
+                    $("#checkout-total-invest").html(addCommas(total));
+
+                    $("#modal-checkout-confirm").modal();
+                }
+            }
+
+        }
+        else{
+            $(".error-div").hide();
+            $(".error-remaining").hide();
+            $(".error-div-wallet").hide();
+
+            $(".error-div").show();
+        }
     }
 }
 

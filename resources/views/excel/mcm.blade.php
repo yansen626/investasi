@@ -36,7 +36,7 @@
             @for($i=2; $i<26; $i++)
                 <th></th>
             @endfor
-            <td>20180314</td>
+            <td>20180505</td>
             <td>20220831</td>
             <td>01\TOTAL\TOTAL\10</td>
             @for($i=2; $i<26; $i++)

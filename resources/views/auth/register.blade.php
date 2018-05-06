@@ -47,7 +47,7 @@
                             </div>
                             <div style="margin-top: 0;" class="field col-sm-12 {{ $errors->has('username') ? ' has-error' : '' }}">
                                 <h4>Username</h4>
-                                <h3>case sensitif</h3>
+                                <h5 style="color:red;">*Case sensitif</h5>
                                 <input type="text" name="username" value="{{ old('username') }}">
                                 @if ($errors->has('username'))
                                     <span class="help-block">
@@ -66,7 +66,7 @@
                             </div>
                             <div class="field col-sm-12" {{ $errors->has('password') ? ' has-error' : '' }}>
                                 <h4>Password</h4>
-                                <h3>Case sensitif</h3>
+                                <h5 style="color:red;">*Case sensitif</h5>
                                 <input type="password" name="password">
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -76,7 +76,7 @@
                             </div>
                             <div class="field col-sm-12" {{ $errors->has('password_confirmation') ? ' has-error' : '' }}>
                                 <h4>Konfirmasi Password</h4>
-                                <h3>Harus sama dengan Password</h3>
+                                <h5 style="color:red;">*Harus sama dengan Password</h5>
                                 <input type="password" name="password_confirmation">
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
@@ -86,7 +86,7 @@
                             </div>
                             <div class="field col-sm-12 {{ $errors->has('referral') ? ' has-error' : '' }}">
                                 <h4>Referral</h4>
-                                <h3>Case sensitif, dan jika anda tidak memiliki referal harap di kosongkan</h3>
+                                <h5 style="color:red;">*Case sensitif, dan jika anda tidak memiliki referral harap di kosongkan</h5>
                                 <input type="text" name="referral">
                                 @if ($errors->has('referral'))
                                     <span class="help-block">

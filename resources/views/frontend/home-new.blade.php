@@ -9,7 +9,7 @@
                     <h2>
                         Halo Selamat Datang , {{ \Illuminate\Support\Facades\Auth::User()->first_name }} {{ \Illuminate\Support\Facades\Auth::user()->last_name }}
                         <br>
-                        Saat ini Anda memiliki {{$onGoingProductCount}} proyek berjalan
+                        Saat ini Anda memiliki {{$onGoingProductCount}} Transaksi berjalan
                     </h2>
                 </div>
                 <div class="row features">
@@ -409,7 +409,7 @@
                                 <strong> {{ \Carbon\Carbon::parse($recentBlog->created_at)->format('j M Y ') }} - Kategori : {{$recentBlog->Category->name}}</strong>
                             </div>
                             <div style="height: 30%;">
-                                <img src="{{$recentBlog->img_path}}" alt="" style="max-height: 100%;max-width: 100%;">
+                                <img src="{{$recentBlog->img_path}}" alt="" style="height: 150px;width: 100%;">
                             </div>
                             <div class="blog-btm-desc">
                                 <p>

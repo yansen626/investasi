@@ -71,7 +71,7 @@ class HomeController extends Controller
                 return View('frontend.show-blog-urgents', compact('blogs', 'section_Popup'));
             }
 
-            $recentProductCount = Product::where('status_id', 21)->orderByDesc('created_on')->count();
+            $recentProductCount = Product::where('status_id', 21)->where('category_id', 2)->orderByDesc('created_on')->count();
             $onGoingProducts = Transaction::where('user_id', $userId)->orderByDesc('created_on')->take(3)->get();
             $onGoingProductCount = Transaction::where('user_id', $userId)->orderByDesc('created_on')->count();
 
