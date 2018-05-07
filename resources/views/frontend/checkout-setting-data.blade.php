@@ -97,9 +97,9 @@
                             </div>
 
                             <div class="field col-sm-12" style="margin-top: -3px;">
-                                <h5>Foto</h5>
+                                <h5>Foto KTP</h5>
                                 <h5 style="color:red;">Size maksimal foto adalah 16MB</h5>
-                                {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'class' => 'file')) !!}
+                                {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'class' => 'file', 'accept' => 'image/*,application/pdf')) !!}
                             </div>
 
                             <div class="field col-sm-12 text-right" >

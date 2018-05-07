@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
@@ -61,16 +62,27 @@ class PaymentController extends Controller
         $userData->name_ktp = $request->get('name_ktp');
 
         if($request->file('photo_ktp') != null) {
-            $img = Image::make($request->file('photo_ktp'));
-            $extStr = $img->mime();
-            $ext = explode('/', $extStr, 2);
-            if($ext[1] == 'jpeg')
-                $ext[1] = 'jpg';
+            //Check if Image or PDF
+            $extension = $request->file('photo_ktp')->getClientOriginalExtension();
+            $extCheck = strtolower($extension);
 
-            $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $ext[1];
+            if($extCheck == 'png' || $extCheck == 'jpg') {
+                $img = Image::make($request->file('photo_ktp'));
+                $extStr = $img->mime();
+                $ext = explode('/', $extStr, 2);
+                if ($ext[1] == 'jpeg')
+                    $ext[1] = 'jpg';
 
-            $img->save(public_path('storage/ktp/' . $filename), 75);
-            $userData->img_ktp = $filename;
+                $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $ext[1];
+
+                $img->save(public_path('storage/ktp/' . $filename), 75);
+                $userData->img_ktp = $filename;
+            }
+            else if($extCheck == 'pdf'){
+                $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $extension;
+
+                $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
+            }
         }
 
         $userData->save();
