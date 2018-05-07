@@ -63,10 +63,6 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="field col-sm-12 price-format {{ $errors->has('amount') ? ' has-error' : '' }}">
-                                    <h4>Jumlah Penarikan</h4>
-                                    <input type="text" id="amount" name="amount"  value="{{old('amount')}}">
-                                </div>
                                 @if(empty($user->bank_name) || empty($user->bank_acc_number) || empty($user->bank_acc_name))
                                     <div class="field col-sm-12 {{ $errors->has('acc_number') ? ' has-error' : '' }}">
                                         <h4>Nomor Rekening</h4>
@@ -81,11 +77,23 @@
                                         <input type="text" name="bank" value="{{old('bank')}}">
                                     </div>
                                 @else
+                                    <div class="field col-sm-12">
+                                        <h4>Nomor Rekening : <b>{{$user->bank_acc_number}}</b></h4>
+                                    </div>
+                                    <div class="field col-sm-12">
+                                        <h4>Nama Rekening : <b> {{$user->bank_acc_name}}</b></h4>
+                                    </div>
+                                    <div style="margin-top: 0;"  class="field col-sm-12">
+                                        <h4>Nama Bank : <b> {{$user->bank_name}}</b></h4>
+                                    </div>
                                     <input type="hidden" name="bank" value="{{$user->bank_name}}">
                                     <input type="hidden" name="acc_number" value="{{$user->bank_acc_number}}">
                                     <input type="hidden" name="acc_name" value="{{$user->bank_acc_name}}">
                                 @endif
-
+                                <div class="field col-sm-12 price-format {{ $errors->has('amount') ? ' has-error' : '' }}">
+                                    <h4>Jumlah Penarikan</h4>
+                                    <input type="text" id="amount" name="amount"  value="{{old('amount')}}">
+                                </div>
                                 <div style="margin-top: 0;" class="field col-sm-12 {{ $errors->has('google') ? ' has-error' : '' }}">
                                     <h4>PIN Google Auth</h4>
                                     <input type="number" name="google" value="{{old('google')}}">

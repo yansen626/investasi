@@ -55,6 +55,7 @@
 
                             <div class="field col-sm-12">
                                 <h5>Pilihan Sumber Dana</h5>
+                                @if($userData->wallet_amount != 0)
                                 <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
                                 <div class="radio-inputs">
                                     <input type="radio" id="payment-1" name="payment" value="wallet" checked>
@@ -64,6 +65,14 @@
                                     <input type="radio" id="payment-3" name="payment" value="bank_transfer">
                                     <label for="payment-3"><span></span>Transfer bank</label>
                                 </div>
+                                @else
+                                    <div class="radio-inputs">
+                                        <input type="radio" id="payment-2" name="payment" value="credit_card" checked>
+                                        <label for="payment-2"><span></span>Kartu Kredit</label>
+                                        <input type="radio" id="payment-3" name="payment" value="bank_transfer">
+                                        <label for="payment-3"><span></span>Transfer bank</label>
+                                    </div>
+                                @endif
                             </div>
                             @if($notCompletedData == 1)
 

@@ -28,9 +28,6 @@
                             <h5>*Penarikan saldo akan di kenakan {{$feePercentage}}% atau minimum Rp {{$fee}}</h5>
                             <br>
                             <h3>
-                                Nomor Virtual Akun Anda = {{$user->va_acc}}
-                            </h3>
-                            <h3>
                                 <i class="fa fa-money fa-1x"></i> Total Saldo = Rp {{$user->wallet_amount}}
                             </h3>
                             <h3>

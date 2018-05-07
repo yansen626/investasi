@@ -42,6 +42,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama</th>
+                                                <th>Nomor Invoice</th>
                                                 <th>Tanggal Beli</th>
                                                 <th class="text-right">Jumlah Pendanaan</th>
                                                 <th>Jenis</th>
@@ -58,14 +59,17 @@
                                                         <td>
                                                             <a href="{{ route('project-detail', ['id' => $trx->product_id]) }}">{{ $trx->Product->name}}</a>
                                                         </td>
-                                                        <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j F Y')}}</td>
+                                                        <td>{{ $trx->invoice}}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j-F-Y H:i:s')}}</td>
                                                         <td class="text-right">Rp {{ $trx->total_price }}</td>
                                                         <td>{{ $trx->Product->Category->name }}</td>
                                                         <td>{{ $trx->Status->description }}</td>
                                                         <td>{{ $trx->Product->Status->description }}</td>
                                                         @if($trx->payment_method_id == 1)
                                                         <td>Transfer ke nomor rekening {{ $user->va_acc }} <br>
-                                                            dengan nama akun : Indofund.id ({{ $user->first_name }} {{$user->last_name}}) </td>
+                                                            dengan nama akun : Indofund.id ({{ $user->first_name }} {{$user->last_name}}) <br>
+                                                            sebelum {{ \Carbon\Carbon::parse($trx->created_on)->addHours(4)->format('j-F-Y H:i:s')}}
+                                                        </td>
                                                         @else
                                                         <td> Pembayaran dengan {{$trx->payment_method->description}} </td>
                                                         @endif

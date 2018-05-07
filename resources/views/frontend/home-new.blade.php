@@ -13,43 +13,68 @@
                     </h2>
                 </div>
                 <div class="row features">
-                    <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Investasi sekarang adalah list proyek yang dapat didanai, link ini sama seperti pada link investasi pada menu utama di header">
-                        <a href="{{route('project-list', ['tab' => 'debt'])}}">
-                            <div class="feature clearfix">
-                                <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-1.png') }}">
-                                <h4>Danai Proyek</h4>
-                                <div class="feature-div">
-                                    <p>Saat ini terdapat {{$recentProductCount}} proyek bisa Anda danai, klik disini</p>
-                                    {{--<p>3 hampir selesai, 3 selesai</p>--}}
+                    @if($user->wallet_amount != 0)
+                        <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Danai Proyek adalah list proyek yang dapat didanai, link ini sama seperti pada link Daftar Proyek pada menu utama di header">
+                            <a href="{{route('project-list', ['tab' => 'debt'])}}">
+                                <div class="feature clearfix">
+                                    <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-1.png') }}">
+                                    <h4>Danai Proyek</h4>
+                                    <div class="feature-div">
+                                        <p>Saat ini terdapat {{$recentProductCount}} proyek bisa Anda danai, klik disini</p>
+                                        {{--<p>3 hampir selesai, 3 selesai</p>--}}
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-12 " data-toggle="tooltip" data-placement="bottom" title="Penarikan Saldo adalah menu yang digunakan borower untuk memeriksa saldo maupun melakukan penarikan.">
 
-                    <div class="col-md-4 col-sm-12 " data-toggle="tooltip" data-placement="bottom" title="Dompet saya adalah menu yang digunakan investor untuk melakukan deposit, memeriksa saldo maupun melakukan penarikan.">
-
-                        <a href="{{route('my-wallet')}}">
-                            <div class="feature clearfix">
-                                <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-2.png') }}">
-                                <h4>Penarikan Saldo</h4>
-                                <div class="feature-div">
-                                    <p>Total Saldo Anda saat ini Rp. {{$user->wallet_amount}}</p>
+                            <a href="{{route('my-wallet')}}">
+                                <div class="feature clearfix">
+                                    <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-2.png') }}">
+                                    <h4>Penarikan Saldo</h4>
+                                    <div class="feature-div">
+                                        <p>Total Saldo Anda saat ini Rp. {{$user->wallet_amount}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Pendapatan adalah menu investor melakukan pengecekan terhadap hasil keuntungan (kerugian) hasil bunga atau dividen atau bagi hasil dari investasinya.">
-
-                        <a href="{{route('pendapatan')}}">
-                            <div class="feature  clearfix">
-                                <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-3.png') }}">
-                                <h4>Ringkasan Akun Anda </h4>
-                                <div class="feature-div">
-                                    <p>Monitor pendapatan Anda disini</p>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Ringkasan Akun Anda adalah menu borrower melakukan pengecekan terhadap hasil keuntungan hasil bunga dari proyek yang didanainya.">
+                            <a href="{{route('pendapatan')}}">
+                                <div class="feature  clearfix">
+                                    <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-3.png') }}">
+                                    <h4>Ringkasan Akun Anda </h4>
+                                    <div class="feature-div">
+                                        <p>Monitor pendapatan Anda disini</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @else
+                        <div class="col-md-offset-2 col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Investasi sekarang adalah list proyek yang dapat didanai, link ini sama seperti pada link investasi pada menu utama di header">
+                            <a href="{{route('project-list', ['tab' => 'debt'])}}">
+                                <div class="feature clearfix">
+                                    <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-1.png') }}">
+                                    <h4>Danai Proyek</h4>
+                                    <div class="feature-div">
+                                        <p>Saat ini terdapat {{$recentProductCount}} proyek bisa Anda danai, klik disini</p>
+                                        {{--<p>3 hampir selesai, 3 selesai</p>--}}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Pendapatan adalah menu investor melakukan pengecekan terhadap hasil keuntungan (kerugian) hasil bunga atau dividen atau bagi hasil dari investasinya.">
+
+                            <a href="{{route('pendapatan')}}">
+                                <div class="feature  clearfix">
+                                    <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-3.png') }}">
+                                    <h4>Ringkasan Akun Anda </h4>
+                                    <div class="feature-div">
+                                        <p>Monitor pendapatan Anda disini</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
                 </div>
 
                 @if($onGoingProducts->count() > 0)
@@ -373,13 +398,13 @@
                     <a href="{{route('project-list', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
                 </div>
                 <div class="col-md-6 text-left hidden-sm hidden-xs">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;"><span>Daftarkan Proyek</span></a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;" target="_blank"><span>Daftarkan Proyek</span></a>
                 </div>
                 <div class="col-sm-12 text-center hidden-md hidden-lg" style="margin-bottom:3%;">
                     <a href="{{route('project-list', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
                 </div>
                 <div class="col-sm-12 text-center hidden-md hidden-lg">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;"><span>Daftarkan Proyek</span></a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;" target="_blank"><span>Daftarkan Proyek</span></a>
                 </div>
 
                 <div>

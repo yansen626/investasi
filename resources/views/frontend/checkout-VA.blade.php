@@ -36,7 +36,7 @@
                             </h4>
                             <h4>dengan nama akun : Indofund.id({{ $user->first_name }} {{$user->last_name}})*
                             </h4>
-                            <h4>pembayaran dapat dilakukan maksimal 24 jam</h4>
+                            <h4>pembayaran dapat dilakukan maksimal 4 jam</h4>
                             <p>*Nama akun akan menjadi nama anda setelah pendaftaran 2x24 jam, nama akun default adalah indofund.id</p>
                             {{--<h4>Nomor Virtual Akun = {{ $user->va_acc }}</h4>--}}
                             {{--<h4>Nama Akun = Indofund.id({{ $user->first_name }} {{$user->last_name}})*</h4>--}}

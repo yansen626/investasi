@@ -92,12 +92,12 @@ class LoginController extends Controller
 //        }
 
         //Check if Google Authenticator
-        if($userData->google_authenticator == 1){
-            session()->put('id', $userData->id);
-            session()->put('email', $userData->email);
-            session()->put('password', Input::get('password'));
-            return View('auth.google-authenticator');
-        }
+//        if($userData->google_authenticator == 1){
+//            session()->put('id', $userData->id);
+//            session()->put('email', $userData->email);
+//            session()->put('password', Input::get('password'));
+//            return View('auth.google-authenticator');
+//        }
 
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
             return $this->sendLoginResponse($request);
