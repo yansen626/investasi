@@ -270,6 +270,7 @@ Route::prefix('admin/user')->group(function(){
 
 // User
 Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
+Route::get('/admin/customer-ktp/{id}', 'Admin\CustomerController@customerKtp')->name('customer-ktp');
 
 Route::post('/admin', 'Auth\LoginAdminController@login');
 Route::get('/admin', 'Admin\DashboardController@index')->name('admin-dashboard');

@@ -60,7 +60,7 @@ class PaymentController extends Controller
         $userData->province_ktp = $request->get('province_ktp');
         $userData->postal_code_ktp = $request->get('postal_code_ktp');
         $userData->name_ktp = $request->get('name_ktp');
-
+//        dd($request);
         if($request->file('photo_ktp') != null) {
             //Check if Image or PDF
             $extension = $request->file('photo_ktp')->getClientOriginalExtension();
@@ -82,6 +82,7 @@ class PaymentController extends Controller
                 $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $extension;
 
                 $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
+                $userData->img_ktp = $filename;
             }
         }
 

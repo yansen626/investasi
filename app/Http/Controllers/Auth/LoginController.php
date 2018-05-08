@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -59,7 +60,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return View("auth.login")->withErrors(['msg' => ['Salah Username atau Password!']]);
         }
         //$this->validateLogin($request);
 
@@ -77,9 +78,7 @@ class LoginController extends Controller
         //Custom Logic
         if(!User::where('email', $request->email)->exists()){
             return View("auth.login")->withErrors(['msg' => ['Salah Username atau Password!']]);
-//            return Redirect::back()->withErrors(['msg' => ['Salah Username atau Password!']]);
         }
-
         $userData = User::where('email', $request->email)->first();
 
         if($userData->status_id == 3){

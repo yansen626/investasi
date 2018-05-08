@@ -28,6 +28,12 @@ class CustomerController extends Controller
         $this->middleware('auth:user_admins');
     }
 
+    public function customerKtp($id){
+        $user = User::find($id);
+
+        return View('admin.show-customer-ktp', compact('user'));
+    }
+
     public function index()
     {
         $users = User::orderByDesc('created_at')->get();

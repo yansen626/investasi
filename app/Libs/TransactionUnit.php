@@ -61,6 +61,12 @@ class TransactionUnit
                 'created_by'        => $userId
             ]);
 
+            $productDB = Product::find($cart->product_id);
+            $raisedDB = (double) str_replace('.','', $productDB->raised);
+            $newRaise = $cart->getOriginal('invest_amount');
+            $productDB->raised = $raisedDB + $newRaise;
+            $productDB->save();
+
             // Delete cart
             $cart->delete();
 
@@ -73,6 +79,30 @@ class TransactionUnit
         }
     }
 
+    public static function transactionRejected($trxid){
+
+        DB::transaction(function() use ($trxid){
+            $transaction = Transaction::find($trxid);
+            if($transaction->status_id == 10){
+                return false;
+            }
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+            $transaction->status_id = 10;
+            $transaction->save();
+
+            //update product data
+            $productDB = Product::find($transaction->product_id);
+            $raisedDB = (double) str_replace('.','', $productDB->raised);
+            $newRaise = (double) str_replace('.','', $transaction->total_price);
+            $productDB->raised = $raisedDB - $newRaise;
+
+            $productDB->save();
+
+
+            return true;
+        });
+    }
     public static function transactionAfterVerified($orderid){
 
         DB::transaction(function() use ($orderid){
@@ -91,7 +121,7 @@ class TransactionUnit
             $productDB = Product::find($transaction->product_id);
             $raisedDB = (double) str_replace('.','', $productDB->raised);
             $newRaise = (double) str_replace('.','', $transaction->total_price);
-            $productDB->raised = $raisedDB + $newRaise;
+//            $productDB->raised = $raisedDB + $newRaise;
 
             //checking if fund 100% or not and send email
             $userData = User::find($transaction->user_id);

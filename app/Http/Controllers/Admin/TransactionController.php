@@ -88,9 +88,9 @@ class TransactionController extends Controller
 
     public function rejectOrder(Request $request){
 
-        $trx = Transaction::find($request['reject-trx-id']);
+        TransactionUnit::transactionRejected($request['reject-trx-id']);
 
-        $trx->status_id = 10;
+        $trx = Transaction::find($request['reject-trx-id']);
         if(!empty($request['reject-reason'])){
             $trx->reject_note = $request['reject-reason'];
         }

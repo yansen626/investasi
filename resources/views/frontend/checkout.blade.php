@@ -118,7 +118,7 @@
                         <span>
                             <b>Indofund.id bukan lembaga investasi</b>
                             <br><br>
-                            Kami adalah sebuah portal yang mempertemukan pikah yang membutuhkan
+                            Kami adalah sebuah portal yang mempertemukan pihak yang membutuhkan
                             bantuan pendanaan dengan pihak yang mau memberikan bantuan akan pendanaan.
                             <br>
                             Indofund.id dengan standarisasi yang baku telah melakukan studi kelayaran

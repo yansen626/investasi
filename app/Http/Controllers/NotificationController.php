@@ -77,9 +77,9 @@ class NotificationController extends Controller
         try{
             $transactions = Transaction::where('status_id', 3)->get();
             $temp = Carbon::now();
-            $now = Carbon::parse(date_format($temp,'Y-m-d'));
+            $now = Carbon::parse(date_format($temp,'j-F-Y H:i:s'));
             foreach($transactions as $transaction){
-                $trxDate = Carbon::parse(date_format($transaction->created_on, 'Y-m-d'));
+                $trxDate = Carbon::parse(date_format($transaction->created_on, 'j-F-Y H:i:s'));
                 $interval = $now->diff($trxDate, true);
 
                 //Change Status

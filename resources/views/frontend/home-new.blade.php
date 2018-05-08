@@ -95,6 +95,8 @@
                                     <span>Nama Project</span>
                                     <br>
                                     <span style="color: #ff7a00">{{ $transaction->product->name }}</span>
+                                    <br>
+                                    <span>{{ $transaction->invoice }}</span>
                                 </div>
                                 <div class="col-md-3">
                                     Jumlah Pendanaan
@@ -113,6 +115,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     Progress {{$percentage}}%
+                                    <br>
+                                    Rp {{$transaction->product->raised}}
                                     <br>
                                     <div class="min">
                                         <div class="progress-bar-outer">
@@ -371,6 +375,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     Progress {{$percentage}}%
+                                    <br>
+                                    Rp {{$product->raised}}
                                     <br>
                                     <div class="min">
                                         <div class="progress-bar-outer">

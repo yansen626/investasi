@@ -77,13 +77,16 @@ class HomeController extends Controller
 
             //lender blog base on funded project
             $onGoingProductIds = Transaction::select('product_id')->where('user_id', $userId)->get();
+            $onGoingProductIdArray = $onGoingProductIds->toArray();
+
             $recentBlogProducts = Blog::where('status_id', 1)
-                ->wherein('product_id', $onGoingProductIds)
+                ->whereIn('product_id', $onGoingProductIdArray)
                 ->orderByDesc('created_at')
                 ->take($blogCount)
                 ->get();
+
             $randomBlogs = Blog::where('status_id', 1)
-                ->wherenotin('product_id', $onGoingProductIds)
+                ->where('product_id', null)
                 ->orderByDesc('created_at')
                 ->take($blogCount+$blogCount)
                 ->get();
@@ -91,7 +94,7 @@ class HomeController extends Controller
             if($recentBlogProducts->count() < $blogCount){
                 $recentBlogs = $recentBlogProducts;
                 $count =0;
-                for($i=$recentBlogProducts->count();$i<$randomBlogs->count();$i++){
+                for($i=$recentBlogProducts->count(); $i<$blogCount; $i++){
                     $recentBlogs->add($randomBlogs[$count]);
                     $count++;
                 }

@@ -70,6 +70,7 @@
                                     <th>VA Number</th>
                                     <th>Wallet Amount</th>
                                     <th>Join Date</th>
+                                    <th>Detail KTP</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -83,6 +84,9 @@
                                         <td>{{ $user->va_acc == null ? "-" : $user->va_acc }}</td>
                                         <td>Rp {{ $user->wallet_amount }}</td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('j M Y G:i:s') }}</td>
+                                        <td>
+                                            <a href="{{route('customer-ktp', ['id'=> $user->id])}}" class="btn btn-primary">Detail</a>
+                                        </td>
                                     </tr>
                                     @php( $idx++ )
                                 @endforeach

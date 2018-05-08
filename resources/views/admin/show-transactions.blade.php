@@ -31,6 +31,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Invoice</th>
+                                    <th>Project Name</th>
                                     <th>Customer Name</th>
                                     <th>Payment Method</th>
                                     <th>Total Price</th>
@@ -46,6 +47,7 @@
                                     <tr>
                                         <td>{{ $idx }}</td>
                                         <td>{{ $trx->invoice }}</td>
+                                        <td>{{ $trx->Product->name }}</td>
                                         <td>{{ $trx->user->first_name }}&nbsp;{{ $trx->user->last_name }}</td>
                                         <td>{{ $trx->payment_method->description }}</td>
                                         <td>Rp {{ $trx->total_price }}</td>
