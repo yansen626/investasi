@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta content="initial-scale=1.0" name="viewport">
     <meta content="telephone=no" name="format-detection">
-    <title>Indofund.id - Prospectus</title>
+    <title>Indofund.id - detail pembayaran</title>
     <style type="text/css">
         .socialLinks {font-size: 6px;}
         .socialLinks a {display: inline-block;}
@@ -96,9 +96,9 @@
                         <tr>
                             <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
                                 <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
-                                <p>Kami telah menerima dana yang telah anda bayarkan untuk proyek dengan detail sebagai berikut :<br/>
+                                <p>Kami telah menerima order pendanaan dengan detail sebagai berikut :<br/>
                                     Nama Proyek : {{$product->name}}<br/>
-                                    Masa Penawaran : {{$product->tenor_loan}}<br/>
+                                    Masa Penawaran : {{$product->tenor_loan}} hari<br/>
                                     Sebesar Rp. {{$transaction->total_price}}
                                 </p>
                                 <p>
@@ -109,14 +109,17 @@
                         </tr>
                         @if($transaction->payment_method_id != 1)
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. <b>{{$transaction->total_price}}</b>  pada proyek ini.<br/>
                                     Sebesar Rp. {{$transaction->total_price}}  </span></td>
                             </tr>
                         @else
                             <tr>
                                 <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
-                                    Silahkan lakukan pembayaran ke : {{$user->va_acc}} an indofund.id ({{$user->first_name}} {{$user->last_name}}) (Bank Mandiri Virtual Account)<br>
-                                    Sebesar Rp. {{$transaction->total_price}}  </span></td>
+                                    Silahkan lakukan pembayaran ke : {{$user->va_acc}} atas nama indofund.id ({{$user->first_name}} {{$user->last_name}}), Bank Mandiri Virtual Account<br>
+                                    Sebesar Rp. {{$transaction->total_price}}  </span>
+                                    <br>
+                                    <span>Untuk instruksi dan cara pembayaran silahkan klik link di bawah ini</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td align="center" bgcolor="#E36C09" style="text-align: center; font-weight: normal; padding: 12px; padding-left: 14px; padding-right: 14px; background-color: #e36c09; color: #f2f2f2; font-size: 22px; font-family: Arial, Helvetica, sans-serif; border-radius: 5px;" valign="middle" width="auto">
@@ -165,33 +168,19 @@
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 650px;background-color: #fff;" width="650">
                         <tbody>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk pertanyaan terkait pinjam-meminjam berbasis teknologi, silahkan hubungi</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Untuk pertanyaan terkait pinjam-meminjam berbasis teknologi, silahkan hubungi contact@mail.indofund.id</span></td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <table bgcolor="#FFF" border="0" cellpadding="0" cellspacing="0" class="vb-outer" id="ko_bigSocialBlock_1" style="background-color: #fff;" width="100%">
-        <tbody>
-        <tr>
-            <td align="center" class="vb-outer" style="padding-left: 9px; padding-right: 9px; font-size: 0;" valign="top">
-                <!--[if (gte mso 9)|(lte ie 8)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="570"><tr><td align="center" valign="top"><![endif]--><!---->
-                <div style="margin: 0 auto; max-width: 570px; -mru-width: 0px;">
-                    <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="18" class="vb-container links-color socialLinks mobile-textcenter" style="font-size: 6px; border-collapse: separate; width: 100%; background-color: #ffffff; mso-cellspacing: 18px; border-spacing: 18px; max-width: 570px; -mru-width: 0px;" width="570">
-                        <tbody>
                         <tr>
-                            <td align="center" class="links-color socialLinks mobile-textcenter" style="font-size: 6px; font-weight: normal; text-align: center;" valign="top" width="100%">
-                                &nbsp;<a href="" style="display: inline-block;" target="_new"><img alt="Facebook" border="0" height="32" src="https://mosaico.io/templates/versafix-1/img/icons/fb-bw-96.png" style="border: 0px; display: inline-block; vertical-align: top; padding-bottom: 0px; background: url(), #818181; border-radius: 50px;" width="32"></a> &nbsp;<a href="" style="display: inline-block;" target="_new"><img alt="Twitter" border="0" height="32" src="https://mosaico.io/templates/versafix-1/img/icons/tw-bw-96.png" style="border: 0px; display: inline-block; vertical-align: top; padding-bottom: 0px; background: url(), #818181; border-radius: 50px;" width="32"></a> &nbsp;<a href="" style="display: inline-block;" target="_new"><img alt="Google" border="0" height="32" src="https://mosaico.io/templates/versafix-1/img/icons/gg-bw-96.png" style="border: 0px; display: inline-block; vertical-align: top; padding-bottom: 0px; background: url(), #818181; border-radius: 50px;" width="32"></a> &nbsp;<a href="" style="display: inline-block;" target="_new"><img alt="Instagram" border="0" height="32" src="https://mosaico.io/templates/versafix-1/img/icons/inst-bw-96.png" style="border: 0px; display: inline-block; vertical-align: top; padding-bottom: 0px; background: url(), #818181; border-radius: 50px;" width="32"></a> &nbsp;<a href="" style="display: inline-block;" target="_new"><img alt="Youtube" border="0" height="32" src="https://mosaico.io/templates/versafix-1/img/icons/you-bw-96.png" style="border: 0px; display: inline-block; vertical-align: top; padding-bottom: 0px; background: url(), #818181; border-radius: 50px;" width="32"></a>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
+                                <span>Indofund.id dari PT Bursa Akselerasi Indonesia terdaftar dan diawasi oleh <br>
+                                    Otoritas Jasa Keuangan
+                                </span>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <!----><!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
+                <!--[if (gte mso 9)|(lte ie 8)]></td></tr></table><![endif]-->
             </td>
         </tr>
         </tbody>

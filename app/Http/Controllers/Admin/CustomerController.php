@@ -13,13 +13,13 @@ use App\Excel\ExcelExportFromView;
 use App\Http\Controllers\Controller;
 use App\Models\Subscribe;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Carbon\Carbon;
 use Dompdf\Exception;
-use Maatwebsite\Excel\Excel;
 use Maatwebsite\Excel\Facades;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -28,18 +28,59 @@ class CustomerController extends Controller
         $this->middleware('auth:user_admins');
     }
 
-    public function customerKtp($id){
-        $user = User::find($id);
-
-        return View('admin.show-customer-ktp', compact('user'));
-    }
-
     public function index()
     {
         $users = User::orderByDesc('created_at')->get();
 
         return View('admin.show-customers', compact('users'));
         //return view('admin.show_users')->with('users', $users);
+    }
+    public function DownloadPdfKtp($filename)
+    {
+        $file_path = public_path('storage/ktp/'.$filename);
+        return response()->download($file_path);
+    }
+
+    public function customerKtp($id){
+        $user = User::find($id);
+
+        return View('admin.show-customer-ktp', compact('user'));
+    }
+
+    public function AcceptKTPData($id){
+        DB::transaction(function() use ($id){
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+            $user = User::find($id);
+            $user->ktp_verified = 1;
+            $user->save();
+
+
+            Session::flash('message', 'Data KTP User Accepted!');
+        });
+        return Redirect::route('customer-list');
+
+    }
+    public function RejectKTPData($id){
+        DB::transaction(function() use ($id){
+
+            $user = User::find($id);
+            $user->ktp_verified = 0;
+
+            $user->identity_number = null;
+            $user->citizen = null;
+            $user->address_ktp = null;
+            $user->city_ktp = null;
+            $user->province_ktp = null;
+            $user->postal_code_ktp = null;
+            $user->name_ktp = null;
+            $user->img_ktp = null;
+            $user->save();
+
+
+            Session::flash('message', 'Data KTP User Rejected!');
+        });
+        return Redirect::route('customer-list');
     }
 
     public function subscribe()

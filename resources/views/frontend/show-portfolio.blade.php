@@ -83,32 +83,36 @@
                                 </div>
                                 <div style="padding-top:5%;">
                                     <h4>Cara Pembayaran</h4>
-                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">Bank Mandiri</button>
-                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">Bank Lain</button>
-                                    <div class="info-block" style="margin: 0; padding: 0;">
-                                        <div id="mandiri" class="collapse">
-                                            <h3>Pembayaran dengan Bank Mandiri</h3>
-                                            <h5>*Pembayaran tidak dapat dilakukan dengan mobile banking gunakan ATM atau Internet banking</h5>
-                                            <ol>
-                                                <li>1. Masukkan kartu ATM dan PIN MANDIRI Anda</li>
-                                                <li>2. Masuk ke menu BAYAR/BELI > menu LAINNYA > menu LAINNYA > menu MULTIPAYMENT</li>
-                                                <li>3. Masukkan KODE PERUSAHAAN yaitu 88795</li>
-                                                <li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>
-                                                <li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>
-                                                <li>6. Ikuti instruksi untuk menyelesaikan transaksi</li>
-                                            </ol>
-                                        </div>
-                                        <div id="bank_lain" class="collapse">
-                                            <h3>Pembayaran dengan Bank Lain</h3>
-                                            <ol>
-                                                <li>1. Masukkan kartu ATM dan PIN ATM Anda</li>
-                                                <li>2. Pilih menu transfer</li>
-                                                <li>3. Masukkan kode Bank Mandiri 008</li>
-                                                <li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>
-                                                <li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>
-                                            </ol>
-                                        </div>
-                                    </div>
+                                    <a href="https://indofund.id/blog/4b3055d0-52cc-11e8-95cd-0358eaa51cd4" target="_blank" class="btn btn-big btn-info">ATM Bank Mandiri</a>
+                                    <a href="https://indofund.id/blog/c5922d50-52c9-11e8-aee5-21781808d846" target="_blank" class="btn btn-big btn-info">Internet Banking Mandiri</a>
+                                    <a href="https://indofund.id/blog/fe889710-52cb-11e8-8bde-9f2bfcf5771e" target="_blank" class="btn btn-big btn-info">Mobile Banking Mandiri</a>
+                                    <a href="https://indofund.id/blog/f79e91d0-52cc-11e8-8d41-195550d3cf6c" target="_blank" class="btn btn-big btn-info">Bank Lain</a>
+                                    {{--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mandiri">Bank Mandiri</button>--}}
+                                    {{--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank_lain">Bank Lain</button>--}}
+                                    {{--<div class="info-block" style="margin: 0; padding: 0;">--}}
+                                        {{--<div id="mandiri" class="collapse">--}}
+                                            {{--<h3>Pembayaran dengan Bank Mandiri</h3>--}}
+                                            {{--<h5>*Pembayaran tidak dapat dilakukan dengan mobile banking gunakan ATM atau Internet banking</h5>--}}
+                                            {{--<ol>--}}
+                                                {{--<li>1. Masukkan kartu ATM dan PIN MANDIRI Anda</li>--}}
+                                                {{--<li>2. Masuk ke menu BAYAR/BELI > menu LAINNYA > menu LAINNYA > menu MULTIPAYMENT</li>--}}
+                                                {{--<li>3. Masukkan KODE PERUSAHAAN yaitu 88795</li>--}}
+                                                {{--<li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>--}}
+                                                {{--<li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>--}}
+                                                {{--<li>6. Ikuti instruksi untuk menyelesaikan transaksi</li>--}}
+                                            {{--</ol>--}}
+                                        {{--</div>--}}
+                                        {{--<div id="bank_lain" class="collapse">--}}
+                                            {{--<h3>Pembayaran dengan Bank Lain</h3>--}}
+                                            {{--<ol>--}}
+                                                {{--<li>1. Masukkan kartu ATM dan PIN ATM Anda</li>--}}
+                                                {{--<li>2. Pilih menu transfer</li>--}}
+                                                {{--<li>3. Masukkan kode Bank Mandiri 008</li>--}}
+                                                {{--<li>4. Masukkan nomor virtual account Anda: {{$user->va_acc}}</li>--}}
+                                                {{--<li>5. Masukkan jumlah nominal yang akan di bayarkan / di transfer</li>--}}
+                                            {{--</ol>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
                                 </div>
                             </div>
                             {{--<div class="tab-pane fade {{$isActiveEquity}}" id="equity">--}}

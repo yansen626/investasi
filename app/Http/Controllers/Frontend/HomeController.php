@@ -94,7 +94,7 @@ class HomeController extends Controller
             if($recentBlogProducts->count() < $blogCount){
                 $recentBlogs = $recentBlogProducts;
                 $count =0;
-                for($i=$recentBlogProducts->count(); $i<$blogCount; $i++){
+                for($i=$recentBlogProducts->count(); $i<$randomBlogs->count(); $i++){
                     $recentBlogs->add($randomBlogs[$count]);
                     $count++;
                 }
@@ -224,5 +224,7 @@ class HomeController extends Controller
             'user' => $userDB
         );
         SendEmail::SendingEmail('requestVerification', $data);
+
+        return Redirect::route('login');
     }
 }

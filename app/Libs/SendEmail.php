@@ -10,6 +10,7 @@ namespace App\Libs;
 
 use App\Mail\AcceptPenarikan;
 use App\Mail\ContactUs;
+use App\Mail\DetailPembayaran;
 use App\Mail\EmailVerification;
 use App\Mail\InvoicePembelian;
 use App\Mail\PerjanjianLayanan;
@@ -107,6 +108,27 @@ class SendEmail
 
                     $sendProspectus = new SendProspectus($file_path);
                     Mail::to($email)->send($sendProspectus);
+                    break;
+
+                case 'DetailPembayaran' :
+
+                    $transaction = $objData->transaction;
+                    $userData = $objData->user;
+                    $payment = $objData->paymentMethod;
+                    $product = $objData->product;
+
+                    $vendor = Vendor::where('user_id', $userData->id)->first();
+                    $data = array(
+                        'transaction' => $objData->transaction,
+                        'user'=>$objData->user,
+                        'paymentMethod' => $objData->paymentMethod,
+                        'product' => $objData->product,
+                        'vendor' => $vendor
+                    );
+
+                    $detailPembayaran = new DetailPembayaran($payment, $transaction, $product, $userData);
+                    Mail::to($userData->email)->send($detailPembayaran);
+
                     break;
 
                 case 'successTransaction' :
@@ -231,6 +253,7 @@ class SendEmail
             }
         }
         catch (\Exception $ex){
+            dd($ex);
             Utilities::ExceptionLog('SendEmail.php > SendingEmail ========> '.$ex);
         }
     }

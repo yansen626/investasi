@@ -95,8 +95,8 @@
                         <tbody>
                         <tr>
                             <td align="left" class="long-text links-color" style="text-align: left; font-size: 18px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; line-height: 1.6;">
-                                <p data-mce-style="text-align: center;" style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">Validasi : Selamat datang di indofund.id – P2P Lending & business acceleration, silahkan klik link aktivasi dibawah ini untuk mengaktifkan akun anda di indofund.id.<br/>
-                                    <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{url('/verifyemail/'.$email_token)}}" style="color: #81b951;text-decoration: underline;" title="here">Link Aktivasi</a></strong></span></p>
+                                <p data-mce-style="text-align: center;" style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">Selamat datang di indofund – P2P Lending & business acceleration, silahkan klik link aktivasi dibawah ini untuk mengaktifkan akun anda di indofund.<br/>
+                                    <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{url('/verifyemail/'.$email_token)}}" style="color: #81b951;text-decoration: underline;" title="here">Klik Link ini</a></strong></span></p>
                             </td>
                         </tr>
                         </tbody>

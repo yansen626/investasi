@@ -75,6 +75,10 @@ class LoginController extends Controller
 
         $credentials = $this->credentials($request);
 
+        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return View("auth.login")->withErrors(['msg' => ['Salah Username atau Password!']]);
+        }
+
         //Custom Logic
         if(!User::where('email', $request->email)->exists()){
             return View("auth.login")->withErrors(['msg' => ['Salah Username atau Password!']]);

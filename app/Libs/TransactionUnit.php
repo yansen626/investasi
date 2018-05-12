@@ -48,6 +48,7 @@ class TransactionUnit
             $trxCreate = Transaction::create([
                 'id'                => Uuid::generate(),
                 'user_id'           => $userId,
+                'va_number'           => $user->va_acc,
                 'invoice'           => $invoice,
                 'product_id'           => $cart->product_id,
                 'payment_method_id' => $paymentMethodInt,
@@ -70,6 +71,14 @@ class TransactionUnit
             // Delete cart
             $cart->delete();
 
+            $payment = PaymentMethod::find($paymentMethodInt);
+            $data = array(
+                'transaction' => $trxCreate,
+                'user'=>$user,
+                'paymentMethod' => $payment,
+                'product' => $productDB
+            );
+            SendEmail::SendingEmail('DetailPembayaran', $data);
             return true;
         }
         catch(\Exception $ex){

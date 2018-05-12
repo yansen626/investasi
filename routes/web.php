@@ -269,8 +269,15 @@ Route::prefix('admin/user')->group(function(){
 });
 
 // User
-Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
-Route::get('/admin/customer-ktp/{id}', 'Admin\CustomerController@customerKtp')->name('customer-ktp');
+Route::prefix('admin/customer')->group(function(){
+    Route::get('/', 'Admin\CustomerController@index')->name('customer-list');
+    Route::get('/customer-ktp/{id}', 'Admin\CustomerController@customerKtp')->name('customer-ktp');
+    Route::get('/ktp-accept/{id}', 'Admin\CustomerController@AcceptKTPData');
+    Route::get('/ktp-reject/{id}', 'Admin\CustomerController@RejectKTPData');
+    Route::get('/download/{filename}', 'Admin\CustomerController@DownloadPdfKtp')->name('download');
+});
+//Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
+//Route::get('/admin/customer-ktp/{id}', 'Admin\CustomerController@customerKtp')->name('customer-ktp');
 
 Route::post('/admin', 'Auth\LoginAdminController@login');
 Route::get('/admin', 'Admin\DashboardController@index')->name('admin-dashboard');
@@ -371,7 +378,6 @@ Route::post('/mcm-notification', [
     'uses' => 'NotificationController@notificationMCM',
     'as' => 'mcmNotification'
 ]);
-
-//Checking routing
 Route::get('/limit-transaction', 'NotificationController@limitTransferCheck')->name('limit-transaction');
 Route::get('/limit-project', 'NotificationController@limitProjectCheck')->name('limit-project');
+Route::get('/limit-payment', 'NotificationController@limitPaymentCheck')->name('limit-payment');

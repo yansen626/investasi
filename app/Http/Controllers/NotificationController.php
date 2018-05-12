@@ -38,9 +38,8 @@ class NotificationController extends Controller
             $jsonTransactions =  $json->Transactions;
             foreach ($jsonTransactions as $jsonTransaction){
                 $trxDesc = $jsonTransaction->description;
-                $trxDescPart = str_replace("UBP66668879501FFFFFF", '',$trxDesc);
-//                $trxDescPart = trim($trxDesc. "UBP66668879501FFFFFF");
-                $trxDescPart2 = explode(" ", $trxDescPart);
+
+                $trxDescPart2 = explode(" ", $trxDesc);
                 $vaNumber = $trxDescPart2[0];
 
                 Utilities::ExceptionLog($vaNumber);
@@ -76,10 +75,10 @@ class NotificationController extends Controller
         //Berhasil jadi 10 awal 3
         try{
             $transactions = Transaction::where('status_id', 3)->get();
-            $temp = Carbon::now();
-            $now = Carbon::parse(date_format($temp,'j-F-Y H:i:s'));
+            $temp = Carbon::now('Asia/Jakarta');
+            $now = Carbon::parse(date_format($temp,'j-F-Y'));
             foreach($transactions as $transaction){
-                $trxDate = Carbon::parse(date_format($transaction->created_on, 'j-F-Y H:i:s'));
+                $trxDate = Carbon::parse(date_format($transaction->created_on, 'j-F-Y'));
                 $interval = $now->diff($trxDate, true);
 
                 //Change Status
@@ -101,7 +100,7 @@ class NotificationController extends Controller
         //Awal 21 jadinya 26
         try{
             $products = Product::where('status_id', 21)->get();
-            $temp = Carbon::now();
+            $temp = Carbon::now('Asia/Jakarta');
             $now = Carbon::parse(date_format($temp,'Y-m-d'));
             foreach($products as $product){
                 //return $product->due_date;
@@ -117,6 +116,31 @@ class NotificationController extends Controller
                 }
             }
 
+            return "Sukses";
+        }
+        catch (Exception $ex){
+            return $ex;
+        }
+    }
+    public function limitPaymentCheck(){
+        //DB : transaction
+        try{
+            $transactions = Transaction::where('status_id', 3)->where('payment_method_id', 1)->get();
+            $temp = Carbon::now('Asia/Jakarta');
+            $now = Carbon::parse(date_format($temp,'j-F-Y H:i:s'));
+//            dd($transactions);
+            foreach($transactions as $transaction){
+                $trxDate = Carbon::parse(date_format($transaction->created_on, 'j-F-Y H:i:s'));
+                $interval = $now->diffInHours($trxDate);
+//                dd($now." | ".$trxDate." | ".$interval);
+
+                //Change Status if more than 4 hours
+                if($interval > 4){
+                    $temporary = Transaction::where('id', $transaction->id)->first();
+                    $temporary->status_id = 10;
+                    $temporary->save();
+                }
+            }
             return "Sukses";
         }
         catch (Exception $ex){

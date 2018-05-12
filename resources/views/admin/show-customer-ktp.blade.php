@@ -34,7 +34,11 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
 
                                 <div style="height:350px;">
-                                    <img src="{{asset('storage\ktp\\'.$user->img_ktp)}}" height="350px" />
+                                    @if(str_contains($user->img_ktp, 'pdf'))
+                                        <a href="{{route('download', ['filename' => $user->img_ktp])}}" style="cursor: pointer;"><span>Download KTP PDF</span></a>
+                                    @else
+                                        <img src="{{asset('storage\ktp\\'.$user->img_ktp)}}" height="350px" />
+                                    @endif
                                 </div>
 
                                 <div>
@@ -97,8 +101,8 @@
                                     </ul>
                                     <br/>
                                     <div class="text-center mtop20">
-                                        <a onclick="modalPop('{{ $user->vendor_id }}', 'accept', '/admin/vendor/request-accept/')" class="btn btn-big btn-success">Accept</a>
-                                        <a onclick="modalPop('{{ $user->vendor_id }}', 'cancel', '/admin/vendor/request-reject/')" class="btn btn-big btn-danger">Reject</a>
+                                        <a onclick="modalPop('{{ $user->id }}', 'accept', '/admin/customer/ktp-accept/')" class="btn btn-big btn-success">Accept</a>
+                                        <a onclick="modalPop('{{ $user->id }}', 'cancel', '/admin/customer/ktp-reject/')" class="btn btn-big btn-danger">Reject</a>
                                     </div>
                                 </div>
                             </div>

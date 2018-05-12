@@ -23,7 +23,7 @@
             <div class="row cause">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="comment-form-wrapper contact-from clearfix col-md-12 col-sm-12">
-                        <h2>Mohon melengkapi data berikut ini sesuai dengan KTP Anda untuk melanjutkan pendaaan.</h2>
+                        <h2>*Mohon melengkapi data berikut ini sesuai dengan KTP Anda untuk melanjutkan pendaaan pertama kali.</h2>
                         {{ Form::open(['route'=>['store-data'],'method' => 'post','class'=>'comment-form row altered', 'style'=>'margin-bottom: 10px;', 'enctype'=>'multipart/form-data']) }}
                             <div class="field col-sm-12">
                                 <h5>Nomor KTP</h5>

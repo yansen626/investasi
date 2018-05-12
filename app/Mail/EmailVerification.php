@@ -31,7 +31,7 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->user->first_name. " ".$this->user->last_name.", Aktivasi Akun Anda di indofund.id")
+        return $this->subject($this->user->first_name. " ".$this->user->last_name.", Aktivasi Akun Anda di indofund")
             ->view('email.email')->with([
             'email_token' => $this->user->email_token,
         ]);
