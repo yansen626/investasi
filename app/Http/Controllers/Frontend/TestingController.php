@@ -32,11 +32,11 @@ class TestingController extends Controller
 {
     public function TestingSendEmail(){
         try{
-            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
-            //Send Email,
-            $userData = User::find($transaction->user_id);
-            $payment = PaymentMethod::find($transaction->payment_method_id);
-            $product = Product::find($transaction->product_id);
+//            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
+//            //Send Email,
+//            $userData = User::find($transaction->user_id);
+//            $payment = PaymentMethod::find($transaction->payment_method_id);
+//            $product = Product::find($transaction->product_id);
 
             $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
 

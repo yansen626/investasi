@@ -253,7 +253,7 @@ class SendEmail
             }
         }
         catch (\Exception $ex){
-            dd($ex);
+//            dd($ex);
             Utilities::ExceptionLog('SendEmail.php > SendingEmail ========> '.$ex);
         }
     }
