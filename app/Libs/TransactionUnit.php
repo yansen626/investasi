@@ -83,89 +83,99 @@ class TransactionUnit
         }
         catch(\Exception $ex){
             Utilities::ExceptionLog('TransactionUnit.php > createTransaction ========> '.$ex);
-            Utilities::ExceptionLog($ex);
             return false;
         }
     }
 
     public static function transactionRejected($trxid){
+        try{
+            DB::transaction(function() use ($trxid){
+                $transaction = Transaction::find($trxid);
+                if($transaction->status_id == 10){
+                    return false;
+                }
+                $dateTimeNow = Carbon::now('Asia/Jakarta');
 
-        DB::transaction(function() use ($trxid){
-            $transaction = Transaction::find($trxid);
-            if($transaction->status_id == 10){
-                return false;
-            }
-            $dateTimeNow = Carbon::now('Asia/Jakarta');
+                $transaction->status_id = 10;
+                $transaction->save();
 
-            $transaction->status_id = 10;
-            $transaction->save();
+                //update product data
+                $productDB = Product::find($transaction->product_id);
+                $raisedDB = (double) str_replace('.','', $productDB->raised);
+                $newRaise = (double) str_replace('.','', $transaction->total_price);
+                $productDB->raised = $raisedDB - $newRaise;
 
-            //update product data
-            $productDB = Product::find($transaction->product_id);
-            $raisedDB = (double) str_replace('.','', $productDB->raised);
-            $newRaise = (double) str_replace('.','', $transaction->total_price);
-            $productDB->raised = $raisedDB - $newRaise;
-
-            $productDB->save();
+                $productDB->save();
 
 
-            return true;
-        });
+                return true;
+            });
+        }
+        catch(\Exception $ex){
+            Utilities::ExceptionLog('TransactionUnit.php > transactionRejected ========> '.$ex);
+        }
+        return false;
     }
     public static function transactionAfterVerified($orderid){
+        try{
+            DB::transaction(function() use ($orderid){
+                $transaction = Transaction::where('order_id', $orderid)->first();
+                if($transaction->status_id == 5){
+                    return false;
+                }
+                $dateTimeNow = Carbon::now('Asia/Jakarta');
 
-        DB::transaction(function() use ($orderid){
-            $transaction = Transaction::where('order_id', $orderid)->first();
-            if($transaction->status_id == 5){
-                return false;
-            }
-            $dateTimeNow = Carbon::now('Asia/Jakarta');
+                $transaction->status_id = 5;
+                $transaction->two_day_due_date = $dateTimeNow->addDays(2);
+                $transaction->modified_on = $dateTimeNow->toDateTimeString();
+                $transaction->save();
 
-            $transaction->status_id = 5;
-            $transaction->two_day_due_date = $dateTimeNow->addDays(2);
-            $transaction->modified_on = $dateTimeNow->toDateTimeString();
-            $transaction->save();
+                //update product data
+                $productDB = Product::find($transaction->product_id);
+                $raisedDB = (double) str_replace('.','', $productDB->raised);
+                $newRaise = (double) str_replace('.','', $transaction->total_price);
+    //            $productDB->raised = $raisedDB + $newRaise;
 
-            //update product data
-            $productDB = Product::find($transaction->product_id);
-            $raisedDB = (double) str_replace('.','', $productDB->raised);
-            $newRaise = (double) str_replace('.','', $transaction->total_price);
-//            $productDB->raised = $raisedDB + $newRaise;
+                //checking if fund 100% or not and send email
+                $userData = User::find($transaction->user_id);
+                $payment = PaymentMethod::find($transaction->payment_method_id);
+                $product = Product::find($transaction->product_id);
 
-            //checking if fund 100% or not and send email
-            $userData = User::find($transaction->user_id);
-            $payment = PaymentMethod::find($transaction->payment_method_id);
-            $product = Product::find($transaction->product);
+                $data = array(
+                    'transaction' => $transaction,
+                    'user'=>$userData,
+                    'paymentMethod' => $payment,
+                    'product' => $product
+                );
 
-            $data = array(
-                'transaction' => $transaction,
-                'user'=>$userData,
-                'paymentMethod' => $payment,
-                'product' => $product
-            );
+                $raisingDB = (double) str_replace('.','', $productDB->raising);
+                if(($raisedDB + $newRaise) >= $raisingDB){
+                    $productDB->status_id = 22;
+    //                SendEmail::SendingEmail('collectedFund', $data);
 
-            $raisingDB = (double) str_replace('.','', $productDB->raising);
-            if(($raisedDB + $newRaise) >= $raisingDB){
-                $productDB->status_id = 22;
-//                SendEmail::SendingEmail('collectedFund', $data);
+    //            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
+    //            Mail::to($userData->email)->send($perjanjianLayananEmail);
 
-//            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
-//            Mail::to($userData->email)->send($perjanjianLayananEmail);
+                }
+                $productDB->save();
 
-            }
-            $productDB->save();
+                //Send Email for accepted fund
+                SendEmail::SendingEmail('successTransaction', $data);
 
-            //Send Email for accepted fund
-            SendEmail::SendingEmail('successTransaction', $data);
+    //            $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
+    //            Mail::to($userData->email)->send($invoiceEmail);
+    //
+    //            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
+    //            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
 
-//            $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
-//            Mail::to($userData->email)->send($invoiceEmail);
-//
-//            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
-//            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
+                return true;
+            });
+        }
 
-            return true;
-        });
+        catch(\Exception $ex){
+            Utilities::ExceptionLog('TransactionUnit.php > transactionAfterVerified ========> '.$ex);
+        }
+        return false;
     }
 
     public static function createTransactionTopUp($userId, $cartId, $orderId){
@@ -204,5 +214,6 @@ class TransactionUnit
         catch(\Exception $ex){
             Utilities::ExceptionLog($ex);
         }
+        return false;
     }
 }

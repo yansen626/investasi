@@ -76,12 +76,12 @@
                                 <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
                                 <p>Kami telah menerima dana yang telah anda bayarkan untuk proyek dengan detail sebagai berikut :<br/>
                                     Nama Proyek : {{$product->name}}<br/>
-                                    Masa Penawaran : {{$product->tenor_loan}}<br/>
+                                    Masa Penawaran : {{$product->tenor_loan}} hari<br/>
                                     Sebesar Rp. {{$transaction->total_price}}
                                 </p>
                                 <p>
                                     Untuk membaca product disclosure statement, silahkan
-                                    <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{$product->prospectud_path}}" style="color: #81b951;text-decoration: underline;" title="here">klik disini</a></strong></span>
+                                    <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{$product->prospectus_path}}" style="color: #81b951;text-decoration: underline;" title="{{$product->prospectus_path}}">klik disini</a></strong></span>
                                 </p>
                             </td>
                         </tr>

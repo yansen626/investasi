@@ -39,34 +39,39 @@ class NotificationController extends Controller
             foreach ($jsonTransactions as $jsonTransaction){
                 $trxDesc = $jsonTransaction->description;
 
-                $trxDescPart2 = explode(" ", $trxDesc);
+                Utilities::ExceptionLog($trxDesc);
+                $trxDescPart = str_replace("\nPRMA", '',$trxDesc);
+                $trxDescPart1 = str_replace("\nATMB", '',$trxDescPart);
+                $trxDescPart2 = explode(" ", $trxDescPart1);
                 $vaNumber = $trxDescPart2[0];
 
-                Utilities::ExceptionLog($vaNumber);
 
                 $trxKredit = $jsonTransaction->kredit;
                 $trxKredit2 = explode(".", $trxKredit);
                 $amount = (double) str_replace(',', '',$trxKredit2[0]);
 
-                Utilities::ExceptionLog($amount);
+                //Utilities::ExceptionLog($vaNumber." | ".$amount);
 
                 DB::transaction(function() use ($vaNumber, $amount, $json){
 
-//                Utilities::ExceptionLog($orderid);
                     $dateTimeNow = Carbon::now('Asia/Jakarta');
 
                     $transactionDB = Transaction::where('va_number', $vaNumber)
                         ->where('status_id', 3)
+                        ->where('payment_method_id', 1)
                         ->where('total_payment', $amount)
                         ->first();
                     if(!empty($transactionDB)){
-                        $transactionDB->status_id = 5;
-                        $transactionDB->save();
+                        $orderid = $transactionDB->order_id;
+
+                        TransactionUnit::transactionAfterVerified($orderid);
+//                        Utilities::ExceptionLog("Change transaction status success");
                     }
                 }, 5);
             }
         }
         catch (\Exception $ex){
+            Utilities::ExceptionLog("Change transaction status failed");
             Utilities::ExceptionLog($ex);
         }
     }
@@ -74,20 +79,20 @@ class NotificationController extends Controller
     public function limitTransferCheck(){
         //Berhasil jadi 10 awal 3
         try{
-            $transactions = Transaction::where('status_id', 3)->get();
-            $temp = Carbon::now('Asia/Jakarta');
-            $now = Carbon::parse(date_format($temp,'j-F-Y'));
-            foreach($transactions as $transaction){
-                $trxDate = Carbon::parse(date_format($transaction->created_on, 'j-F-Y'));
-                $interval = $now->diff($trxDate, true);
-
-                //Change Status
-                if($interval->days > 2){
-                    $temporary = Transaction::where('id', $transaction->id)->first();
-                    $temporary->status_id = 10;
-                    $temporary->save();
-                }
-            }
+//            $transactions = Transaction::where('status_id', 3)->get();
+//            $temp = Carbon::now('Asia/Jakarta');
+//            $now = Carbon::parse(date_format($temp,'j-F-Y'));
+//            foreach($transactions as $transaction){
+//                $trxDate = Carbon::parse(date_format($transaction->created_on, 'j-F-Y'));
+//                $interval = $now->diff($trxDate, true);
+//
+//                //Change Status
+//                if($interval->days > 2){
+//                    $temporary = Transaction::where('id', $transaction->id)->first();
+//                    $temporary->status_id = 10;
+//                    $temporary->save();
+//                }
+//            }
             return "Sukses";
         }
         catch (Exception $ex){
@@ -119,6 +124,7 @@ class NotificationController extends Controller
             return "Sukses";
         }
         catch (Exception $ex){
+            Utilities::ExceptionLog("check project limit failed");
             return $ex;
         }
     }
@@ -144,6 +150,7 @@ class NotificationController extends Controller
             return "Sukses";
         }
         catch (Exception $ex){
+            Utilities::ExceptionLog("check payment due date failed");
             return $ex;
         }
     }

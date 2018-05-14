@@ -8,6 +8,8 @@
 
 namespace App\Mail;
 
+use App\Libs\Utilities;
+use function GuzzleHttp\Promise\exception_for;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -45,11 +47,11 @@ class InvoicePembelian extends Mailable
     {
         return $this->subject("Invoice Pembelian Indofund")
             ->view('email.invoice-pembelian')->with([
-            'transaction' => $this->transaction,
-            'paymentMethod' => $this->paymentMethod,
-            'product' => $this->product,
-            'user' => $this->user,
-        ]);
+                'transaction' => $this->transaction,
+                'paymentMethod' => $this->paymentMethod,
+                'product' => $this->product,
+                'user' => $this->user,
+            ]);
     }
 
 }

@@ -19,19 +19,9 @@ use App\Mail\RequestVerification;
 use App\Mail\RequestWithdrawInvestor;
 use App\Mail\SendProspectus;
 use App\Mail\Subscribe;
-use App\Models\AutoNumber;
-use App\Models\PaymentMethod;
-use App\Models\Product;
-use App\Models\Transaction;
-use App\Models\User;
 use App\Models\Vendor;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade as PDF;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class SendEmail
 {
@@ -39,7 +29,6 @@ class SendEmail
     public static function SendingEmail($option, $data) {
         try{
             $objData = (object) $data;
-
             switch ($option) {
                 case 'emailVerification' :
                     $user = $objData->user;
