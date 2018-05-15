@@ -65,14 +65,14 @@ class NotificationController extends Controller
                         $orderid = $transactionDB->order_id;
 
                         TransactionUnit::transactionAfterVerified($orderid);
-//                        Utilities::ExceptionLog("Change transaction status success");
+                        Utilities::ExceptionLog("Change transaction status success");
                     }
                 }, 5);
             }
         }
         catch (\Exception $ex){
-            Utilities::ExceptionLog("Change transaction status failed");
-            Utilities::ExceptionLog($ex);
+            Utilities::ExceptionLog("Change transaction status failed ".$ex);
+            return $ex;
         }
     }
 
@@ -124,14 +124,14 @@ class NotificationController extends Controller
             return "Sukses";
         }
         catch (Exception $ex){
-            Utilities::ExceptionLog("check project limit failed");
+            Utilities::ExceptionLog("Change project limit failed ".$ex);
             return $ex;
         }
     }
     public function limitPaymentCheck(){
         //DB : transaction
         try{
-            $transactions = Transaction::where('status_id', 3)->where('payment_method_id', 1)->get();
+            $transactions = Transaction::where('status_id', 3)->get();
             $temp = Carbon::now('Asia/Jakarta');
             $now = Carbon::parse(date_format($temp,'j-F-Y H:i:s'));
 //            dd($transactions);
@@ -142,15 +142,13 @@ class NotificationController extends Controller
 
                 //Change Status if more than 4 hours
                 if($interval > 4){
-                    $temporary = Transaction::where('id', $transaction->id)->first();
-                    $temporary->status_id = 10;
-                    $temporary->save();
+                    TransactionUnit::transactionRejected($transaction->id);
                 }
             }
             return "Sukses";
         }
         catch (Exception $ex){
-            Utilities::ExceptionLog("check payment due date failed");
+            Utilities::ExceptionLog("Change payment due date failed ".$ex);
             return $ex;
         }
     }

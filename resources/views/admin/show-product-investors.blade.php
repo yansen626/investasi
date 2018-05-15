@@ -93,7 +93,7 @@
                                                 <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Invoice</th>
+                                                    <th>Invoice / status</th>
                                                     <th>Nama Pendana</th>
                                                     <th>Metode Pembayaran </th>
                                                     <th>Jumlah Pendanaan</th>
@@ -107,12 +107,15 @@
                                                         @foreach($transactionDB as $transaction)
                                                             <tr>
                                                                 <td>{{ $idx}}</td>
-                                                                <td>{{ $transaction->invoice}}</td>
+                                                                <td>
+                                                                    {{ $transaction->invoice}} <br>
+                                                                    {{$transaction->status->description}}
+                                                                </td>
                                                                 <td>{{ $transaction->user->first_name }} {{ $transaction->user->last_name }}</td>
                                                                 <td>{{ $transaction->payment_method->description}}</td>
                                                                 <td>Rp {{ $transaction->total_price}}</td>
                                                                 <td>Rp {{ $transaction->admin_fee}}</td>
-                                                                <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j F y')}}</td>
+                                                                <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j-F-Y H:i:s')}}</td>
                                                             </tr>
                                                             @php ($idx++)
                                                         @endforeach
