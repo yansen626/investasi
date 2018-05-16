@@ -41,7 +41,9 @@ class SendEmail
 
                     $requestVerification = new RequestVerification($user);
 //                    Mail::to($user->email)->send($requestVerification);
-                    Mail::to("contact@indofund.id")->send($requestVerification);
+                    Mail::to("ryanfilbert@gdrive.id")->send($requestVerification);
+                    Mail::to("vina.marintan@gmail.com")->send($requestVerification);
+//                    Mail::to("contact@mail.indofund.id")->send($requestVerification);
                     break;
 
                 case 'contactUs' :
@@ -49,9 +51,12 @@ class SendEmail
                     $email = $objData->email;
                     $phone = $objData->phone;
                     $description = $objData->description;
+                    Utilities::ExceptionLog($name." ".$email." ".$phone." ".$description);
 
                     $contactUsEmail = new ContactUs($name, $email, $phone, $description);
-                    Mail::to("contact@indofund.id")->send($contactUsEmail);
+                    Mail::to("ryanfilbert@gdrive.id")->send($contactUsEmail);
+                    Mail::to("vina.marintan@gmail.com")->send($contactUsEmail);
+//                    Mail::to("contact@mail.indofund.id")->send($contactUsEmail);
                     break;
 
 
@@ -80,11 +85,11 @@ class SendEmail
                     break;
 
                 case 'OrderAccepted' :
-                    $walletStatement = $objData->walletStatement;
-                    $userData = $objData->user;
-
-                    $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData);
-                    Mail::to($userData->email)->send($acceptWithdrawalEmail);
+//                    $walletStatement = $objData->walletStatement;
+//                    $userData = $objData->user;
+//
+//                    $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData);
+//                    Mail::to($userData->email)->send($acceptWithdrawalEmail);
                     break;
 
                 case 'sendProspectus' :
@@ -136,16 +141,18 @@ class SendEmail
                         'vendor' => $vendor
                     );
 
-                    // send to lender email
-                    // pendanaan baru anda status masih 3
+                    // payment confirmed send email
                     $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
                     Mail::to($userData->email)->send($invoiceEmail);
 
+                    //send document to user
 //                    $pdf = PDF::loadView('email.perjanjian-layanan', $data);
-//                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf, $userData) {
+//                    $pdf2 = PDF::loadView('email.perjanjian-pinjaman', $data);
+//                    Mail::send('email.surat-perjanjian', $data, function ($message) use ($pdf, $pdf2, $userData) {
 //                        $message->to($userData->email)->subject('Perjanjian Layanan Pinjam Meminjam di Indofund');
 //
 //                        $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
+//                        $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
 //                    });
                     break;
 

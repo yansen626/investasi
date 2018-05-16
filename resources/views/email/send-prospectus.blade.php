@@ -73,7 +73,7 @@
                         <tbody>
                         <tr>
                             <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;">
-                                <p data-mce-style="text-align: center;" style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">Halo, <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{%20url($filePath)%20}}" style="color: #81b951;text-decoration: underline;">Klik Disini</a></strong></span> untuk melihat Product Disclosure Statement pilihan Anda.</p>
+                                <p data-mce-style="text-align: center;" style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;text-align: center;">Halo, <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{url($filePath)}}" style="color: #81b951;text-decoration: underline;">Klik Disini</a></strong></span> untuk melihat Product Disclosure Statement pilihan Anda.</p>
                             </td>
                         </tr>
                         </tbody>

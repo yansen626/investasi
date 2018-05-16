@@ -84,7 +84,7 @@
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Bila Anda tidak merasa melakukan penarikan segera klik link berikut:</td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><a href="{{%20route('withdraw-cancel',['id'%20=%3E%20$statement-%3Eid])%20}}" style="text-decoration: underline">{{ route('withdraw-cancel',['id' => $statement->id]) }}</a></td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><a href="{{ route('withdraw-cancel',['id' => $statement->id]) }}" style="text-decoration: underline">{{ route('withdraw-cancel',['id' => $statement->id]) }}</a></td>
                         </tr>
                         <tr>
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Jika anda tidak melakukan permintaan ini, segera ganti password akun anda dan hubungi customer service.</td>

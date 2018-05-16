@@ -6,7 +6,10 @@
             <img src="{{ URL::asset('frontend_images/logo.png') }}" style="width:250px">
         </div>
         <div class="col-md-12 col-sm-12 text-left" style="border-bottom: 2px solid #ff7a00;margin-bottom:1%;padding-bottom: 2%;">
-            <div class="col-md-6 col-sm-12 homepage-footer-contact-us">
+            <div class="col-md-6 homepage-footer-contact-us hidden-xs hidden-sm">
+                <button class="btn btn-big btn-solid" data-toggle="modal" data-target="#contactUsPopup">Hubungi Kami</button>
+            </div>
+            <div class="col-sm-12 hidden-md hidden-lg" style="text-align: center;margin-bottom: 5%;">
                 <button class="btn btn-big btn-solid" data-toggle="modal" data-target="#contactUsPopup">Hubungi Kami</button>
             </div>
             <div class="col-md-6 col-sm-12" style="text-align: left;">
@@ -62,13 +65,13 @@
                 <div class="modal-body text-center">
                     <img class="subscribe_popup_image" src="{{ URL::asset('frontend_images/homepage/submit-subscribe.png') }}">
                     <br><br>
-                    Kami telah mendaftarkan email Anda paga sistem kami.
+                    Kami telah mendaftarkan email Anda pada sistem kami.
                     <br><br>
                     Cek email Anda sekarang dan lakukan konfirmasi alamat email Anda.
                     <br><br>
                     Apabila Anda tidak menemukan email tersebut silahkan cek pada spam folder Anda.
                     <br><br>
-                    Bila Anda mendapatkan email apapun dari kami silahkan hubungi info@indofund.id
+                    Bila Anda mendapatkan email apapun dari kami silahkan hubungi contact@indofund.id
                     <br><br>
                     Terima kasih
 

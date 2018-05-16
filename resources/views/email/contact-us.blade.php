@@ -72,7 +72,9 @@
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;background-color: #fff;" width="570">
                         <tbody>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>User bernama {{ $name }} dengan email {{ $email }}} dan handphone {{ $phone }}</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;">
+                                <span>User bernama {{ $name }} dengan email {{ $email }} dan handphone {{ $phone }}</span>
+                            </td>
                         </tr>
                         <tr>
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">{{ $description }}</td>

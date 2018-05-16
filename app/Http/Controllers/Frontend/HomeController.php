@@ -95,6 +95,7 @@ class HomeController extends Controller
                 $recentBlogs = $recentBlogProducts;
                 $count =0;
                 for($i=$recentBlogProducts->count(); $i<$randomBlogs->count(); $i++){
+                    if($recentBlogs->count() > 4) break;
                     $recentBlogs->add($randomBlogs[$count]);
                     $count++;
                 }
@@ -204,6 +205,7 @@ class HomeController extends Controller
         $phone = $request->get('phone');
         $description = $request->get('description');
         $dateTimeNow = Carbon::now('Asia/Jakarta');
+        Utilities::ExceptionLog($name." ".$email." ".$phone." ".$description);
 
         $data = array(
             'email' => $email,

@@ -72,9 +72,11 @@ class Utilities
     public static function ExceptionLog($ex){
         $logContent = ['id' => 1,
             'description' => $ex];
+        $today = Carbon::now('Asia/Jakarta');
+        $todayFormated = Carbon::parse($today)->format('Y-m-d');
 
         $log = new Logger('exception');
-        $log->pushHandler(new StreamHandler(storage_path('logs/error.log')), Logger::ALERT);
+        $log->pushHandler(new StreamHandler(storage_path('logs/'.$todayFormated.'.log')), Logger::ALERT);
         $log->info('exception', $logContent);
     }
 

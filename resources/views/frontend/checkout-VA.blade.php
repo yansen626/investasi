@@ -39,7 +39,7 @@
                             </h4>
                             <h4>dengan nama akun : Indofund.id({{ $user->first_name }} {{$user->last_name}})*
                             </h4>
-                            <h4>pembayaran dapat dilakukan maksimal 4 jam</h4>
+                            <h4>pembayaran dapat dilakukan maksimal 6 jam</h4>
                             <p>*Nama akun akan menjadi nama anda setelah pendaftaran 2x24 jam, nama akun default adalah indofund.id</p>
                             <a href="https://indofund.id/blog/4b3055d0-52cc-11e8-95cd-0358eaa51cd4" target="_blank" class="btn btn-big btn-info">ATM Bank Mandiri</a>
                             <a href="https://indofund.id/blog/c5922d50-52c9-11e8-aee5-21781808d846" target="_blank" class="btn btn-big btn-info">Internet Banking Mandiri</a>

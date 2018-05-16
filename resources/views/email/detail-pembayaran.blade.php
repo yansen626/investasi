@@ -77,7 +77,8 @@
                                 <p>Kami telah menerima order pendanaan dengan detail sebagai berikut :<br/>
                                     Nama Proyek : {{$product->name}}<br/>
                                     Masa Penawaran : {{$product->tenor_loan}} hari<br/>
-                                    Sebesar Rp. {{$transaction->total_price}}
+                                    Sebesar Rp. {{$transaction->total_price}} <br/>
+                                    pembayaran dapat dilakukan maksimal 6 jam
                                 </p>
                                 <p>
                                     Untuk membaca product disclosure statement, silahkan
@@ -92,9 +93,12 @@
                             </tr>
                         @else
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
-                                    Silahkan lakukan pembayaran ke : {{$user->va_acc}} atas nama indofund.id ({{$user->first_name}} {{$user->last_name}}), Bank Mandiri Virtual Account<br>
-                                    Sebesar Rp. {{$transaction->total_price}}  </span>
+                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
+                                    <span>
+                                        Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
+                                        Silahkan lakukan pembayaran ke : {{$user->va_acc}} atas nama indofund.id ({{$user->first_name}} {{$user->last_name}}), Bank Mandiri Virtual Account<br>
+                                        Sebesar Rp. {{$transaction->total_price}}
+                                    </span>
                                     <br>
                                     <span>Untuk instruksi dan cara pembayaran silahkan klik link di bawah ini</span>
                                 </td>

@@ -36,7 +36,7 @@ class SendProspectus extends Mailable
      */
     public function build()
     {
-        return $this->subject("Prospektus Proyek di Indofund")
+        return $this->subject("Product Disclosure Statement di Indofund")
             ->view('email.send-prospectus')->with([
                 'filePath' => $this->file_path
             ]);

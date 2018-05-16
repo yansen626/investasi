@@ -41,7 +41,7 @@
                         <div class="col-sm-4 widget">
                             <h4>E-mail</h4>
                             <i class="fa fa-envelope"></i>
-                            <p>contact@indofund.id</p>
+                            <p>contact@mail.indofund.id</p>
                         </div>
                     </div>
                 </div>
@@ -52,29 +52,9 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="comment-form-wrapper contact-from clearfix">
                         <div class="widget-title ">
-                            <h4>Kirimkan email ke Kami</h4>
+                            <button class="btn btn-big btn-solid" data-toggle="modal" data-target="#contactUsPopup">Kirimkan Email ke kami</button>
+                            {{--<h4>Kirimkan email ke Kami</h4>--}}
                         </div>
-                        <form class="comment-form row altered">
-                            <div class="field col-sm-4">
-                                <h4>Nama</h4>
-                                <input type="text" name="first-name">
-                            </div>
-                            <div class="field col-sm-4">
-                                <h4>E-mail</h4>
-                                <input type="text" name="last-name">
-                            </div>
-                            <div class="field col-sm-4">
-                                <h4>Subyek</h4>
-                                <input type="text" name="first-name">
-                            </div>
-                            <div class="field col-sm-12">
-                                <h4>Pesan</h4>
-                                <textarea name="message"></textarea>
-                            </div>
-                            <div class="field col-sm-4">
-                                <button class="btn btn-big btn-solid"><i class="fa fa-paper-plane"></i><span>Kirim Pesan</span></button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

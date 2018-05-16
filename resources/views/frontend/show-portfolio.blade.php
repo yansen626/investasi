@@ -68,7 +68,7 @@
                                                         @if($trx->payment_method_id == 1)
                                                         <td>Transfer ke nomor rekening {{ $user->va_acc }} <br>
                                                             dengan nama akun : Indofund.id ({{ $user->first_name }} {{$user->last_name}}) <br>
-                                                            sebelum {{ \Carbon\Carbon::parse($trx->created_on)->addHours(4)->format('j-F-Y H:i:s')}}
+                                                            sebelum {{ \Carbon\Carbon::parse($trx->created_on)->addHours(6)->format('j-F-Y H:i:s')}}
                                                         </td>
                                                         @else
                                                         <td> Pembayaran dengan {{$trx->payment_method->description}} </td>
