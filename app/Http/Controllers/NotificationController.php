@@ -140,8 +140,8 @@ class NotificationController extends Controller
                 $interval = $now->diffInHours($trxDate);
 //                dd($now." | ".$trxDate." | ".$interval);
 
-                //Change Status if more than 4 hours
-                if($interval > 4){
+                //Change Status if more than 6 hours
+                if($interval >= 6){
                     TransactionUnit::transactionRejected($transaction->id);
                 }
             }

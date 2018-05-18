@@ -23,7 +23,7 @@
                 <div class="col-md-12 ">
                     <div class="about-right-text" style="padding-top:0;text-align: justify;">
                         <div class="widget-title">
-                            <h4>Indofund.id adalah perusahaan P2P (peer to peer) lending yang terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK).</h4>
+                            <h4>Indofund.id adalah perusahaan P2P (<i>peer to peer</i>) lending yang terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK).</h4>
                         </div>
                         <h3>Sebenarnya apa itu P2P?</h3>
                         <p class="first">
@@ -49,7 +49,7 @@
                         </p>
                         <img class="img-responsive" src="{{ URL::asset('frontend_images/aboutus/P2P_MarketPlace.png') }}" alt="">
                         <p class="first">
-                            <i>Borrower</i> atau pihak yang membutuhkan bantuan dana <strong>merasa terbantu dengan semua lender yang bersedia membantu</strong> mereka agar usaha dan bisnisnya bisa terus berkembang dan tidak terhambat akibat dana.
+                            <i>Borrower</i> atau pihak yang membutuhkan bantuan dana <strong>merasa terbantu dengan semua <i>lender</i> yang bersedia membantu</strong> mereka agar usaha dan bisnisnya bisa terus berkembang dan tidak terhambat akibat dana.
                             <br>
                             <i>Lender</i> atau pihak yang meminjamkan dana juga merasa terbantu karena dapat mendanai proyek dan bisnis serta berpotensi mendapatkan keuntungan (imbal hasil) dari pinjam meminjam dana yang dilakukan.
                         </p>
@@ -81,7 +81,7 @@
                         <p class="first">
                             Tidak sedikit bisnis dan usaha yang terkendala untuk membesarkan usahanya saat ini karena mungkin skala risiko usaha dan ketentuan pendanaan melalui bank tidak dapat mereka penuhi.
                             <br>
-                            Indofund.id berupaya membuat klasifikasi segala jenus usaha dan bisnis potensial tetap bisa mendapatkan akses permodalan dengan metode peer to peer.
+                            Indofund.id berupaya membuat klasifikasi segala jenis usaha dan bisnis potensial untuk tetap bisa mendapatkan akses permodalan dengan metode <i>peer to peer</i>.
 
                         </p>
                         <div class="first text-center">
@@ -99,7 +99,7 @@
                 <h2>Apa yang membedakan Indofund.id dengan P2P lending lainnya?</h2>
                 <h3>Expert & Solid Team</h3>
                 <br>
-                <p>Tim utama Indofund.id terdiri dari individu-individu yang telah berpengalaman dalam industry keuangan</p>
+                <p>Tim utama Indofund.id terdiri dari individu-individu yang telah berpengalaman dalam industri keuangan</p>
 
                 <div class="team-members row">
                     <img class="img-responsive" src="{{ URL::asset('frontend_images/aboutus/BOD.png') }}" alt="">
@@ -126,7 +126,7 @@
                                     Berpengalaman lebih dari 10 tahun di pasar modal sebagai <i>Corporate Finance</i> dan Investment Banker.
                                 </p>
                                 <p>
-                                    Mengawali karir sebagai Investment Bank, David Alusinsing memiliki pengalaman sebagai <i>financial advisor</i> untuk beberapa sektor seperti pertambangan, keuangan, consumer dan beberapa industri.
+                                    Mengawali karir sebagai <i>Investment Bank</i>, David Alusinsing memiliki pengalaman sebagai <i>financial advisor</i> untuk beberapa sektor seperti pertambangan, keuangan, <i>consumer</i> dan beberapa industri.
                                 </p>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                                 <h4><strong>Steffen Fang</strong></h4>
                                 <h4><i>Founder  – Indofund.id</i></h4>
                                 <p>
-                                    Berpengalaman lebih dari 17 tahun di bidang investasi & keuangan, baik sebagai advisor, <i>banker</i>, maupun pelaku usaha.
+                                    Berpengalaman lebih dari 17 tahun di bidang investasi & keuangan, baik sebagai <i>advisor</i>, <i>banker</i>, maupun pelaku usaha.
                                 </p>
                                 <p>
                                     Mengawali karir sebagai seorang <i>Investment Banker</i>, Steffen memiliki kemampuan dan kualifikasi yang kuat dalam analisa kelayakan usaha, <i>due diligence</i> dan pendanaan, yang krusial dibutuhkan dalam bisnis <i>crowdfunding</i>.
@@ -168,91 +168,174 @@
                 <h3>Bukan sekedar P2P lending</h3>
                 <br>
                 <div class="team-members row" style="padding: 0 20% 0 20%; text-align: center;">
-                    <p>Proses seperti apa untuk bisa menjadi borrower dan lender? <br>Ini adalah diagram kerjanya:</p>
+                    <p>Proses seperti apa untuk bisa menjadi <i>borrower</i> dan <i>lender</i>? <br>Ini adalah diagram kerjanya:</p>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <p>
-                                    <strong>Menjadi Borrower</strong>
-                                </p>
+                        <div class="col-xs-12">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <p>
+                                        <strong>Menjadi Borrower</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-1.png') }}" alt="">
+                                    <p>
+                                        Calon <i>borrower</i> mengajukan pinjaman melalui website Indofund.id dengan melengkapi form dan data
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 hidden-sm">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-2.png') }}" alt="">
+                                    <p>
+                                        Pinjaman disetujui oleh Indofund.id dan pinjaman ditawarkan kepada <i>lender</i> di website Indofund.id
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 hidden-sm">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-3.png') }}" alt="">
+                                    <p>
+                                        Borrower melunasi pinjaman terhadap <i>lender</i> sesuai dengan tenggat waktu yang diberikan beserta dengan bunga pinjaman
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <p>
-                                    <strong>Menjadi Lender</strong>
-                                </p>
+                        <div class="col-xs-12">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <p>
+                                        <strong>Menjadi Lender</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-1.png') }}" alt="">
+                                    <p>
+                                        Lender mencari pinjaman yang sesuai dengan profil risiko dan minat dalam mendanai di Indofund.id
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-2.png') }}" alt="">
+                                    <p>
+                                        Lender memutuskan pilihan pendanaan melalui list pinjaman dari <i>borrower</i> yang tersedia di Indofund.id
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 hidden-sm">
+                            <div class="single-member">
+                                <div class="best-volunteer">
+                                    <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-3.png') }}" alt="">
+                                    <p>
+                                        Lender menerima laporan dan pembayaran pelunasan di website Indofund.id serta mendapatkan laporan perkembangannya
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-1.png') }}" alt="">
-                                <p>
-                                    Calon borrower mengajukan pinjaman melalui website Indofund.id dengan melengkapi form dan data
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-1.png') }}" alt="">
-                                <p>
-                                    Lender mencari pinjaman yang sesuai dengan profil risiko dan minat dalam mendanai di Indofund.id
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-2.png') }}" alt="">
-                                <p>
-                                    Pinjaman disetujui oleh Indofund.id dan pinjaman ditawarkan kepada lender di website Indofund.id
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-2.png') }}" alt="">
-                                <p>
-                                    Lender memutuskan pilihan pendanaan kepada list pinjaman dari borrower yang tersedia di Indofund.id
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-3.png') }}" alt="">
-                                <p>
-                                    Borrower melunasi pinjaman terhadap lender sesuai dengan tenggat waktu yang diberikan beserta dengan bunga pinjaman
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-3.png') }}" alt="">
-                                <p>
-                                    Lender menerima laporan dan pembayaran pelunasan di website Indofund.id serta mendapatkan laporan perkembangannya
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<p>--}}
+                                    {{--<strong>Menjadi Borrower</strong>--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<p>--}}
+                                    {{--<strong>Menjadi Lender</strong>--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-1.png') }}" alt="">--}}
+                                {{--<p>--}}
+                                    {{--Calon <i>borrower</i> mengajukan pinjaman melalui website Indofund.id dengan melengkapi form dan data--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-1.png') }}" alt="">--}}
+                                {{--<p>--}}
+                                    {{--Lender mencari pinjaman yang sesuai dengan profil risiko dan minat dalam mendanai di Indofund.id--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-2.png') }}" alt="">--}}
+                                {{--<p>--}}
+                                    {{--Pinjaman disetujui oleh Indofund.id dan pinjaman ditawarkan kepada <i>lender</i> di website Indofund.id--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-2.png') }}" alt="">--}}
+                                {{--<p>--}}
+                                    {{--Lender memutuskan pilihan pendanaan melalui list pinjaman dari <i>borrower</i> yang tersedia di Indofund.id--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<img src="{{ URL::asset('frontend_images/aboutus/kerja-borrower-3.png') }}" alt="">--}}
+                                {{--<p>--}}
+                                    {{--Borrower melunasi pinjaman terhadap <i>lender</i> sesuai dengan tenggat waktu yang diberikan beserta dengan bunga pinjaman--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6 col-xs-12 hidden-sm">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<img src="{{ URL::asset('frontend_images/aboutus/kerja-lender-3.png') }}" alt="">--}}
+                                {{--<p>--}}
+                                    {{--Lender menerima laporan dan pembayaran pelunasan di website Indofund.id serta mendapatkan laporan perkembangannya--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
 
                 <br>
                 <h3>Akselerasi Bisnis dan Usaha</h3>
                 <br>
-                <p>Selain itu Indofund.id juga memberikan aneka <i>training</i> dan <i>mentoring</i> kepada <i>borrower</i> dan <i>lender</i> sehingga borrower bisa menjadi pelaku usaha yang semakin berkembang dan maju dan <i>lender</i>  juga bisa menjadi pemodal yang memiliki profil risiko yang semakin matang serta aset yang mengalami pertumbuhan dengan maksimal. </p>
+                <p>Selain itu Indofund.id juga memberikan aneka <i>training</i> dan <i>mentoring</i> kepada <i>borrower</i> dan <i>lender</i> sehingga <i>borrower</i> bisa menjadi pelaku usaha yang semakin berkembang dan maju dan <i>lender</i>  juga bisa menjadi pemodal yang memiliki profil risiko yang semakin matang serta aset yang mengalami pertumbuhan dengan maksimal. </p>
                 <br>
                 <p>Dalam hal ini Indofund.id bekerja sama dengan mitra-mitra strategis untuk bisa meningkatkan <i>hard skill</i> dan <i>soft skill</i> setiap member dari Indofund.id </p>
 
@@ -281,11 +364,11 @@
                     </div>
                 </div>
                 <br>
-                <p>PT Bursa Akselerasi Indonesia dengan merk dagang Indofund.id memiliki visi dan misi untuk bisa mengembangkan setiap bisnis dan usaha dari aneka industry di Indonesia dengan keterlibatan dari masyarakat Indonesia dan untuk masyarakat Indonesia.</p>
+                <p>PT Bursa Akselerasi Indonesia dengan merk dagang Indofund.id memiliki visi dan misi untuk bisa mengembangkan setiap bisnis dan usaha dari aneka industri di Indonesia dengan keterlibatan dari masyarakat Indonesia dan untuk masyarakat Indonesia.</p>
                 <br>
-                <p>Selain itu berkomitmen untuk bisa membawa Usaha Kecil dan Menengah (UKM) untuk bisa mendapatkan akses level permodalan yang lebih baik hingga tidak Indonesia dan Dunia.</p>
+                <p>Selain itu, Indofund.id juga berkomitmen untuk bisa membawa para <i>borrower</i> dari industri Usaha Kecil dan Menengah (UKM) untuk bisa mendapatkan akses level permodalan yang lebih baik hingga tingkat Indonesia dan Dunia.</p>
                 <br>
-                <p>Dari sisi pemodal, Indofund.id ingin mengajak setiap pemodal menjadi pemodal yang cerdas, analtis dan berkembang.</p>
+                <p>Dari sisi pemodal atau <i>lender</i>, Indofund.id ingin mengajak setiap pemodal menjadi investor yang cerdas dan berkembang.</p>
             </div>
 
         </div>

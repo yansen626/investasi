@@ -27,17 +27,17 @@
         <div class="col-md-12 col-sm-12 text-left">
             <p style="font-size: 15px;text-align:justify;">Disclaimer:
                 <br>
-                Indofund.id adalah website dan merk dagang dari PT Bursa Akselerasi Indonesia. Bagi semua pengguna website ini perlu memberikan perhatian terhadap beberapa hal:
+                <i>Indofund.id adalah website dan merk dagang dari PT Bursa Akselerasi Indonesia. Bagi semua pengguna website ini perlu memberikan perhatian terhadap beberapa hal:</i>
                 <br>
-                1. Layanan peer to peer landing (pinjam meminjam uang berbasis teknologi) pada Indofund.id adalah persetujuan dan kesepakatan antara pemberi dan penerima pinjaman, segala risiko akan ditanggung oleh masing-masing pihak.
+                <i>1. Layanan peer to peer landing (pinjam meminjam uang berbasis teknologi) pada Indofund.id adalah persetujuan dan kesepakatan antara pemberi dan penerima pinjaman, segala risiko akan ditanggung oleh masing-masing pihak.</i>
                 <br>
-                2. Pihak pemberi pinjaman (lender) yang tidak memiliki pemahaman terhadap risiko dan keuntungan dalam meminjamkan dana, disarankan membaca semua keterangan dan proposal penawaran serta perjanjian dengan seksama.
+                <i>2. Pihak pemberi pinjaman (lender) yang tidak memiliki pemahaman terhadap risiko dan keuntungan dalam meminjamkan dana, disarankan membaca semua keterangan dan proposal penawaran serta perjanjian dengan seksama.</i>
                 <br>
-                3. Risiko kredit atau gagal bayar menjadi tanggung jawab sepenuhnya dari pemberi pinjaman. Indofund.id berupaya untuk menampilkan semua data dan informasi yang aktual namun tidak bisa menjadi sebuah rekomendasi ataupun saran yang secara mutlak membebaskan setiap pihak dari risiko.
+                <i>3. Risiko kredit atau gagal bayar menjadi tanggung jawab sepenuhnya dari pemberi pinjaman. Indofund.id berupaya untuk menampilkan semua data dan informasi yang aktual namun tidak bisa menjadi sebuah rekomendasi ataupun saran yang secara mutlak membebaskan setiap pihak dari risiko.</i>
                 <br>
-                4. Penerima pinjaman (borrower) wajib mempertimbangkan suku bunga dan biaya atas kemampuan melakukan pelunasan. Kegagalan bayar pada peer to peer landing juga akan didaftarkan pada SLIK (Sistem Layanan Informasi Keuangan) di OJK (Otoritas Jasa Keuangan) dan akan mengurangi reputasi borrower di dunia keuangan di Indonesia.
+                <i>4. Penerima pinjaman (borrower) wajib mempertimbangkan suku bunga dan biaya atas kemampuan melakukan pelunasan. Kegagalan bayar pada peer to peer landing juga akan didaftarkan pada SLIK (Sistem Layanan Informasi Keuangan) di OJK (Otoritas Jasa Keuangan) dan akan mengurangi reputasi borrower di dunia keuangan di Indonesia.</i>
                 <br>
-                5. Indofund.id selalu berupaya menjadi portal untuk memberikan kenyamanan bagi pihak borrower dan lender dengan melakukan literasi dan sosialisasi secara berkala, pastikan setiap anggota yang terdaftar bisa ikut berpartisipasi dan terlibat pada semua program yang diadakan oleh perusahaan
+                <i>5. Indofund.id selalu berupaya menjadi portal untuk memberikan kenyamanan bagi pihak borrower dan lender dengan melakukan literasi dan sosialisasi secara berkala, pastikan setiap anggota yang terdaftar bisa ikut berpartisipasi dan terlibat pada semua program yang diadakan oleh perusahaan</i>
                 <br>
         </div>
     </div>

@@ -38,7 +38,7 @@
                             <h4>Sisa Pengumpulan Dana = Rp {{$remainingStr}}</h4>
 
                             <div class="field col-sm-12 text-center error-div" style="display: none;">
-                                <span class="help-block" style="color: red;">Nominal harus kelipatan dari Rp 250.000 dan minimal Rp 500.000</span>
+                                <span class="help-block" style="color: red;">Nominal harus kelipatan dari Rp {{number_format(env('PAYMENT_MULTIPLE'), 0, ",", ".")}} dan minimal Rp {{number_format(env('PAYMENT_MINIMUM'), 0, ",", ".")}}</span>
                             </div>
                             <div class="field col-sm-12 text-center error-div-wallet" style="display: none;">
                                 <span class="help-block" style="color: red;">Saldo Anda tidak mencukupi</span>
@@ -49,8 +49,8 @@
                             <div class="field col-sm-12 price-format">
                                 <h5>Nominal</h5>
                                 <input id="amount" type="text" name="amount" />
-                                <h5>Minimum Pendanaan : Rp 500.000</h5>
-                                <h5>Kelipatan : Rp 250.000</h5>
+                                <h5>Minimum Pendanaan : Rp {{number_format(env('PAYMENT_MINIMUM'), 0, ",", ".")}}</h5>
+                                <h5>Kelipatan : Rp {{number_format(env('PAYMENT_MULTIPLE'), 0, ",", ".")}}</h5>
                             </div>
 
                             <div class="field col-sm-12">
@@ -79,6 +79,9 @@
                                 <input id="notCompletedData" value="{{$notCompletedData}}" type="hidden">
                                 <input id="wallet" value="{{$userData->wallet_amount}}" type="hidden">
                                 <input id="remaining" value="{{$remaining}}" type="hidden">
+                                <input id="paymentMinim" value="{{env('PAYMENT_MINIMUM')}}" type="hidden">
+                                <input id="paymentMultiple" value="{{env('PAYMENT_MULTIPLE')}}" type="hidden">
+
                                 <div class="field col-sm-12">
                                     <div class="col-sm-12">
                                         <h5 style="color:red;">

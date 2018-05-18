@@ -37,8 +37,10 @@ function modalCheckout(){
         $(".error-remaining").show();
     }
     else{
+        var payment_minim = parseInt($("#paymentMinim").val());
+        var payment_multiple = parseInt($("#paymentMultiple").val());
         //check amount
-        if(invest%250000 === 0 && invest >= 500000){
+        if(invest%payment_multiple === 0 && invest >= payment_minim){
             $(".error-div").hide();
             $(".error-remaining").hide();
             $(".error-div-wallet").hide();
