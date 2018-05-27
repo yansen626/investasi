@@ -14,6 +14,7 @@ use App\Libs\UrgentNews;
 use App\Models\Blog;
 use App\Models\GuestProspectus;
 use App\Models\Product;
+use App\Models\ProductInstallment;
 use App\Models\Vendor;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
@@ -114,6 +115,7 @@ class ProductController extends Controller
             $isWishlist = 1;
         }
 
+        $productInstallments = ProductInstallment::where("product_id", $id)->get();
 
 //        $productDescription = DB::select(
 //            "SELECT description FROM investasi.products where id='".$id."';"
@@ -124,7 +126,17 @@ class ProductController extends Controller
 ////        dd($product->description);
 //        dd($arrayofDescription);
 
-        return View ('frontend.show-product-new', compact('product', 'vendor', 'vendorDesc', 'projectNews', 'projectCount', 'userId', 'isWishlist'));
+        $data = [
+            'product'=>$product,
+            'vendor'=>$vendor,
+            'vendorDesc'=>$vendorDesc,
+            'projectNews'=>$projectNews,
+            'projectCount'=>$projectCount,
+            'productInstallments'=>$productInstallments,
+            'userId'=>$userId,
+            'isWishlist'=>$isWishlist
+        ];
+        return View ('frontend.show-product-new')->with($data);
     }
 
     public function DownloadFile($filename)

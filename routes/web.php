@@ -101,6 +101,10 @@ Route::get('/referral', 'Frontend\ReferralController@ShowReferral');
 //Vendor
 Route::get('/vendor/{vendorObj}', 'Frontend\VendorController@show')->name('vendor-profile-show');
 Route::get('/pengajuan-update', 'Frontend\VendorController@RequestUpdate')->name('update-request');
+Route::get('/installment-payment', 'Frontend\VendorController@InstallmentPaymentShow')->name('installment');
+Route::post('/installment-payment/confirm', 'Frontend\VendorController@InstallmentPaymentConfirm');
+Route::post('/installment-payment', 'Frontend\VendorController@InstallmentPaymentSubmit');
+Route::get('/installment-payment/success/{id}', 'Frontend\VendorController@InstallmentPaymentSuccess')->name('payment-success');
 
 
 //End Frontend Routing

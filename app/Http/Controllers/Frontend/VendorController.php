@@ -12,8 +12,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductInstallment;
 use App\Models\User;
 use App\Models\Vendor;
+use App\Models\WalletStatement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
@@ -190,4 +193,148 @@ class VendorController extends Controller
 
         return View('frontend.show-owner-register-submited');
     }
+
+    public function InstallmentPaymentShow()
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+        $vendorId = Vendor::select("id")->where("user_id", $userId)->first();
+
+        $products = Product::where("vendor_id", $vendorId->id)->get();
+
+        return View ('frontend.show-installment-payment', compact('products'));
+    }
+
+    public function InstallmentPaymentConfirm(Request $request){
+        $validator = Validator::make($request->all(),[
+            'month'         => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput($request->all());
+        }
+
+        if($request['product'] == '-1'){
+            return redirect()->back()->withErrors('Pilih proyek!', 'default')->withInput($request->all());
+        }
+
+        $productInstallmentDB = ProductInstallment::where('product_id', $request['product'])
+            ->where('month', $request['month'])->first();
+
+        if(!$productInstallmentDB)
+            return redirect()->back()->withErrors('Tidak Menemukan data cicilan!', 'default')->withInput($request->all());
+
+//        $amount = 0;
+//        if(Input::get('amount') == '0'){
+//            $amount = floatval(Input::get('custom_amount'));
+//        }
+//        else{
+//            $amount = floatval(Input::get('amount'));
+//        }
+//
+        $amount = (double) str_replace('.','', $productInstallmentDB->amount);
+        $interest = (double) str_replace('.','', $productInstallmentDB->interest_amount);
+        $totalAmount = $amount + $interest;
+        $totalAmountStr = number_format($totalAmount, 0, ",", ".");
+////        $amount = floatval(Input::get('amount'));
+//
+//        $amountStr = number_format($amount, 0, ",", ".");
+//
+//        // Get total top up
+//        $totalAmount = $amount + 4000;
+//        $totalAmountStr = number_format($totalAmount, 0, ",", ".");
+
+        $data = [
+            'productInstallmentDB'            => $productInstallmentDB,
+            'totalAmountStr'            => $totalAmountStr,
+        ];
+
+        return View('frontend.show-installment-payment-confirm')->with($data);
+    }
+
+    public function InstallmentPaymentSubmit(Request $request){
+        $validator = Validator::make($request->all(),[
+            'amount'         => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput($request->all());
+        }
+        $id = $request['product_installment_id'];
+        $amount = (double) str_replace('.','', $request['amount']);
+
+        $productInstallmentDB = ProductInstallment::find($id);
+        $productDB = Product::find($productInstallmentDB->product_id);
+        $vendor = Vendor::find($productDB->vendor_id);
+
+        $productInstallmentDB->vendor_va = $vendor->vendor_va;
+        $productInstallmentDB->paid_amount = $amount;
+        $productInstallmentDB->status_id = 3;
+        $productInstallmentDB->save();
+
+
+//
+//        $user = Auth::user();
+//        $userId = $user->id;
+//
+//        $paymentMethod = Input::get('method');
+//
+//        // Get unique order id
+//        $orderId = 'WALLET-'. uniqid();
+//
+////        $amount = floatval(Input::get('amount'));
+//        $amount = (double) str_replace('.','', Input::get('amount'));
+//
+//        // Delete existing cart
+//        $carts = Cart::where('user_id', $userId)
+//            ->whereNull('product_id')
+//            ->get();
+//
+//        if($carts->count() > 0){
+//            foreach($carts as $cart){
+//                $cart->delete();
+//            }
+//        }
+//
+//        $adminFee = 0;
+//        if($paymentMethod == 'bank_transfer'){
+//            $adminFee = 4000;
+//        }
+//
+//        // Save temporary data
+//        $cartCreate = Cart::create([
+//            'user_id'               => $userId,
+//            'quantity'              => 1,
+//            'admin_fee'             => 4000,
+//            'order_id'              => $orderId,
+//            'payment_method'        => $paymentMethod,
+//            'invest_amount'         => $amount,
+//            'total_invest_amount'   => $amount + $adminFee
+//        ]);
+//
+//        if($paymentMethod == 'bank_transfer'){
+//            $isSuccess = TransactionUnit::createTransactionTopUp($userId, $cartCreate->id, $orderId);
+//        }
+//        //set data to request
+//        $transactionDataArr = Midtrans::setRequestData($userId, $paymentMethod, $orderId, $cartCreate);
+//
+//        //sending to midtrans
+//        $redirectUrl = Midtrans::sendRequest($transactionDataArr);
+
+
+        return redirect()->route('payment-success', ['id'=>$id]);
+    }
+
+    public function InstallmentPaymentSuccess($id){
+        $productInstallmentDB = ProductInstallment::find($id);
+        $productDB = Product::find($productInstallmentDB->product_id);
+        $vendor = Vendor::find($productDB->vendor_id);
+
+        $data = [
+            'productInstallmentDB'            => $productInstallmentDB,
+            'vendor'            => $vendor,
+        ];
+        return View('frontend.show-installment-payment-success')->with($data);
+    }
+
 }

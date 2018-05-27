@@ -32,6 +32,18 @@ class TestingController extends Controller
 {
     public function TestingSendEmail(){
         try{
+            $string ="UBP60148879501FFFFFF8879500071\r\nMCM CA/SA UBP PYM CR";
+            $vaNumber = substr($string, 20, 10);
+            $string2 ="UBP60228879501FFFFFF8879500036\r\nATMB trf Credt CF545003 /2100435496/ATB-0000000000009";
+            $vaNumber2 = substr($string2, 20, 10);
+            $string3 ="UBP60148879501FFFFFF8879500011";
+            $vaNumber3 = substr($string3, 20, 10);
+            $string4 ="UBP60118879501FFFFFF8879500010\r\n100000 ";
+            $vaNumber4 = substr($string4, 20, 10);
+            $string5 ="UBP66668879501FFFFFF8879500072PRMA CR Transfer 1020007258285 6019002682358967";
+            $vaNumber5 = substr($string5, 20, 10);
+            dd($vaNumber." | ". $vaNumber2." | ". $vaNumber3." | ". $vaNumber4." | ". $vaNumber5);
+
             $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
             //Send Email,
             $userData = User::find($transaction->user_id);

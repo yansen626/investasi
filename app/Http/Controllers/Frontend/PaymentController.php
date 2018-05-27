@@ -92,7 +92,7 @@ class PaymentController extends Controller
         Auth::logout();
         Auth::login($user);
 
-        Session::flash('message', 'Berhasil mengubah Data!');
+        Session::flash('message', 'Berhasil update KTP');
 
         //Back to the Payment
         return redirect()->route('checkout', ['id' => $productId]);

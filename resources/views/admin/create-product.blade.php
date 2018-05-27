@@ -69,8 +69,9 @@
                                                 </div>
 
                                                 <div class="field col-md-6 col-sm-12">
-                                                    <h4>Upload product disclosure statement</h4>
-                                                    {!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}
+                                                    <h4>Link product disclosure statement</h4>
+                                                    <input type="text" name="prospectus" value="{{old('prospectus')}}" class="form-control col-md-7 col-xs-12">
+                                                    {{--{!! Form::file('prospectus', array('id' => 'prospectus', 'class' => 'file', 'accept' => 'application/pdf')) !!}--}}
                                                 </div>
                                                 <div class="field col-sm-12">
                                                     <h4>Nama Proyek / Produk</h4>
@@ -126,18 +127,18 @@
                                                     <h4>Durasi Pinjaman (bulan)</h4>
                                                     <input type="number" id="tenor_loan" name="tenor_loan" value="{{old('tenor_loan')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
-                                                <div class="field col-md-6 col-sm-12">
-                                                    <h4>Cicilan/bulan</h4>
-                                                    <input type="number" name="installment_per_month" value="{{old('installment_per_month')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
-                                                <div class="field col-md-6 col-sm-12">
-                                                    <h4>Bunga/bulan</h4>
-                                                    <input type="number" name="interest_per_month" value="{{old('interest_per_month')}}" class="form-control col-md-7 col-xs-12">
-                                                </div>
                                                 {{--<div class="field col-md-6 col-sm-12">--}}
-                                                {{--<h4>&nbsp;</h4>--}}
-                                                {{--<a class="btn btn-primary col-md-5 col-xs-12" onclick="interestPerMonth()">Cicilan&Bunga / bulan</a>--}}
+                                                    {{--<h4>Cicilan/bulan</h4>--}}
+                                                    {{--<input type="number" name="installment_per_month" value="{{old('installment_per_month')}}" class="form-control col-md-7 col-xs-12">--}}
                                                 {{--</div>--}}
+                                                {{--<div class="field col-md-6 col-sm-12">--}}
+                                                    {{--<h4>Bunga/bulan</h4>--}}
+                                                    {{--<input type="number" name="interest_per_month" value="{{old('interest_per_month')}}" class="form-control col-md-7 col-xs-12">--}}
+                                                {{--</div>--}}
+                                                <div class="field col-md-6 col-sm-12">
+                                                    <h4>&nbsp;</h4>
+                                                    <a class="btn btn-primary col-md-5 col-xs-12" onclick="interestPerMonth()">Cicilan&Bunga / bulan</a>
+                                                </div>
                                                 <div class="field col-sm-12">
                                                     <table id="interest-month">
                                                     </table>
@@ -179,22 +180,29 @@
 
 //            $('#owner-form').submit();
         }
+        function interestPerMonth(){
+            var divAmount = $("#tenor_loan").val();
 
-        // function interestPerMonth(){
-        //     var divAmount = $("#tenor_loan").val();
-        //
-        //     var sbAdd = new stringbuilder();
-        //     $('#interest-month').empty();
-        //
-        //     for(var i=1;i<=divAmount;i++){
-        //         sbAdd.append("<tr>");
-        //         sbAdd.append("<td> Bulan "+ i + "</td>");
-        //         sbAdd.append("<td style='padding-left:5%;'>");
-        //         sbAdd.append("<input type='number' name='interest_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
-        //         sbAdd.append("</tr>");
-        //     }
-        //
-        //     $('#interest-month').append(sbAdd.toString());
-        // }
+            var sbAdd = new stringbuilder();
+            $('#interest-month').empty();
+
+            sbAdd.append("<tr>");
+            sbAdd.append("<td> <h4>Bulan</h4></td>");
+            sbAdd.append("<td style='padding-left:5%;'><h4>Cicilan/bulan</h4></td>");
+            sbAdd.append("<td style='padding-left:5%;'><h4>Bunga/bulan</h4></td>");
+            sbAdd.append("</tr>");
+
+            for(var i=1;i<=divAmount;i++){
+                sbAdd.append("<tr>");
+                sbAdd.append("<td> Bulan "+ i + "</td>");
+                sbAdd.append("<td style='padding-left:5%;'>");
+                sbAdd.append("<input type='number' name='installment_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
+                sbAdd.append("<td style='padding-left:5%;'>");
+                sbAdd.append("<input type='number' name='interest_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
+                sbAdd.append("</tr>");
+            }
+
+            $('#interest-month').append(sbAdd.toString());
+        }
     </script>
 @endsection

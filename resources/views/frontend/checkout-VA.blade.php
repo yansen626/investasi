@@ -31,7 +31,7 @@
                     <div class="clearfix text-center">
                         <div class="foundings">
                             <h3>
-                                Order Pendaana Anda telah Berhasil!
+                                Order Pendanaan Anda telah Berhasil!
                             </h3>
                             <h4>
                                 Silahkan melakukan pembayaran senilai Rp {{ $transaction->total_payment}}

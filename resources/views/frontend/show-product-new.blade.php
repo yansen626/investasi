@@ -115,7 +115,7 @@
         <div class="donation-wrapper">
             <div class="container" >
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 submenu">
+                    <div class="col-md-12 col-sm-12 submenu-product">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <ul class="tabs-switcher nav nav-tabs clearfix ">
                                 <li class="active">
@@ -233,6 +233,11 @@
                             <br><br>
                             <span>Industri : {{$product->vendor->business_type}}</span>
                             <br><br>
+                            <span>Ilustrasi pembayaran :</span>
+                            @foreach($productInstallments as $productInstallment)
+                                <br>
+                                Bulan {{$productInstallment->month}} = Rp {{$productInstallment->paid_amount}}
+                            @endforeach
                             {{--<span>Agunan : </span>--}}
                             {{--<br><br>--}}
                             {{--<h3>Keterangan Tambahan</h3>--}}

@@ -14,6 +14,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property string $id
  * @property string $user_id
+ * @property string $vendor_va,
  * @property string $name
  * @property string $description
  * @property string $profile_picture
@@ -103,6 +104,7 @@ class Vendor extends Eloquent
 	protected $fillable = [
 		'id',
 		'user_id',
+        'vendor_va',
 		'name',
 		'description',
 		'profile_picture',

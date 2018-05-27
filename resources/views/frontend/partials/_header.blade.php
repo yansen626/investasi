@@ -48,7 +48,7 @@
                             <span>Tentang</span>
                             <ul class="submenu">
                                 <li><a href="{{route('about')}}">Tentang Kami</a></li>
-                                <li><a href="{{route('term-condition')}}">Syarat & Ketentuan</a></li>
+                                {{--<li><a href="{{route('term-condition')}}">Syarat & Ketentuan</a></li>--}}
                                 <li><a href="{{route('privacy-policy')}}">Kebijakan Privasi</a></li>
                                 <li><a href="{{route('contact')}}">Hubungi Kami</a></li>
                                 <li><a href="{{route('pengajuan')}}">Jadilah Partner Kami</a></li>
@@ -108,7 +108,7 @@
                                         <li><a>Tentang</a>
                                             <ul>
                                                 <li><a href="{{route('about')}}">Tentang Kami</a></li>
-                                                <li><a href="{{route('term-condition')}}">Syarat & Ketentuan</a></li>
+                                                {{--<li><a href="{{route('term-condition')}}">Syarat & Ketentuan</a></li>--}}
                                                 <li><a href="{{route('privacy-policy')}}">Kebijakan Privasi</a></li>
                                                 <li><a href="{{route('contact')}}">Hubungi Kami</a></li>
                                                 <li><a href="{{route('pengajuan')}}">Jadilah Partner Kami</a></li>

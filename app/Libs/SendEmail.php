@@ -15,6 +15,7 @@ use App\Mail\EmailVerification;
 use App\Mail\InvoicePembelian;
 use App\Mail\PerjanjianLayanan;
 use App\Mail\PerjanjianPinjaman;
+use App\Mail\ReminderInstallment;
 use App\Mail\RequestVerification;
 use App\Mail\RequestWithdrawInvestor;
 use App\Mail\SendProspectus;
@@ -222,7 +223,13 @@ class SendEmail
                 case 'installmentPayment' :
                     break;
                 //tagihan pinjaman proyek
-                case 'reminderIntallmentPayment' :
+                case 'reminderInstallment' :
+                    $userData = $objData->user;
+                    $product = $objData->product;
+                    $productInstallment = $objData->productInstallment;
+
+                    $reminderInstallment = new ReminderInstallment($userData, $product, $productInstallment);
+                    Mail::to($userData->email)->send($reminderInstallment);
                     break;
                 case 'testing' :
 

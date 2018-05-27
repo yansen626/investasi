@@ -77,6 +77,34 @@
                     @endif
                 </div>
 
+                {{--@if($isBorrower)--}}
+                    {{--<div class="row features">--}}
+                        {{--<div class="col-md-offset-2 col-md-4 col-sm-12">--}}
+                            {{--<a href="#">--}}
+                                {{--<div class="feature clearfix">--}}
+                                    {{--<img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-1.png') }}">--}}
+                                    {{--<h4>Proyek Saya</h4>--}}
+                                    {{--<div class="feature-div">--}}
+                                        {{--<p>Saat ini terdapat {{$myProductCount}} proyek Anda yang berjalan</p>--}}
+                                        {{--<p>3 hampir selesai, 3 selesai</p>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-4 col-sm-12">--}}
+                            {{--<a href="{{route('installment')}}">--}}
+                                {{--<div class="feature  clearfix">--}}
+                                    {{--<img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-2.png') }}">--}}
+                                    {{--<h4>Cicilan Proyek </h4>--}}
+                                    {{--<div class="feature-div">--}}
+                                        {{--<p>Bayar Cicilan Proyek Anda disini</p>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--@endif--}}
+
                 @if($onGoingProducts->count() > 0)
                 <div class="one">
                     <h2>Proyek yang Anda Danai</h2>
@@ -465,10 +493,10 @@
                 <h2>Dapatkan Berita & Informasi Terbaru ke Email Anda</h2>
                 {!! Form::open(['url'=>'subscribeEmail','id'=>'subscribe-form'])!!}
                 <div class="col-md-offset-2 col-md-3 col-sm-12 field">
-                    <input style="margin-bottom: 5%;color:white;" type="text" name="name" id="name" class="subscribe-field" placeholder="Ketikkan nama Anda disini">
+                    <input style="margin-bottom: 5%;color:black;" type="text" name="name" id="name" class="subscribe-field" placeholder="Ketikkan nama Anda disini">
                 </div>
                 <div class="col-md-3 col-sm-12 field">
-                    <input style="margin-bottom: 5%;color:white;" type="email" name="email" id="email" class="subscribe-field" placeholder="Ketikkan alamat E-mail Anda disini">
+                    <input style="margin-bottom: 5%;color:black;" type="email" name="email" id="email" class="subscribe-field" placeholder="Ketikkan alamat E-mail Anda disini">
                 </div>
                 <div class="col-md-3 col-sm-12 field">
                     {!! Form::submit('Kirim',['class'=>'btn btn-min btn-solid subscribe-submit', 'id'=>'subscribe-button'])!!}

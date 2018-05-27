@@ -42,13 +42,15 @@
         </div>
     </div>
     <div class="footer-bar" style="background: white; color: #ff7a00;margin-top: 0;font-size: 16px !important;">
-        <a href="https://www.facebook.com/Indofundid-430973140666740/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/Indofund/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
         <a href="https://twitter.com/indofund_id" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
         <a href="https://www.instagram.com/indofund.id/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        {{--&nbsp;&nbsp;&nbsp;--}}
+        {{--<a href="https://www.youtube.com/channel/UCLV2VznCGF7XFSzjuKARzrQ" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>--}}
         &nbsp;&nbsp;&nbsp;
-        <a href="https://www.youtube.com/channel/UCLV2VznCGF7XFSzjuKARzrQ" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+        <a><i class="fa fa-whatsapp" aria-hidden="true"></i> +62 896-4344-8118</a>
         <br><br>
         <div class="container">
             <h5>2018 © All Rights Reserved | Privacy Policy</h5>
@@ -71,7 +73,30 @@
                     <br><br>
                     Apabila Anda tidak menemukan email tersebut silahkan cek pada spam folder Anda.
                     <br><br>
-                    Bila Anda mendapatkan email apapun dari kami silahkan hubungi contact@indofund.id
+                    Bila Anda mendapatkan email apapun dari kami silahkan hubungi contact@mail.indofund.id
+                    <br><br>
+                    Terima kasih
+
+                    {{--<div class="modal-footer">--}}
+                        {{--<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>--}}
+                    {{--</div>--}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-success-contact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top: 10%;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{--<h4 class="modal-title" id="myModalLabel">Success</h4>--}}
+                </div>
+                <div class="modal-body text-center">
+                    <img class="subscribe_popup_image" src="{{ URL::asset('frontend_images/homepage/submit-subscribe.png') }}">
+                    <br><br>
+                    Kami telah menerima email Anda pada sistem kami.
+                    <br><br>
+                    Harap mengunggu balasan dari kami atau hubungi contact@mail.indofund.id
                     <br><br>
                     Terima kasih
 

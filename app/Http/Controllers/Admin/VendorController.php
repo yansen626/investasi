@@ -249,9 +249,11 @@ class VendorController extends Controller
             ]);
 
 //        create new vendor
+            $vendor_va_acc = Utilities::VendorVANumber($va_acc);
             $newVendor = Vendor::create([
                 'id' =>$vendorID,
                 'user_id' => $userID,
+                'vendor_va' => $vendor_va_acc,
                 'name' => $request['name_vendor'],
                 'description' => $request['description_vendor'],
                 'bank_name' => $request['bank'],
@@ -353,13 +355,17 @@ class VendorController extends Controller
 
 
 //        create product ciclan & bunga
+
             for($i=0;$i<$request['tenor_loan'];$i++){
+                $totalPayment = $installmentPerMonths[$i] + $interestPerMonths[$i];
                 $newProduct = ProductInstallment::create([
                     'id'            =>Uuid::generate(),
                     'product_id'    => $productID,
                     'month'         => $i + 1,
                     'amount'        => $installmentPerMonths[$i],
                     'interest_amount'        => $interestPerMonths[$i],
+                    'paid_amount'        => $totalPayment,
+                    'vendor_va'        => $vendor_va_acc,
                     'status_id'     => 1,
                     'created_on'    => $dateTimeNow->toDateTimeString()
                 ]);

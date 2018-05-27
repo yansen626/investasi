@@ -17,6 +17,7 @@ use App\Models\PaymentMethod;
 use App\Models\Transaction;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -50,8 +51,10 @@ class HomeController extends Controller
         $onGoingTransaction = null;
         $finishTransaction = null;
         $recentProductCount = null;
+        $myProductCount = null;
         $onGoingProducts = null;
         $onGoingProductCount = null;
+        $isBorrower = false;
         $recentBlogs = $randomBlogs;
 
         if(auth()->check()){
@@ -70,6 +73,16 @@ class HomeController extends Controller
 //                }
                 return View('frontend.show-blog-urgents', compact('blogs', 'section_Popup'));
             }
+
+//            $isBorrower = Vendor::where("user_id", $userId)->exists();
+//            if($isBorrower){
+//                $vendor = Vendor::select('id')->where("user_id", $userId)->first();
+//                $myProductCount = Product::where('status_id', 21)
+//                    ->where('vendor_id', $vendor->id)
+//                    ->where('category_id', 2)
+//                    ->orderByDesc('created_on')
+//                    ->count();
+//            }
 
             $recentProductCount = Product::where('status_id', 21)->where('category_id', 2)->orderByDesc('created_on')->count();
             $onGoingProducts = Transaction::where('user_id', $userId)->orderByDesc('created_on')->take(3)->get();
@@ -114,6 +127,8 @@ class HomeController extends Controller
             'recentBlogs' => $recentBlogs,
             'highlightBlog' => $highlightBlog,
             'user' => $user,
+//            'isBorrower' => $isBorrower,
+//            'myProductCount' => $myProductCount,
             'pendingTransaction' => $pendingTransaction,
             'onGoingTransaction' => $onGoingTransaction,
             'finishTransaction' => $finishTransaction,
@@ -197,15 +212,16 @@ class HomeController extends Controller
         ]);
 
         if ($validator->fails())
-//            return response()->json(['success' => false, 'error' => 'exception']);
-            return redirect()->route('index');
+//            return response()->json(['success' => false]);
+            return response()->json(['success' => false, 'error' => 'Harap mengisi semua data']);
+//            return redirect()->route('index');
 
         $name = $request->get('name');
         $email = $request->get('email');
         $phone = $request->get('phone');
         $description = $request->get('description');
         $dateTimeNow = Carbon::now('Asia/Jakarta');
-        Utilities::ExceptionLog($name." ".$email." ".$phone." ".$description);
+//        Utilities::ExceptionLog($name." ".$email." ".$phone." ".$description);
 
         $data = array(
             'email' => $email,
@@ -215,8 +231,8 @@ class HomeController extends Controller
         );
         SendEmail::SendingEmail('contactUs', $data);
 
-//        return response()->json(['success' => true]);
-        return redirect()->route('index');
+        return response()->json(['success' => true]);
+//        return redirect()->route('index');
     }
 
     public function RequestVerification($email){

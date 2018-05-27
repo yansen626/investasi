@@ -200,4 +200,53 @@ $(function(){
             }
         });
     });
+
+    $('#contact-form').on('submit',function(e){
+
+        e.preventDefault();
+        var namecontact = '';
+        if($('#namecontact').length > 0){
+            namecontact = $('#namecontact').val();
+        }
+        var emailContact = '';
+        if($('#emailContact').length > 0){
+            emailContact = $('#emailContact').val();
+        }
+        var phone = '';
+        if($('#phone').length > 0){
+            phone = $('#phone').val();
+        }
+        var description = '';
+        if($('#description').length > 0){
+            description = $('#description').val();
+        }
+        $.ajax({
+            url     : urlLinkContactUs,
+            method  : 'POST',
+            data    : {
+                // _token: CSRF_TOKEN,
+                name  : namecontact,
+                email  : emailContact,
+                phone  : phone,
+                description : description
+            },
+            headers:
+                {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            success : function(response){
+                if(response.success === true){
+                    $('#contactUsPopup').modal('hide');
+                    $('#modal-success-contact').modal();
+                }
+                else{
+                    alert(response.error);
+                    // alert("There's something wrong!");
+                }
+            },
+            error:function(){
+                alert('error');
+            }
+        });
+    });
 });

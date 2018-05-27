@@ -348,13 +348,16 @@
                         <a href="http://idxincubator.com/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-1.png') }}" class="img-responsive center-block"></a>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                        <a href="http://sfcapgroup.com/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-2.png') }}"  class="img-responsive center-block"></a>
+                        <a><img src="{{ URL::asset('frontend_images/aboutus/mitra-2.png') }}"  class="img-responsive center-block"></a>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <a href="http://www.megasekuritas.id/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-3.png') }}" class="img-responsive center-block"></a>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <a href="https://kayadgnsehat.com/"><img src="{{ URL::asset('frontend_images/aboutus/mitra-4.png') }}"  class="img-responsive center-block"></a>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <a><img src="{{ URL::asset('frontend_images/aboutus/mitra-7.png') }}"  class="img-responsive center-block"></a>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <a href="http://elexmedia.id"><img src="{{ URL::asset('frontend_images/aboutus/mitra-5.png') }}"  class="img-responsive center-block"></a>

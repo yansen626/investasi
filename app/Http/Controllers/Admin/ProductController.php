@@ -14,6 +14,7 @@ use App\Libs\SendEmail;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\ProductInstallment;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Vendor;
@@ -31,9 +32,9 @@ use Webpatser\Uuid\Uuid;
 class ProductController extends Controller
 {
     public function __construct()
-{
-    $this->middleware('auth:user_admins');
-}
+    {
+        $this->middleware('auth:user_admins');
+    }
 
     public function index(){
         $products = Product::all()->sortByDesc('created_on');
@@ -61,6 +62,9 @@ class ProductController extends Controller
         return View('admin.show-product-collected-funds', compact('products', 'adminType'));
     }
 
+    /*
+     * process for 100% collected fund
+     */
     public function AcceptCollectedFund($id){
 
         $product = Product::find($id);
@@ -89,6 +93,16 @@ class ProductController extends Controller
                 $userDB->wallet_amount = $userWalletDB + $collectedFund;
                 $userDB->save();
 
+                //update project installment due date
+                $productInstallments = ProductInstallment::where('product_id',$product->id)->get();
+
+                foreach ($productInstallments as $productInstallment){
+                    $dateTimeNow = Carbon::now('Asia/Jakarta');
+                    $productMonth = $productInstallment->month;
+                    $intervalDay = $productMonth * 30;
+                    $productInstallment->due_date = $dateTimeNow->addDays($intervalDay);
+                    $productInstallment->save();
+                }
 
                 //send email notfication to project owner, fund collected
                 $data = array(
@@ -167,6 +181,9 @@ class ProductController extends Controller
         return Redirect::route('product-failed-fund');
     }
 
+    /*
+     * function to get lender list of a project
+     * */
     public function ProductInvestorList($id){
         $productDB = Product::find($id);
         $transactionDB = Transaction::where('product_id', $id)->get();
@@ -194,8 +211,8 @@ class ProductController extends Controller
             'tenor_loan'            => 'required',
             'description'           => 'required',
             'interest_rate'           => 'required',
-            'installment_per_month'           => 'required',
-            'interest_per_month'           => 'required',
+//            'installment_per_month'           => 'required',
+//            'interest_per_month'           => 'required',
             'prospectus'           => 'required',
         ],
             [
@@ -208,8 +225,8 @@ class ProductController extends Controller
                 'tenor_loan.required'   => 'Durasi Pinjaman harus diisi',
                 'description.required'   => 'Deskripsi Proyek harus diisi',
                 'interest_rate.required'   => 'Suku Bunga Proyek harus diisi',
-                'installment_per_month.required'   => 'Cicilan / Bulan harus diisi',
-                'interest_per_month.required'   => 'Bunga / Bulan harus diisi',
+//                'installment_per_month.required'   => 'Cicilan / Bulan harus diisi',
+//                'interest_per_month.required'   => 'Bunga / Bulan harus diisi',
                 'prospectus.required'   => 'Product Disclosure Statement Proyek harus diisi',
 
             ]);
@@ -217,21 +234,31 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-//        $interestPerMonths = $request['interest_per_month'];
-//        $isNullMember = in_array(null, $interestPerMonths, true);
-//        if($isNullMember)
-//            return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
+
 
         DB::transaction(function() use ($request){
+            $interestPerMonths = "";
+            $installmentPerMonths = "";
+            $interestPerMonths = $request['interest_per_month'];
+            $installmentPerMonths = $request['installment_per_month'];
+            $isNullMemberInterest = in_array(null, $interestPerMonths, true);
+            $isNullMemberInstallment = in_array(null, $installmentPerMonths, true);
+            dd($isNullMemberInterest." | ".$isNullMemberInstallment);
+            if($isNullMemberInterest && $isNullMemberInstallment){
+                return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
+            }
+
 //            dd($request);
             $vendorDB = Vendor::find($request['vendor_id']);
             $vendorID = $vendorDB->id;
             $userID = $vendorDB->user_id;
+            $vendor_va_acc = $vendorDB->vendor_va;
             $dateTimeNow = Carbon::now('Asia/Jakarta');
 
 //        create new product
+            $productID = Uuid::generate();
             $newProduct = Product::create([
-                'id' =>Uuid::generate(),
+                'id' => $productID,
                 'category_id' => $request['category'],
                 'name' => $request['project_name'],
                 'user_id' => $userID,
@@ -242,8 +269,9 @@ class ProductController extends Controller
                 'description' => $request['description'],
                 'interest_rate' => $request['interest_rate'],
                 'business_class' => $request['business_class'],
-                'installment_per_month' => $request['installment_per_month'],
-                'interest_per_month' => $request['interest_per_month'],
+                'prospectus_path' => $request['prospectus'],
+//                'installment_per_month' => $request['installment_per_month'],
+//                'interest_per_month' => $request['interest_per_month'],
                 'tenor_loan' => $request['tenor_loan'],
                 'is_secondary' => 0,
                 'status_id' => 3,
@@ -283,24 +311,28 @@ class ProductController extends Controller
             $newProduct->image_path = $filename;
 
             // save pdf
-            $filenamePDF = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms').'.pdf';
-            $destinationPath = public_path('storage/project/');
-
-            $request->file('prospectus')->move($destinationPath, $filenamePDF);
-            $newProduct->prospectus_path = $filenamePDF;
-            $newProduct->save();
+//            $filenamePDF = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms').'.pdf';
+//            $destinationPath = public_path('storage/project/');
+//
+//            $request->file('prospectus')->move($destinationPath, $filenamePDF);
+//            $newProduct->prospectus_path = $filenamePDF;
+//            $newProduct->save();
 
 //        create product ciclan & bunga
-//            foreach ($interestPerMonths as $interestPerMonth){
-//                $newProduct = ProductInstallment::create([
-//                    'id'            =>Uuid::generate(),
-//                    'product_id'    => $productID,
-//                    'month'         => $interestPerMonth,
-//                    'amount'        => $interestPerMonth,
-//                    'status_id'     => 1,
-//                    'created_on'    => $dateTimeNow->toDateTimeString()
-//                ]);
-//            }
+            for($i=0;$i<$request['tenor_loan'];$i++){
+                $totalPayment = $installmentPerMonths[$i] + $interestPerMonths[$i];
+                $newProduct = ProductInstallment::create([
+                    'id'            =>Uuid::generate(),
+                    'product_id'    => $productID,
+                    'month'         => $i + 1,
+                    'amount'        => $installmentPerMonths[$i],
+                    'interest_amount'        => $interestPerMonths[$i],
+                    'paid_amount'        => $totalPayment,
+                    'vendor_va'        => $vendor_va_acc,
+                    'status_id'     => 1,
+                    'created_on'    => $dateTimeNow->toDateTimeString()
+                ]);
+            }
         });
 
         return Redirect::route('vendor-list');

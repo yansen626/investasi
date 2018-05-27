@@ -18,6 +18,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property float $amount
  * @property float $interest_amount
  * @property float $paid_amount
+ * @property string $vendor_va
+ * @property \Carbon\Carbon $due_date
  * @property int $status_id
  * @property string $created_by
  * @property \Carbon\Carbon $created_on
@@ -42,6 +44,7 @@ class ProductInstallment extends Eloquent
 	];
 
 	protected $dates = [
+		'due_date',
 		'created_on',
 		'modified_on'
 	];
@@ -53,6 +56,8 @@ class ProductInstallment extends Eloquent
 		'amount',
 		'interest_amount',
 		'paid_amount',
+		'vendor_va',
+		'due_date',
 		'status_id',
 		'created_by',
 		'created_on',

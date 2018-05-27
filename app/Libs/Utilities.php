@@ -123,4 +123,11 @@ class Utilities
 
         return "88795".$autoNumber;
     }
+
+    public static function VendorVANumber ($va){
+        $lastnumber = substr($va, -1);
+        $vendorVA = $va.$lastnumber;
+
+        return $vendorVA;
+    }
 }

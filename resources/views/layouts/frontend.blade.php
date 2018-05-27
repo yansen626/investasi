@@ -216,14 +216,15 @@
         $("#photo-ktp").change(function(){
             readURL(this);
         });
+
     });
     $(window).bind('scroll', function () {
         if ($(window).scrollTop() > 850) {
-            $('.submenu').attr("style","position: fixed;z-index: 90;top: 105px;left:0;background: #f2f2f2;padding-top: 1%;");
+            $('.submenu-product').attr("style","position: fixed;z-index: 90;top: 105px;left:0;background: #f2f2f2;padding-top: 1%;");
 
 
         } else {
-            $('.submenu').removeAttr("style");
+            $('.submenu-product').removeAttr("style");
         }
     });
 
