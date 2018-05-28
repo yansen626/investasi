@@ -82,7 +82,7 @@
                             </ul>
                         </div>
                     @endif
-                    Lanjutkan verifikasi Anda untuk dapat menggunakan semua fitur investasi.me
+                    Lanjutkan verifikasi Anda untuk dapat menggunakan semua fitur kami
                 </div>
 
                 {{--@php($isActiveProfile = ""; $isActiveSecurity = "";$isActivePassword = "";$isActivePhone = "";)--}}
@@ -178,7 +178,7 @@
                                             <div class="widget-title ">
                                                 <h4>Ubah Profil</h4>
                                             </div>
-                                            <form class="comment-form row altered" method="POST" action="{{ route('change-name') }}">
+                                            <form class="comment-form row altered" method="POST" action="{{ route('change-name') }}" enctype='multipart/form-data'>
                                                 {{ csrf_field() }}
                                                 @include('admin.partials._success')
                                                 @if($errors->has('msg'))
@@ -208,6 +208,45 @@
                                                     <h5>Email</h5>
                                                     <input type="text" name="email" value="{{$user->email}}" disabled="disabled">
                                                 </div>
+
+                                                @if(empty($user->img_ktp))
+                                                    <div class="field col-sm-12" style="margin-top: -3px;">
+                                                        <h5>Foto KTP</h5>
+                                                        <h5 style="color:red;">*Size maksimal foto adalah 16MB</h5>
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <span class="btn btn-primary btn-file">
+                                                                Browse {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'accept' => 'image/*,application/pdf')) !!}
+                                                                    <input type="file" id="photo-ktp" name="photo_ktp" accept="image/*,application/pdf">
+                                                                </span>
+                                                            </span>
+                                                            <input type="text" class="form-control" readonly>
+                                                        </div>
+                                                        <img id='img-upload' style="width:200px; height:100%"/>
+                                                    </div>
+                                                @elseif($user->ktp_verified == 0)
+                                                    <div class="field col-sm-12" style="margin-top: -3px;">
+                                                        <h5>Foto KTP</h5>
+                                                        <h5 style="color:red;">*Size maksimal foto adalah 16MB</h5>
+                                                        <h5 style="color:red;">**Menunggu di verifikasi</h5>
+                                                        <img id='img-upload' style="width:200px; height:100%" src="{{ asset('storage\ktp\\'.$user->img_ktp) }}"/>
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <span class="btn btn-primary btn-file">
+                                                                Browse {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'accept' => 'image/*,application/pdf')) !!}
+                                                                    <input type="file" id="photo-ktp" name="photo_ktp" accept="image/*,application/pdf">
+                                                                </span>
+                                                            </span>
+                                                            <input type="text" class="form-control" readonly>
+                                                        </div>
+                                                        <img id='img-upload' style="width:200px; height:100%"/>
+                                                    </div>
+                                                @else
+                                                    <div class="field col-sm-12" style="margin-top: -3px;">
+                                                        <h5>Foto KTP</h5>
+                                                        <img id='img-upload' style="width:200px; height:100%" src="{{ asset('storage\ktp\\'.$user->img_ktp) }}"/>
+                                                    </div>
+                                                @endif
                                                 <div class="field col-sm-12">
                                                     <br/>
                                                     <button class="btn btn-big btn-solid"><i class="fa fa-paper-plane"></i><span>Submit</span></button>

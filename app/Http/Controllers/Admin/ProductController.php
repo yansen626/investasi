@@ -337,14 +337,6 @@ class ProductController extends Controller
 
         });
 
-        $data = array(
-            'user'=>User::find($userID),
-            'productInstallment' => ProductInstallment::where('product_id', $productID)->get(),
-            'product' => Product::find($productID),
-            'vendor' => Vendor::find($vendorID)
-        );
-        SendEmail::SendingEmail('PerjanjianPinjaman', $data);
-
         return Redirect::route('vendor-list');
     }
 
@@ -368,6 +360,15 @@ class ProductController extends Controller
             $product = Product::find($id);
             $product->status_id = 7;
             $product->save();
+
+            //send email to borrower
+            $data = array(
+                'user'=>User::find($product->user_id),
+                'productInstallment' => ProductInstallment::where('product_id', $id)->get(),
+                'product' => $product,
+                'vendor' => Vendor::find($product->vendor_id)
+            );
+            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
 
             Session::flash('message', 'Project Rejected!');
         });

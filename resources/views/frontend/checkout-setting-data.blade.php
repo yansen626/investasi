@@ -96,20 +96,20 @@
                                 @endif
                             </div>
 
-                            <div class="field col-sm-12" style="margin-top: -3px;">
-                                <h5>Foto KTP</h5>
-                                <h5 style="color:red;">Size maksimal foto adalah 16MB</h5>
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <span class="btn btn-primary btn-file">
-                                            Browse {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'accept' => 'image/*,application/pdf')) !!}
+                            {{--<div class="field col-sm-12" style="margin-top: -3px;">--}}
+                                {{--<h5>Foto KTP</h5>--}}
+                                {{--<h5 style="color:red;">Size maksimal foto adalah 16MB</h5>--}}
+                                {{--<div class="input-group">--}}
+                                    {{--<span class="input-group-btn">--}}
+                                        {{--<span class="btn btn-primary btn-file">--}}
+                                            {{--Browse {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'accept' => 'image/*,application/pdf')) !!}--}}
                                             {{--Browse <input type="file" id="photo-ktp" name="photo_ktp" accept="image/*,application/pdf">--}}
-                                        </span>
-                                    </span>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
-                                <img id='img-upload' style="width:200px; height:100%"/>
-                            </div>
+                                        {{--</span>--}}
+                                    {{--</span>--}}
+                                    {{--<input type="text" class="form-control" readonly>--}}
+                                {{--</div>--}}
+                                {{--<img id='img-upload' style="width:200px; height:100%"/>--}}
+                            {{--</div>--}}
 
                             <div class="field col-sm-12 text-right" >
                                 <button id="submit" type="submit" class="btn btn-solid">Submit</button>

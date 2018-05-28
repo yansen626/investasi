@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 //use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 use PragmaRX\Google2FA\Google2FA;
 
 class ProfileController extends Controller
@@ -154,13 +155,37 @@ class ProfileController extends Controller
         }
         $user = Auth::user();
         $userId = $user->id;
-
+//dd($request);
         $userDB = User::find($userId);
         $userDB->first_name = Input::get('fname');
         $userDB->last_name = Input::get('lname');
+        if(!empty($request->file('photo_ktp'))) {
+            //Check if Image or PDF
+            $extension = $request->file('photo_ktp')->getClientOriginalExtension();
+            $extCheck = strtolower($extension);
+
+            if($extCheck == 'png' || $extCheck == 'jpg') {
+                $img = Image::make($request->file('photo_ktp'));
+                $extStr = $img->mime();
+                $ext = explode('/', $extStr, 2);
+                if ($ext[1] == 'jpeg')
+                    $ext[1] = 'jpg';
+
+                $filename = 'ktp_' . $userDB->identity_number . '_' . Input::get('fname') . '-' . Input::get('lname') . '.' . $ext[1];
+
+                $img->save(public_path('storage/ktp/' . $filename), 75);
+                $userDB->img_ktp = $filename;
+            }
+            else if($extCheck == 'pdf'){
+                $filename = 'ktp_' . $userDB->identity_number . '_' . Input::get('fname') . '-' . Input::get('lname') . '.' . $extension;
+
+                $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
+                $userDB->img_ktp = $filename;
+            }
+        }
         $userDB->save();
 
-        Session::flash('message', 'Nama Berhasil di Update');
+        Session::flash('message', 'Data Berhasil di Update');
 
         return Redirect::route('my-profile', ['tab' => 'profile']);
     }

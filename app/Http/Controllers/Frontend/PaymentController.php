@@ -26,6 +26,50 @@ use Intervention\Image\Facades\Image;
 
 class PaymentController extends Controller
 {
+    public function settingData($id){
+        $product = Product::find($id);
+        if(!auth()->check()){
+            return redirect()->route('project-detail', ['id' => $id]);
+        }
+
+        $user = Auth::user();
+
+        return View('frontend.checkout-setting-data', compact('product', 'user'));
+    }
+
+    public function checkout($id){
+        $product = Product::find($id);
+        if(!auth()->check()){
+            return redirect()->route('project-detail', ['id' => $id]);
+        }
+        $user = Auth::user();
+        $userId = $user->id;
+        $userData = User::find($userId);
+        $productRaising = (double)$product->getOriginal('raising');
+        $productRaised = (double)$product->getOriginal('raised');
+        $remaining = $productRaising - $productRaised;
+        $remainingStr = number_format($remaining, 0, ",", ".");
+
+        $notCompletedData = 1;
+        if($userData->identity_number== null ||
+            $userData->address_ktp== null ||
+            $userData->postal_code_ktp== null ||
+            $userData->name_ktp == null)
+//            || $userData->img_ktp == null)
+        {
+            $notCompletedData = 0;
+        }
+        $data = array(
+            'userData'    => $userData,
+            'product'       => $product,
+            'notCompletedData'    => $notCompletedData,
+            'remaining'    => $remaining,
+            'remainingStr'    => $remainingStr
+        );
+
+        return View('frontend.checkout')->with($data);
+    }
+
     public function storeData(Request $request){
         $validator = Validator::make($request->all(),[
             'ktp'               => 'required',
@@ -61,30 +105,30 @@ class PaymentController extends Controller
         $userData->postal_code_ktp = $request->get('postal_code_ktp');
         $userData->name_ktp = $request->get('name_ktp');
 //        dd($request);
-        if($request->file('photo_ktp') != null) {
-            //Check if Image or PDF
-            $extension = $request->file('photo_ktp')->getClientOriginalExtension();
-            $extCheck = strtolower($extension);
-
-            if($extCheck == 'png' || $extCheck == 'jpg') {
-                $img = Image::make($request->file('photo_ktp'));
-                $extStr = $img->mime();
-                $ext = explode('/', $extStr, 2);
-                if ($ext[1] == 'jpeg')
-                    $ext[1] = 'jpg';
-
-                $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $ext[1];
-
-                $img->save(public_path('storage/ktp/' . $filename), 75);
-                $userData->img_ktp = $filename;
-            }
-            else if($extCheck == 'pdf'){
-                $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $extension;
-
-                $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
-                $userData->img_ktp = $filename;
-            }
-        }
+//        if($request->file('photo_ktp') != null) {
+//            //Check if Image or PDF
+//            $extension = $request->file('photo_ktp')->getClientOriginalExtension();
+//            $extCheck = strtolower($extension);
+//
+//            if($extCheck == 'png' || $extCheck == 'jpg') {
+//                $img = Image::make($request->file('photo_ktp'));
+//                $extStr = $img->mime();
+//                $ext = explode('/', $extStr, 2);
+//                if ($ext[1] == 'jpeg')
+//                    $ext[1] = 'jpg';
+//
+//                $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $ext[1];
+//
+//                $img->save(public_path('storage/ktp/' . $filename), 75);
+//                $userData->img_ktp = $filename;
+//            }
+//            else if($extCheck == 'pdf'){
+//                $filename = 'ktp_' . $request->get('ktp') . '_' . $userData->first_name . '-' . $userData->last_name . '.' . $extension;
+//
+//                $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
+//                $userData->img_ktp = $filename;
+//            }
+//        }
 
         $userData->save();
 
@@ -98,49 +142,6 @@ class PaymentController extends Controller
         return redirect()->route('checkout', ['id' => $productId]);
     }
 
-    public function settingData($id){
-        $product = Product::find($id);
-        if(!auth()->check()){
-            return redirect()->route('project-detail', ['id' => $id]);
-        }
-
-        $user = Auth::user();
-
-        return View('frontend.checkout-setting-data', compact('product', 'user'));
-    }
-
-    public function checkout($id){
-        $product = Product::find($id);
-        if(!auth()->check()){
-            return redirect()->route('project-detail', ['id' => $id]);
-        }
-        $user = Auth::user();
-        $userId = $user->id;
-        $userData = User::find($userId);
-        $productRaising = (double)$product->getOriginal('raising');
-        $productRaised = (double)$product->getOriginal('raised');
-        $remaining = $productRaising - $productRaised;
-        $remainingStr = number_format($remaining, 0, ",", ".");
-
-        $notCompletedData = 1;
-        if($userData->identity_number== null ||
-            $userData->address_ktp== null ||
-            $userData->postal_code_ktp== null ||
-            $userData->name_ktp == null ||
-            $userData->img_ktp == null)
-        {
-            $notCompletedData = 0;
-        }
-        $data = array(
-            'userData'    => $userData,
-            'product'       => $product,
-            'notCompletedData'    => $notCompletedData,
-            'remaining'    => $remaining,
-            'remainingStr'    => $remainingStr
-        );
-
-        return View('frontend.checkout')->with($data);
-    }
 
     public function pay(Request $request, $investId){
         try{

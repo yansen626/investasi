@@ -40,6 +40,19 @@
                             </div>
                         </div>
                     </div>
+                @elseif(empty($user->img_ktp) || $user->ktp_verified == 0)
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="comment-form-wrapper contact-from clearfix">
+                            <div class="widget-title ">
+                                <h4>Mohon Mengunggah foto KTP / menunggu verifikasi foto KTP Anda.</h4>
+                                <h3>
+                                    Klik <a href="{{route('my-profile', ['tab' => 'profile'])}}">disini</a> untuk mengunggah/mengecek.
+                                    <br>
+                                    Informasi lebih lanjut hubungi kami melalui email atau chat box di bawah
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     <div class="col-md-6 col-md-offset-3">
                         <div class="comment-form-wrapper contact-from clearfix">

@@ -71,6 +71,16 @@ class VendorController extends Controller
             $product->due_date = $dateTimeNow->addDays($product->days_left);
             $product->save();
 
+
+            //send email to borrower
+            $data = array(
+                'user'=>User::find($product->user_id),
+                'productInstallment' => ProductInstallment::where('product_id', $product->id)->get(),
+                'product' => $product,
+                'vendor' => $vendor
+            );
+            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
+
             Session::flash('message', 'Vendor and Project Accepted!');
         });
         return Redirect::route('product-request');
@@ -373,17 +383,7 @@ class VendorController extends Controller
                         'created_on'    => $dateTimeNow->toDateTimeString()
                     ]);
                 }
-
-                //send email to borrower\
             });
-
-            $data = array(
-                'user'=>User::find($userID),
-                'productInstallment' => ProductInstallment::where('product_id', $productID)->get(),
-                'product' => Product::find($productID),
-                'vendor' => Vendor::find($vendorID)
-            );
-            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
         }
         catch (\Exception $ex){
 //            dd($ex);

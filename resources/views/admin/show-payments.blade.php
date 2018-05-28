@@ -24,6 +24,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                            @include('admin.partials._success')
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
