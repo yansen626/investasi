@@ -176,31 +176,27 @@ line-height:110%'><b>  <span lang=IN>PERJANJIAN LAYANAN PINJAM MEMINJAM UANG
 BERBASIS TEKNOLOGI</span></b></p>
 
     <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
-line-height:110%'><b><span lang=IN>No. </span></b><span lang=IN
-                                                        style='background:yellow'>[asdffdsa]</span></p>
+line-height:110%'><b><span lang=IN>No. </span></b><span lang=IN style='background:yellow'>[X]</span></p>
 
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
 110%'><span lang=IN>Perjanjian Layanan Pinjam Meminjam Uang Berbasis Teknologi ini
-dibuat dan ditandatangani pada tanggal <span style='background:yellow'>[asdffdsa]</span>
-(“<b>Perjanjian</b>”) oleh dan antara:</span></p>
+dibuat dan ditandatangani pada tanggal <span>{{ \Carbon\Carbon::now()->format('j F Y')}}</span> (“
+            <b>Perjanjian</b>”) oleh dan antara:</span>
+    </p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=IN>(1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=IN>PT Bursa Akselerasi Indonesia </span><span
-                lang=IN>, suatu perseroan terbatas yang didirikan berdasarkan hukum </span>Negara
+</span></span><span lang=IN>PT Bursa Akselerasi Indonesia </span><span lang=IN>, suatu perseroan terbatas yang didirikan berdasarkan hukum </span>Negara
         <span lang=IN>Republik Indonesia, yang memiliki domisili di <span>
-                Menara Satrio Lantai 14 unit 5, Jalan PRof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span> (“<b>Penyelenggara</b>”); dan</span></p>
+                Menara Satrio Lantai 14 unit 5, Jalan PRof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span> (“<b>Penyelenggara</b>”); dan</span>
+    </p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=IN>(2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=IN>{{ $user->first_name }} {{ $user->last_name }}</span><span
-                lang=IN>, warga negara <span>{{$user->citizen}}</span>,
-bertempat tinggal di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span>, pemegang
-Kartu Tanda Penduduk No. <span>{{ $user->identity_number }}</span> </span><span
-                lang=EN-GB>[<b>PT </b></span><span lang=IN style='background:yellow'>[asdffdsa]</span><span
-                lang=EN-GB>, </span><span lang=IN>sebuah perseoan terbatas yang didirikan
-berdasarkan hukum Negara Republik Indonesia, beralamat di </span><span lang=IN
-                                                                       style='background:yellow'>[asdffdsa]</span><span lang=IN>] (“<b>Pemberi Pinjaman</b>”).
+</span></span><span lang=IN>{{ $user->first_name }} {{ $user->last_name }}</span><span lang=IN>, warga negara <span>{{$user->citizen}}</span>, bertempat tinggal di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span>, pemegang
+            Kartu Tanda Penduduk No. <span>{{ $user->identity_number }}</span> </span><span lang=EN-GB>[<b>PT </b></span><span lang=IN style='background:yellow'>[X]</span><span lang=EN-GB>, </span><span lang=IN>sebuah perseoan terbatas yang didirikan
+berdasarkan hukum Negara Republik Indonesia, beralamat di </span>
+        <span lang=IN style='background:yellow'>[X]</span><span lang=IN>] (“<b>Pemberi Pinjaman</b>”).
 </span></p>
 
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
@@ -217,18 +213,25 @@ di bidang penyelenggaraan Layanan Pinjam Meminjam Uang Berbasis Teknologi
 Informasi (sebagaimana didefinisikan di bawah ini);</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
-text-indent:-36.0pt;line-height:110%'><span lang=IN>B.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+text-indent:-36.0pt;line-height:110%'><span lang=IN>B.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang=IN>Pemberi Pinjaman merupakan pihak yang bermaksud
 menempatkan dananya dengan menggunakan sistem Layanan Pinjam Meminjam Uang
 Berbasis Teknologi (sebagaimana didefinisikan di bawah ini) yang disediakan,
 dikelola dan dioperasikan oleh Penyelenggara;</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
-text-indent:-36.0pt;line-height:110%'><span lang=IN>C.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+text-indent:-36.0pt;line-height:110%'><span lang=IN>C.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang=IN>Pemberi Pinjaman telah sepakat untuk menempatkan
 dananya untuk dapat dipinjamkan secara langsung kepada Penerima Pinjaman
 melalui Penyelenggara berdasarkan syarat dan ketentuan yang diatur dalam
 Perjanjian ini</span>.</p>
+
+    <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
+text-indent:-36.0pt;line-height:110%'><span lang=IN>C.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=IN>D.	Apabila Penggalangan Pinjaman berhasil diselesaikan
+sesuai dengan ketentuan dalam Perjanjian ini, Pemberi Pinjaman bermaksud menunjuk Penyelenggara
+sebagai agen dan kuasanya, untuk menyalurkan, mengurus, dan mengelola Pemberian Pinjaman untuk
+dan atas nama Pemberi Pinjaman</span>.</p>
 
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
 110%'><b><span lang=SV>OLEH KARENA ITU</span></b><span lang=SV>, Para Pihak
@@ -259,11 +262,8 @@ line-height:110%;font-family:"Calibri","sans-serif"'>“</span><b><span lang=IN
 Kerja</span></b><span style='font-size:11.0pt;line-height:110%;font-family:
 "Calibri","sans-serif"'>”</span><span lang=IN style='font-size:11.0pt;
 line-height:110%;font-family:"Calibri","sans-serif"'> adalah hari, selain hari
-Sabtu, Minggu dan hari libur resmi nasional, dimana </span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>b</span><span
-                lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>ank
-buka untuk melakukan kegiatan usahanya sesuai dengan ketentuan Bank Indonesia</span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>;</span></p>
+Sabtu, Minggu dan hari libur resmi nasional, dimana </span><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>b</span><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>ank
+buka untuk melakukan kegiatan usahanya sesuai dengan ketentuan Bank Indonesia</span><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>;</span></p>
 
     <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:
 36.7pt;text-align:justify;line-height:110%'><span style='font-size:11.0pt;
@@ -275,8 +275,7 @@ dari permohonan pinjaman yang telah diajukan termasuk informasi sehubungan
 dengan, antara lain, (i) pagu maksimum pinjaman (ii) jangka waktu Pinjaman
 (iii) suku bunga (iv) denda keterlambatan dan (v) kesediaan Penerima Pinjaman
 untuk menerima Pinjaman apabila dana yang terkumpul selama masa penawaran
-sedikitnya </span><span lang=IN style='background:yellow'>[asdffdsa]</span><span
-                lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
+sedikitnya </span><span lang=IN style='background:yellow'>[X]</span><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
 dari nilai Pinjaman.</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
@@ -293,8 +292,7 @@ atau pemberi pinjaman lainnya dengan sistem Layanan Pinjam Meminjam Uang
 Berbasis Teknologi Informasi</span>; </p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
-line-height:110%'><span lang=IN>“<b>Perjanjian Pinjaman</b>” </span><span
-                lang=IN>perjanjian pinjaman yang dibuat dan ditandatangani oleh Pemberi
+line-height:110%'><span lang=IN>“<b>Perjanjian Pinjaman</b>” </span><span lang=IN>perjanjian pinjaman yang dibuat dan ditandatangani oleh Pemberi
 Pinjaman atau </span><span lang=IN>Penyelenggara</span><span lang=IN> selaku
 kuasanya dengan Penerima Pinjaman yang telah setuju untuk menerima Pinjaman
 melalui Penyelenggara, sebagaimana dapat diubah dari waktu ke waktu termasuk
@@ -396,9 +394,7 @@ pengakhiran secara efektif.</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=IN>2.6<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=IN>Para Pihak dengan ini sepakat untuk menge</span>s<span
-                lang=IN>ampingkan keberlakuan dari Pasal 1266 Kitab Undang-</span>u<span
-                lang=IN>ndang Hukum Perdata </span>Indonesia <span lang=IN>sehingga persetujuan
+</span></span><span lang=IN>Para Pihak dengan ini sepakat untuk menge</span>s<span lang=IN>ampingkan keberlakuan dari Pasal 1266 Kitab Undang-</span>u<span lang=IN>ndang Hukum Perdata </span>Indonesia <span lang=IN>sehingga persetujuan
 dari Pengadilan Indonesia tidak diperlukan untuk mengakhiri Perjanjian ini.</span></p>
 
     <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
@@ -452,8 +448,7 @@ kepada Pemberi Pinjaman telah lunas dan dibayar dengan semestinya. </span></p>
                     lang=IN>PENGGANTI </span></b><b>KE<span lang=IN>RUGI</span></b><b>AN</b></p>
 
     <p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;
-margin-left:1.0cm;text-align:justify;text-indent:-1.0cm;line-height:110%'><span
-                lang=IN>4.1       Pernyataan dan jaminan serta pengganti kerugian Penyelenggara
+margin-left:1.0cm;text-align:justify;text-indent:-1.0cm;line-height:110%'><span lang=IN>4.1       Pernyataan dan jaminan serta pengganti kerugian Penyelenggara
 berda</span>sa<span lang=IN>rkan Perjanjian ini adalah sebagai berikut:</span></p>
 
     <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
@@ -526,21 +521,15 @@ atas; dan</span></p>
     <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
 10.0pt;margin-left:78.0pt;text-align:justify;text-indent:-42.55pt;line-height:
 110%'><span lang=IN>(h)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=IN>Penyelenggara dapat </span>menyediakan <span
-                lang=IN>kepada Pemberi Pinjaman segala pemberitahuan, surat atau laporan yang </span><span
-                lang=IN>diterima</span><span lang=IN> Penyelenggara dari Penerima Pinjaman atau
-pihak lain mengenai atau yang berhubungan dengan Perjanjian Pinjaman</span>
-        melalui Situs. </p>
+</span></span><span lang=IN>Penyelenggara dapat </span>menyediakan <span lang=IN>kepada Pemberi Pinjaman segala pemberitahuan, surat atau laporan yang </span><span lang=IN>diterima</span><span lang=IN> Penyelenggara dari Penerima Pinjaman atau
+pihak lain mengenai atau yang berhubungan dengan Perjanjian Pinjaman</span> melalui Situs. </p>
 
     <p class=MsoPlainText style='margin-top:0cm;margin-right:0cm;margin-bottom:
 10.0pt;margin-left:35.45pt;text-align:justify;text-indent:-35.45pt;line-height:
-110%'><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>4.2          Pernyataan</span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
+110%'><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>4.2          Pernyataan</span><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
 dan jaminan dan </span><span lang=IN style='font-size:11.0pt;line-height:110%;
 font-family:"Calibri","sans-serif"'>peng</span><span style='font-size:11.0pt;
-line-height:110%;font-family:"Calibri","sans-serif"'>ganti</span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'> </span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>kerugian
+line-height:110%;font-family:"Calibri","sans-serif"'>ganti</span><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'> </span><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>kerugian
 </span><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>Pemberi
 Pinjaman berdasarkan Perjanjian ini adalah:</span></p>
 
@@ -559,16 +548,15 @@ penilaian/evaluasi</span><span style='font-size:11.0pt;line-height:110%;
 font-family:"Calibri","sans-serif"'>, analisa</span><span style='font-size:
 11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'> <span lang=IN>sendiri
 atas Perjanjian Pinjaman yang akan ditandatangani oleh Penyelenggara atas nama Pemberi
-Pinjaman; </span></span></p>
+Pinjaman; </span></span>
+    </p>
 
     <p class=MsoPlainText style='margin-top:0cm;margin-right:0cm;margin-bottom:
 10.0pt;margin-left:78.0pt;text-align:justify;text-indent:-42.55pt;line-height:
 110%'><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>(b)<span
                     style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang=IN style='font-size:11.0pt;line-height:110%;
-font-family:"Calibri","sans-serif"'>Pemberi Pinjaman menyatakan dan me</span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>n</span><span
-                lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>egaskan
+font-family:"Calibri","sans-serif"'>Pemberi Pinjaman menyatakan dan me</span><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>n</span><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>egaskan
 kepada Penyelenggara bahwa dana yang ditempatkan Pemberi Pinjaman di Rekening Virtual
 Pemberi Pinjaman merupakan milik Pemberi Pinjaman sendiri dan diperoleh dengan
 cara yang tidak bertentangan dengan hukum yang berlaku di Indonesia, termasuk
@@ -640,9 +628,7 @@ PENGEMBALIAN DANA</span></b></p>
 </span></span><span lang=IN style='font-size:11.0pt;line-height:110%;
 font-family:"Calibri","sans-serif"'>Jika Penerima Pinjaman telah melakukan
 pembayaran atas Pinjaman yang diterimanya dari Pemberi Pinjaman, maka Penyelenggara
-akan memperhitungkan jumlah tersebut dalam Rekening Virtual Pemberi Pinjaman setelah
-</span><span lang=EN-GB>maksimum 2 (dua)</span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>Hari
+akan memperhitungkan jumlah tersebut dalam Rekening Virtual Pemberi Pinjaman setelah [X] Hari
 Kerja sejak </span><span lang=IN style='font-size:11.0pt;line-height:110%;
 font-family:"Calibri","sans-serif"'>tanggal pembayaran dilakukan. </span></p>
 
@@ -664,8 +650,7 @@ font-family:"Calibri","sans-serif"'>n</span><span lang=IN style='font-size:
                     style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang=IN style='font-size:11.0pt;line-height:110%;
 font-family:"Calibri","sans-serif"'>Selain menerima pembayaran kembali atas Pinjaman,
-Pemberi Pinjaman akan memperoleh Tingkat Pengembalian Dana yaitu</span><span
-                style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
+Pemberi Pinjaman akan memperoleh Tingkat Pengembalian Dana yaitu</span><span style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
 sebagaimana yang tercantum dalam Ketentuan-Ketentuan Pinjaman milik Penerima
 Pinjaman yang tersedia pada Situs</span><span lang=IN style='font-size:11.0pt;
 line-height:110%;font-family:"Calibri","sans-serif"'>. </span></p>
@@ -675,8 +660,7 @@ line-height:110%'><b><span lang=IN>6.<span style='font:7.0pt "Times New Roman"'>
 </span></span></b><b><span lang=IN>PAJAK DAN BIAYA</span></b></p>
 
     <p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;
-margin-left:35.45pt;text-align:justify;text-indent:-35.45pt;line-height:110%'><span
-                lang=IN>6.1          Para Pihak setuju bahwa Pemberi Pinjaman akan membayar dan
+margin-left:35.45pt;text-align:justify;text-indent:-35.45pt;line-height:110%'><span lang=IN>6.1          Para Pihak setuju bahwa Pemberi Pinjaman akan membayar dan
 membebaskan Penyelenggara dari seluruh pajak yang timbul (kecuali pajak
 penghasilan Penyelenggara yang merupakan kewajiban Penyelenggara) dan
 pungutan-pungutan lainnya berdasarkan atau berkaitan dengan Perjanjian ini dan Perjanjian
@@ -706,13 +690,11 @@ font-family:"Calibri","sans-serif"'>HUKUM YANG MENGATUR DAN PENYELESAIAN
 SENGKETA</span></b></p>
 
     <p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;
-margin-left:35.45pt;text-align:justify;text-indent:-35.45pt;line-height:110%'><span
-                lang=IN>7.1          </span><span lang=SV>Perjanjian ini dan pelaksanaan
+margin-left:35.45pt;text-align:justify;text-indent:-35.45pt;line-height:110%'><span lang=IN>7.1          </span><span lang=SV>Perjanjian ini dan pelaksanaan
 atasnya diatur berdasarkan hukum Negara Republik Indonesia.</span></p>
 
     <p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;
-margin-left:35.45pt;text-align:justify;text-indent:-35.45pt;line-height:110%'><span
-                lang=IN>7.2          </span><span lang=IN>Setiap dan seluruh perselisihan,
+margin-left:35.45pt;text-align:justify;text-indent:-35.45pt;line-height:110%'><span lang=IN>7.2          </span><span lang=IN>Setiap dan seluruh perselisihan,
 kontroversi atau konflik yang timbul dari atau sehubungan dengan Perjanjian
 ini, termasuk sengketa keabsahan, kesimpulan, daya mengikat, pelanggaran,
 perubahan, kadaluwarsa dan pengakhiran (bersama-sama, &quot;<b>Sengketa</b>&quot;)
@@ -721,7 +703,8 @@ secara musyawarah oleh Para Pihak. Jika Sengketa itu tidak dapat diselesaikan
 secara musyawarah dalam waktu 1 (satu) bulan dari tanggal Pihak yang satu
 memberitahukan kepada Pihak lainnya bahwa terdapat Sengketa, Para Pihak setuju
 bahwa Sengketa tersebut akan dirujuk ke dan akhirnya diselesaikan pada
-            <span>Pengadilan Negeri Jakarta Selatan</span>.</span></p>
+            <span>Pengadilan Negeri Jakarta Selatan</span>.</span>
+    </p>
 
     <p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;
 margin-left:35.45pt;text-align:justify;line-height:110%'><span class=longtext><span
@@ -730,7 +713,8 @@ atas, Pemberi Pinjaman setuju bahwa Penyelenggara dapat, menurut
 kebijaksanaannya yang mutlak, mengajukan sengketa apa pun yang dapat timbul
 sehubungan dengan Perjanjian ini ke Pengadilan Negeri lain di Jakarta atau ke
 pengadilan mana pun di Republik Indonesia atau di tempat lain yang memiliki
-yurisdiksi atas Pemberi Pinjaman.</span></span></p>
+yurisdiksi atas Pemberi Pinjaman.</span></span>
+    </p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-indent:-36.0pt;
 line-height:110%'><b><span lang=IN>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -745,8 +729,7 @@ Pihak secara benar dan tanpa kesalahan, pada hari yang sama pesan dikirimkan.
 Pemberitahuan dan komunikasi sehubungan dengan Perjanjian ini akan disampaikan
 kepada Para Pihak dengan alamat sebagai berikut:</span></p>
 
-    <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
-           style='margin-left:36.0pt;border-collapse:collapse;border:none'>
+    <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0 style='margin-left:36.0pt;border-collapse:collapse;border:none'>
         <tr>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
@@ -789,19 +772,15 @@ line-height:110%'><span lang=IN>&nbsp;</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=IN>8.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=IN>Apabila terdapat perubahan </span><span lang=IN>terhadap</span><span
-                lang=IN> surat elektronik yang terdaftar pada Situs dan/atau Perjanjian ini,
+</span></span><span lang=IN>Apabila terdapat perubahan </span><span lang=IN>terhadap</span><span lang=IN> surat elektronik yang terdaftar pada Situs dan/atau Perjanjian ini,
 Para Pihak wajib untuk memberikan pemberitahuan dengan mengirimkan surat
 elektronik kepada Pihak lainnya</span><span lang=IN>.</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=EN-GB>8.3<span
                     style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=EN-GB>Ketentuan-</span><span lang=IN>k</span><span
-                lang=EN-GB>etentuan Perjanjian ini hanya dapat diubah, dikesampingkan,
-dibebaskan atau diakhiri melalui </span><span lang=IN>instrumen</span><span
-                lang=EN-GB> tertulis yang ditandatangani </span><span lang=IN>oleh Para Pihak</span><span
-                lang=EN-GB>.</span></p>
+</span></span><span lang=EN-GB>Ketentuan-</span><span lang=IN>k</span><span lang=EN-GB>etentuan Perjanjian ini hanya dapat diubah, dikesampingkan,
+dibebaskan atau diakhiri melalui </span><span lang=IN>instrumen</span><span lang=EN-GB> tertulis yang ditandatangani </span><span lang=IN>oleh Para Pihak</span><span lang=EN-GB>.</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=EN-GB>8.4<span
@@ -815,11 +794,9 @@ tidak akan dipengaruhi atau dikurangi dalam cara apa pun juga. </span></p>
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=IN>8.5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang=IN>Para Pihak setuju bahwa, tanpa adanya persetujuan
-tertulis dari Pihak lainnya, tidak akan secara </span><span lang=EN-GB>langsung</span><span
-                lang=IN> maupun tidak langsung membuka informasi mengenai dan/atau yang ada
+tertulis dari Pihak lainnya, tidak akan secara </span><span lang=EN-GB>langsung</span><span lang=IN> maupun tidak langsung membuka informasi mengenai dan/atau yang ada
 hubungannya dengan Perjanjian ini termasuk semua transaksi dan dokumen yang
-terkait, selain kepada: (i) penas</span>i<span lang=IN>hat hukum, penas</span>i<span
-                lang=IN>hat keuangan, dan akuntan Pihak yang bersangkutan; dan/atau (ii)
+terkait, selain kepada: (i) penas</span>i<span lang=IN>hat hukum, penas</span>i<span lang=IN>hat keuangan, dan akuntan Pihak yang bersangkutan; dan/atau (ii)
 instansi atau pihak yang berwenang berdasarkan peraturan perundang-undangan
 yang berlaku.</span></p>
 
@@ -843,14 +820,12 @@ Pihak lain.</span></p>
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
 110%'><b><span lang=IN>DEMIKIAN</span></b><span lang=IN>, Perjanjian ini
 ditandatangani dengan menggunakan tanda tangan elektronik sebagaimana diatur
-dalam Undang-undang Republik Indonesia</span><span lang=IN> </span>No.11 Tahun
-        2008 tentang Informasi dan Transaksi Elektronik<span lang=IN> oleh Para Pihak
+dalam Undang-undang Republik Indonesia</span><span lang=IN> </span>No.11 Tahun 2008 tentang Informasi dan Transaksi Elektronik<span lang=IN> oleh Para Pihak
 atau perwakilannya yang sah pada tanggal sebagaimana disebutkan di bagian awal Perjanjian
 ini dan akan mempunyai kekuatan hukum yang sama dengan perjanjian yang dibuat
 dan ditandatangani.</span></p>
 
-    <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
-           style='border-collapse:collapse;border:none'>
+    <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;border:none'>
         <tr style='height:28.1pt'>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt;
   height:28.1pt'>
@@ -881,8 +856,7 @@ dan ditandatangani.</span></p>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
   line-height:110%'><span lang=IN>&nbsp;</span></p>
-                <p class=MsoNormal style='margin-bottom:10.0pt;line-height:110%'><span
-                            lang=IN>&nbsp;</span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;line-height:110%'><span lang=IN>&nbsp;</span></p>
             </td>
         </tr>
         <tr>

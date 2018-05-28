@@ -220,7 +220,7 @@
                                 {{--(<a href="{{route('download', ['filename' => $product->prospectus_path])}}"><span>Download Product Disclosure Statement</span></a>),--}}
                                 (<a href="{{$product->prospectus_path}}" target="_blank" style="cursor: pointer;"><span>Product Disclosure Statement</span></a>),
                                 dan saya telah menyetujui
-                                <a target="_blank" href="{{route('term-condition')}}">perjanjian layanan pinjam meminjam berbasis teknologi</a> dari indofund.id
+                                <a target="_blank" href="{{route('perjanjian-layanan')}}">perjanjian layanan pinjam meminjam berbasis teknologi</a> dari indofund.id
                                 {{--<a target="_blank" href="{{route('term-condition')}}">syarat dan ketentuan</a> dari indofund.id--}}
 
                             </label>

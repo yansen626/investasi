@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/testing', "Frontend\TestingController@TestingSendEmail")->name('testing');
+Route::get('/testing', "Frontend\TestingController@TestingSendEmail");
+Route::get('/testing2', "Frontend\TestingController@TestingViewEmail");
 
 
 //Home, contact us, term, etc
@@ -27,6 +28,7 @@ Route::post('/subscribe-email', [
     'uses' => 'Frontend\HomeController@Subscribe',
     'as' => 'subscribeEmail'
 ]);
+Route::get('/perjanjian-layanan', 'Frontend\HomeController@PerjanjianLayanan')->name('perjanjian-layanan');
 Route::get('/request-verification/{email}', 'Frontend\HomeController@RequestVerification')->name('request-verification');
 
 

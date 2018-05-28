@@ -236,27 +236,28 @@ class ProductController extends Controller
         }
 
 
-        DB::transaction(function() use ($request){
+        $vendorDB = Vendor::find($request['vendor_id']);
+        $vendorID = $vendorDB->id;
+        $userID = $vendorDB->user_id;
+        $vendor_va_acc = $vendorDB->vendor_va;
+        $productID = Uuid::generate();
+
+        DB::transaction(function() use ($request, $vendorDB, $vendorID, $userID, $vendor_va_acc, $productID){
             $interestPerMonths = "";
             $installmentPerMonths = "";
             $interestPerMonths = $request['interest_per_month'];
             $installmentPerMonths = $request['installment_per_month'];
             $isNullMemberInterest = in_array(null, $interestPerMonths, true);
             $isNullMemberInstallment = in_array(null, $installmentPerMonths, true);
-            dd($isNullMemberInterest." | ".$isNullMemberInstallment);
+
             if($isNullMemberInterest && $isNullMemberInstallment){
                 return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
             }
 
 //            dd($request);
-            $vendorDB = Vendor::find($request['vendor_id']);
-            $vendorID = $vendorDB->id;
-            $userID = $vendorDB->user_id;
-            $vendor_va_acc = $vendorDB->vendor_va;
             $dateTimeNow = Carbon::now('Asia/Jakarta');
 
 //        create new product
-            $productID = Uuid::generate();
             $newProduct = Product::create([
                 'id' => $productID,
                 'category_id' => $request['category'],
@@ -333,7 +334,16 @@ class ProductController extends Controller
                     'created_on'    => $dateTimeNow->toDateTimeString()
                 ]);
             }
+
         });
+
+        $data = array(
+            'user'=>User::find($userID),
+            'productInstallment' => ProductInstallment::where('product_id', $productID)->get(),
+            'product' => Product::find($productID),
+            'vendor' => Vendor::find($vendorID)
+        );
+        SendEmail::SendingEmail('PerjanjianPinjaman', $data);
 
         return Redirect::route('vendor-list');
     }

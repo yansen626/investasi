@@ -130,4 +130,60 @@ class Utilities
 
         return $vendorVA;
     }
+
+    public static function Terbilang($number){
+        $angka = str_replace('.', '', $number);
+
+        $angka = (float)$angka;
+        $bilangan = array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan','Sepuluh','Sebelas');
+        if ($angka < 12) {
+            return $bilangan[$angka];
+        } else if ($angka < 20) {
+            return $bilangan[$angka - 10] . ' Belas';
+        } else if ($angka < 100) {
+            $hasil_bagi = (int)($angka / 10);
+            $hasil_mod = $angka % 10;
+            return trim(sprintf('%s Puluh %s', $bilangan[$hasil_bagi], $bilangan[$hasil_mod]));
+        } else if ($angka < 200) {
+            return sprintf('Seratus %s', self::Terbilang($angka - 100));
+        } else if ($angka < 1000) {
+            $hasil_bagi = (int)($angka / 100);
+            $hasil_mod = $angka % 100;
+            return trim(sprintf('%s Ratus %s', $bilangan[$hasil_bagi], self::Terbilang($hasil_mod)));
+        } else if ($angka < 2000) {
+            return trim(sprintf('Seribu %s', self::Terbilang($angka - 1000)));
+        } else if ($angka < 1000000) {
+            $hasil_bagi = (int)($angka / 1000);
+            $hasil_mod = $angka % 1000;
+            return sprintf('%s Ribu %s', self::Terbilang($hasil_bagi), self::Terbilang($hasil_mod));
+        } else if ($angka < 1000000000) {
+            $hasil_bagi = (int)($angka / 1000000);
+            $hasil_mod = $angka % 1000000;
+            return trim(sprintf('%s Juta %s', self::Terbilang($hasil_bagi), self::Terbilang($hasil_mod)));
+        } else if ($angka < 1000000000000) {
+            $hasil_bagi = (int)($angka / 1000000000);
+            $hasil_mod = fmod($angka, 1000000000);
+            return trim(sprintf('%s Milyar %s', self::Terbilang($hasil_bagi), self::Terbilang($hasil_mod)));
+        } else if ($angka < 1000000000000000) {
+            $hasil_bagi = $angka / 1000000000000;
+            $hasil_mod = fmod($angka, 1000000000000);
+            return trim(sprintf('%s Triliun %s', self::Terbilang($hasil_bagi), self::Terbilang($hasil_mod)));
+        } else {
+            return 'Data Salah';
+        }
+    }
+
+    public static function HariIndonesia($tanggal){
+        $day = date('D', strtotime($tanggal));
+        $dayList = array(
+            'Sun' => 'Minggu',
+            'Mon' => 'Senin',
+            'Tue' => 'Selasa',
+            'Wed' => 'Rabu',
+            'Thu' => 'Kamis',
+            'Fri' => 'Jumat',
+            'Sat' => 'Sabtu'
+        );
+        return $dayList[$day];
+    }
 }

@@ -173,6 +173,17 @@ class HomeController extends Controller
     public function Pengajuan(){
         return View('frontend.apply-owner');
     }
+    public function PerjanjianLayanan(){
+
+        if(auth()->check()) {
+            $user = Auth::user();
+
+            return View('email.perjanjian-layanan', compact('user'));
+        }
+        else{
+            return redirect()->route('index');
+        }
+    }
 
     public function Subscribe(Request $request){
         $validator = Validator::make($request->all(), [

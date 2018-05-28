@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Libs\SendEmail;
 use App\Libs\Utilities;
 use App\Models\ProductInstallment;
 use App\Models\Vendor;
@@ -222,130 +223,132 @@ class VendorController extends Controller
         if($isNullMemberInterest && $isNullMemberInstallment)
             return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
 
-        DB::transaction(function() use ($request, $interestPerMonths, $installmentPerMonths){
-//            dd($request);
+        try{
             $userID = Uuid::generate();
             $vendorID = Uuid::generate();
             $productID = Uuid::generate();
-            $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+            DB::transaction(function() use ($request, $interestPerMonths, $installmentPerMonths, $userID, $vendorID, $productID){
+//            dd($request);
+                $dateTimeNow = Carbon::now('Asia/Jakarta');
 
 //        create new user
-            $va_acc = Utilities::VANumber();
-            $newUser = User::create([
-                'id' =>$userID,
-                'first_name' => $request['name'],
-                'last_name' => "",
-                'email' => $request['email'],
-                'phone' => $request['phone'],
-                'fb_acc' => $request['fb_acc'],
-                'ig_acc' => $request['ig_acc'],
-                'twitter_acc' => $request['twitter_acc'],
-                'username' => $request['username'],
-                'va_acc' => $va_acc,
-                'email_token' => base64_encode($request['email']),
-                'status_id' => 11,
-                'password' => bcrypt($request['password']),
-                'created_at'        => $dateTimeNow->toDateTimeString()
-            ]);
+                $va_acc = Utilities::VANumber();
+                $newUser = User::create([
+                    'id' =>$userID,
+                    'first_name' => $request['name'],
+                    'last_name' => "",
+                    'email' => $request['email'],
+                    'phone' => $request['phone'],
+                    'fb_acc' => $request['fb_acc'],
+                    'ig_acc' => $request['ig_acc'],
+                    'twitter_acc' => $request['twitter_acc'],
+                    'username' => $request['username'],
+                    'va_acc' => $va_acc,
+                    'email_token' => base64_encode($request['email']),
+                    'status_id' => 11,
+                    'password' => bcrypt($request['password']),
+                    'created_at'        => $dateTimeNow->toDateTimeString()
+                ]);
 
 //        create new vendor
-            $vendor_va_acc = Utilities::VendorVANumber($va_acc);
-            $newVendor = Vendor::create([
-                'id' =>$vendorID,
-                'user_id' => $userID,
-                'vendor_va' => $vendor_va_acc,
-                'name' => $request['name_vendor'],
-                'description' => $request['description_vendor'],
-                'bank_name' => $request['bank'],
-                'bank_acc_name' => $request['acc_bank'],
-                'bank_acc_number' => $request['no_rek'],
-                'brand'   => $request['brand'],
-                'vendor_type'   => $request['vendor_type'],
-                'business_type'   => $request['business_type'],
-                'establish_since'   => $request['establish_since'],
-                'ownership'   => $request['ownership'],
-                'address'    => $request['address'],
-                'postal_code'    => $request['postal_code'],
-                'city'    => $request['city'],
-                'province'    => $request['province'],
-                'phone_office'    => $request['phone_office'],
-                'monthly_income'    => $request['monthly_income'],
-                'monthly_profit'    => $request['monthly_profit'],
-                'fb_acc'    => $request['vendor_fb'],
-                'ig_acc'    => $request['vendor_ig'],
-                'twitter_acc'    => $request['vendor_tw'],
-                'youtube_acc'    => $request['vendor_yt'],
-                'status_id' => 3,
-                'created_at'        => $dateTimeNow->toDateTimeString()
-            ]);
+                $vendor_va_acc = Utilities::VendorVANumber($va_acc);
+                $newVendor = Vendor::create([
+                    'id' =>$vendorID,
+                    'user_id' => $userID,
+                    'vendor_va' => $vendor_va_acc,
+                    'name' => $request['name_vendor'],
+                    'description' => $request['description_vendor'],
+                    'bank_name' => $request['bank'],
+                    'bank_acc_name' => $request['acc_bank'],
+                    'bank_acc_number' => $request['no_rek'],
+                    'brand'   => $request['brand'],
+                    'vendor_type'   => $request['vendor_type'],
+                    'business_type'   => $request['business_type'],
+                    'establish_since'   => $request['establish_since'],
+                    'ownership'   => $request['ownership'],
+                    'address'    => $request['address'],
+                    'postal_code'    => $request['postal_code'],
+                    'city'    => $request['city'],
+                    'province'    => $request['province'],
+                    'phone_office'    => $request['phone_office'],
+                    'monthly_income'    => $request['monthly_income'],
+                    'monthly_profit'    => $request['monthly_profit'],
+                    'fb_acc'    => $request['vendor_fb'],
+                    'ig_acc'    => $request['vendor_ig'],
+                    'twitter_acc'    => $request['vendor_tw'],
+                    'youtube_acc'    => $request['vendor_yt'],
+                    'status_id' => 3,
+                    'created_at'        => $dateTimeNow->toDateTimeString()
+                ]);
 
-            // Get image extension
-            $img = Image::make($request->file('vendor_image'));
-            $extStr = $img->mime();
-            $ext = explode('/', $extStr, 2);
+                // Get image extension
+                $img = Image::make($request->file('vendor_image'));
+                $extStr = $img->mime();
+                $ext = explode('/', $extStr, 2);
 
-            $filename = $request['name_vendor'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_0.'. $ext[1];
+                $filename = $request['name_vendor'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_0.'. $ext[1];
 
-            $img->save(public_path('storage/owner_picture/'. $filename), 45);
-            $newVendor->profile_picture = $filename;
-            $newVendor->save();
+                $img->save(public_path('storage/owner_picture/'. $filename), 45);
+                $newVendor->profile_picture = $filename;
+                $newVendor->save();
 
 //        create new product
-            $newProduct = Product::create([
-                'id' => $productID,
-                'category_id' => $request['category'],
-                'name' => $request['project_name'],
-                'user_id' => $userID,
-                'vendor_id' => $vendorID,
-                'raising' => $request['raising'],
-                'days_left' => $request['days_left'],
-                'tagline' => $request['project_tagline'],
-                'description' => $request['description'],
-                'interest_rate' => $request['interest_rate'],
-                'business_class' => $request['business_class'],
-                'prospectus_path' => $request['prospectus'],
+                $newProduct = Product::create([
+                    'id' => $productID,
+                    'category_id' => $request['category'],
+                    'name' => $request['project_name'],
+                    'user_id' => $userID,
+                    'vendor_id' => $vendorID,
+                    'raising' => $request['raising'],
+                    'days_left' => $request['days_left'],
+                    'tagline' => $request['project_tagline'],
+                    'description' => $request['description'],
+                    'interest_rate' => $request['interest_rate'],
+                    'business_class' => $request['business_class'],
+                    'prospectus_path' => $request['prospectus'],
 //                'installment_per_month' => $request['installment_per_month'],
 //                'interest_per_month' => $request['interest_per_month'],
-                'tenor_loan' => $request['tenor_loan'],
-                'is_secondary' => 0,
-                'status_id' => 3,
-                'created_on'        => $dateTimeNow->toDateTimeString()
-            ]);
+                    'tenor_loan' => $request['tenor_loan'],
+                    'is_secondary' => 0,
+                    'status_id' => 3,
+                    'created_on'        => $dateTimeNow->toDateTimeString()
+                ]);
 
-            //get youtube code
-            $url = $request['youtube'];
-            if(strpos($url, 'https://www.youtube.com') !== false){
-                if(strpos($url, 'embed') !== false){
-                    $splitedUrl = explode("https://www.youtube.com/embed/",$url);
-                    $newProduct->youtube_link = $splitedUrl[1];
+                //get youtube code
+                $url = $request['youtube'];
+                if(strpos($url, 'https://www.youtube.com') !== false){
+                    if(strpos($url, 'embed') !== false){
+                        $splitedUrl = explode("https://www.youtube.com/embed/",$url);
+                        $newProduct->youtube_link = $splitedUrl[1];
 
+                    }
+                    else if(strpos($url, 'watch?') !== false){
+                        $splitedUrl = explode("https://www.youtube.com/watch?v=",$url);
+                        $newProduct->youtube_link = $splitedUrl[1];
+                    }
+                    else{
+                        $splitedUrl = explode("https://www.youtube.com",$url);
+                        $newProduct->youtube_link = $splitedUrl[1];
+                    }
                 }
-                else if(strpos($url, 'watch?') !== false){
-                    $splitedUrl = explode("https://www.youtube.com/watch?v=",$url);
+                if(strpos($url, 'youtu.be') !== false){
+                    $splitedUrl = explode("https://youtu.be/",$url);
                     $newProduct->youtube_link = $splitedUrl[1];
                 }
-                else{
-                    $splitedUrl = explode("https://www.youtube.com",$url);
-                    $newProduct->youtube_link = $splitedUrl[1];
-                }
-            }
-            if(strpos($url, 'youtu.be') !== false){
-                $splitedUrl = explode("https://youtu.be/",$url);
-                $newProduct->youtube_link = $splitedUrl[1];
-            }
 
-            // Get image extension
-            $img = Image::make($request->file('project_image'));
-            $extStr = $img->mime();
-            $ext = explode('/', $extStr, 2);
+                // Get image extension
+                $img = Image::make($request->file('project_image'));
+                $extStr = $img->mime();
+                $ext = explode('/', $extStr, 2);
 
-            $filename = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms'). '.'. $ext[1];
+                $filename = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms'). '.'. $ext[1];
 
-            $img->save(public_path('storage/project/'. $filename), 75);
-            $newProduct->image_path = $filename;
-            $newProduct->save();
+                $img->save(public_path('storage/project/'. $filename), 75);
+                $newProduct->image_path = $filename;
+                $newProduct->save();
 
-            // save pdf
+                // save pdf
 //            $filenamePDF = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms').'.pdf';
 //            $destinationPath = public_path('storage/project/');
 //
@@ -356,25 +359,37 @@ class VendorController extends Controller
 
 //        create product ciclan & bunga
 
-            for($i=0;$i<$request['tenor_loan'];$i++){
-                $totalPayment = $installmentPerMonths[$i] + $interestPerMonths[$i];
-                $newProduct = ProductInstallment::create([
-                    'id'            =>Uuid::generate(),
-                    'product_id'    => $productID,
-                    'month'         => $i + 1,
-                    'amount'        => $installmentPerMonths[$i],
-                    'interest_amount'        => $interestPerMonths[$i],
-                    'paid_amount'        => $totalPayment,
-                    'vendor_va'        => $vendor_va_acc,
-                    'status_id'     => 1,
-                    'created_on'    => $dateTimeNow->toDateTimeString()
-                ]);
-            }
-        });
-//
-//        if ($validator->fails()) {
-//            return back()->withErrors("Gagal dalam melakukan tindakan!")->withInput();
-//        }
+                for($i=0;$i<$request['tenor_loan'];$i++){
+                    $totalPayment = $installmentPerMonths[$i] + $interestPerMonths[$i];
+                    $newProduct = ProductInstallment::create([
+                        'id'            =>Uuid::generate(),
+                        'product_id'    => $productID,
+                        'month'         => $i + 1,
+                        'amount'        => $installmentPerMonths[$i],
+                        'interest_amount'        => $interestPerMonths[$i],
+                        'paid_amount'        => $totalPayment,
+                        'vendor_va'        => $vendor_va_acc,
+                        'status_id'     => 1,
+                        'created_on'    => $dateTimeNow->toDateTimeString()
+                    ]);
+                }
+
+                //send email to borrower\
+            });
+
+            $data = array(
+                'user'=>User::find($userID),
+                'productInstallment' => ProductInstallment::where('product_id', $productID)->get(),
+                'product' => Product::find($productID),
+                'vendor' => Vendor::find($vendorID)
+            );
+            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
+        }
+        catch (\Exception $ex){
+//            dd($ex);
+            Utilities::ExceptionLog('VendorController.php > RequestOwnerSubmit ========> '.$ex);
+        }
+
 
         return Redirect::route('vendor-list');
     }
