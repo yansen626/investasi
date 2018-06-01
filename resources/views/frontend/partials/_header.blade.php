@@ -33,7 +33,7 @@
                 </div>
                 <div class="menu-wrap col-md-8 ">
                     <ul class="menu">
-                        <li class="active">
+                        <li>
                             <a href="{{route('index')}}" >Beranda </a>
                         </li>
 
@@ -53,6 +53,9 @@
                                 <li><a href="{{route('contact')}}">Hubungi Kami</a></li>
                                 <li><a href="{{route('pengajuan')}}">Jadilah Partner Kami</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="#" >Lowongan </a>
                         </li>
                         {{--<li>--}}
                             {{--<span><a href="{{route('blog-list')}}">Blog</a></span>--}}
@@ -114,6 +117,7 @@
                                                 <li><a href="{{route('pengajuan')}}">Jadilah Partner Kami</a></li>
                                             </ul>
                                         </li>
+                                        <li><a href="#">Lowongan </a></li>
                                         {{--<li>--}}
                                             {{--<a href="{{route('blog-list')}}">Blog</a>--}}
                                         {{--</li>--}}

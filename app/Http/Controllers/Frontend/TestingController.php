@@ -85,23 +85,29 @@ class TestingController extends Controller
             return "failed : ".$ex;
         }
     }
-    public function TestingViewEmail(){
+    public function TestingFunction(){
         try{
-//            $angka = 50000;
-//            $angkaTerbilang = Utilities::Terbilang($angka);
-//            dd($angkaTerbilang);
+            $productInstallments = ProductInstallment::where('paid_amount', null)->get();
 
-            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
-            //Send Email,
-            $userData = User::find($transaction->user_id);
-            $payment = PaymentMethod::find($transaction->payment_method_id);
-            $product = Product::find($transaction->product_id);
-
-            $productInstallments = ProductInstallment::where('product_id', $product->id)->get();
-            $vendor = Vendor::find($product->vendor_id);
-            $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
-
-            return View('email.perjanjian-layanan', compact('user', 'product', 'productInstallments', 'vendor'));
+            foreach ($productInstallments as $productInstallment){
+                $amount = (double) str_replace('.','', $productInstallment->amount);
+                $interest = (double) str_replace('.','', $productInstallment->interest_amount);
+                $productInstallment->paid_amount = $amount + $interest;
+                $productInstallment->save();
+            }
+            dd($productInstallments);
+              //Testing view perjanjian layanan
+//            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
+//            //Send Email,
+//            $userData = User::find($transaction->user_id);
+//            $payment = PaymentMethod::find($transaction->payment_method_id);
+//            $product = Product::find($transaction->product_id);
+//
+//            $productInstallments = ProductInstallment::where('product_id', $product->id)->get();
+//            $vendor = Vendor::find($product->vendor_id);
+//            $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
+//
+//            return View('email.perjanjian-layanan', compact('user', 'product', 'productInstallments', 'vendor'));
 
         }
         catch (\Exception $ex){

@@ -12,7 +12,7 @@
 */
 
 Route::get('/testing', "Frontend\TestingController@TestingSendEmail");
-Route::get('/testing2', "Frontend\TestingController@TestingViewEmail");
+Route::get('/testing2', "Frontend\TestingController@TestingFunction");
 
 
 //Home, contact us, term, etc

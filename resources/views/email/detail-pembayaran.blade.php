@@ -76,7 +76,7 @@
                                 <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
                                 <p>Kami telah menerima order pendanaan dengan detail sebagai berikut :<br/>
                                     Nama Proyek : {{$product->name}}<br/>
-                                    Masa Penawaran : {{$product->tenor_loan}} hari<br/>
+                                    Masa Penawaran : {{$product->tenor_loan}} bulan<br/>
                                     Sebesar Rp. {{$transaction->total_price}} <br/>
                                     pembayaran dapat dilakukan maksimal 6 jam
                                 </p>

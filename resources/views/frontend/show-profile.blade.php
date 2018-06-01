@@ -17,88 +17,74 @@
     <div class="about-page-wrapper">
         <div class="description container">
             <div class="row">
-                <div class="col-xs-12">
-                    @if($user->status_id != 1)
-                        <h2>Status Verifikasi Anda</h2>
-                        <div class="col-xs-12">
-                            <ul class="nav nav-pills nav-justified thumbnail custom-color">
-                                <li><a href="#">
-                                        <p class="list-group-item-text green">Email Verification</p>
-                                    </a></li>
-                                @if($user->status_id == 11)
-                                    <li class="active"><a href="{{route('verify-phone-show')}}">
-                                            <p class="list-group-item-text green">Phone Verification</p>
-                                        </a></li>
-                                    <li class="disabled"><a href="#">
-                                            <p class="list-group-item-text">Photo Upload</p>
-                                        </a></li>
-                                    <li class="disabled"><a href="#">
-                                            <p class="list-group-item-text">Risk Profile</p>
-                                        </a></li>
-                                    <li class="disabled"><a href="#">
-                                            <p class="list-group-item-text">Set Your Address</p>
-                                        </a></li>
-                                @elseif($user->status_id == 12 || $user->status_id == 13)
-                                    <li><a href="#">
-                                            <p class="list-group-item-text green">Phone Verification</p>
-                                        </a></li>
-                                    <li class="active"><a href="{{route('verify-photo')}}">
-                                            <p class="list-group-item-text">Photo Upload</p>
-                                        </a></li>
-                                    <li class="disabled"><a href="#">
-                                            <p class="list-group-item-text">Risk Profile</p>
-                                        </a></li>
-                                    <li class="disabled"><a href="#">
-                                            <p class="list-group-item-text">Set Your Address</p>
-                                        </a></li>
-                                @elseif($user->status_id == 14)
-                                    <li><a href="#">
-                                            <p class="list-group-item-text green">Phone Verification</p>
-                                        </a></li>
-                                    <li><a href="#">
-                                            <p class="list-group-item-text green">Photo Upload</p>
-                                        </a></li>
-                                    <li class="active"><a href="#">
-                                            <p class="list-group-item-text">Risk Profile</p>
-                                        </a></li>
-                                    <li class="disabled"><a href="#">
-                                            <p class="list-group-item-text">Set Your Address</p>
-                                        </a></li>
-                                @elseif($user->status_id == 15)
-                                    <li><a href="#">
-                                            <p class="list-group-item-text green">Phone Verification</p>
-                                        </a></li>
-                                    <li><a href="#">
-                                            <p class="list-group-item-text green">Photo Upload</p>
-                                        </a></li>
-                                    <li><a href="#">
-                                            <p class="list-group-item-text green">Risk Profile</p>
-                                        </a></li>
-                                    <li class="active"><a href="{{route('map')}}">
-                                            <p class="list-group-item-text">Set Your Address</p>
-                                        </a></li>
-                                @endif
+                {{--<div class="col-xs-12">--}}
+                    {{--@if($user->status_id != 1)--}}
+                        {{--<h2>Status Verifikasi Anda</h2>--}}
+                        {{--<div class="col-xs-12">--}}
+                            {{--<ul class="nav nav-pills nav-justified thumbnail custom-color">--}}
+                                {{--<li><a href="#">--}}
+                                        {{--<p class="list-group-item-text green">Email Verification</p>--}}
+                                    {{--</a></li>--}}
+                                {{--@if($user->status_id == 11)--}}
+                                    {{--<li class="active"><a href="{{route('verify-phone-show')}}">--}}
+                                            {{--<p class="list-group-item-text green">Phone Verification</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="disabled"><a href="#">--}}
+                                            {{--<p class="list-group-item-text">Photo Upload</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="disabled"><a href="#">--}}
+                                            {{--<p class="list-group-item-text">Risk Profile</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="disabled"><a href="#">--}}
+                                            {{--<p class="list-group-item-text">Set Your Address</p>--}}
+                                        {{--</a></li>--}}
+                                {{--@elseif($user->status_id == 12 || $user->status_id == 13)--}}
+                                    {{--<li><a href="#">--}}
+                                            {{--<p class="list-group-item-text green">Phone Verification</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="active"><a href="{{route('verify-photo')}}">--}}
+                                            {{--<p class="list-group-item-text">Photo Upload</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="disabled"><a href="#">--}}
+                                            {{--<p class="list-group-item-text">Risk Profile</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="disabled"><a href="#">--}}
+                                            {{--<p class="list-group-item-text">Set Your Address</p>--}}
+                                        {{--</a></li>--}}
+                                {{--@elseif($user->status_id == 14)--}}
+                                    {{--<li><a href="#">--}}
+                                            {{--<p class="list-group-item-text green">Phone Verification</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li><a href="#">--}}
+                                            {{--<p class="list-group-item-text green">Photo Upload</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="active"><a href="#">--}}
+                                            {{--<p class="list-group-item-text">Risk Profile</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="disabled"><a href="#">--}}
+                                            {{--<p class="list-group-item-text">Set Your Address</p>--}}
+                                        {{--</a></li>--}}
+                                {{--@elseif($user->status_id == 15)--}}
+                                    {{--<li><a href="#">--}}
+                                            {{--<p class="list-group-item-text green">Phone Verification</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li><a href="#">--}}
+                                            {{--<p class="list-group-item-text green">Photo Upload</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li><a href="#">--}}
+                                            {{--<p class="list-group-item-text green">Risk Profile</p>--}}
+                                        {{--</a></li>--}}
+                                    {{--<li class="active"><a href="{{route('map')}}">--}}
+                                            {{--<p class="list-group-item-text">Set Your Address</p>--}}
+                                        {{--</a></li>--}}
+                                {{--@endif--}}
 
-                            </ul>
-                        </div>
-                    @endif
-                    Lanjutkan verifikasi Anda untuk dapat menggunakan semua fitur kami
-                </div>
-
-                {{--@php($isActiveProfile = ""; $isActiveSecurity = "";$isActivePassword = "";$isActivePhone = "";)--}}
-                {{--@php($isActiveTabProfile = "";$isActiveTabSecurity = "";$isActiveTabPassword = "";$isActiveTabPhone = "";)--}}
-                    {{--@if($selectedTab == "profile")--}}
-                         {{--@php($isActiveProfile = "in active"; $isActiveTabProfile = "class='active'";)--}}
-
-                    {{--@elseif($selectedTab == "security")--}}
-                         {{--@php($isActiveSecurity = "in active"; $isActiveTabSecurity = "class='active'";)--}}
-
-                    {{--@elseif($selectedTab == "password")--}}
-                         {{--@php($isActivePassword = "in active"; $isActiveTabPassword = "class='active'";)--}}
-
-                    {{--@elseif($selectedTab == "phone")--}}
-                        {{--@php($isActivePhone = "in active"; $isActiveTabPhone = "class='active'";)--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
                     {{--@endif--}}
+                    {{--Lanjutkan verifikasi Anda untuk dapat menggunakan semua fitur kami--}}
+                {{--</div>--}}
+
                 <div class="col-xs-12">
                     <h2>Profil Anda</h2>
                     <div class="panel with-nav-tabs panel-default">
@@ -210,14 +196,14 @@
                                                 </div>
 
                                                 @if(empty($user->img_ktp))
-                                                    <div class="field col-sm-12" style="margin-top: -3px;">
+                                                    <div class="field col-sm-12" style="margin-top: 30px;">
                                                         <h5>Foto KTP</h5>
                                                         <h5 style="color:red;">*Size maksimal foto adalah 16MB</h5>
                                                         <div class="input-group">
                                                             <span class="input-group-btn">
                                                                 <span class="btn btn-primary btn-file">
                                                                 Browse {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'accept' => 'image/*,application/pdf')) !!}
-                                                                    <input type="file" id="photo-ktp" name="photo_ktp" accept="image/*,application/pdf">
+                                                                    {{--<input type="file" id="photo-ktp" name="photo_ktp" accept="image/*,application/pdf">--}}
                                                                 </span>
                                                             </span>
                                                             <input type="text" class="form-control" readonly>
@@ -225,16 +211,18 @@
                                                         <img id='img-upload' style="width:200px; height:100%"/>
                                                     </div>
                                                 @elseif($user->ktp_verified == 0)
-                                                    <div class="field col-sm-12" style="margin-top: -3px;">
+                                                    <div class="field col-sm-6" style="margin-top: 30px;">
                                                         <h5>Foto KTP</h5>
+                                                        <img id='img-uploaded' style="width:200px; height:100%" src="{{ asset('storage\ktp\\'.$user->img_ktp) }}"/>
+                                                    </div>
+                                                    <div class="field col-sm-6" style="margin-top: 30px;">
                                                         <h5 style="color:red;">*Size maksimal foto adalah 16MB</h5>
                                                         <h5 style="color:red;">**Menunggu di verifikasi</h5>
-                                                        <img id='img-upload' style="width:200px; height:100%" src="{{ asset('storage\ktp\\'.$user->img_ktp) }}"/>
                                                         <div class="input-group">
                                                             <span class="input-group-btn">
                                                                 <span class="btn btn-primary btn-file">
                                                                 Browse {!! Form::file('photo_ktp', array('id' => 'photo-ktp', 'accept' => 'image/*,application/pdf')) !!}
-                                                                    <input type="file" id="photo-ktp" name="photo_ktp" accept="image/*,application/pdf">
+                                                                    {{--<input type="file" id="photo-ktp" name="photo_ktp" accept="image/*,application/pdf">--}}
                                                                 </span>
                                                             </span>
                                                             <input type="text" class="form-control" readonly>
@@ -242,7 +230,7 @@
                                                         <img id='img-upload' style="width:200px; height:100%"/>
                                                     </div>
                                                 @else
-                                                    <div class="field col-sm-12" style="margin-top: -3px;">
+                                                    <div class="field col-sm-12" style="margin-top: 30px;">
                                                         <h5>Foto KTP</h5>
                                                         <img id='img-upload' style="width:200px; height:100%" src="{{ asset('storage\ktp\\'.$user->img_ktp) }}"/>
                                                     </div>
@@ -288,8 +276,8 @@
                                                 </span>
                                                     @endif
                                                 </div>
-                                                <div class="field col-sm-12 {{ $errors->has('confirmPass') ? ' has-error' : '' }}">
-                                                    <h5>Konfirmasi Password</h5>
+                                                <div class="field col-sm-12 {{ $errors->has('confirmPass') ? ' has-error' : '' }}" style="margin-top: 0">
+                                                    <h5>Konfirmasi Password Baru</h5>
                                                     <input type="password" name="confirmPass">
                                                     @if ($errors->has('confirmPass'))
                                                         <span class="help-block">
@@ -338,7 +326,7 @@
                                                 </span>
                                                     @endif
                                                 </div>
-                                                <div class="field col-sm-12 {{ $errors->has('confirmPassPhone') ? ' has-error' : '' }}">
+                                                <div class="field col-sm-12 {{ $errors->has('confirmPassPhone') ? ' has-error' : '' }}" style="margin-top: 0">
                                                     <h5>Konfirmasi Password</h5>
                                                     <input type="password" name="confirmPassPhone">
                                                     @if ($errors->has('confirmPassPhone'))

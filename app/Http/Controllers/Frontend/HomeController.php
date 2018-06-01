@@ -144,34 +144,39 @@ class HomeController extends Controller
             'section_Popup' => $section_Popup
         ];
 
-        return View('frontend.home-new')->with($data);
+        return View('frontend.homes.home-new')->with($data);
     }
 
     //
     public function AboutUs(){
-        return View('frontend.about-us');
+        return View('frontend.homes.about-us');
     }
 
     //
     public function TermCondition(){
-        return View('frontend.term-condition');
+        return View('frontend.homes.term-condition');
     }
 
     //
     public function PrivacyPolicy(){
-        return View('frontend.privacy-policy');
+        return View('frontend.homes.privacy-policy');
+    }
+
+    //
+    public function JobVacancy(){
+        return View('frontend.homes.job-vacancy');
     }
 
     //
     public function ContactUs(){
-        return View('frontend.contact-us');
+        return View('frontend.homes.contact-us');
     }
 
     public function Tutorial(){
-        return View('frontend.show-tutorial');
+        return View('frontend.homes.show-tutorial');
     }
     public function Pengajuan(){
-        return View('frontend.apply-owner');
+        return View('frontend.homes.apply-owner');
     }
     public function PerjanjianLayanan(){
 
