@@ -174,9 +174,10 @@
     <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
 line-height:110%'><b>  <span lang=IN>PERJANJIAN LAYANAN PINJAM MEMINJAM UANG
 BERBASIS TEKNOLOGI</span></b></p>
-
-    <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
-line-height:110%'><b><span lang=IN>No. </span></b><span lang=IN style='background:yellow'>[X]</span></p>
+    @if(!empty($transaction))
+        <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
+line-height:110%'><b><span lang=IN>No. </span></b>{{$transaction->invoice}}</p>
+    @endif
 
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
 110%'><span lang=IN>Perjanjian Layanan Pinjam Meminjam Uang Berbasis Teknologi ini
@@ -193,10 +194,8 @@ text-indent:-36.0pt;line-height:110%'><span lang=IN>(1)<span style='font:7.0pt "
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
 text-indent:-36.0pt;line-height:110%'><span lang=IN>(2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=IN>{{ $user->first_name }} {{ $user->last_name }}</span><span lang=IN>, warga negara <span>{{$user->citizen}}</span>, bertempat tinggal di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span>, pemegang
-            Kartu Tanda Penduduk No. <span>{{ $user->identity_number }}</span> </span><span lang=EN-GB>[<b>PT </b></span><span lang=IN style='background:yellow'>[X]</span><span lang=EN-GB>, </span><span lang=IN>sebuah perseoan terbatas yang didirikan
-berdasarkan hukum Negara Republik Indonesia, beralamat di </span>
-        <span lang=IN style='background:yellow'>[X]</span><span lang=IN>] (“<b>Pemberi Pinjaman</b>”).
+</span></span><span lang=IN>{{ $user->name_ktp }} </span><span lang=IN>, warga negara <span>{{$user->citizen}}</span>, bertempat tinggal di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span>, pemegang
+            Kartu Tanda Penduduk No. <span>{{ $user->identity_number }}</span> <span lang=IN>] (“<b>Pemberi Pinjaman</b>”).
 </span></p>
 
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
@@ -227,8 +226,8 @@ melalui Penyelenggara berdasarkan syarat dan ketentuan yang diatur dalam
 Perjanjian ini</span>.</p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
-text-indent:-36.0pt;line-height:110%'><span lang=IN>C.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=IN>D.	Apabila Penggalangan Pinjaman berhasil diselesaikan
+text-indent:-36.0pt;line-height:110%'><span lang=IN>D.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=IN>Apabila Penggalangan Pinjaman berhasil diselesaikan
 sesuai dengan ketentuan dalam Perjanjian ini, Pemberi Pinjaman bermaksud menunjuk Penyelenggara
 sebagai agen dan kuasanya, untuk menyalurkan, mengurus, dan mengelola Pemberian Pinjaman untuk
 dan atas nama Pemberi Pinjaman</span>.</p>
@@ -275,7 +274,7 @@ dari permohonan pinjaman yang telah diajukan termasuk informasi sehubungan
 dengan, antara lain, (i) pagu maksimum pinjaman (ii) jangka waktu Pinjaman
 (iii) suku bunga (iv) denda keterlambatan dan (v) kesediaan Penerima Pinjaman
 untuk menerima Pinjaman apabila dana yang terkumpul selama masa penawaran
-sedikitnya </span><span lang=IN style='background:yellow'>[X]</span><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
+sedikitnya 100%</span><span lang=IN style='font-size:11.0pt;line-height:110%;font-family:"Calibri","sans-serif"'>
 dari nilai Pinjaman.</span></p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
@@ -304,7 +303,7 @@ rekening bank yang dibuka oleh Penyelenggara untuk kepentingan Pemberi Pinjaman
 dalam penyediaan Pinjaman</span>; </p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
-line-height:110%'><span lang=IN>“<b>Situs</b>”<b> </b>berarti situs [www.Penyelenggara.co.id]
+line-height:110%'><span lang=IN>“<b>Situs</b>”<b> </b>berarti situs [https://indofund.id/]
 yang dikelola oleh Penyelenggara</span>;</p>
 
     <p class=MsoListParagraph style='margin-bottom:10.0pt;text-align:justify;
@@ -628,7 +627,7 @@ PENGEMBALIAN DANA</span></b></p>
 </span></span><span lang=IN style='font-size:11.0pt;line-height:110%;
 font-family:"Calibri","sans-serif"'>Jika Penerima Pinjaman telah melakukan
 pembayaran atas Pinjaman yang diterimanya dari Pemberi Pinjaman, maka Penyelenggara
-akan memperhitungkan jumlah tersebut dalam Rekening Virtual Pemberi Pinjaman setelah [X] Hari
+akan memperhitungkan jumlah tersebut pada saldo pemberi pinjaman di indofund.id setelah maksimum 7 Hari
 Kerja sejak </span><span lang=IN style='font-size:11.0pt;line-height:110%;
 font-family:"Calibri","sans-serif"'>tanggal pembayaran dilakukan. </span></p>
 
@@ -735,12 +734,14 @@ kepada Para Pihak dengan alamat sebagai berikut:</span></p>
                 <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
   10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>Penyelenggara:</span></p>
                 <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
-  10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>U.p:
-  </span><span lang=IN>Ryan Filbert</span></p>
+  10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>U.p:</span>
+                    <span lang=IN>PT Bursa Akselerasi Indonesia</span></p>
+                <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=IN>&nbsp;</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>Alamat Surat Elektronik:</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
-  justify;line-height:normal'><span lang=IN>info@indofund.id</span></p>
+  justify;line-height:normal'><span lang=IN>contact@mail.indofund.id</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>&nbsp;</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
@@ -750,15 +751,18 @@ kepada Para Pihak dengan alamat sebagai berikut:</span></p>
             </td>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
-  10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>Pemberi
-  Pinjaman:</span></p>
+  10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>Pemberi Pinjaman:</span></p>
                 <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
-  10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>U.p:
-  </span><span lang=IN>{{ $user->first_name }} {{ $user->last_name }}</span></p>
+  10.0pt;margin-left:0cm;text-align:justify;line-height:110%'><span lang=IN>U.p:</span>
+                    <span lang=IN>{{ $user->name_ktp }}</span></p>
+                <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=IN>&nbsp;</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>Alamat Surat Elektronik:</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>{{ $user->email }}</span></p>
+                <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=IN>&nbsp;</span></p>
                 <p class=MsoListParagraph style='margin:0cm;margin-bottom:.0001pt;text-align:
   justify;line-height:normal'><span lang=IN>No. Telp:</span></p>
                 <p class=MsoListParagraph style='margin-top:0cm;margin-right:0cm;margin-bottom:
@@ -852,11 +856,14 @@ dan ditandatangani.</span></p>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
   line-height:110%'><span lang=IN>&nbsp;</span></p>
+                <p class=MsoNormal style='margin-bottom:10.0pt;line-height:110%'><span lang=IN>&nbsp;</span></p>
+                <p class=MsoNormal align=center style='margin-bottom:10.0pt;line-height:110%'><span lang=IN>{{ $user->name_ktp }}</span></p>
             </td>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
   line-height:110%'><span lang=IN>&nbsp;</span></p>
                 <p class=MsoNormal style='margin-bottom:10.0pt;line-height:110%'><span lang=IN>&nbsp;</span></p>
+                <p class=MsoNormal align=center style='margin-bottom:10.0pt;line-height:110%'><span lang=IN>Ryan Filbert</span></p>
             </td>
         </tr>
         <tr>
@@ -872,76 +879,53 @@ dan ditandatangani.</span></p>
         <tr>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-  110%'><span lang=IN>Nama    :_____________________________</span></p>
+  110%'><span lang=IN>Nama    : {{ $user->name_ktp }}</span></p>
             </td>
             <td width=301 valign=top style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
                 <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-  110%'><span lang=IN>Nama    :_____________________________</span></p>
+  110%'><span lang=IN>Nama    : Ryan Filbert</span></p>
                 <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-  110%'>Jabatan :<span lang=IN> _____________________________</span></p>
+  110%'><span lang=IN>Jabatan : Direktur Utama</span></p>
             </td>
         </tr>
     </table>
 
     <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
 110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal style='margin-bottom:10.0pt;text-align:justify;line-height:
-110%'><span lang=IN>&nbsp;</span></p>
-
-    <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
+    @if(!empty($productInstallments))
+        <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
 line-height:110%'><span lang=IN>LAMPIRAN I</span></p>
 
-    <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
+        <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
 line-height:110%'><span lang=IN>FORM PERJANJIAN PINJAMAN</span></p>
+
+        <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style='border-collapse:collapse;border:none'>
+            <tr>
+                <td style='width:85.25pt;border:solid windowtext 1.0pt; background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="114">
+                    <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">Pembayaran Ke</span></b></p>
+                </td>
+                <td style='width:215.25pt;border:solid windowtext 1.0pt; border-left:none;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="287">
+                    <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">Jumlah Angsuran</span></b></p>
+                </td>
+                <td style='width:150.3pt;border:solid windowtext 1.0pt; border-left:none;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="200">
+                    <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">Tanggal Jatuh Tempo</span></b></p>
+                </td>
+            </tr>
+            @foreach($productInstallments as $productInstallment)
+                <tr>
+                    <td style='width:85.25pt;border:solid windowtext 1.0pt; border-top:none;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="114">
+                        <p class="MsoListParagraph" style='margin-left:45.0pt;text-align:justify; text-indent:-9.0pt;line-height:110%'><b>{{$productInstallment->month}}. <span style='font:7.0pt "Times New Roman"'></span></b><b><span lang="EN-GB">&nbsp;</span></b></p>
+                    </td>
+                    <td style='width:215.25pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="287">
+                        <p align="center" class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:center;line-height:normal'><span lang="EN-GB">Rp {{$productInstallment->paid_amount}}</span></p>
+                    </td>
+                    <td style='width:150.3pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="200">
+                        <p align="center" class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:center;line-height:normal'><span lang="EN-GB">{{ \Carbon\Carbon::parse($productInstallment->due_date)->format('j F Y')}}</span></p>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+    @endif
 
 </div>
 

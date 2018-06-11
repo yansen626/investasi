@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta content="initial-scale=1.0" name="viewport">
     <meta content="telephone=no" name="format-detection">
-    <title>Indofund.id - Sukses Penarikan Dana</title>
+    <title>Indofund.id - Verifikasi KTP</title>
     <style type="text/css">
         .socialLinks {font-size: 6px;}
         .socialLinks a {display: inline-block;}
@@ -72,10 +72,10 @@
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;background-color: #fff;" width="570">
                         <tbody>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Hai {{ $name }}</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Hai {{ $user->first_name }} {{ $user->last_name }}</span></td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Terima kasih telah subscribe Indofund.id</td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">{{$description}}</td>
                         </tr>
                         </tbody>
                     </table>

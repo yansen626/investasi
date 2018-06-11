@@ -20,6 +20,7 @@ use App\Mail\RequestVerification;
 use App\Mail\RequestWithdrawInvestor;
 use App\Mail\SendProspectus;
 use App\Mail\Subscribe;
+use App\Mail\VerificationKTP;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -45,6 +46,14 @@ class SendEmail
                     Mail::to("ryanfilbert@gdrive.id")->send($requestVerification);
                     Mail::to("vina.marintan@gmail.com")->send($requestVerification);
 //                    Mail::to("contact@mail.indofund.id")->send($requestVerification);
+                    break;
+
+                case 'verificationKTP' :
+                    $user = $objData->user;
+                    $description = $objData->description;
+
+                    $subscribeEmail = new VerificationKTP($user, $description);
+                    Mail::to($user->email)->send($subscribeEmail);
                     break;
 
                 case 'contactUs' :
@@ -156,7 +165,8 @@ class SendEmail
                         'user'=>$objData->user,
                         'paymentMethod' => $objData->paymentMethod,
                         'product' => $objData->product,
-                        'vendor' => $vendor
+                        'vendor' => $vendor,
+                        'productInstallments' => $objData->productInstallment,
                     );
 
                     // payment confirmed send email
@@ -247,7 +257,7 @@ class SendEmail
         }
         catch (\Exception $ex){
 //            dd($ex);
-            Utilities::ExceptionLog('SendEmail.php > SendingEmail ========> '.$ex);
+            Utilities::ExceptionLog('SendEmail.php > SendingEmail ('.$option.') ========> '.$ex);
         }
     }
 }

@@ -75,13 +75,13 @@
                                         <span class="value text-success"> {{$productDB->business_class}} ( {{$productDB->interest_rate}}% ) </span>
                                     </li>
                                     <li>
-                                        <span class="name"> Cicilan/Bulan </span>
-                                        <span class="value text-success"> Rp {{$productDB->installment_per_month}} </span>
+                                        <span class="name"> Dana Terkumpul </span>
+                                        <span class="value text-success"> Rp {{$productDB->raised}} </span>
                                     </li>
-                                    <li class="hidden-phone">
-                                        <span class="name"> Bunga/Bulan </span>
-                                        <span class="value text-success"> Rp {{$productDB->interest_per_month}} </span>
-                                    </li>
+                                    {{--<li class="hidden-phone">--}}
+                                        {{--<span class="name"> Bunga/Bulan </span>--}}
+                                        {{--<span class="value text-success"> Rp {{$productDB->interest_per_month}} </span>--}}
+                                    {{--</li>--}}
                                 </ul>
                             </div>
 
@@ -93,7 +93,8 @@
                                                 <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Invoice / status</th>
+                                                    <th>Invoice</th>
+                                                    <th>Status</th>
                                                     <th>Nama Pendana</th>
                                                     <th>Metode Pembayaran </th>
                                                     <th>Jumlah Pendanaan</th>
@@ -107,10 +108,8 @@
                                                         @foreach($transactionDB as $transaction)
                                                             <tr>
                                                                 <td>{{ $idx}}</td>
-                                                                <td>
-                                                                    {{ $transaction->invoice}} <br>
-                                                                    {{$transaction->status->description}}
-                                                                </td>
+                                                                <td>{{ $transaction->invoice}}</td>
+                                                                <td>{{$transaction->status->description}}</td>
                                                                 <td>{{ $transaction->user->first_name }} {{ $transaction->user->last_name }}</td>
                                                                 <td>{{ $transaction->payment_method->description}}</td>
                                                                 <td>Rp {{ $transaction->total_price}}</td>

@@ -15,6 +15,7 @@ use App\Mail\PerjanjianPinjaman;
 use App\Models\Cart;
 use App\Models\PaymentMethod;
 use App\Models\Product;
+use App\Models\ProductInstallment;
 use App\Models\Transaction;
 use App\Models\TransactionWallet;
 use App\Models\User;
@@ -57,6 +58,7 @@ class TransactionUnit
                 'total_price'       => $cart->getOriginal('invest_amount'),
                 'phone'             => $user->phone,
                 'admin_fee'         => $cart->getOriginal('admin_fee'),
+                'two_day_due_date_flag' => 0,
                 'status_id'         => 3,
                 'created_on'        => $dateTimeNow->toDateTimeString(),
                 'created_by'        => $userId
@@ -97,6 +99,7 @@ class TransactionUnit
                 $dateTimeNow = Carbon::now('Asia/Jakarta');
 
                 $transaction->status_id = 10;
+                $transaction->modified_on = $dateTimeNow->toDateTimeString();
                 $transaction->save();
 
                 //update product data
@@ -140,22 +143,24 @@ class TransactionUnit
                 $userData = User::find($transaction->user_id);
                 $payment = PaymentMethod::find($transaction->payment_method_id);
                 $product = Product::find($transaction->product_id);
+                $productInstallments = ProductInstallment::where('product_id',$transaction->product_id)->get();
 
                 $data = array(
                     'transaction' => $transaction,
                     'user'=>$userData,
                     'paymentMethod' => $payment,
-                    'product' => $product
+                    'product' => $product,
+                    'productInstallment' => $productInstallments
                 );
 
                 $raisingDB = (double) str_replace('.','', $productDB->raising);
-                if(($raisedDB + $newRaise) >= $raisingDB){
+                $tempTotal = $raisedDB + $newRaise;
+                if($tempTotal >= $raisingDB){
                     $productDB->status_id = 22;
+                    Utilities::ExceptionLog("product raising collected  ".$product->name." (".$tempTotal." from ".$raisingDB.")");
     //                SendEmail::SendingEmail('collectedFund', $data);
-
     //            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
     //            Mail::to($userData->email)->send($perjanjianLayananEmail);
-
                 }
                 $productDB->save();
 

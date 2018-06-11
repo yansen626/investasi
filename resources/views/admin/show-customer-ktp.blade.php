@@ -101,8 +101,11 @@
                                     </ul>
                                     <br/>
                                     <div class="text-center mtop20">
-                                        <a onclick="modalPop('{{ $user->id }}', 'accept', '/admin/customer/ktp-accept/')" class="btn btn-big btn-success">Accept</a>
-                                        <a onclick="modalPop('{{ $user->id }}', 'cancel', '/admin/customer/ktp-reject/')" class="btn btn-big btn-danger">Reject</a>
+                                        <a href="{{url()->previous()}}" class="btn btn-big btn-primary">Back</a>
+                                        @if($user->ktp_verified == 0)
+                                            <a onclick="modalPop('{{ $user->id }}', 'accept', '/admin/customer/ktp-accept/')" class="btn btn-big btn-success">Accept</a>
+                                            <a onclick="modalPop('{{ $user->id }}', 'cancel', '/admin/customer/ktp-reject/')" class="btn btn-big btn-danger">Reject</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

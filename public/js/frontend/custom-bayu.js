@@ -172,6 +172,10 @@ $(function(){
         if($('#email').length > 0){
             email = $('#email').val();
         }
+        var phone = '';
+        if($('#phone').length > 0){
+            phone = $('#phone').val();
+        }
 
         $.ajax({
             url     : urlLink,
@@ -179,7 +183,8 @@ $(function(){
             data    : {
                 // _token: CSRF_TOKEN,
                 name  : name,
-                email : email
+                email : email,
+                phone : phone
             },
             headers:
                 {

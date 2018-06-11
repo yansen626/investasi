@@ -62,6 +62,7 @@
                                     <th>No</th>
                                     <th>User Name</th>
                                     <th>Borrower Name</th>
+                                    <th>Borrower VA</th>
                                     {{--<th>Description</th>--}}
                                     <th>Created Date</th>
                                     <th>Option</th>
@@ -74,6 +75,7 @@
                                             <td>{{ $idx }}</td>
                                             <td>{{ $vendor->user->first_name }} {{ $vendor->user->last_name }}</td>
                                             <td>{{ $vendor->name }}</td>
+                                            <td>{{ $vendor->vendor_va }}</td>
                                             {{--<td>{{ $vendor->description }}</td>--}}
                                             <td>{{ \Carbon\Carbon::parse($vendor->created_at)->format('j M Y G:i:s') }}</td>
                                             <td>

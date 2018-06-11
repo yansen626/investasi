@@ -375,7 +375,7 @@
     </p>
     <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
         2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>{{ $user->first_name }} {{ $user->last_name }}</span>, Warga Negara {{ $user->citizen }},
+        <span>{{ $user->name_ktp }}</span>, Warga Negara {{ $user->citizen }},
         pemegang Kartu Tanda Penduduk nomor <span>{{ $user->identity_number }}</span>
         yang beralamat di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span>
         (untuk selanjutnya disebut sebagai “<b>Penerima Pinjaman</b>”)
@@ -455,7 +455,7 @@
         “<b>Ketentuan-ketentuan Pinjaman</b>” adalah ketentuan-ketentuan yang disetujui dari Permohonan Pinjaman yang telah diajukan termasuk informasi sehubungan
         dengan, antara lain, (i) pagu maksimum pinjaman (ii) Jangka Waktu Pinjaman (iii) Suku Bunga (iv) denda keterlambatan
         dan (v) kesediaan Penerima Pinjaman untuk menerima Pinjaman apabila dana yang terkumpul selama masa penawaran sedikitnya
-        <span lang="IN" style='background:yellow'>[asdffdsa]</span> dari nilai pinjaman yang diajukan oleh Penerima Pinjaman
+        100% dari nilai pinjaman yang diajukan oleh Penerima Pinjaman
         dan Lampiran III Perjanjian Pinjaman ini.;
     </p>
     <p class="MsoListParagraph" style='text-align:justify;line-height:110%'>
@@ -477,7 +477,7 @@
         “<b>Rekening Escrow</b>” sebagaimana yang didefinisikan pada Pasal 4.1.2;
     </p>
     <p class="MsoListParagraph" style='text-align:justify;line-height:110%'>
-        “<b>Situs</b>” adalah situs www.indofund.id yang dikelola oleh Penyelenggara;
+        “<b>Situs</b>” adalah situs https://indofund.id/ yang dikelola oleh Penyelenggara;
     </p>
     <p class="MsoListParagraph" style='text-align:justify;line-height:110%'>
         “<b>Suku Bunga</b>” adalah persentase bunga dalam jangka waktu tertentu yang bersifat tetap selama masa pinjaman dan dihitung dari besar Pinjaman;
@@ -516,7 +516,7 @@
         <b><span style='text-transform:uppercase'>JANGKA WAKTU PINJAMAN</span></b>
     </p>
     <p class="MsoListParagraph" style='text-align:justify;line-height:110%'>
-        Jangka waktu Pinjaman ditetapkan selama <span style='background:yellow'>[asdffdsa]</span>
+        Jangka waktu Pinjaman ditetapkan selama {{$product->tenor_loan}}
         terhitung sejak tanggal pengiriman atas seluruh jumlah Pinjaman secara penuh dan dapat diperpanjang sesuai dengan kesepakatan dari Para Pihak (“<b>Jangka Waktu Pinjaman</b>”).
     </p>
     <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
@@ -537,7 +537,7 @@
 
     <p class="custom-p4"><span class="custom-span">
             4.2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Penerima Pinjaman diperkenankan untuk melakukan pembayaran seluruh</span> <span style='font-size:11.0pt;line-height: 110%;font-family:"Calibri","sans-serif"'>Pinjaman</span> <span class="custom-span" lang="IN">lebih cepat dari waktu yang ditetapkan dengan</span> <span class="custom-span">melakukan permohonan untuk itu melalui Akun Penerima Pinjaman</span> <span class="custom-span" lang="IN">sedikitnya</span>
-        <span lang="IN" style='background:yellow'>[asdffdsa]</span> <span lang="IN"></span>
+        3 <span lang="IN"></span>
         <span class="custom-span">Hari Kerja sebelum tanggal pelunasan dipercepat yang direncakan</span>
         <span class="custom-span" lang="IN">(“<b>Pelunasan Dipercepat</b>”).</span>
     </p>
@@ -545,24 +545,21 @@
     <p class="custom-p4"><span class="custom-span">4.2.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Pelunasan Dipercepat dikenakan biaya</span><span class="custom-span">sebagai berikut</span><span class="custom-span" lang="IN">:</span></p>
     <p class="custom-p5"><span class="custom-span">
             (a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
-        <span class="custom-span" lang="IN">Untuk masa angsuran berjalan kurang dari atau sama dengan</span>
-        <span lang="IN" style='background:yellow'>[asdffdsa]</span>
+        <span class="custom-span" lang="IN">Untuk masa angsuran berjalan kurang dari atau sama dengan 3</span>
         <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;</span>
-        <span class="custom-span" lang="IN">bulan:</span> <span lang="IN" style='background:yellow'>[asdffdsa]</span>
-        <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;</span><span class="custom-span">(
-        </span><span lang="IN" style='background:yellow'>[asdffdsa]</span> <span lang="IN"></span>
+        <span class="custom-span" lang="IN">bulan:</span> 2%
+        <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;</span><span class="custom-span">(dua</span>
         <span class="custom-span">persen)</span>
         <span class="custom-span" lang="IN">dari sisa utang pokok yang tercatat pada saat pelunasan ditambah biaya administrasi</span>
-        <span class="custom-span">sebesar</span> <span lang="IN" style='background:yellow'>[asdffdsa]</span>
-        <span lang="IN"></span><span class="custom-span">(</span><span lang="IN" style='background:yellow'>[asdffdsa]</span>
+        <span class="custom-span">sebesar Rp 500.000 </span>
+        <span lang="IN"></span><span class="custom-span">(Lima Ratus Ribu </span>
         <span lang="IN"></span><span class="custom-span">Rupiah)</span><span class="custom-span" lang="IN">;</span>
     </p>
     <p class="custom-p5"><span class="custom-span">
             (b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
-        <span class="custom-span" lang="IN">Untuk masa angsuran berjalan lebih dari</span>
-        <span lang="IN" style='background:yellow'>[asdffdsa]</span>
-        <span lang="IN"></span><span class="custom-span" lang="IN">bulan:</span> <span lang="IN" style='background:yellow'>[asdffdsa]</span>
-        <span lang="IN"></span><span class="custom-span">(</span><span lang="IN" style='background:yellow'>[asdffdsa]</span>
+        <span class="custom-span" lang="IN">Untuk masa angsuran berjalan lebih dari 3 </span>
+        <span lang="IN"></span><span class="custom-span" lang="IN">bulan: 2%</span>
+        <span lang="IN"></span><span class="custom-span">(Dua </span>
         <span lang="IN"></span><span class="custom-span">persen)</span>
         <span class="custom-span" lang="IN">dari sisa utang pokok yang tercatat pada saat pelunasan.</span>
     </p>
@@ -577,9 +574,9 @@
         <span class="custom-span" lang="IN">Penerima Pinjaman akan membayar kepada Penyelenggara<b></b></span>
         <span class="custom-span">Komisi Layanan Situs</span>
         <b><span class="custom-span"></span></b>
-        <span class="custom-span" lang="IN">sebesar</span><span lang="IN" style='background:yellow'>[asdffdsa]</span>
-        <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;(</span>
-        <span lang="IN" style='background:yellow'>[asdffdsa]</span><span lang="IN"></span><span class="custom-span" lang="IN">persen) dari jumlah Pinjaman</span>
+        <span class="custom-span" lang="IN">sebesar 3.5%</span>
+        <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;(tiga koma lima </span>
+        <span class="custom-span" lang="IN">persen) dari jumlah Pinjaman</span>
         <span lang="IN" style='font-size:11.0pt;line-height: 110%;font-family:"Calibri","sans-serif"'></span>
         <span class="custom-span" lang="IN">yang pembayarannya akan dilakukan dengan cara pengurangan langsung dari jumlah</span>
         <span class="custom-span">Pinjaman</span><span class="custom-span" lang="IN">.</span>
@@ -623,19 +620,19 @@
         <tr>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
                 <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'>Pemberi Pinjaman:</p>
-                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'>U.p: <span>{{ $user->first_name }} {{ $user->last_name }}</span></p>
+                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'>U.p: <span>PT Bursa Akselerasi Indonesia </span></p>
+                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'>Alamat Surat Elektronik:</p>
+                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'><span>contact@mail.indofund.id</span> <u><span style='color:#0563C1'></span></u></p>
+                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'>No. Telp:</p>
+                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'><span>(021)25981342</span></p>
+            </td>
+            <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
+                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'>Penerima Pinjaman:</p>
+                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'>U.p: <span>{{ $user->name_ktp }}</span></p>
                 <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'>Alamat Surat Elektronik:</p>
                 <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'><span>{{ $user->email }}</span> <u><span style='color:#0563C1'></span></u></p>
                 <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'>No. Telp:</p>
                 <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'><span>{{ $user->phone }}</span></p>
-            </td>
-            <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'>Penerima Pinjaman:</p>
-                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'>U.p: <span style='background:yellow'>[asdffdsa]</span></p>
-                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'>Alamat Surat Elektronik:</p>
-                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'><span style='background:yellow'>[asdffdsa]</span></p>
-                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify'>No. Telp:</p>
-                <p class="MsoListParagraph" style='margin-left:0cm;text-align:justify; line-height:110%'><span style='background:yellow'>[asdffdsa]</span></p>
             </td>
         </tr>
     </table>
@@ -661,7 +658,7 @@
         </tr>
         <tr>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">[PEMBERI PINJAMAN]</span></b></p>
+                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">PEMBERI PINJAMAN</span></b></p>
             </td>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
                 <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'><b><span lang="EN-GB">PENERIMA PINJAMAN</span></b></p>
@@ -670,12 +667,15 @@
         <tr>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
                 <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
+                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
+                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
+                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">Ryan Filbert</span></p>
             </td>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
                 <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
                 <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
                 <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
+                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">{{$user->name_ktp}}</span></p>
             </td>
         </tr>
         <tr>
@@ -689,14 +689,14 @@
         <tr>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
                 <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'>
-                    <span lang="EN-GB">Nama&nbsp;&nbsp;&nbsp; : <span style='background:yellow'>[asdffdsa]</span> &nbsp;</span>
+                    <span lang="EN-GB">Nama&nbsp;&nbsp;&nbsp; : Ryan Filbert &nbsp;</span>
                 </p>
                 <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'>
-                    <span lang="EN-GB">Jabatan : Kuasa</span>
+                    <span lang="EN-GB">Jabatan : Direktur Utama</span>
                 </p>
             </td>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">Nama&nbsp;&nbsp;&nbsp; :_____________________________</span></p>
+                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">Nama&nbsp;&nbsp;&nbsp; : {{$user->name_ktp}}</span></p>
                 <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">&nbsp;</span></p>
             </td>
         </tr>
@@ -822,7 +822,7 @@
             </td>
             <td style='width:239.55pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="319">
                 <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'>
-                    <span lang="EN-GB" style='background:yellow'>[asdffdsa]</span>
+                    <span lang="EN-GB">3% (tiga persen) atau Rp 100.000 (seratus ribu rupiah) perbulan</span>
                 </p>
             </td>
         </tr>

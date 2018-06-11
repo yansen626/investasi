@@ -108,7 +108,7 @@ class HomeController extends Controller
                 $recentBlogs = $recentBlogProducts;
                 $count =0;
                 for($i=$recentBlogProducts->count(); $i<$randomBlogs->count(); $i++){
-                    if($recentBlogs->count() > 4) break;
+                    if($recentBlogs->count() >= 4) break;
                     $recentBlogs->add($randomBlogs[$count]);
                     $count++;
                 }
@@ -193,7 +193,8 @@ class HomeController extends Controller
     public function Subscribe(Request $request){
         $validator = Validator::make($request->all(), [
             'name'  => 'required',
-            'email' => 'required|email|not_contains'
+            'email' => 'required|email|not_contains',
+            'phone' => 'required'
         ]);
 
         if ($validator->fails())
@@ -201,11 +202,13 @@ class HomeController extends Controller
 
         $name = $request->get('name');
         $email = $request->get('email');
+        $phone = $request->get('phone');
         $dateTimeNow = Carbon::now('Asia/Jakarta');
 
         \App\Models\Subscribe::create([
             'name'      => $name,
             'email'     => $email,
+            'phone'     => $phone,
             'date'      => $dateTimeNow->toDateTimeString(),
             'status_id' => 1,
         ]);

@@ -159,6 +159,14 @@ class ProfileController extends Controller
         $userDB = User::find($userId);
         $userDB->first_name = Input::get('fname');
         $userDB->last_name = Input::get('lname');
+        $userDB->name_ktp = Input::get('name_ktp');
+        $userDB->citizen = Input::get('citizen');
+        $userDB->address_ktp = Input::get('address_ktp');
+        $userDB->city_ktp = Input::get('city_ktp');
+        $userDB->province_ktp = Input::get('province_ktp');
+        $userDB->postal_code_ktp = Input::get('postal_code_ktp');
+
+
         if(!empty($request->file('photo_ktp'))) {
             //Check if Image or PDF
             $extension = $request->file('photo_ktp')->getClientOriginalExtension();

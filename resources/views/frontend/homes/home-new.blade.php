@@ -140,6 +140,12 @@
                                     Status
                                     <br>
                                     <span style="color: #ff7a00">{{$transaction->Status->description}} </span>
+                                    @if(!empty($transaction->modified_on))
+                                        <br>
+                                        <span>
+                                            {{ \Carbon\Carbon::parse($transaction->modified_on)->format('j-F-Y H:i:s')}}
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="col-md-2">
                                     Progress {{$percentage}}%
@@ -492,11 +498,14 @@
             <div class="subcribe widget clearfix">
                 <h2>Dapatkan Berita & Informasi Terbaru ke Email Anda</h2>
                 {!! Form::open(['url'=>'subscribeEmail','id'=>'subscribe-form'])!!}
-                <div class="col-md-offset-2 col-md-3 col-sm-12 field">
+                <div class="col-md-3 col-sm-12 field">
                     <input style="margin-bottom: 5%;color:black;" type="text" name="name" id="name" class="subscribe-field" placeholder="Ketikkan nama Anda disini">
                 </div>
                 <div class="col-md-3 col-sm-12 field">
                     <input style="margin-bottom: 5%;color:black;" type="email" name="email" id="email" class="subscribe-field" placeholder="Ketikkan alamat E-mail Anda disini">
+                </div>
+                <div class="col-md-3 col-sm-12 field">
+                    <input style="margin-bottom: 5%;color:black;" type="text" name="phone" id="phone" class="subscribe-field" placeholder="Ketikkan nomor handphone Anda disini">
                 </div>
                 <div class="col-md-3 col-sm-12 field">
                     {!! Form::submit('Kirim',['class'=>'btn btn-min btn-solid subscribe-submit', 'id'=>'subscribe-button'])!!}

@@ -43,12 +43,22 @@ class TestingController extends Controller
 
             $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
 
+//            $data = array(
+//                'user'=>User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4"),
+//                'productInstallment' => ProductInstallment::where('product_id', $transaction->product_id),
+//                'product' => Product::find($transaction->product_id)
+//            );
+//            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
+
+
             $data = array(
-                'user'=>User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4"),
-                'productInstallment' => ProductInstallment::where('product_id', $transaction->product_id),
-                'product' => Product::find($transaction->product_id)
+                'user' => User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4"),
+//                'description' => "Kami telah melakukan verifikasi foto KTP beserta data anda di indofund.id."
+                'description' => "Kami telah melakukan verifikasi data anda di indofund.id namun data yang anda masukkan belum 
+                    lengkap sehingga kami belum bisa melakukan verifikasi lebih lanjut, mohon kirimkan ulang foto ktp beserta data 
+                    secara tepat dan sesuai"
             );
-            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
+            SendEmail::SendingEmail('verificationKTP', $data);
 //            $data = array(
 //                'user' => $user
 //            );
@@ -87,27 +97,28 @@ class TestingController extends Controller
     }
     public function TestingFunction(){
         try{
-            $productInstallments = ProductInstallment::where('paid_amount', null)->get();
-
-            foreach ($productInstallments as $productInstallment){
-                $amount = (double) str_replace('.','', $productInstallment->amount);
-                $interest = (double) str_replace('.','', $productInstallment->interest_amount);
-                $productInstallment->paid_amount = $amount + $interest;
-                $productInstallment->save();
-            }
-            dd($productInstallments);
+//            $productInstallments = ProductInstallment::where('paid_amount', null)->get();
+//
+//            foreach ($productInstallments as $productInstallment){
+//                $amount = (double) str_replace('.','', $productInstallment->amount);
+//                $interest = (double) str_replace('.','', $productInstallment->interest_amount);
+//                $productInstallment->paid_amount = $amount + $interest;
+//                $productInstallment->save();
+//            }
+//            dd($productInstallments);
               //Testing view perjanjian layanan
-//            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
-//            //Send Email,
-//            $userData = User::find($transaction->user_id);
-//            $payment = PaymentMethod::find($transaction->payment_method_id);
-//            $product = Product::find($transaction->product_id);
-//
-//            $productInstallments = ProductInstallment::where('product_id', $product->id)->get();
-//            $vendor = Vendor::find($product->vendor_id);
-//            $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
-//
-//            return View('email.perjanjian-layanan', compact('user', 'product', 'productInstallments', 'vendor'));
+            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
+            //Send Email,
+            $userData = User::find($transaction->user_id);
+            $payment = PaymentMethod::find($transaction->payment_method_id);
+            $product = Product::find($transaction->product_id);
+
+            $productInstallments = ProductInstallment::where('product_id', $product->id)->get();
+            $vendor = Vendor::find($product->vendor_id);
+            $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
+
+            return View('email.perjanjian-layanan',compact('user', 'product', 'productInstallments', 'transaction', 'vendor'));
+//            return View('email.perjanjian-pinjaman', compact('user', 'product', 'productInstallments', 'vendor'));
 
         }
         catch (\Exception $ex){

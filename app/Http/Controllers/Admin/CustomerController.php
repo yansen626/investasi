@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 use App\Excel\ExcelExport;
 use App\Excel\ExcelExportFromView;
 use App\Http\Controllers\Controller;
+use App\Libs\SendEmail;
 use App\Models\Subscribe;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
@@ -55,6 +56,14 @@ class CustomerController extends Controller
             $user->ktp_verified = 1;
             $user->save();
 
+            //send email to notify user
+            $data = array(
+                'user' => $user,
+                'description' => "Kami telah melakukan verifikasi data anda di indofund.id namun data yang anda masukkan belum 
+                    lengkap sehingga kami belum bisa melakukan verifikasi lebih lanjut, mohon kirimkan ulang foto ktp beserta data 
+                    secara tepat dan sesuai"
+            );
+            SendEmail::SendingEmail('verificationKTP', $data);
 
             Session::flash('message', 'Data KTP User Accepted!');
         });
@@ -66,17 +75,23 @@ class CustomerController extends Controller
 
             $user = User::find($id);
             $user->ktp_verified = 0;
-
-            $user->identity_number = null;
-            $user->citizen = null;
-            $user->address_ktp = null;
-            $user->city_ktp = null;
-            $user->province_ktp = null;
-            $user->postal_code_ktp = null;
-            $user->name_ktp = null;
-            $user->img_ktp = null;
+//
+//            $user->identity_number = null;
+//            $user->citizen = null;
+//            $user->address_ktp = null;
+//            $user->city_ktp = null;
+//            $user->province_ktp = null;
+//            $user->postal_code_ktp = null;
+//            $user->name_ktp = null;
+//            $user->img_ktp = null;
             $user->save();
 
+            //send email to notify user
+            $data = array(
+                'user' => $user,
+                'description' => "Kami telah melakukan verifikasi foto KTP beserta data anda di indofund.id."
+            );
+            SendEmail::SendingEmail('verificationKTP', $data);
 
             Session::flash('message', 'Data KTP User Rejected!');
         });

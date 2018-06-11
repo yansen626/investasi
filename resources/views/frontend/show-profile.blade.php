@@ -99,7 +99,7 @@
                         <div class="panel-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade {{$isActiveSecurity}}" id="security">
-                                    <div class="col-md-offset-3 col-md-6 col-sm-12">
+                                    <div class="col-md-offset-2 col-md-8 col-sm-12">
                                         <div class="comment-form-wrapper contact-from clearfix">
                                             @if($user->google_authenticator == 0)
                                                 <div class="widget-title ">
@@ -159,7 +159,7 @@
                                 </div>
 
                                 <div class="tab-pane fade {{$isActiveProfile}}" id="editProfile">
-                                    <div class="col-md-offset-3 col-md-6 col-sm-12">
+                                    <div class="col-md-offset-2 col-md-8 col-sm-12">
                                         <div class="comment-form-wrapper contact-from clearfix">
                                             <div class="widget-title ">
                                                 <h4>Ubah Profil</h4>
@@ -190,12 +190,49 @@
                                                 </span>
                                                     @endif
                                                 </div>
+                                                <div class="field col-sm-12 {{ $errors->has('name_ktp') ? ' has-error' : '' }}">
+                                                    <h5>Nama Sesuai KTP</h5>
+                                                    <input type="text" id="KTP" name="name_ktp"  value="{{ $user->name_ktp }}"/>
+                                                </div>
+
                                                 <div class="field col-sm-12 {{ $errors->has('email') ? ' has-error' : '' }}">
                                                     <h5>Email</h5>
                                                     <input type="text" name="email" value="{{$user->email}}" disabled="disabled">
                                                 </div>
 
-                                                @if(empty($user->img_ktp))
+                                                <div class="field col-sm-12 {{ $errors->has('citizen') ? ' has-error' : '' }}">
+                                                    <h5>Kewarganegaraan</h5>
+                                                    <select class="form-control" id="citizen" name="citizen">
+                                                        @if($user->citizen == "Asing")
+                                                            <option value="Indonesia">Warga Negara Indonesia</option>
+                                                            <option value="Asing" selected>Warga Negara Asing</option>
+                                                        @else
+                                                            <option value="Indonesia" selected>Warga Negara Indonesia</option>
+                                                            <option value="Asing">Warga Negara Asing</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+
+                                                <div class="field col-sm-12 {{ $errors->has('address_ktp') ? ' has-error' : '' }}">
+                                                    <h5>Alamat</h5>
+                                                    <input id="address-ktp" name="address_ktp" value="{{ $user->address_ktp }}" type="text"/>
+                                                </div>
+
+                                                <div class="field col-sm-6 {{ $errors->has('city_ktp') ? ' has-error' : '' }}">
+                                                    <h5>Kota</h5>
+                                                    <input id="city-ktp" name="city_ktp" value="{{ $user->city_ktp }}" type="text"/>
+                                                </div>
+
+                                                <div class="field col-sm-6 {{ $errors->has('province_ktp') ? ' has-error' : '' }}">
+                                                    <h5>Provinsi</h5>
+                                                    <input id="province-ktp" name="province_ktp" value="{{ $user->province_ktp }}" type="text"/>
+                                                </div>
+
+                                                <div class="field col-sm-12 {{ $errors->has('postal_code_ktp') ? ' has-error' : '' }}">
+                                                    <h5>Kode Pos</h5>
+                                                    <input id="postal-code-ktp" name="postal_code_ktp" value="{{ $user->postal_code_ktp }}" type="text"/>
+                                                </div>
+                                            @if(empty($user->img_ktp))
                                                     <div class="field col-sm-12" style="margin-top: 30px;">
                                                         <h5>Foto KTP</h5>
                                                         <h5 style="color:red;">*Size maksimal foto adalah 16MB</h5>
@@ -245,7 +282,7 @@
                                 </div>
 
                                 <div class="tab-pane fade {{$isActivePassword}}" id="password">
-                                    <div class="col-md-offset-3 col-md-6 col-sm-12">
+                                    <div class="col-md-offset-2 col-md-8 col-sm-12">
                                         <div class="comment-form-wrapper contact-from clearfix">
                                             <div class="widget-title ">
                                                 <h4>Ubah Password</h4>
@@ -295,7 +332,7 @@
                                 </div>
 
                                 <div class="tab-pane fade {{$isActivePhone}}" id="phoneNumber">
-                                    <div class="col-md-offset-3 col-md-6 col-sm-12">
+                                    <div class="col-md-offset-2 col-md-8 col-sm-12">
                                         <div class="comment-form-wrapper contact-from clearfix">
                                             <div class="widget-title ">
                                                 <h4>Ubah Nomor Telepon</h4>

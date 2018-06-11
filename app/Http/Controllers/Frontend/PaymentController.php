@@ -150,6 +150,9 @@ class PaymentController extends Controller
             if(!auth()->check()){
                 return redirect()->route('project-detail', ['id' => $investId]);
             }
+
+
+
             $user = Auth::user();
             $userId = $user->id;
 
