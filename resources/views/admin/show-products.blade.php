@@ -71,12 +71,13 @@
                                                     <td>{{$percentage}}%</td>
                                                     <td>{{ $product->status->description }}</td>
                                                     <td>
+                                                        <a href="{{ route('product-edit', ['id'=>$product->id]) }}" class="btn btn-success">Edit</a>
                                                         <a href="{{ route('product-investors', ['id'=>$product->id]) }}" class="btn btn-primary">Detail Lender</a>
                                                         <a href="{{ route('project-detail', ['id' => $product->id]) }}" target="_blank">
                                                             <button class="btn btn-primary">Detail</button>
                                                         </a>
                                                         <a href="{{ route('product-news-request', ['productId' => $product->id])}}" target="_blank">
-                                                            <button class="btn btn-info">Tambah Berita</button>
+                                                            <button class="btn btn-success">Tambah Berita</button>
                                                         </a>
                                                     </td>
                                                 </tr>

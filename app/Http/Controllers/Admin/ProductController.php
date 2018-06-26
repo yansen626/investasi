@@ -376,179 +376,137 @@ class ProductController extends Controller
     }
 
     public function edit($id){
-        $product = Product::findorFail($id);
+        $productDB = Product::find($id);
+        $productInstallmentDB = ProductInstallment::where('product_id', $id)->get();
+        $productVendorDB = Vendor::find($productDB->vendor_id);
 
-        $imgFeatured = $product->product_image()->where('featured', 1)->first()->path;
-        $imgPhotos = $product->product_image()->where('featured', 0)->get();
         $categories = Category::all();
 
         $data = [
-            'product'       => $product,
-            'imgFeatured'   => $imgFeatured,
-            'imgPhotos'     => $imgPhotos,
+            'productDB'          => $productDB,
+            'productInstallmentDB'          => $productInstallmentDB,
+            'vendorDB'          => $productVendorDB,
             'categories'    => $categories
         ];
 
-        return view('admin.edit-product')->with($data);
+        return View('admin.edit-product')->with($data);
     }
 
-    public function update(Request $request, $id){
-
+    public function update(Request $request){
         $validator = Validator::make($request->all(),[
-            'category'              => 'required|option_not_default',
-            'name'                  => 'required',
-            'price'                 => 'required',
-            'weight'                => 'required',
-            'qty'                   => 'required'
-        ],[
-            'option_not_default'    => 'Select a category'
-        ]);
+            'vendor_id'         => 'required',
+            'project_name'          => 'required',
+            'project_tagline'       => 'required',
+            'category'              => 'required',
+            'raising'               => 'required',
+            'days_left'             => 'required',
+            'description'           => 'required',
+            'interest_rate'           => 'required',
+            'prospectus'           => 'required',
+        ],
+            [
+                'project_name.required'   => 'Nama Proyek harus diisi',
+                'project_tagline.required'   => 'Tagline Proyek harus diisi',
+                'category.required'   => 'Ketegori harus diisi',
+                'raising.required'   => 'Total Pendanaan harus diisi',
+                'days_left.required'   => 'Durasi Pengumpulan Dana harus diisi',
+                'description.required'   => 'Deskripsi Proyek harus diisi',
+                'interest_rate.required'   => 'Suku Bunga Proyek harus diisi',
+                'prospectus.required'   => 'Product Disclosure Statement Proyek harus diisi',
+
+            ]);
 
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+            return back()->withErrors($validator)->withInput();
         }
-        else{
-            $product = Product::find($id);
-            $product->name = Input::get('name');
-            $product->category_id = Input::get('category');
 
-            $status = Input::get('status');
-            $product->status_id = $status === '1' ? 1 : 2;
+        $vendorDB = Vendor::find($request['vendor_id']);
+        $vendorID = $vendorDB->id;
+        $userID = $vendorDB->user_id;
+        $vendor_va_acc = $vendorDB->vendor_va;
 
-            $price = $request->input('price');
-            $priceDouble = (double) str_replace('.','', $price);
-            $weight = (double) str_replace('.','', Input::get('weight'));
 
-            $product->price = $priceDouble;
-            $product->weight = $weight;
-            $product->quantity = Input::get('qty');
+        DB::transaction(function() use ($request, $vendorDB, $vendorID, $userID, $vendor_va_acc){
+            $interestPerMonths = "";
+            $installmentPerMonths = "";
 
-            if(Input::get('options') == 'percent'){
-                $discountPercent = (double) Input::get('discount-percent');
-                $product->discount = $discountPercent;
+            $productDB = Product::find($request['product_id']);
+            $interestPerMonths = $request['interest_per_month'];
+            $installmentPerMonths = $request['installment_per_month'];
+            $isNullMemberInterest = in_array(null, $interestPerMonths, true);
+            $isNullMemberInstallment = in_array(null, $installmentPerMonths, true);
 
-                $discountAmount = $priceDouble / 100 * $discountPercent;
-                $product->price_discounted = $priceDouble - $discountAmount;
-
-                // Set other null
-                $product->discount_flat = null;
-            }
-            else if(Input::get('options') == 'flat'){
-                $discountFlat = (double) str_replace('.','', Input::get('discount-flat'));
-                $product->discount_flat = $discountFlat;
-
-                $product->price_discounted = $priceDouble - $discountFlat;
-
-                // Set other null
-                $product->discount_flat = null;
-            }
-            else if(Input::get('options' == 'none')){
-                // Set all null
-                $product->discount = null;
-                $product->discount_flat = null;
-                $product->price_discounted = $priceDouble;
+            if($isNullMemberInterest && $isNullMemberInstallment){
+                return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
             }
 
-            if(!empty(Input::get('description'))){
-                $product->description = Input::get('description');
-            }else{
-                $product->description = null;
+//            dd($request);
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
+            $productDB->category_id = $request['category'];
+            $productDB->name = $request['project_name'];
+            $productDB->tagline = $request['project_tagline'];
+            $productDB->days_left = $request['days_left'];
+            $productDB->description = $request['description'];
+            $productDB->interest_rate = $request['interest_rate'];
+            $productDB->business_class = $request['business_class'];
+            $productDB->prospectus_path = $request['prospectus'];
+            $productDB->modified_on = $dateTimeNow->toDateTimeString();
+
+            if($request->filled('youtube')){
+                //get youtube code
+                $url = $request['youtube'];
+                if(strpos($url, 'https://www.youtube.com') !== false){
+                    if(strpos($url, 'embed') !== false){
+                        $splitedUrl = explode("https://www.youtube.com/embed/",$url);
+                        $productDB->youtube_link = $splitedUrl[1];
+
+                    }
+                    else if(strpos($url, 'watch?') !== false){
+                        $splitedUrl = explode("https://www.youtube.com/watch?v=",$url);
+                        $productDB->youtube_link = $splitedUrl[1];
+                    }
+                    else{
+                        $splitedUrl = explode("https://www.youtube.com",$url);
+                        $productDB->youtube_link = $splitedUrl[1];
+                    }
+                }
+                if(strpos($url, 'youtu.be') !== false){
+                    $splitedUrl = explode("https://youtu.be/",$url);
+                    $productDB->youtube_link = $splitedUrl[1];
+                }
             }
 
-            $product->save();
+            // Get image extension
+            if(!empty($request->file('project_image'))){
 
-            // Image handling
-            $savedId = $product->id;
-
-            if(!empty(Input::get('img_featured_changed') && Input::get('img_featured_changed') === 'new')){
-                // Change old value of featured image
-                $currentImgFeatured = $product->product_image()->where('featured',1)->first();
-                $currentImgFeatured->featured = 0;
-                $currentImgFeatured->save();
-
-                $img = Image::make($request->file('product-featured'));
-
-                // Get image extension
+                $img = Image::make($request->file('project_image'));
                 $extStr = $img->mime();
                 $ext = explode('/', $extStr, 2);
 
-                $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_0.'. $ext[1];
+                $filename = $productDB->image_path;
 
-                $img->save(public_path('storage\product' . '\\'. $filename));
+                $img->save(public_path('storage/project/'. $filename), 75);
+                $productDB->image_path = $filename;
+            }
+            $productDB->save();
 
-                $productImgFeatured = ProductImage::create([
-                    'product_id'    => $savedId,
-                    'path'          => $filename,
-                    'featured'      => 1
-                ]);
+//        edit product ciclan & bunga
+            $productInstallmentDB = ProductInstallment::where('product_id', $productDB->id)->orderby('month')->get();
+            $i = 0;
+            foreach ($productInstallmentDB as $productInstallment)
+            {
+                $totalPayment = $installmentPerMonths[$i] + $interestPerMonths[$i];
+                $productInstallment->amount = $installmentPerMonths[$i];
+                $productInstallment->interest_amount = $interestPerMonths[$i];
+                $productInstallment->paid_amount = $totalPayment;
+                $productInstallment->save();
 
-                $productImgFeatured->save();
+                $i++;
             }
 
-            error_log("Deleted: ". Input::get('deleted_img_id'));
+        });
 
-            // Delete product images
-            if(!empty(Input::get('deleted_img_id'))){
-                $deletedIdTmp = Input::get('deleted_img_id');
-
-                if(strpos($deletedIdTmp,',')){
-                    $deletedIdList = explode(',', $deletedIdTmp);
-                    foreach($deletedIdList as $deletedId){
-                        $productImage = ProductImage::find($deletedId);
-
-                        $deletedPath = storage_path('app/public/product/'. $productImage->path);
-                        if(file_exists($deletedPath)) unlink($deletedPath);
-
-                        $productImage->delete();
-                    }
-                }
-                else{
-                    $productImage = ProductImage::find($deletedIdTmp);
-                    $productImage->delete();
-                }
-            }
-
-            // Change featured value of existing product images
-            if(!empty(Input::get('img_featured_changed') && Input::get('img_featured_changed') != 'new')){
-                // Change old value of featured image
-                $currentImgFeatured = $product->product_image()->where('featured',1)->first();
-                $currentImgFeatured->featured = 0;
-                $currentImgFeatured->save();
-
-                $image = ProductImage::find(Input::get('img_featured_changed'));
-                $image->featured = 1;
-                $image->save();
-            }
-
-            if(!empty($request->file('product-photos'))){
-                $idx = 1;
-                foreach($request->file('product-photos') as $img){
-                    error_log('index: '. $idx);
-                    $photo = Image::make($img);
-
-                    // Get image extension
-                    $extStr = $photo->mime();
-                    $ext = explode('/', $extStr, 2);
-
-                    $filename = $savedId.'_'. Carbon::now('Asia/Jakarta')->format('Ymdhms'). '_'. $idx. '.'. $ext[1];
-
-
-                    $photo->save(public_path('storage\product'. '\\'. $filename));
-
-                    $productPhoto = ProductImage::create([
-                        'product_id'    => $savedId,
-                        'path'          => $filename,
-                        'featured'      => 0
-                    ]);
-
-                    $productPhoto->save();
-                    $idx++;
-                }
-            }
-
-            return redirect::route('product-list');
-        }
+        Session::flash('message', 'Admin Berhasil Mengubah Data Project!');
+        return Redirect::route('product-list');
     }
 }

@@ -51,6 +51,171 @@ class VendorController extends Controller
         return View('admin.show-vendor-detail', compact('vendor', 'user', 'product', 'productInstallments'));
     }
 
+    public function edit($id){
+        $vendorDB = Vendor::find($id);
+        $userDB = User::find($vendorDB->user_id);
+
+        $data = [
+            'vendorDB'    => $vendorDB,
+            'userDB'    => $userDB
+        ];
+
+        return View('admin.edit-vendor')->with($data);
+    }
+
+    public function update(Request $request, $id){
+        $validator = Validator::make($request->all(),[
+
+            'email'                 => 'required|email|max:100',
+            'phone'                 => 'required|max:20',
+            'name'            => 'required|max:100',
+            'dob'            => 'required|max:100',
+            'address_ktp'            => 'required|max:100',
+            'marital_status'            => 'required|max:100',
+            'education'            => 'required|max:100',
+            'username'              => 'required',
+//            'fb_acc'              => 'required',
+//            'ig_acc'              => 'required',
+//            'twitter_acc'              => 'required',
+
+//            'vendor_image'          => 'required',
+            'name_vendor'           => 'required',
+            'brand'           => 'required',
+            'establish_since'           => 'required',
+            'ownership'           => 'required',
+            'description_vendor'    => 'required',
+            'address'    => 'required',
+            'postal_code'    => 'required',
+            'city'    => 'required',
+            'province'    => 'required',
+            'phone_office'    => 'required',
+            'monthly_income'    => 'required',
+            'monthly_profit'    => 'required',
+
+            'bank'                  => 'required',
+            'no_rek'                => 'required',
+            'acc_bank'              => 'required'
+        ],
+            [
+                'email.email'   => 'Format Email Anda salah',
+                'email.required'   => 'Email harus diisi',
+                'name.required'   => 'Nama harus diisi',
+                'phone.required'   => 'Nomor handphone harus diisi',
+                'password.required'   => 'Password harus diisi',
+                'password_confirmation.required'   => 'Konfirmasi Password harus diisi',
+                'password_confirmation.same'   => 'Konfirmasi Password harus sama dengan Password',
+                'username.required'   => 'Username harus diisi',
+                'dob.required'   => 'Tanggal Lahir harus diisi',
+                'address_ktp.required'   => 'Alamat Rumah harus diisi',
+                'marital_status.required'   => 'Status Pernikahan harus diisi',
+                'education.required'   => 'Pendidikan Terakhir harus diisi',
+//                'fb_acc.required'   => 'Akun Facebook harus diisi',
+//                'ig_acc.required'   => 'Akun Instagram harus diisi',
+//                'twitter_acc.required'   => 'Akun Twitter harus diisi',
+
+                'vendor_image.required'   => 'Gambar Perusahaan harus diisi',
+                'name_vendor.required'   => 'Nama Perusahaan harus diisi',
+                'description_vendor.required'   => 'Deskripsi Perusahaan harus diisi',
+                'brand.required'   => 'Merek/Nama Dagang harus diisi',
+                'establish_since.required'   => 'Lama Usaha Berdiri harus diisi',
+                'ownership.required'   => 'Kepemilikan Saham harus diisi',
+                'address.required'    => 'Alamat Perusahaan harus diisi',
+                'postal_code.required'    => 'Kode Pos Perusahaan harus diisi',
+                'city.required'    => 'Kota Perusahaan harus diisi',
+                'province.required'    => 'Provinsi Perusahaan harus diisi',
+                'phone_office.required'    => 'Nomor Telepon Perusahaan harus diisi',
+                'monthly_income.required'    => 'Penjualan per Bulan Perusahaan harus diisi',
+                'monthly_profit.required'    => 'Keuntungan  per Bulan Perusahaan harus diisi',
+
+                'bank.required'   => 'Bank harus diisi',
+                'no_rek.required'   => 'Nomor Rekening harus diisi',
+                'acc_bank.required'   => 'Akun Bank harus diisi',
+
+            ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        if ($request['category'] == "-1") {
+            return back()->withErrors("Kategori harus dipilih")->withInput();
+        }
+        try{
+
+            DB::transaction(function() use ($request){
+                $vendorDB = Vendor::find($request['vendor_id']);
+                $userDB = User::find($vendorDB->user_id);
+
+//            dd($request);
+                $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+//        edit user
+                $userDB->first_name = $request['name'];
+                $userDB->email = $request['email'];
+                $userDB->phone = $request['phone'];
+                $userDB->name_ktp = $request['name'];
+                $userDB->address_ktp = $request['address_ktp'];
+                $userDB->marital_status = $request['marital_status'];
+                $userDB->education = $request['education'];
+                $userDB->fb_acc = $request['fb_acc'];
+                $userDB->ig_acc = $request['ig_acc'];
+                $userDB->twitter_acc = $request['twitter_acc'];
+                $userDB->username = $request['username'];
+                $userDB->updated_at = $dateTimeNow->toDateTimeString();
+                $userDB->save();
+
+//        edit vendor
+                $vendorDB->name = $request['name_vendor'];
+                $vendorDB->description = $request['description_vendor'];
+                $vendorDB->bank_name = $request['bank'];
+                $vendorDB->bank_acc_name = $request['acc_bank'];
+                $vendorDB->bank_acc_number = $request['no_rek'];
+                $vendorDB->brand = $request['brand'];
+                $vendorDB->vendor_type = $request['vendor_type'];
+                $vendorDB->business_type = $request['business_type'];
+                $vendorDB->establish_since = $request['establish_since'];
+                $vendorDB->ownership = $request['ownership'];
+                $vendorDB->address = $request['address'];
+                $vendorDB->postal_code = $request['postal_code'];
+                $vendorDB->city = $request['city'];
+                $vendorDB->province = $request['province'];
+                $vendorDB->phone_office = $request['phone_office'];
+                $vendorDB->monthly_income = $request['monthly_income'];
+                $vendorDB->monthly_profit = $request['monthly_profit'];
+                $vendorDB->fb_acc = $request['vendor_fb'];
+                $vendorDB->ig_acc = $request['vendor_ig'];
+                $vendorDB->twitter_acc = $request['vendor_tw'];
+                $vendorDB->youtube_acc = $request['vendor_yt'];
+                $vendorDB->youtube_acc = $request['vendor_yt'];
+                $vendorDB->updated_at = $dateTimeNow->toDateTimeString();
+                $vendorDB->save();
+
+
+//                dd($request->file('vendor_image'));
+                // Get image extension
+                if(!empty($request->file('vendor_image'))){
+
+                    $img = Image::make($request->file('vendor_image'));
+
+                    $filename = $vendorDB->profile_picture;
+
+                    $img->save(public_path('storage/owner_picture/'. $filename), 45);
+                    $vendorDB->profile_picture = $filename;
+                    $vendorDB->save();
+                }
+
+            });
+        }
+        catch (\Exception $ex){
+//            dd($ex);
+            Utilities::ExceptionLog('VendorController.php > update ========> '.$ex);
+        }
+
+        Session::flash('message', 'Admin Berhasil Mengubah Data Borrower!');
+
+        return Redirect::route('vendor-list');
+    }
+
     public function RequestList(){
         $vendors = Vendor::Where('status_id', 3)->orderBy('created_at', 'Desc')->get();
 
@@ -139,9 +304,9 @@ class VendorController extends Controller
             'password'              => 'required|min:6|max:20|same:password',
             'password_confirmation' => 'required|same:password',
             'username'              => 'required|unique:users',
-            'fb_acc'              => 'required',
-            'ig_acc'              => 'required',
-            'twitter_acc'              => 'required',
+//            'fb_acc'              => 'required',
+//            'ig_acc'              => 'required',
+//            'twitter_acc'              => 'required',
 
             'vendor_image'          => 'required',
             'name_vendor'           => 'required',
@@ -177,9 +342,9 @@ class VendorController extends Controller
                 'address_ktp.required'   => 'Alamat Rumah harus diisi',
                 'marital_status.required'   => 'Status Pernikahan harus diisi',
                 'education.required'   => 'Pendidikan Terakhir harus diisi',
-                'fb_acc.required'   => 'Akun Facebook harus diisi',
-                'ig_acc.required'   => 'Akun Instagram harus diisi',
-                'twitter_acc.required'   => 'Akun Twitter harus diisi',
+//                'fb_acc.required'   => 'Akun Facebook harus diisi',
+//                'ig_acc.required'   => 'Akun Instagram harus diisi',
+//                'twitter_acc.required'   => 'Akun Twitter harus diisi',
 
                 'project_image.required'   => 'Gambar Proyek harus diisi',
                 'project_name.required'   => 'Nama Proyek harus diisi',
@@ -250,6 +415,12 @@ class VendorController extends Controller
                     'last_name' => "",
                     'email' => $request['email'],
                     'phone' => $request['phone'],
+                    'name_ktp' => $request['name'],
+                    'address_ktp' => $request['address_ktp'],
+//                    'dob' => $request['dob'],
+                    'marital_status' => $request['marital_status'],
+                    'education' => $request['education'],
+
                     'fb_acc' => $request['fb_acc'],
                     'ig_acc' => $request['ig_acc'],
                     'twitter_acc' => $request['twitter_acc'],

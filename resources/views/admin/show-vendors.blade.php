@@ -79,6 +79,7 @@
                                             {{--<td>{{ $vendor->description }}</td>--}}
                                             <td>{{ \Carbon\Carbon::parse($vendor->created_at)->format('j M Y G:i:s') }}</td>
                                             <td>
+                                                <a href="{{ route('vendor-edit', ['id'=>$vendor->id]) }}" class="btn btn-success">Edit</a>
                                                 <a href="{{ route('product-create', ['id'=>$vendor->id]) }}" class="btn btn-success">Tambah Produk</a>
                                                 <a href="/admin/vendor/detail/{{ $vendor->id }}" class="btn btn-primary">Detail</a>
 

@@ -147,7 +147,7 @@ Route::prefix('/admin/product')->group(function (){
     Route::get('/request-accept/{id}', 'Admin\ProductController@AcceptRequest');
     Route::get('/request-reject/{id}', 'Admin\ProductController@RejectRequest');
     Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('product-edit');
-    Route::post('/{id}', 'Admin\ProductController@update');
+    Route::post('/edit/', 'Admin\ProductController@update')->name('product-edit-submit');
 
     Route::get('/request', 'Admin\ProductController@ProductRequest')->name('product-request');
     Route::get('/request-news/{productId}', 'Admin\ProductController@RequestBlogProduct')->name('product-news-request');
@@ -293,6 +293,8 @@ Route::get('/admin/logout', 'Auth\LoginAdminController@logout')->name('admin-log
 Route::prefix('admin/vendor')->group(function(){
     Route::get('/', 'Admin\VendorController@index')->name('vendor-list');
     Route::get('/detail/{id}', 'Admin\VendorController@GetDetailVendor')->name('vendor-detail');
+    Route::get('/edit/{id}', 'Admin\VendorController@edit')->name('vendor-edit');
+    Route::post('/edit/update/{id}', 'Admin\VendorController@update')->name('vendor-edit-submit');
 
     Route::get('/request', 'Admin\VendorController@RequestList')->name('vendor-request');
     Route::get('/request-accept/{id}', 'Admin\VendorController@AcceptRequest');
