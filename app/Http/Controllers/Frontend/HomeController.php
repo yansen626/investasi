@@ -85,8 +85,8 @@ class HomeController extends Controller
 //            }
 
             $recentProductCount = Product::where('status_id', 21)->where('category_id', 2)->orderByDesc('created_on')->count();
-            $onGoingProducts = Transaction::where('user_id', $userId)->orderByDesc('created_on')->take(3)->get();
-            $onGoingProductCount = Transaction::where('user_id', $userId)->orderByDesc('created_on')->count();
+            $onGoingProducts = Transaction::where('user_id', $userId)->where('status_id', 5)->orderByDesc('created_on')->take(3)->get();
+            $onGoingProductCount = Transaction::where('user_id', $userId)->where('status_id', 5)->orderByDesc('created_on')->count();
 
             //lender blog base on funded project
             $onGoingProductIds = Transaction::select('product_id')->where('user_id', $userId)->get();

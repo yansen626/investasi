@@ -42,6 +42,9 @@ class PaymentController extends Controller
         if(!auth()->check()){
             return redirect()->route('project-detail', ['id' => $id]);
         }
+        if($product->status_id > 21)
+            return redirect()->route('project-detail', ['id' => $id]);
+
         $user = Auth::user();
         $userId = $user->id;
         $userData = User::find($userId);
