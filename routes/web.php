@@ -30,6 +30,7 @@ Route::post('/subscribe-email', [
 ]);
 Route::get('/perjanjian-layanan', 'Frontend\HomeController@PerjanjianLayanan')->name('perjanjian-layanan');
 Route::get('/request-verification/{email}', 'Frontend\HomeController@RequestVerification')->name('request-verification');
+Route::get('/faq', 'Frontend\HomeController@faq')->name('faq');
 
 
 //blog

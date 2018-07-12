@@ -109,6 +109,7 @@
 
 <script type="text/javascript" src="{{ URL::asset('js/frontend/custom-maps.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/frontend/custom-bayu.js') }}"></script>
+@yield('styles')
 
 
 <script>
@@ -344,6 +345,7 @@
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59f6e999249e3f1c"></script>--}}
 
+@yield('scripts')
 
 </body>
 </html>

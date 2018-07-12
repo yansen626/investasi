@@ -148,6 +148,11 @@ class HomeController extends Controller
     }
 
     //
+    public function faq(){
+        return View('frontend.homes.show-faq');
+    }
+
+    //
     public function AboutUs(){
         return View('frontend.homes.about-us');
     }
