@@ -49,7 +49,7 @@
                         <div class="panel-heading">
                             <ul class="nav nav-tabs" >
                                 {{--<li ><a href="#topup" data-toggle="tab">Top up</a></li>--}}
-                                <li class="active"><a href="#withdraw" data-toggle="tab">Penarikan</a></li>
+                                <li class="active"><a href="#withdraw" data-toggle="tab">Aktifitas Saldo</a></li>
                             </ul>
                         </div>
                         <div class="panel-body">

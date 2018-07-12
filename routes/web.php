@@ -158,6 +158,10 @@ Route::prefix('/admin/product')->group(function (){
     Route::get('/failed-fund/accept/{id}', 'Admin\ProductController@AcceptFailedFund');
     Route::get('/investors/{id}', 'Admin\ProductController@ProductInvestorList')->name('product-investors');
 
+
+    Route::get('/installment/{id}', 'Admin\ProductController@ProductInstallmentDetail')->name('product-installment');
+    Route::get('/installment/process/{id}', 'Admin\ProductController@ProductInstallmentPayment')->name('product-installment-payment');
+
 });
 
 // Transaction

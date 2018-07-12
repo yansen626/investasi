@@ -20,6 +20,7 @@ use App\Mail\RequestVerification;
 use App\Mail\RequestWithdrawInvestor;
 use App\Mail\SendProspectus;
 use App\Mail\Subscribe;
+use App\Mail\TopUpSaldo;
 use App\Mail\VerificationKTP;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Mail;
@@ -35,8 +36,12 @@ class SendEmail
                 case 'emailVerification' :
                     $user = $objData->user;
                     $emailVerify = new EmailVerification($user);
-                    Mail::to($user->email)->send($emailVerify);
-                    Mail::to("ryanfilbert@gdrive.id")->send($emailVerify);
+                    Mail::to($user->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")
+                        ->send($emailVerify);
+//                    Mail::to("ryanfilbert@gdrive.id")->send($emailVerify);
+//                    Mail::to("indofund.id@gmail.com")->send($emailVerify);
                     break;
 
                 case 'requestVerification' :
@@ -46,6 +51,7 @@ class SendEmail
 //                    Mail::to($user->email)->send($requestVerification);
                     Mail::to("ryanfilbert@gdrive.id")->send($requestVerification);
                     Mail::to("vina.marintan@gmail.com")->send($requestVerification);
+                    Mail::to("indofund.id@gmail.com")->send($requestVerification);
 //                    Mail::to("contact@mail.indofund.id")->send($requestVerification);
                     break;
 
@@ -67,6 +73,7 @@ class SendEmail
                     $contactUsEmail = new ContactUs($name, $email, $phone, $description);
                     Mail::to("ryanfilbert@gdrive.id")->send($contactUsEmail);
                     Mail::to("vina.marintan@gmail.com")->send($contactUsEmail);
+                    Mail::to("indofund.id@gmail.com")->send($contactUsEmail);
 //                    Mail::to("contact@mail.indofund.id")->send($contactUsEmail);
                     break;
 
@@ -84,7 +91,10 @@ class SendEmail
                     $user = $objData->user;
                     $ip = $objData->ip;
 
-                    Mail::to($user->email)->send(new RequestWithdrawInvestor($newStatement, $user, $ip));
+                    Mail::to($user->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")
+                        ->send(new RequestWithdrawInvestor($newStatement, $user, $ip));
                     break;
 
                 case 'withdrawalAccepted' :
@@ -92,7 +102,10 @@ class SendEmail
                     $userData = $objData->user;
 
                     $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData);
-                    Mail::to($userData->email)->send($acceptWithdrawalEmail);
+                    Mail::to($userData->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")
+                        ->send($acceptWithdrawalEmail);
                     break;
 
                 case 'OrderAccepted' :
@@ -149,8 +162,12 @@ class SendEmail
                     );
 
                     $detailPembayaran = new DetailPembayaran($payment, $transaction, $product, $userData);
-                    Mail::to($userData->email)->send($detailPembayaran);
-                    Mail::to("ryanfilbert@gdrive.id")->send($detailPembayaran);
+                    Mail::to($userData->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")
+                        ->send($detailPembayaran);
+//                    Mail::to("ryanfilbert@gdrive.id")->send($detailPembayaran);
+//                    Mail::to("indofund.id@gmail.com")->send($detailPembayaran);
 
                     break;
 
@@ -175,6 +192,7 @@ class SendEmail
                     $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
                     Mail::to($userData->email)->send($invoiceEmail);
                     Mail::to("ryanfilbert@gdrive.id")->send($invoiceEmail);
+                    Mail::to("indofund.id@gmail.com")->send($invoiceEmail);
 
                     //send document "perjanjian layanan" to user
                     $pdf = PDF::loadView('email.perjanjian-layanan', $data);
@@ -192,6 +210,18 @@ class SendEmail
                 case 'collectedFund' :
 
                     break;
+
+                // notif email for topup saldo
+                case 'topupSaldo' :
+                    $userDB = $objData->user;
+                    $desription = $objData->description;
+                    $userGetFinal = $objData->userGetFinal;
+
+                    $topupEmail = new TopUpSaldo($userDB, $desription, $userGetFinal);
+//                    dd($topupEmail);
+                    Mail::to($userDB->email)->send($topupEmail);
+                    break;
+
                 //proyek berjalan
                 case 'acceptCollectedFund' :
                     $project = $objData->project;
@@ -225,6 +255,7 @@ class SendEmail
                 // pembayaran pinjaman proyek di indofund.id
                 case 'installmentPayment' :
                     break;
+
                 //tagihan pinjaman proyek
                 case 'reminderInstallment' :
                     $userData = $objData->user;
@@ -232,7 +263,12 @@ class SendEmail
                     $productInstallment = $objData->productInstallment;
 
                     $reminderInstallment = new ReminderInstallment($userData, $product, $productInstallment);
-                    Mail::to($userData->email)->send($reminderInstallment);
+                    Mail::to($userData->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")
+                        ->send($reminderInstallment);
+//                    Mail::to("ryanfilbert@gdrive.id")->send($reminderInstallment);
+//                    Mail::to("indofund.id@gmail.com")->send($reminderInstallment);
                     break;
                 case 'testing' :
 
@@ -259,7 +295,7 @@ class SendEmail
             }
         }
         catch (\Exception $ex){
-//            dd($ex);
+            dd($ex);
             Utilities::ExceptionLog('SendEmail.php > SendingEmail ('.$option.') ========> '.$ex);
         }
     }

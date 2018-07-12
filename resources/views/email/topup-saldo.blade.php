@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta content="initial-scale=1.0" name="viewport">
     <meta content="telephone=no" name="format-detection">
-    <title>Indofund.id - detail pembayaran</title>
+    <title>Indofund.id - Prospectus</title>
     <style type="text/css">
         .socialLinks {font-size: 6px;}
         .socialLinks a {display: inline-block;}
@@ -74,38 +74,34 @@
                         <tr>
                             <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
                                 <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
-                                <p>Kami telah menerima order pendanaan dengan detail sebagai berikut :<br/>
-                                    Nama Proyek : {{$product->name}}<br/>
-                                    Masa Pinjaman : {{$product->tenor_loan}} bulan<br/>
-                                    Sebesar Rp. {{$transaction->total_price}} <br/>
-                                    pembayaran dapat dilakukan maksimal 6 jam
+                                <p>Anda telah mendapatkan transfer saldo senilai Rp {{$userGetFinal}}<br/>
+                                    Dengan keterangan sebagai berikut :<br/>
+                                    {{$description}}<br/>
+                                    Silahkan Anda login ke www.Indofund.id untuk melakukan pengecekan pada saldo Anda
                                 </p>
                                 <p>
-                                    Untuk membaca product disclosure statement, silahkan
-                                    <span data-mce-style="color: #81b951;" style="color: rgb(129, 185, 81);"><strong><a data-mce-style="color: #81b951;" href="{{$product->prospectus_path}}" style="color: #81b951;text-decoration: underline;" title="{{$product->prospectus_path}}">klik disini</a></strong></span>
+                                    Berikan Pendanaan Sekarang<br/>
                                 </p>
                             </td>
                         </tr>
-                        @if($transaction->payment_method_id != 1)
-                            <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. <b>{{$transaction->total_price}}</b>  pada proyek ini.<br/>
-                                    Sebesar Rp. {{$transaction->total_price}}  </span></td>
-                            </tr>
-                        @else
-                            <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
-                                    <span>
-                                        Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
-                                        Silahkan lakukan pembayaran ke : {{$user->va_acc}} atas nama indofund.id ({{$user->first_name}} {{$user->last_name}}), Bank Mandiri Virtual Account<br>
-                                        Sebesar Rp. {{$transaction->total_price}}
-                                    </span>
-                                    <br>
-                                </td>
-                            </tr>
 
-                            <!-- PAYMENT INSTRUCTION -->
-                            @include('email.partial._payment-instruction')
-                        @endif
+                        <tr>
+                            <td align="center" bgcolor="#E36C09" style="text-align: center; font-weight: normal; padding: 12px; padding-left: 14px; padding-right: 14px; background-color: #e36c09; color: #f2f2f2; font-size: 22px; font-family: Arial, Helvetica, sans-serif; border-radius: 5px;" valign="middle" width="auto">
+                                <a href="https://indofund.id/project-list/debt" style="text-decoration: none; font-weight: normal; color: #f2f2f2; font-size: 22px; font-family: Arial, Helvetica, sans-serif;" target="_new">
+                                    Danai Sekarang
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;">
+                                <p>
+                                    Terima kasih,<br/><br/>
+
+                                    Indofund.id<br/>
+                                    P2P Lending & Business Acceleration
+                                </p>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

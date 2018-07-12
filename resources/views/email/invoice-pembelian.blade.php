@@ -76,7 +76,7 @@
                                 <p>Kepada Yth : {{$user->first_name}} {{$user->last_name}}</p>
                                 <p>Kami telah menerima dana yang telah anda bayarkan untuk proyek dengan detail sebagai berikut :<br/>
                                     Nama Proyek : {{$product->name}}<br/>
-                                    Masa Penawaran : {{$product->tenor_loan}} hari<br/>
+                                    Masa Pinjaman : {{$product->tenor_loan}} hari<br/>
                                     Sebesar Rp. {{$transaction->total_price}}
                                 </p>
                                 <p>
@@ -85,20 +85,10 @@
                                 </p>
                             </td>
                         </tr>
-                        @if($transaction->payment_method_id != 1)
-                            <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
+                        <tr>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
                                     Sebesar Rp. {{$transaction->total_price}}  </span></td>
-                            </tr>
-                        @else
-                            <tr>
-                                <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center; line-height: 1.6;"><span>Besaran pendanaan yang anda lakukan adalah Rp. {{$transaction->total_price}}  pada proyek ini.<br/>
-                                    Silahkan lakukan pembayaran ke : {{$user->va_acc}} an indofund.id ({{$user->first_name}} {{$user->last_name}}) (Bank Mandiri Virtual Account)<br>
-                                    Sebesar Rp. {{$transaction->total_price}}  </span></td>
-                            </tr>
-                            <!-- PAYMENT INSTRUCTION -->
-                            @include('email.partial._payment-instruction')
-                        @endif
+                        </tr>
                         </tbody>
                     </table>
                 </div>

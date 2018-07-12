@@ -25,20 +25,36 @@
             </div>
         </div>
         <div class="col-md-12 col-sm-12 text-left">
-            <p style="font-size: 15px;text-align:justify;">Disclaimer:
+            <p style="font-size: 15px;text-align:justify;">Disclaimer Risiko:
                 <br>
-                <i>Indofund.id adalah website dan merk dagang dari PT Bursa Akselerasi Indonesia. Bagi semua pengguna website ini perlu memberikan perhatian terhadap beberapa hal:</i>
+                <i>PERHATIAN:</i>
                 <br>
-                <i>1. Layanan peer to peer landing (pinjam meminjam uang berbasis teknologi) pada Indofund.id adalah persetujuan dan kesepakatan antara pemberi dan penerima pinjaman, segala risiko akan ditanggung oleh masing-masing pihak.</i>
+                <i>1. Layanan Pinjam Meminjam Berbasis Teknologi Informasi merupakan kesepakatan perdata antara Pemberi Pinjaman dengan Penerima Pinjaman, sehingga segala risiko yang timbul dari kesepakatan tersebut ditanggung sepenuhnya oleh masing-masing pihak.</i>
                 <br>
-                <i>2. Pihak pemberi pinjaman (lender) yang tidak memiliki pemahaman terhadap risiko dan keuntungan dalam meminjamkan dana, disarankan membaca semua keterangan dan proposal penawaran serta perjanjian dengan seksama.</i>
+                <i>2. Risiko kredit atau gagal bayar ditanggung sepenuhnya oleh Pemberi Pinjaman. Tidak ada lembaga atau otoritas negara yang bertanggung jawab atas risiko gagal bayar ini.</i>
                 <br>
-                <i>3. Risiko kredit atau gagal bayar menjadi tanggung jawab sepenuhnya dari pemberi pinjaman. Indofund.id berupaya untuk menampilkan semua data dan informasi yang aktual namun tidak bisa menjadi sebuah rekomendasi ataupun saran yang secara mutlak membebaskan setiap pihak dari risiko.</i>
+                <i>3. Penyelenggara dengan persetujuan dari masing-masing Pengguna (Pemberi Pinjaman dan/atau Penerima Pinjaman) mengakses, memperoleh, menyimpan, mengelola dan/atau menggunakan data pribadi Pengguna ("Pemanfaatan Data") pada atau di dalam benda, perangkat elektronik (termasuk smartphone atau telepon seluler), perangkat keras (hardware) maupun lunak (software), dokumen elektronik, aplikasi atau sistem elektronik milik Pengguna atau yang dikuasai Pengguna, dengan memberitahukan tujuan, batasan dan mekanisme Pemanfaatan Data tersebut kepada Pengguna yang bersangkutan sebelum memperoleh persetujuan yang dimaksud.</i>
                 <br>
-                <i>4. Penerima pinjaman (borrower) wajib mempertimbangkan suku bunga dan biaya atas kemampuan melakukan pelunasan. Kegagalan bayar pada peer to peer landing juga akan didaftarkan pada SLIK (Sistem Layanan Informasi Keuangan) di OJK (Otoritas Jasa Keuangan) dan akan mengurangi reputasi borrower di dunia keuangan di Indonesia.</i>
+                <i>4. Pemberi Pinjaman yang belum memiliki pengetahuan dan pengalaman pinjam meminjam, disarankan untuk tidak menggunakan layanan ini.</i>
                 <br>
-                <i>5. Indofund.id selalu berupaya menjadi portal untuk memberikan kenyamanan bagi pihak borrower dan lender dengan melakukan literasi dan sosialisasi secara berkala, pastikan setiap anggota yang terdaftar bisa ikut berpartisipasi dan terlibat pada semua program yang diadakan oleh perusahaan</i>
+                <i>5. Penerima Pinjaman harus mempertimbangkan tingkat bunga pinjaman dan biaya lainnya sesuai dengan kemampuan dalam melunasi pinjaman.</i>
                 <br>
+                <i>6. Setiap kecurangan tercatat secara digital di dunia maya dan dapat diketahui masyarakat luas di media sosial.</i>
+                <br>
+                <i>7. Pengguna harus membaca dan memahami informasi ini sebelum membuat keputusan menjadi Pemberi Pinjaman atau Penerima Pinjaman.</i>
+                <br>
+                <i>8. Pemerintah yaitu dalam hal ini Otoritas Jasa Keuangan, tidak bertanggung jawab atas setiap pelanggaran atau ketidak patuhan oleh Pengguna,
+                    baik Pemberi Pinjaman maupun Penerima Pinjaman (baik karena kesengajaan atau kelalaian Pengguna) terhadap ketentuan peraturan perundang-undangan
+                    maupun kesepakatan atau perikatan antara Penyelenggara dengan Pemberi Pinjaman dan/atau Penerima Pinjaman.</i>
+                <br>
+                <i>9. Setiap transaksi dan kegiatan pinjam meminjam atau pelaksanaan kesepakatan mengenai pinjam meminjam antara atau yang melibatkan Penyelenggara, Pemberi Pinjaman dan/atau Penerima Pinjaman wajib
+                    dilakukan melalui escrow account dan virtual account sebagaimana yang diwajibkan berdasarkan Peraturan Otoritas Jasa Keuangan Nomor 77/POJK.01/2016 tentang Layanan Pinjam Meminjam Uang Berbasis Teknologi Informasi dan pelanggaran
+                    atau ketidakpatuhan terhadap ketentuan tersebut merupakan bukti telah terjadinya pelanggaran hukum oleh Penyelenggara sehingga Penyelenggara wajib menanggung ganti rugi yang diderita oleh masing-masing
+                    Pengguna sebagai akibat langsung dari pelanggaran hukum tersebut diatas tanpa mengurangi hak Pengguna yang menderita kerugian menurut Kitab Undang-Undang Hukum Perdata.</i>
+                <br>
+                <i>Nomor izin indofund di OJK : S-282/NB.213./2018</i>
+                <br>
+
         </div>
     </div>
     <div class="footer-bar" style="background: white; color: #ff7a00;margin-top: 0;font-size: 16px !important;">
@@ -50,7 +66,7 @@
         {{--&nbsp;&nbsp;&nbsp;--}}
         {{--<a href="https://www.youtube.com/channel/UCLV2VznCGF7XFSzjuKARzrQ" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>--}}
         &nbsp;&nbsp;&nbsp;
-        <a><i class="fa fa-whatsapp" aria-hidden="true"></i> +62 896-4344-8118</a>
+        <a href="http://wassmee.us/w/send.aspx?phone=6289643448118&text=Halo%20Indofund.id!%20Saya%20mau%20bertanya%20:" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i> +62 896-4344-8118</a>
         <br><br>
         <div class="container">
             <h5>2018 © All Rights Reserved | Privacy Policy</h5>

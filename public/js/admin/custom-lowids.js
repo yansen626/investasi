@@ -189,8 +189,9 @@ $("#prod-yes-opt").change(function(){
 function modalPop(id, mode, url){
     if(mode === "accept"){
         var title = "Warning";
-        var content = "Apakah Anda yakin untuk melanjutkan / menerima?"
-        var yes = "Lanjutkan"
+        var content = "Apakah Anda yakin untuk melanjutkan / menerima tindakan ini? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
+        var yes = "Lanjutkan";
 
         $("#small-modal-title").html(title);
         $("#small-modal-body").html(content);
@@ -200,7 +201,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "activate"){
         var title = "Warning";
-        var content = "Apakah anda yakin untuk aktifkan?"
+        var content = "Apakah anda yakin untuk aktifkan? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Activate"
 
         $("#small-modal-title").html(title);
@@ -211,7 +213,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "transfer"){
         var title = "Warning";
-        var content = "Apakah anda yakin untuk mengkonfirmasi?"
+        var content = "Apakah anda yakin untuk mengkonfirmasi? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Confirm"
 
         $("#small-modal-yes").attr("class","btn btn-success");
@@ -223,7 +226,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "cancel"){
         var title = "Warning";
-        var content = "Apakah Anda yakin untuk menolak / menghapus?"
+        var content = "Apakah Anda yakin untuk menolak / menghapus? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Lanjutkan"
 
         $("#small-modal-yes").attr("class","btn btn-danger");
@@ -235,7 +239,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "deactivate"){
         var title = "Warning";
-        var content = "Apakah anda yakin untuk non-aktifkan?"
+        var content = "Apakah anda yakin untuk non-aktifkan? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Deactivate"
 
         $("#small-modal-yes").attr("class","btn btn-danger");
@@ -247,7 +252,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "blog-update-reject"){
         var title = "Peringatan";
-        var content = "Apakah anda yakin menolak pembaharuan blog ini?"
+        var content = "Apakah anda yakin menolak pembaharuan blog ini? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Tolak"
 
         $("#small-modal-yes").attr("class","btn btn-danger");
@@ -259,7 +265,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "blog-update-accept"){
         var title = "Peringatan";
-        var content = "Apakah anda yakin menerima pembaharuan blog ini?"
+        var content = "Apakah anda yakin menerima pembaharuan blog ini? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Terima"
 
         $("#small-modal-yes").attr("class","btn btn-success");
@@ -271,7 +278,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "blog-urgent"){
         var title = "Peringatan";
-        var content = "Apakah anda yakin membuat berita ini Urgent?"
+        var content = "Apakah anda yakin membuat berita ini Urgent? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Lanjutkan"
 
         $("#small-modal-yes").attr("class","btn btn-success");
@@ -283,7 +291,8 @@ function modalPop(id, mode, url){
     }
     else if(mode === "blog-urgent-change"){
         var title = "Peringatan";
-        var content = "Apakah anda yakin mengganti status berita ini?"
+        var content = "Apakah anda yakin mengganti status berita ini? <br>" +
+            "<b>Proses yang sudah di lakukan tidak dapat dikembalikan</b>";
         var yes = "Lanjutkan"
 
         $("#small-modal-yes").attr("class","btn btn-success");

@@ -72,6 +72,7 @@
                                                     <td>{{ $product->status->description }}</td>
                                                     <td>
                                                         <a href="{{ route('product-edit', ['id'=>$product->id]) }}" class="btn btn-success">Edit</a>
+                                                        <a href="{{ route('product-installment', ['id'=>$product->id]) }}" class="btn btn-primary">Installment Payment</a>
                                                         <a href="{{ route('product-investors', ['id'=>$product->id]) }}" class="btn btn-primary">Detail Lender</a>
                                                         <a href="{{ route('project-detail', ['id' => $product->id]) }}" target="_blank">
                                                             <button class="btn btn-primary">Detail</button>

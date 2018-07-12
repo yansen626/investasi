@@ -27,8 +27,10 @@ use App\Models\Vendor;
 use App\Models\WalletStatement;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TestingController extends Controller
 {
@@ -97,6 +99,8 @@ class TestingController extends Controller
     }
     public function TestingFunction(){
         try{
+//            $data = Excel::load(Input::file('file'), function($reader) {})->get();
+
 //            $productInstallments = ProductInstallment::where('paid_amount', null)->get();
 //
 //            foreach ($productInstallments as $productInstallment){
