@@ -60,6 +60,7 @@ class NotificationController extends Controller
 
                     $dateTimeNow = Carbon::now('Asia/Jakarta');
 
+                    //process transaction checking
                     $transactionDB = Transaction::where('va_number', $vaNumber)
                         ->where('status_id', 3)
                         ->where('payment_method_id', 1)
@@ -71,26 +72,25 @@ class NotificationController extends Controller
                         TransactionUnit::transactionAfterVerified($orderid);
                         Utilities::ExceptionLog("Change transaction status success");
                     }
+                    else{
+                        //process installment payment checking
+                        $installmentDB = ProductInstallment::where('paid_amount', $amount)
+                            ->where('vendor_va', $vaNumber)
+                            ->first();
+
+                        $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+                        if(!empty($installmentDB)){
+                            //change status for installment payment DB
+                            $installmentDB->status_id = 26;
+                            $installmentDB->save();
+
+                            //send email notif to admin
+
+                        }
+                    }
+
                 }, 5);
-//                $isInstallment = ProductInstallment::where('paid_amount', $amount)
-//                    ->where('vendor_va', $vaNumber)
-//                    ->exist();
-//                if($isInstallment){
-//                    DB::transaction(function() use ($vaNumber, $amount, $json){
-//
-//                        $dateTimeNow = Carbon::now('Asia/Jakarta');
-//
-//                        $installmentDB = ProductInstallment::where('paid_amount', $amount)
-//                            ->where('vendor_va', $vaNumber)
-//                            ->first();
-//                        if(!empty($installmentDB)){
-//                            //change status for installment payment DB
-////                            $installmentDB->status_id =
-//                        }
-//                    }, 5);
-//                }
-//                else{
-//                }
             }
         }
         catch (\Exception $ex){

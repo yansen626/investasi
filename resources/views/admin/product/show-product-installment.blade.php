@@ -95,8 +95,11 @@
                                                 <td width="80">Bulan {{$productInstallment->month}}</td>
                                                 <td width="100">Rp {{$productInstallment->paid_amount}}</td>
                                                 <td width="20">
-
-                                                    <a onclick="modalPop('{{ $productInstallment->id }}', 'accept', '/admin/product/installment/process/')" class="btn btn-sm btn-success">Process</a>
+                                                    @if($productInstallment->status_id == 26)
+                                                        <a onclick="modalPop('{{ $productInstallment->id }}', 'accept', '/admin/product/installment/process/')" class="btn btn-sm btn-success">Process</a>
+                                                    @elseif($productInstallment->status_id == 1)
+                                                        <button class="btn btn-sm btn-warning">Pending</button>
+                                                    @endif
                                                     {{--<a href="{{route('product-installment-payment', ['id'=>$productInstallment->id])}}" class="btn btn-primary">--}}
                                                         {{--Process--}}
                                                     {{--</a>--}}

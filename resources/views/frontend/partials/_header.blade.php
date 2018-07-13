@@ -55,6 +55,9 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="{{route('faq')}}" >FAQ </a>
+                        </li>
+                        <li>
                             <a href="#" >Lowongan </a>
                         </li>
                         {{--<li>--}}
@@ -116,6 +119,9 @@
                                                 <li><a href="{{route('contact')}}">Hubungi Kami</a></li>
                                                 <li><a href="{{route('pengajuan')}}">Jadilah Partner Kami</a></li>
                                             </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('faq')}}" >FAQ </a>
                                         </li>
                                         <li><a href="#">Lowongan </a></li>
                                         {{--<li>--}}
