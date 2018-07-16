@@ -128,6 +128,10 @@ Route::get('/investasi-saya/{failed}', function ($failed){
     return view('admin/login')->with('msg', $msg);
 })->name('login-admin-failed');
 
+//Import
+Route::get('/admin/import', 'Admin\ImportController@uploadExcel')->name('import');
+Route::post('/admin/import/submit', 'Admin\ImportController@importExcel')->name('import-submit');
+
 // User
 Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
 Route::get('/admin/subscribe', 'Admin\CustomerController@subscribe')->name('subscribe-list');

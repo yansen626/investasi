@@ -30,7 +30,7 @@
                     <li><a><i class="fa fa-tags"></i> User <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('customer-list') }}">User List</a></li>
-                            <li><a href="#">Topup Saldo</a></li>
+                            <li><a href="{{route ('import')}}">Topup Saldo</a></li>
                             <li><a href="{{ route('subscribe-list') }}">Subscriber List</a></li>
                             {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
                         </ul>

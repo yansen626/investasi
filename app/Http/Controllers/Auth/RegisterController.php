@@ -64,7 +64,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users|not_contains',
             'password' => 'required|string|min:6|confirmed',
             'username' => 'required|unique',
-            'phone' => 'required|string|max:12'
+            'phone' => 'required|string'
         );
 
         $messages = array(
@@ -116,7 +116,7 @@ class RegisterController extends Controller
             'email'                 => 'required|email|max:100|unique:users|not_contains',
             'first_name'            => 'required|max:100',
             'last_name'             => 'required|max:100',
-            'phone'                 => 'required|max:12|unique:users',
+            'phone'                 => 'required|unique:users',
             'password'              => 'required|min:6|max:20|same:password',
             'password_confirmation' => 'required|same:password',
             'username'              => 'required|unique:users'
@@ -124,7 +124,7 @@ class RegisterController extends Controller
 
         $messages = array(
             'not_contains'  => 'Email tidak boleh memiliki karakter +',
-            'phone.max'     => 'Nomor Handphone tidak boleh lebih dari 12 karakter',
+//            'phone.max'     => 'Nomor Handphone tidak boleh lebih dari 12 karakter',
             'username.unique'   => 'Username sudah pernah terdaftar',
             'phone.unique'   => 'Nomor Handphone sudah pernah terdaftar',
         );

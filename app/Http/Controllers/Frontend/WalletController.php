@@ -50,9 +50,19 @@ class WalletController extends Controller
         $statementsTopup = TransactionWallet::where('user_id', $userId)->orderByDesc('created_at')->get();
 
         $fee = number_format(env('FEE'),0, ",", ".");
+        $minimum = number_format(env('MINIMUM_WITHDRAWAL'),0, ",", ".");
         $feePercentage = env('FEE_PERCENTAGE') * 100;
 
-        return View ('frontend.show-wallet', compact('statementsWithdraw','statementsTopup', 'user', 'fee', 'feePercentage'));
+        $data = array(
+            'statementsWithdraw' => $statementsWithdraw,
+            'statementsTopup' => $statementsTopup,
+            'user' => $user,
+            'fee' => $fee,
+            'feePercentage' => $feePercentage,
+            'minimum' => $minimum
+        );
+
+        return View ('frontend.show-wallet')->with($data);
     }
 
 //    public function DepositShow()
@@ -210,6 +220,10 @@ class WalletController extends Controller
 
                 if($amount > $userWallet){
                     return back()->withErrors("Jumlah Penarikan harus lebih kecil dari Dana yang tersedia")->withInput();
+                }
+                $minimum = (double) env('MINIMUM_WITHDRAWAL');
+                if($amount < $minimum){
+                    return back()->withErrors("Jumlah Penarikan minimal Rp ".$minimum)->withInput();
                 }
 
                 $secret = Input::get('google');

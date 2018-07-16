@@ -25,7 +25,9 @@
                         <div class="col-md-7 col-xs-12 center">
                             <a href="{{route('withdraw')}}" class="btn btn-big btn-warning">Penarikan Saldo</a>
                             <br>
-                            <h5>*Penarikan saldo akan di kenakan {{$feePercentage}}% atau minimum Rp {{$fee}}</h5>
+                            <h5>*Minimum penarikan adalah Rp {{$minimum}}</h5>
+                            {{--<h5>*Biaya penarikan saldo akan di kenakan {{$feePercentage}}% atau minimum Rp {{$fee}} dan biaya antar bank Rp 6.500</h5>--}}
+                            <h5>*Biaya transfer antar bank Rp 6.500</h5>
                             <br>
                             <h3>
                                 <i class="fa fa-money fa-1x"></i> Total Saldo = Rp {{$user->wallet_amount}}

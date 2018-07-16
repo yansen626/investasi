@@ -97,6 +97,8 @@
                                                 <td width="20">
                                                     @if($productInstallment->status_id == 26)
                                                         <a onclick="modalPop('{{ $productInstallment->id }}', 'accept', '/admin/product/installment/process/')" class="btn btn-sm btn-success">Process</a>
+                                                    @elseif($productInstallment->status_id == 27)
+                                                        <button class="btn btn-sm btn-primary">{{$productInstallment->status->description}}</button>
                                                     @elseif($productInstallment->status_id == 1)
                                                         <button class="btn btn-sm btn-warning">Pending</button>
                                                     @endif

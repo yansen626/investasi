@@ -209,9 +209,9 @@ class ProductController extends Controller
 
             $transactionList = Transaction::where('product_id', $productInstallments->product_id)->where('status_id', 5)->get();
             $asdf = array();
-            foreach ($transactionList as $transaction){
+            DB::transaction(function() use ($productInstallments, $transactionList, $paid_amount, $raised, $asdf) {
 
-                DB::transaction(function() use ($productInstallments, $transaction, $paid_amount, $raised, $asdf) {
+                foreach ($transactionList as $transaction){
 
                     $dateTimeNow = Carbon::now('Asia/Jakarta');
                     $userDB = User::find($transaction->user_id);
@@ -250,9 +250,12 @@ class ProductController extends Controller
                         'userGetFinal' => $userGetFinal
                     );
                     SendEmail::SendingEmail('topupSaldo', $data);
-                });
 
-            }
+                }
+                //change product installment status
+                $productInstallments->status_id = 27;
+                $productInstallments->save();
+            });
 
             Session::flash('message', 'Pembayaran cicilan dan bunga Berhasil!');
 
