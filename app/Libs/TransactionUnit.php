@@ -155,9 +155,9 @@ class TransactionUnit
 
                 $raisingDB = (double) str_replace('.','', $productDB->raising);
                 $tempTotal = $raisedDB + $newRaise;
-                if($tempTotal >= $raisingDB){
+                if($raisedDB == $raisingDB){
                     $productDB->status_id = 22;
-                    Utilities::ExceptionLog("product raising collected  ".$product->name." (".$tempTotal." from ".$raisingDB.")");
+                    Utilities::ExceptionLog("product raising collected  ".$product->name." (".$raisedDB." from ".$raisingDB.")");
     //                SendEmail::SendingEmail('collectedFund', $data);
     //            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
     //            Mail::to($userData->email)->send($perjanjianLayananEmail);

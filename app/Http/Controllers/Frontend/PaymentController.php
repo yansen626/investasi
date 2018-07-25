@@ -16,6 +16,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -57,6 +58,9 @@ class PaymentController extends Controller
         if($userData->identity_number== null ||
             $userData->address_ktp== null ||
             $userData->postal_code_ktp== null ||
+            $userData->address_stay== null ||
+            $userData->gender== null ||
+            $userData->dob== null ||
             $userData->name_ktp == null)
 //            || $userData->img_ktp == null)
         {
@@ -69,7 +73,7 @@ class PaymentController extends Controller
             'remaining'    => $remaining,
             'remainingStr'    => $remainingStr
         );
-
+//        dd($data);
         return View('frontend.checkout')->with($data);
     }
 
@@ -81,9 +85,11 @@ class PaymentController extends Controller
             'city_ktp'          => 'required',
             'province_ktp'      => 'required',
             'postal_code_ktp'   => 'required',
+            'dob'               => 'required',
+            'gender'            => 'required',
+            'address_stay'      => 'required',
             'name_ktp'          => 'required'
         ]);
-
         if ($validator->fails()) {
             return redirect()
                 ->back()
@@ -98,7 +104,8 @@ class PaymentController extends Controller
         //User KTP Image
         // Get image extension
         $userData = User::find($user->id);
-
+//        dd($request);
+        $dob = Carbon::createFromFormat('d M Y', $request->get('dob'), 'Asia/Jakarta');
 
         $userData->identity_number = $request->get('ktp');
         $userData->citizen = $request->get('citizen');
@@ -106,6 +113,9 @@ class PaymentController extends Controller
         $userData->city_ktp = $request->get('city_ktp');
         $userData->province_ktp = $request->get('province_ktp');
         $userData->postal_code_ktp = $request->get('postal_code_ktp');
+        $userData->dob = $dob;
+        $userData->gender = $request->get('gender');
+        $userData->address_stay = $request->get('address_stay');
         $userData->name_ktp = $request->get('name_ktp');
 //        dd($request);
 //        if($request->file('photo_ktp') != null) {
@@ -139,7 +149,7 @@ class PaymentController extends Controller
         Auth::logout();
         Auth::login($user);
 
-        Session::flash('message', 'Berhasil update KTP');
+        Session::flash('message', 'Berhasil mengubah data KTP');
 
         //Back to the Payment
         return redirect()->route('checkout', ['id' => $productId]);
@@ -153,8 +163,6 @@ class PaymentController extends Controller
             if(!auth()->check()){
                 return redirect()->route('project-detail', ['id' => $investId]);
             }
-
-
 
             $user = Auth::user();
             $userId = $user->id;
@@ -231,11 +239,12 @@ class PaymentController extends Controller
             else{
                 $userDB = User::find($userId);
                 $userWallet = (double) str_replace('.','', $userDB->wallet_amount);
+//                dd($investAmount."|".$userWallet);
                 if($investAmount <= $userWallet){
-                    $isSuccess = TransactionUnit::createTransaction($userId, $cart->id + 1, $cart->order_id);
+                    $isSuccess = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
 
                     //change status, date etc
-                    TransactionUnit::transactionAfterVerified($cart->order_id);
+                    TransactionUnit::transactionAfterVerified($orderId);
 
                     $paymentMethod = 'dompet';
                     return View('frontend.checkout-success', compact('paymentMethod'));
@@ -246,6 +255,7 @@ class PaymentController extends Controller
             }
         }
         catch(\Exception $ex){
+//            dd($ex);
             return View('frontend.checkout-failed', compact('investId'));
         }
     }

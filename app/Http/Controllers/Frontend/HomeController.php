@@ -60,6 +60,13 @@ class HomeController extends Controller
         if(auth()->check()){
             $user = Auth::user();
             $userId = $user->id;
+
+            //update last login
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
+            $userDB = User::find($userId);
+            $userDB->last_login = $dateTimeNow->toDateTimeString();
+            $userDB->save();
+
             $blogs = UrgentNews::GetBlogList($userId);
 
 //            $user = User::find($userId);

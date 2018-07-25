@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
+use App\Libs\TransactionUnit;
 use App\Libs\Utilities;
 use App\Libs\Veritrans;
 use App\Mail\InvoicePembelian;
@@ -37,6 +38,7 @@ class TestingController extends Controller
     public function TestingSendEmail(){
         try{
 
+            TransactionUnit::transactionAfterVerified("INVEST-5b512402f369a");
             $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
             //Send Email,
             $userData = User::find($transaction->user_id);
@@ -53,14 +55,15 @@ class TestingController extends Controller
 //            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
 
 
-            $data = array(
-                'user' => User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4"),
-//                'description' => "Kami telah melakukan verifikasi foto KTP beserta data anda di indofund.id."
-                'description' => "Kami telah melakukan verifikasi data anda di indofund.id namun data yang anda masukkan belum 
-                    lengkap sehingga kami belum bisa melakukan verifikasi lebih lanjut, mohon kirimkan ulang foto ktp beserta data 
-                    secara tepat dan sesuai"
-            );
-            SendEmail::SendingEmail('verificationKTP', $data);
+//            $data = array(
+//                'user' => User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4"),
+////                'description' => "Kami telah melakukan verifikasi foto KTP beserta data anda di indofund.id."
+//                'description' => "Kami telah melakukan verifikasi data anda di indofund.id namun data yang anda masukkan belum
+//                    lengkap sehingga kami belum bisa melakukan verifikasi lebih lanjut, mohon kirimkan ulang foto ktp beserta data
+//                    secara tepat dan sesuai"
+//            );
+//            SendEmail::SendingEmail('verificationKTP', $data);
+
 //            $data = array(
 //                'user' => $user
 //            );

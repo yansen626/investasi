@@ -48,6 +48,43 @@
                             </div>
 
                             <div class="field col-sm-12" style="margin-top: -3px;">
+                                <h5>Tanggal Lahir</h5>
+                                <div class="input-group date">
+                                    <input id='dob' name="dob" value="" type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="field col-sm-12" style="margin-top: -3px;">
+                                <h5>Jenis Kelamin</h5>
+                                <select class="form-control" id="gender" name="gender">
+                                    @if($user->gender == "F")
+                                        <option value="M">Pria</option>
+                                        <option value="F" selected>Wanita</option>
+                                    @else
+                                        <option value="M" selected>Pria</option>
+                                        <option value="F">Wanita</option>
+                                    @endif
+                                </select>
+                                {{--<div class="radio-inputs">--}}
+                                    {{--<input type="radio" id="gender-P" name="gender" value="P" checked>--}}
+                                    {{--<label for="gender-P"><span></span>Pria</label>--}}
+                                    {{--<input type="radio" id="gender-L" name="gender" value="L">--}}
+                                    {{--<label for="gender-L"><span></span>Wanita</label>--}}
+                                {{--</div>--}}
+                            </div>
+                            <div class="field col-sm-12" style="margin-top: -3px;">
+                                <h5>Alamat Domisili</h5>
+                                <input id="address-stay" name="address_stay" value="{{ $user->address_stay }}" type="text" required/>
+                                @if ($errors->has('address_stay'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address_stay') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field col-sm-12" style="margin-top: -3px;">
                                 <h5>Kewarganegaraan</h5>
                                 <select class="form-control" id="citizen" name="citizen">
                                     @if($user->citizen == "Asing")
@@ -60,7 +97,7 @@
                                 </select>
                             </div>
                             <div class="field col-sm-12" style="margin-top: -3px;">
-                                <h5>Alamat</h5>
+                                <h5>Alamat Sesuai KTP</h5>
                                 <input id="address-ktp" name="address_ktp" value="{{ $user->address_ktp }}" type="text" required/>
                                 @if ($errors->has('address_ktp'))
                                     <span class="help-block">
@@ -131,5 +168,25 @@
                 document.getElementById("submit").disabled = true;
             }
         }
+    </script>
+@endsection
+
+@section('styles')
+    @parent
+    <link rel="stylesheet" href="{{ URL::asset('css/frontend/bootstrap-datetimepicker.css') }}">
+    <style>
+
+    </style>
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ URL::asset('js/frontend/moment.js') }}"></script>
+    <script src="{{ URL::asset('js/frontend/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        // DATE PICKER
+        $('#dob').datetimepicker({
+            format: "DD MMM Y"
+        });
     </script>
 @endsection

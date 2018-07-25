@@ -13,13 +13,16 @@ use App\Excel\ExcelExportFromView;
 use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
 use App\Models\Subscribe;
+use App\Models\Transaction;
 use App\Models\User;
+use App\Models\WalletStatement;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Carbon\Carbon;
 use Dompdf\Exception;
+use Maatwebsite\Excel\Excel;
 use Maatwebsite\Excel\Facades;
 
 class CustomerController extends Controller
@@ -34,6 +37,15 @@ class CustomerController extends Controller
         $users = User::orderByDesc('created_at')->get();
 
         return View('admin.show-customers', compact('users'));
+        //return view('admin.show_users')->with('users', $users);
+    }
+    public function show($id)
+    {
+        $user = User::find($id);
+        $statements = WalletStatement::where('user_id', $id)->get();
+        $transactions = Transaction::where('user_id', $id)->get();
+
+        return View('admin.lenders.show-customer', compact('user', 'statements', 'transactions'));
         //return view('admin.show_users')->with('users', $users);
     }
     public function DownloadPdfKtp($filename)
@@ -111,7 +123,14 @@ class CustomerController extends Controller
         try {
             $newFileName = "List Subscribe_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
 
-            return Facades\Excel::download(new ExcelExport('subs'), $newFileName.'.xlsx');
+            $subscribeListDB = Subscribe::all();
+
+            return Facades\Excel::create($newFileName, function($excel) use ($subscribeListDB) {
+                $excel->sheet('New sheet', function($sheet) use ($subscribeListDB) {
+                    $sheet->loadView('excel.subscribe', array('subscribeListDB' => $subscribeListDB));
+                });
+            })->export('xlsx');
+//            return Facades\Excel::download(new ExcelExport('subs'), $newFileName.'.xlsx');
         }
         catch (Exception $ex){
             //Utilities::ExceptionLog($ex);
@@ -122,7 +141,17 @@ class CustomerController extends Controller
 
     public function downloadMCMData(){
         try {
-            return Facades\Excel::download(new ExcelExportFromView('mcm'), '88795.xlsx');
+//            $customerListDB =
+//                DB::select('SELECT va_acc, upper(concat(first_name, " ", last_name)) as name  FROM investasi.users;');
+//                DB::select('SELECT va_acc, upper(concat(first_name, " ", last_name)) as name  FROM socmedse_indofund.users;');
+
+            $customerList = User::all();
+            return Facades\Excel::create('88795', function($excel) use ($customerList) {
+                $excel->sheet('New sheet', function($sheet) use ($customerList) {
+                    $sheet->loadView('excel.mcm', array('customerListDB' => $customerList));
+                });
+            })->export('xlsx');
+//            return Facades\Excel::download(new ExcelExportFromView('mcm'), '88795.xlsx');
         }
         catch (Exception $ex){
             //Utilities::ExceptionLog($ex);

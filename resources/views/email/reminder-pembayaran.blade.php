@@ -78,7 +78,7 @@
                                     Nama Proyek : {{$product->name}}<br/>
                                     Masa Pinjaman : {{$product->tenor_loan}} bulan<br/>
                                     Sebesar Rp. {{$transaction->total_price}} <br/>
-                                    pembayaran dapat dilakukan maksimal 6 jam dari {{ \Carbon\Carbon::parse($transaction->created_on)->format('j M Y G:i:s') }}
+                                    pembayaran dapat dilakukan maksimal 6 jam
                                 </p>
                                 <p>
                                     Untuk membaca product disclosure statement, silahkan

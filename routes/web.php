@@ -133,7 +133,7 @@ Route::get('/admin/import', 'Admin\ImportController@uploadExcel')->name('import'
 Route::post('/admin/import/submit', 'Admin\ImportController@importExcel')->name('import-submit');
 
 // User
-Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
+//Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
 Route::get('/admin/subscribe', 'Admin\CustomerController@subscribe')->name('subscribe-list');
 Route::get('/download-subscribe', 'Admin\CustomerController@downloadExcel')->name('download-subscribe');
 Route::get('/download-mcm', 'Admin\CustomerController@downloadMCMData')->name('download-mcm');
@@ -286,6 +286,7 @@ Route::prefix('admin/user')->group(function(){
 // User
 Route::prefix('admin/customer')->group(function(){
     Route::get('/', 'Admin\CustomerController@index')->name('customer-list');
+    Route::get('/show/{id}', 'Admin\CustomerController@show')->name('customer-detail');
     Route::get('/customer-ktp/{id}', 'Admin\CustomerController@customerKtp')->name('customer-ktp');
     Route::get('/ktp-accept/{id}', 'Admin\CustomerController@AcceptKTPData');
     Route::get('/ktp-reject/{id}', 'Admin\CustomerController@RejectKTPData');

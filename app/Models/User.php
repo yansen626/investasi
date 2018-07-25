@@ -57,6 +57,7 @@ class User extends Authenticatable
 		'income',
 		'google_authenticator',
 		'google2fa_secret',
+		'last_login',
 		'va_acc',
         'bank_name',
         'bank_acc_name',

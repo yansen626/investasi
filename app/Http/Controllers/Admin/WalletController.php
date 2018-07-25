@@ -204,10 +204,22 @@ class WalletController extends Controller
 
     public function downloadExcel(){
         try {
-
             $newFileName = "List Penarikan Dana_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
+            $walletStatementDB =
+                WalletStatement::all();
+//                DB::select('SELECT CONCAT(b.first_name, \' \', b.last_name) AS name, a.bank_name, a.bank_acc_number, a.transfer_amount
+//                            FROM investasi.wallet_statements as a, investasi.users as b
+//                            where a.user_id = b.id;');
+//                DB::select('SELECT CONCAT(b.first_name, \' \', b.last_name) AS name, a.bank_name, a.bank_acc_number, a.transfer_amount
+//                            FROM socmedse_indofund.wallet_statements as a, socmedse_indofund.users as b
+//                            where a.user_id = b.id;');
 
-            return Facades\Excel::download(new ExcelExportFromView('wallet'), $newFileName.'.xlsx');
+            return Facades\Excel::create($newFileName, function($excel) use ($walletStatementDB) {
+                $excel->sheet('New sheet', function($sheet) use ($walletStatementDB) {
+                    $sheet->loadView('excel.withdraw', array('walletStatementDB' => $walletStatementDB));
+                });
+            })->export('xlsx');
+//            return Facades\Excel::download(new ExcelExportFromView('wallet'), $newFileName.'.xlsx');
         }
         catch (Exception $ex){
             //Utilities::ExceptionLog($ex);

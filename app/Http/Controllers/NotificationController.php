@@ -21,11 +21,13 @@ use App\Models\ProductInstallment;
 use App\Models\Transaction;
 use App\Models\TransactionWallet;
 use App\Models\User;
+use App\Models\WalletStatement;
 use Carbon\Carbon;
 use Dompdf\Exception;
 use Faker\Provider\DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Webpatser\Uuid\Uuid;
 
 class NotificationController extends Controller
 {
@@ -66,17 +68,18 @@ class NotificationController extends Controller
                         ->where('payment_method_id', 1)
                         ->where('total_payment', $amount)
                         ->first();
+
+                    $installmentDB = ProductInstallment::where('paid_amount', $amount)
+                        ->where('vendor_va', $vaNumber)
+                        ->first();
                     if(!empty($transactionDB)){
                         $orderid = $transactionDB->order_id;
 
                         TransactionUnit::transactionAfterVerified($orderid);
                         Utilities::ExceptionLog("Change transaction status success");
                     }
-                    else{
+                    else if(!empty($installmentDB)){
                         //process installment payment checking
-                        $installmentDB = ProductInstallment::where('paid_amount', $amount)
-                            ->where('vendor_va', $vaNumber)
-                            ->first();
 
                         $dateTimeNow = Carbon::now('Asia/Jakarta');
 
@@ -88,6 +91,40 @@ class NotificationController extends Controller
                             //send email notif to admin
 
                         }
+                    }
+                    //dana tanpa ada transaksi yang cocok
+                    else{
+                        $userDB = User::where('va_acc', $vaNumber)->first();
+                        $saldo = (double) str_replace('.', '',$userDB->wallet_amount);
+                        $userSaldoFinal = $saldo + $amount;
+                        $keterangan = "Dana dari virtual account ".$userDB->va_acc;
+
+                        //add wallet statement
+                        $statement = WalletStatement::create([
+                            'id'            => Uuid::generate(),
+                            'user_id'       => $userDB->id,
+                            'description'   => $keterangan,
+                            'saldo'         => $userSaldoFinal,
+                            'amount'        => $amount,
+                            'fee'           => 0,
+                            'admin'         => 0,
+                            'transfer_amount'=> 0,
+                            'status_id'     => 6,
+                            'date'          => $dateTimeNow->toDateTimeString(),
+                            'created_on'    => $dateTimeNow->toDateTimeString()
+                        ]);
+
+                        //change user wallet amount
+                        $userDB->wallet_amount = $userSaldoFinal;
+                        $userDB->save();
+
+                        //send email to user
+                        $data = array(
+                            'user'=>$userDB,
+                            'description' => $keterangan,
+                            'userGetFinal' => $amount
+                        );
+                        SendEmail::SendingEmail('topupSaldo', $data);
                     }
 
                 }, 5);
@@ -183,7 +220,7 @@ class NotificationController extends Controller
                 //Change Status
                 if($projectDate <= $now){
                     $temporary = Product::where('id', $product->id)->first();
-                    $temporary->status_id = 26;
+                    $temporary->status_id = 25;
                     $temporary->save();
                 }
             }
@@ -207,7 +244,27 @@ class NotificationController extends Controller
             foreach($transactions as $transaction){
                 $trxDate = Carbon::parse(date_format($transaction->created_on, 'j-F-Y H:i:s'));
                 $interval = $now->diffInHours($trxDate);
+                $intervalMinute = $now->diffInMinutes($trxDate);
 //                dd($now." | ".$trxDate." | ".$interval);
+
+                //reminder email
+                if($intervalMinute >= 293 && $intervalMinute <= 302){
+
+                    $data = array(
+                        'transaction' => $transaction,
+                        'user'=>User::find($transaction->user_id),
+                        'paymentMethod' => $transaction->payment_method_id,
+                        'product' => Product::where('product_id',$transaction->product_id)->first()
+                    );
+                    SendEmail::SendingEmail('DetailPembayaran', $data);
+                    //send email to user
+//                    $data = array(
+//                        'user'=>$userDB,
+//                        'description' => $keterangan,
+//                        'userGetFinal' => $amount
+//                    );
+//                    SendEmail::SendingEmail('topupSaldo', $data);
+                }
 
                 //Change Status if more than 6 hours
                 if($interval >= 6){

@@ -58,8 +58,8 @@
                                 @if($userData->wallet_amount != 0)
                                 <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
                                 <div class="radio-inputs">
-                                    {{--<input type="radio" id="payment-1" name="payment" value="wallet" checked>--}}
-                                    {{--<label for="payment-1"><span></span>Saldo Saya</label>--}}
+                                    <input type="radio" id="payment-1" name="payment" value="wallet" checked>
+                                    <label for="payment-1"><span></span>Saldo Saya</label>
                                     {{--<input type="radio" id="payment-2" name="payment" value="credit_card">--}}
                                     {{--<label for="payment-2"><span></span>Kartu Kredit</label>--}}
                                     <input type="radio" id="payment-3" name="payment" value="bank_transfer" checked>
@@ -259,6 +259,141 @@
             }
             else if(document.getElementById("check1").checked == false){
                 document.getElementById("submit").disabled = true;
+            }
+        }
+    </script>
+@endsection
+
+@section('styles')
+    @parent
+    <link rel="stylesheet" href="{{ URL::asset('css/datatable/jquery.dataTables.min.css') }}">
+    <style>
+
+    </style>
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ URL::asset('js/frontend/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        function modalCheckout(){
+            // Set invest amount
+            // var invest = $("input[name=amount]:checked").val();
+            var invest = $("#amount").val();
+            var remaining = $("#remaining").val();
+
+            while(true)
+                if(invest.includes('.')){
+                    invest = invest.replace('.', '');
+                }
+                else{
+                    break;
+                }
+
+            var notComplete = $("#notCompletedData").val();
+            $("#checkout-notCompletedData").val(notComplete);
+            if(notComplete === '0'){
+                var KTP = $("#KTP").val();
+                $("#checkout-KTP").val(KTP);
+                var citizen = $("#citizen").val();
+                $("#checkout-citizen").val(citizen);
+                var address = $("#address-home").val();
+                $("#checkout-address").val(address);
+                var city = $("#city").val();
+                $("#checkout-city").val(city);
+                var province = $("#province").val();
+                $("#checkout-province").val(province);
+                var zip = $("#zip").val();
+                $("#checkout-zip").val(zip);
+            }
+
+            //check remaining
+            if(parseInt(invest)  > parseInt(remaining)){
+                $(".error-div").hide();
+                $(".error-remaining").hide();
+                $(".error-div-wallet").hide();
+                $(".error-remaining").show();
+            }
+            else{
+                var payment_minim = parseInt($("#paymentMinim").val());
+                var payment_multiple = parseInt($("#paymentMultiple").val());
+                //check amount
+                if(invest%payment_multiple === 0 && invest >= payment_minim){
+                    $(".error-div").hide();
+                    $(".error-remaining").hide();
+                    $(".error-div-wallet").hide();
+
+                    var investStr = addCommas(invest);
+                    $("#checkout-invest-amount").html(investStr);
+                    $("#checkout-invest-amount-input").val(invest);
+
+                    var adminFee = 0;
+
+                    // Set admin fee
+                    var payment = $("input[name=payment]:checked").val();
+                    $("#checkout-payment-method-input").val(payment);
+                    if(payment === "credit_card"){
+                        var investFeeInt = (parseInt(invest) / 100) * 3;
+                        $("#checkout-admin-fee-input").val(investFeeInt);
+                        adminFee += investFeeInt;
+                        investStr = addCommas(investFeeInt);
+                        $("#checkout-admin-fee").html(investStr);
+
+                        $("#checkout-payment-method").html("Kartu Kredit");
+
+                        // Set total invest amount
+                        var total = parseInt(invest) + adminFee;
+                        $("#checkout-total-invest").html(addCommas(total));
+
+                        $("#modal-checkout-confirm").modal();
+                    }
+                    else if(payment === "bank_transfer"){
+                        // adminFee += 4000;
+                        $("#checkout-admin-fee-input").val(0);
+                        $("#checkout-admin-fee").html("GRATIS");
+                        $("#checkout-payment-method").html("Transfer Bank");
+
+                        // Set total invest amount
+                        var total = parseInt(invest) + adminFee;
+                        $("#checkout-total-invest").html(addCommas(total));
+
+                        $("#modal-checkout-confirm").modal();
+                    }
+                    else if(payment === "wallet"){
+
+                        var walletVal = $("#wallet").val();
+
+                        while(true)
+                            if(walletVal.includes('.')){
+                                walletVal = walletVal.replace('.', '');
+                            }
+                            else{
+                                break;
+                            }
+                        if(parseInt(walletVal) < parseInt(invest)){
+                            $(".error-div-wallet").show();
+                        }
+                        else{
+                            $("#checkout-admin-fee-input").val(0);
+                            $("#checkout-admin-fee").html("GRATIS");
+                            $("#checkout-payment-method").html("Saldo Saya");
+
+                            // Set total invest amount
+                            var total = parseInt(invest) + adminFee;
+                            $("#checkout-total-invest").html(addCommas(total));
+
+                            $("#modal-checkout-confirm").modal();
+                        }
+                    }
+
+                }
+                else{
+                    $(".error-div").hide();
+                    $(".error-remaining").hide();
+                    $(".error-div-wallet").hide();
+
+                    $(".error-div").show();
+                }
             }
         }
     </script>

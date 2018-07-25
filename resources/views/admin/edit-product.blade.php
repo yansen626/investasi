@@ -125,11 +125,11 @@
                                                 </div>
                                                 <div class="field col-md-6 col-sm-12">
                                                     <h4>Total Pendanaan</h4>
-                                                    <input type="number" name="raising" value="{{ $productDB->getOriginal('raising') }}" disabled class="form-control col-md-7 col-xs-12">
+                                                    <input type="number" name="raising" value="{{ $productDB->getOriginal('raising') }}" readonly class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-md-6 col-sm-12">
                                                     <h4>Durasi Pinjaman (bulan)</h4>
-                                                    <input type="number" id="tenor_loan" name="tenor_loan" value="{{$productDB->tenor_loan }}" disabled class="form-control col-md-7 col-xs-12">
+                                                    <input type="number" id="tenor_loan" name="tenor_loan" value="{{$productDB->tenor_loan }}" readonly class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 {{--<div class="field col-md-6 col-sm-12">--}}
                                                 {{--<h4>Cicilan/bulan</h4>--}}

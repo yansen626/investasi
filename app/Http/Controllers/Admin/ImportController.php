@@ -10,13 +10,17 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Libs\SendEmail;
 use App\Models\Supplier;
+use App\Models\User;
+use App\Models\WalletStatement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades;
+use Webpatser\Uuid\Uuid;
 
 class ImportController extends Controller
 {
@@ -30,74 +34,51 @@ class ImportController extends Controller
 
         try{
             $data = Facades\Excel::load(Input::file('file'), function($reader) {})->get();
-            dd($data);
-            foreach ($data[0]->toArray() as $row) {
+//            dd($data);
+            foreach ($data->toArray() as $row) {
                 if(!empty($row['nama'])){
 
-                    $email =  $row['email'];
-                    if(strpos($email, ',')){
-                        $emailArr = explode(',', $email);
-                        $email1 = trim($emailArr[0]);
-                        $email2 = trim($emailArr[1]);
-                    }
-                    else{
-                        $email1 = $email;
-                        $email2 = null;
-                    }
+                    DB::transaction(function() use ($row) {
 
-                    $phone =  $row['telp'];
-                    if(strpos($phone, ',')){
-                        $phoneArr = explode(',', $phone);
-                        $phone1 = trim($phoneArr[0]);
-                        $phone2 = trim($phoneArr[1]);
-                    }
-                    else{
-                        $phone1 = $phone;
-                        $phone2 = null;
-                    }
+                        $amount = $row['jumlah'];
+                        $dateTimeNow = Carbon::now('Asia/Jakarta');
+                        $keterangan = $row['keterangan'];
+                        $virtual_akun = $row['virtual_akun'];
 
-                    Supplier::create([
-                        'name'                  => $row['nama'],
-                        'email1'                => $email1 ?? null,
-                        'email2'                => $email2 ?? null,
-                        'phone1'                => $phone1 ?? null,
-                        'phone2'                => $phone2 ?? null,
-                        'contact_person'        => $row['cp'] ?? null,
-                        'address'               => $row['alamat'] ?? null,
-                        'bank_name'             => 'BANK',
-                        'bank_account_number'   => '123456',
-                        'bank_account_name'     => 'PEMILIK REKENING',
-                        'created_by'            => $user->id,
-                        'created_at'            => $dateTimeNow->toDateTimeString(),
-                        'updated_by'            => $user->id,
-                        'updated_at'            => $dateTimeNow->toDateTimeString(),
-                    ]);
+                        $userDB = User::where("va_acc", $virtual_akun)->first();
+                        $saldo = (double) str_replace('.', '',$userDB->wallet_amount);
+                        $userSaldoFinal = $saldo + (double) $amount;
+    //                    dd($userSaldoFinal);
+
+                        //add wallet statement
+                        $statement = WalletStatement::create([
+                            'id'            => Uuid::generate(),
+                            'user_id'       => $userDB->id,
+                            'description'   => $keterangan,
+                            'saldo'         => $userSaldoFinal,
+                            'amount'        => $amount,
+                            'fee'           => 0,
+                            'admin'         => 0,
+                            'transfer_amount'=> 0,
+                            'status_id'     => 6,
+                            'date'          => $dateTimeNow->toDateTimeString(),
+                            'created_on'    => $dateTimeNow->toDateTimeString()
+                        ]);
+
+                        //change user wallet amount
+                        $userDB->wallet_amount = $userSaldoFinal;
+                        $userDB->save();
+
+                        //send email to user
+                        $data = array(
+                            'user'=>$userDB,
+                            'description' => $keterangan,
+                            'userGetFinal' => $amount
+                        );
+                        SendEmail::SendingEmail('topupSaldo', $data);
+                    });
                 }
             }
-
-//            Excel::load(Input::file('file'), function ($reader) use($user, $dateTimeNow) {
-//                foreach ($reader->toArray() as $key => $value) {
-//                    if($row['nama'] != null){
-//
-//                        Supplier::create([
-//                            'name'                  => $row['nama'],
-//                            'email'                 => $row['email'],
-//                            'phone'                 => $row['telp'],
-//                            'contact_person'        => $row['cp'],
-//                            'address'               => $row['alamat'],
-//                            'city'                  => $row['lokasi'],
-//                            'bank_name'             => 'BANK',
-//                            'bank_account_number'   => '123456',
-//                            'bank_account_name'     => 'PEMILIK REKENING',
-//                            'created_by'            => $user->id,
-//                            'created_at'            => $dateTimeNow->toDateTimeString(),
-//                            'updated_by'            => $user->id,
-//                            'updated_at'            => $dateTimeNow->toDateTimeString(),
-//                        ]);
-//                    }
-//                }
-//            });
-
             Session::flash('message', 'Berhasil Import data vendor!');
              return redirect(route('admin.import.suppliers.upload'));
         }

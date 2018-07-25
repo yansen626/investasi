@@ -32,7 +32,7 @@
             <td></td>
             <td></td>
             <td>IDR</td>
-            <td>{{ $customerList->name }}</td>
+            <td>{{ strtoupper($customerList->first_name) }} {{ strtoupper($customerList->last_name) }}</td>
             @for($i=2; $i<26; $i++)
                 <th></th>
             @endfor

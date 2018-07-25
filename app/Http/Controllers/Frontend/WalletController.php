@@ -248,9 +248,12 @@ class WalletController extends Controller
                         $fee2 = (double) env('FEE2');
                         $fee = $fee2;
                     }
+                    $admin = (double) env('FEE_TRANSFER');
+
 //                    $fee_percentage = (double) $amount*env('FEE_PERCENTAGE');
 //                    if($fee_percentage > $fee) $fee = $fee_percentage;
-                    $transfer_amount = $amount - $fee;
+
+                    $transfer_amount = $amount - $fee - $admin;
 
                     $userFinalWallet = $userWallet - $amount;
 //                    dd($amount." | ".$fee." | ".$transfer_amount." | ".$userFinalWallet);
@@ -271,6 +274,7 @@ class WalletController extends Controller
                         'description'       => "Penarikan Dompet (".$bank." - ".$accName." - ".$accNumber.")",
                         'saldo'             => $userFinalWallet,
                         'amount'            => $amount,
+                        'admin'            => $admin,
                         'fee'               => $fee,
                         'transfer_amount'   => $transfer_amount,
                         'bank_name'         => $bank,

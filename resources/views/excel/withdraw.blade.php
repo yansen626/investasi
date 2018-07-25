@@ -10,10 +10,10 @@
     <tbody>
     @foreach($walletStatementDB as $walletStatement)
         <tr>
-            <td>{{ $walletStatement->name }}</td>
+            <td>{{ $walletStatement->user->first_name }} {{ $walletStatement->user->last_name }}</td>
             <td>{{ $walletStatement->bank_acc_number }}</td>
             <td>{{ $walletStatement->bank_name }}</td>
-            <td>{{ $walletStatement->transfer_amount }}</td>
+            <td>{{ (int) str_replace('.', '',$walletStatement->transfer_amount) }}</td>
         </tr>
     @endforeach
     </tbody>

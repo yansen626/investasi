@@ -181,6 +181,50 @@
             url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian-Alternative.json"
         }
     } );
+    $('#datatable-responsive-trx').DataTable( {
+        buttons: [
+            {
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                        type: ''
+                    }
+                },
+                extend: 'print',
+                text: 'Print current page',
+                exportOptions: {
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            }
+        ],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian-Alternative.json"
+        }
+    } );
+    $('#datatable-responsive-dompet').DataTable( {
+        buttons: [
+            {
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                        type: ''
+                    }
+                },
+                extend: 'print',
+                text: 'Print current page',
+                exportOptions: {
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            }
+        ],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian-Alternative.json"
+        }
+    } );
     $(document).ready(function() {
         var table = $('#datatable-responsive').DataTable();
 
