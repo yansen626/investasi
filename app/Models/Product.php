@@ -38,6 +38,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $meta_tag_image
  * @property int $confirmation_1
  * @property int $confirmation_2
+ * @property \Carbon\Carbon $due_date
  * @property int $status_id
  * @property string $created_by
  * @property \Carbon\Carbon $created_on
@@ -75,7 +76,8 @@ class Product extends Eloquent
 	];
 	protected $dates = [
 		'created_on',
-		'modified_on'
+		'modified_on',
+		'due_date'
 	];
 
 	protected $fillable = [
@@ -174,14 +176,14 @@ class Product extends Eloquent
             return number_format($this->attributes['interest_per_month'], 0, ",", ".");
         }
     }
-    public function getDaysLeftAttribute(){
-        if(!empty($this->attributes['due_date'])){
-            $dateTimeNow = Carbon::now('Asia/Jakarta');
-            $daysLeft = $dateTimeNow->diffInDays(Carbon::parse($this->due_date));
-            return $daysLeft;
-        }
-        return $this->attributes['days_left'];
-    }
+//    public function getDaysLeftAttribute(){
+//        if(!empty($this->attributes['due_date'])){
+//            $dateTimeNow = Carbon::now('Asia/Jakarta');
+//            $daysLeft = $dateTimeNow->diffInDays(Carbon::parse($this->due_date));
+//            return $daysLeft;
+//        }
+//        return $this->attributes['days_left'];
+//    }
 
     public function getYoutubeLinkAttribute(){
         if(!empty($this->attributes['youtube_link'])){

@@ -104,8 +104,17 @@ class ProductController extends Controller
         }
         if(!empty($product->due_date)){
             $dateTimeNow = Carbon::now('Asia/Jakarta');
-            $product->days_left = $dateTimeNow->diffInDays(Carbon::parse($product->due_date));
-            $product->save();
+            $now = Carbon::parse(date_format($dateTimeNow, 'Y-m-d'));
+            $dueDate = Carbon::parse(date_format($product->due_date, 'Y-m-d'));
+            if($now < $dueDate){
+                dd($now."|".$dueDate);
+                $product->days_left = $dateTimeNow->diffInDays(Carbon::parse($product->due_date));
+                $product->save();
+            }
+            else{
+                $product->days_left = 0;
+                $product->save();
+            }
         }
 
 
