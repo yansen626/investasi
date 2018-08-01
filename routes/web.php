@@ -34,7 +34,7 @@ Route::get('/faq', 'Frontend\HomeController@faq')->name('faq');
 
 
 //blog
-Route::get('/blog-list', 'Frontend\BlogController@BlogList')->name('blog-list');
+Route::get('/blog-list/{type}', 'Frontend\BlogController@BlogList')->name('blog-list');
 //Route::get('/blog', 'Frontend\BlogController@SingleBlog')->name('blog');
 Route::get('/blog/{id}', 'Frontend\BlogController@SingleBlog')->name('blog');
 

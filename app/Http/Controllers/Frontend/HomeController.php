@@ -33,6 +33,7 @@ class HomeController extends Controller
         $recentProducts = Product::where('category_id','=', 2)->where('status_id', 21)->orderByDesc('created_on')->take(3)->get();
 
         $randomBlogs = Blog::where('status_id', 1)
+            ->where('category_id', '<>', 5)
             ->orderByDesc('created_at')
             ->take($blogCount)
             ->get();
@@ -274,6 +275,7 @@ class HomeController extends Controller
         );
         SendEmail::SendingEmail('requestVerification', $data);
 
-        return Redirect::route('login');
+//        return Redirect::route('login');
+        return redirect()->route('login');
     }
 }

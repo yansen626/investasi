@@ -395,7 +395,7 @@ class VendorController extends Controller
         $installmentPerMonths = $request['installment_per_month'];
         $isNullMemberInterest = in_array(null, $interestPerMonths, true);
         $isNullMemberInstallment = in_array(null, $installmentPerMonths, true);
-        if($isNullMemberInterest && $isNullMemberInstallment)
+        if($isNullMemberInterest || $isNullMemberInstallment)
             return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
 
         try{

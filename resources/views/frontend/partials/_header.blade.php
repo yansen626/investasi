@@ -57,12 +57,14 @@
                         <li>
                             <a href="{{route('faq')}}" >FAQ </a>
                         </li>
+                        @if(auth()->check())
+                            <li>
+                                <span><a href="{{route('blog-list', ['type'=>2])}}">Update</a></span>
+                            </li>
+                        @endif
                         <li>
                             <a href="#" >Lowongan </a>
                         </li>
-                        {{--<li>--}}
-                            {{--<span><a href="{{route('blog-list')}}">Blog</a></span>--}}
-                        {{--</li>--}}
 
                         {{--<li>--}}
                             {{--@if(auth()->check())--}}
@@ -123,7 +125,11 @@
                                         <li>
                                             <a href="{{route('faq')}}" >FAQ </a>
                                         </li>
+                                        @if(auth()->check())
+                                            <li><a href="{{route('blog-list', ['type'=>2])}}">Update</a></li>
+                                        @endif
                                         <li><a href="#">Lowongan </a></li>
+
                                         {{--<li>--}}
                                             {{--<a href="{{route('blog-list')}}">Blog</a>--}}
                                         {{--</li>--}}

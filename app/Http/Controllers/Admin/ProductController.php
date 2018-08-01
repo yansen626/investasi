@@ -327,7 +327,7 @@ class ProductController extends Controller
             $isNullMemberInterest = in_array(null, $interestPerMonths, true);
             $isNullMemberInstallment = in_array(null, $installmentPerMonths, true);
 
-            if($isNullMemberInterest && $isNullMemberInstallment){
+            if($isNullMemberInterest || $isNullMemberInstallment){
                 return back()->withErrors("Cicilan&Bunga / bulan harus diisi semua")->withInput();
             }
 

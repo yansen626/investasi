@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Libs\Utilities;
 use App\Models\Blog;
 use App\Models\BlogReadUser;
 use App\Models\BlogUrgent;
@@ -17,9 +18,44 @@ use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
-    public function BlogList(){
-        $blogDBs = Blog::all();
-        return View('frontend.show-blogs');
+    public function BlogList($type){
+        if($type==1){
+            $blogDBs = Blog::where('status_id', 1)->where('category_id', '<>', 5)->paginate(5);
+        }
+        else{
+
+            $blogDBs = Blog::where('status_id', 1)->where('category_id', 5)->paginate(5);
+        }
+//        $blogDBs = $blogDBs->paginate(10);
+//        $blogDBs = App\Blog::paginate(10);
+
+        $highlightBlog = array();
+        foreach ($blogDBs as $blog){
+            $string = Utilities::TruncateString($blog->description);
+
+            $highlightBlog = array_add($highlightBlog,$blog->id, $string);
+        }
+
+        if($type==1){
+            $recentBlogs = Blog::where('status_id', 1)
+                ->where('category_id', '<>', 5)
+                ->orderByDesc('created_at')
+                ->take(5)
+                ->get();
+        }
+        else{
+            $recentBlogs = Blog::where('status_id', 1)
+                ->orderByDesc('created_at')
+                ->take(5)
+                ->get();
+        }
+
+        $data = [
+            'blogDBs'=>$blogDBs,
+            'highlightBlog'=>$highlightBlog,
+            'recentBlogs'=>$recentBlogs
+        ];
+        return View('frontend.show-blogs')->with($data);
     }
 
     public function SingleBlog($id){
@@ -45,12 +81,21 @@ class BlogController extends Controller
                 }
             }
         }
-
-        $recentBlogs = Blog::where('status_id', 1)
-            ->where('id', '<>', $id)
-            ->orderByDesc('created_at')
-            ->take(5)
-            ->get();
+        if($singleBlog->category_id == 5){
+            $recentBlogs = Blog::where('status_id', 1)
+                ->where('id', '<>', $id)
+                ->orderByDesc('created_at')
+                ->take(5)
+                ->get();
+        }
+        else{
+            $recentBlogs = Blog::where('status_id', 1)
+                ->where('category_id', '<>', 5)
+                ->where('id', '<>', $id)
+                ->orderByDesc('created_at')
+                ->take(5)
+                ->get();
+        }
 
         if(empty($singleBlog->product_id)){
             $relatedBlogs = Blog::where('status_id', 1)
