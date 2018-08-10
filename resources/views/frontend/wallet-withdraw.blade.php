@@ -111,6 +111,7 @@
                                     <h4>PIN Google Auth</h4>
                                     <input type="number" name="google" value="{{old('google')}}">
                                 </div>
+                                <input type="hidden" id="fee" value="{{env('FEE_TRANSFER')}}">
                             </form>
                             <div class="field col-sm-12">
                                 <br/>
@@ -123,4 +124,40 @@
         </div>
     </div>
     @include('frontend.partials._modal-wallet-withdraw')
+@endsection
+
+
+@section('styles')
+    @parent
+    <style>
+        .red-text{
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ URL::asset('js/frontend/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        function modalWalletDeposit(){
+            $("#modal_wallet_deposit").modal();
+        }
+
+        function modalWalletWithdraw(){
+            var amount = $("#amount").val();
+            var fee = $("#fee").val();
+
+            $("#withdraw-amount").html(amount);
+            $("#withdraw-fee").html(fee);
+
+            $("#withdrawModal").modal();
+        }
+
+        function modalWalletWithdrawSubmit(){
+            $("#withdraw-form").submit();
+        }
+
+    </script>
 @endsection

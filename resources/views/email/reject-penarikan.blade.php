@@ -90,7 +90,7 @@
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Bank</b> : {{$statement->bank_name}}</td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Nama Pemilik</b> : {{ $statement->bank_acc_number }}</td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Nama Pemilik</b> : {{ $statement->bank_acc_name }}</td>
                         </tr>
                         <tr>
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">

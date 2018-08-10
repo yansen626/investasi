@@ -12,7 +12,11 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="widget-title ">
-                            <h4>Apakah Anda yakin untuk menarik dana sebesar <br> Rp <span id="withdraw-amount">x</span></h4>
+                            <h4>Apakah Anda yakin untuk menarik dana sebesar <br> Rp <span id="withdraw-amount">x</span>*</h4>
+
+                            <span class="red-text">
+                                *sebelum dipotong biaya sebesar Rp <span id="withdraw-fee">x</span>
+                            </span>
                         </div>
                     </div>
                 </div>

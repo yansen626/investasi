@@ -151,6 +151,7 @@
 
                                                     <div class="field col-sm-12">
                                                         <button class="btn btn-big btn-solid"><i class="fa fa-paper-plane"></i><span>Deactivate</span></button>
+                                                        <a href="{{route('withdraw')}}" class="btn btn-big btn-success"><span>Penarikan Saldo</span></a>
                                                     </div>
                                                 </form>
                                             @endif
