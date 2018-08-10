@@ -31,7 +31,7 @@
                                     <th>No</th>
                                     {{--<th>Invoice</th>--}}
                                     <th>Lender Name</th>
-                                    <th>Payment Method</th>
+                                    <th>Va Number</th>
                                     <th>Project Name</th>
                                     <th>Total Price</th>
                                     <th>Biaya Admin</th>
@@ -48,13 +48,13 @@
                                         <td>{{ $idx }}</td>
 {{--                                        <td>{{ $trx->invoice }}</td>--}}
                                         <td>{{ $trx->user->first_name }}&nbsp;{{ $trx->user->last_name }}</td>
-                                        <td>{{ $trx->payment_method->description }}</td>
+                                        <td>{{ $trx->user->va_acc }}</td>
                                         <td>{{ $trx->product->name }}</td>
                                         <td>Rp {{ $trx->total_price }}</td>
                                         <td>Rp {{ $trx->admin_fee }}</td>
                                         <td>Rp {{ $trx->total_payment }}</td>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($trx->created_on)->format('j F Y')}}</td>
+                                            {{ \Carbon\Carbon::parse($trx->created_on)->format('j F Y G:i:s')}}</td>
                                         <td>{{ $trx->status->description }}</td>
                                         <td>
                                             <a onclick="modalPop('{{ $trx->id }}', 'accept', '/admin/neworder/accept/')" class="btn btn-success">Accept</a>

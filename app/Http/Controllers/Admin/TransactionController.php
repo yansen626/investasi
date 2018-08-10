@@ -30,7 +30,7 @@ class TransactionController extends Controller
     }
 
     public function index(){
-        $transactions = Transaction::all()->sortByDesc('created_on');
+        $transactions = Transaction::all()->sortByDesc('created_on')->take(50);
 
         return View('admin.show-transactions', compact('transactions'));
     }

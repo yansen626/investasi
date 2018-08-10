@@ -174,14 +174,13 @@ class TransactionUnit
     //            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
     //            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
 
-                return true;
             });
+            return true;
         }
-
         catch(\Exception $ex){
             Utilities::ExceptionLog('TransactionUnit.php > transactionAfterVerified ========> '.$ex);
+            return false;
         }
-        return false;
     }
 
     public static function createTransactionTopUp($userId, $cartId, $orderId){

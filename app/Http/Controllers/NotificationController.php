@@ -44,7 +44,7 @@ class NotificationController extends Controller
             foreach ($jsonTransactions as $jsonTransaction){
                 $trxDesc = $jsonTransaction->description;
 
-                Utilities::ExceptionLog($trxDesc);
+//                Utilities::ExceptionLog($trxDesc);
 //                $trxDescPart = str_replace("\r", '',$trxDesc);
 //                $trxDescPart1 = str_replace("\nPRMA", '',$trxDescPart);
 //                $trxDescPart2 = str_replace("\nATMB", '',$trxDescPart1);
@@ -57,40 +57,38 @@ class NotificationController extends Controller
                 $trxKredit2 = explode(".", $trxKredit);
                 $amount = (double) str_replace(',', '',$trxKredit2[0]);
 
-                //Utilities::ExceptionLog($vaNumber." | ".$amount);
-                DB::transaction(function() use ($trxDesc, $amount, $json){
+                $vaProceed = false;
+                //process transaction checking
+                $vaNumber = substr($trxDesc, 20, 10);
+                $transactionDB = Transaction::where('va_number', $vaNumber)
+                    ->where('status_id', 3)
+                    ->where('payment_method_id', 1)
+                    ->where('total_payment', $amount)
+                    ->first();
 
-                    $dateTimeNow = Carbon::now('Asia/Jakarta');
+                $vaVendorNumber = substr($trxDesc, 20, 11);
+                $installmentDB = ProductInstallment::where('paid_amount', $amount)
+                    ->where('status_id', 1)
+                    ->where('vendor_va', $vaVendorNumber)
+                    ->first();
 
-                    //process transaction checking
-                    $vaNumber = substr($trxDesc, 20, 10);
-                    $transactionDB = Transaction::where('va_number', $vaNumber)
-                        ->where('status_id', 3)
-                        ->where('payment_method_id', 1)
-                        ->where('total_payment', $amount)
-                        ->first();
+                Utilities::ExceptionLog($vaNumber." | ".$amount);
 
-                    $vaVendorNumber = substr($trxDesc, 20, 11);
-                    $installmentDB = ProductInstallment::where('paid_amount', $amount)
-                        ->where('status_id', 1)
-                        ->where('vendor_va', $vaVendorNumber)
-                        ->first();
-                    if(!empty($transactionDB)){
-                        $orderid = $transactionDB->order_id;
+                if(!empty($transactionDB)){
+                    $orderid = $transactionDB->order_id;
 
-                        $isSuccess = TransactionUnit::transactionAfterVerified($orderid);
-                        if($isSuccess){
-                            Utilities::ExceptionLog("Change transaction status success");
-                        }
-                        else{
-                            Utilities::ExceptionLog("Change transaction status failed");
-                        }
+                    $isSuccess = TransactionUnit::transactionAfterVerified($orderid);
+                    if($isSuccess){
+                        Utilities::ExceptionLog("Change transaction status success");
                     }
-                    else if(!empty($installmentDB)){
-                        //process installment payment checking
-
-                        $dateTimeNow = Carbon::now('Asia/Jakarta');
-
+                    else{
+                        Utilities::ExceptionLog("Change transactionDB status failed");
+                    }
+                    $vaProceed = true;
+                }
+                else if(!empty($installmentDB)){
+                    //process installment payment checking
+                    DB::transaction(function() use ($installmentDB){
                         if(!empty($installmentDB)){
                             //change status for installment payment DB
                             $installmentDB->status_id = 26;
@@ -109,9 +107,13 @@ class NotificationController extends Controller
 //                        }
 
                         Utilities::ExceptionLog("Change installment payment status success");
-                    }
-                    //dana tanpa ada transaksi yang cocok
-                    else{
+                        $vaProceed = true;
+                    });
+                }
+                //dana tanpa ada transaksi yang cocok
+                else{
+                    DB::transaction(function() use ($vaVendorNumber, $vaNumber, $amount){
+                        $dateTimeNow = Carbon::now('Asia/Jakarta');
                         $vendorDB = Vendor::where('vendor_va', $vaVendorNumber)->first();
                         if(!empty($vendorDB)){
                             $userDB = User::find($vendorDB->user_id);
@@ -150,13 +152,16 @@ class NotificationController extends Controller
                             'userGetFinal' => $amount
                         );
                         SendEmail::SendingEmail('topupSaldo', $data);
-                    }
-
-                }, 5);
+                        $vaProceed = true;
+                    });
+                }
+                if(!$vaProceed){
+                    Utilities::ExceptionLog("Va number = ".$vaNumber." or ".$vaVendorNumber." is not Processed");
+                }
             }
         }
         catch (\Exception $ex){
-            Utilities::ExceptionLog("Change transaction status failed ".$ex);
+            Utilities::ExceptionLog("Change transaction status failed error =  ".$ex);
             return $ex;
         }
     }
