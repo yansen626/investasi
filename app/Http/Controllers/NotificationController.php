@@ -21,6 +21,7 @@ use App\Models\ProductInstallment;
 use App\Models\Transaction;
 use App\Models\TransactionWallet;
 use App\Models\User;
+use App\Models\Vendor;
 use App\Models\WalletStatement;
 use Carbon\Carbon;
 use Dompdf\Exception;
@@ -50,7 +51,6 @@ class NotificationController extends Controller
 //                $trxDescPart3 = str_replace("\nMCM", '',$trxDescPart2);
 //                $trxDescPart4 = explode(" ", $trxDescPart3);
 //                $vaNumber = $trxDescPart4[0];
-                $vaNumber = substr($trxDesc, 20, 10);
 
 
                 $trxKredit = $jsonTransaction->kredit;
@@ -58,25 +58,33 @@ class NotificationController extends Controller
                 $amount = (double) str_replace(',', '',$trxKredit2[0]);
 
                 //Utilities::ExceptionLog($vaNumber." | ".$amount);
-                DB::transaction(function() use ($vaNumber, $amount, $json){
+                DB::transaction(function() use ($trxDesc, $amount, $json){
 
                     $dateTimeNow = Carbon::now('Asia/Jakarta');
 
                     //process transaction checking
+                    $vaNumber = substr($trxDesc, 20, 10);
                     $transactionDB = Transaction::where('va_number', $vaNumber)
                         ->where('status_id', 3)
                         ->where('payment_method_id', 1)
                         ->where('total_payment', $amount)
                         ->first();
 
+                    $vaVendorNumber = substr($trxDesc, 20, 11);
                     $installmentDB = ProductInstallment::where('paid_amount', $amount)
-                        ->where('vendor_va', $vaNumber)
+                        ->where('status_id', 1)
+                        ->where('vendor_va', $vaVendorNumber)
                         ->first();
                     if(!empty($transactionDB)){
                         $orderid = $transactionDB->order_id;
 
-                        TransactionUnit::transactionAfterVerified($orderid);
-                        Utilities::ExceptionLog("Change transaction status success");
+                        $isSuccess = TransactionUnit::transactionAfterVerified($orderid);
+                        if($isSuccess){
+                            Utilities::ExceptionLog("Change transaction status success");
+                        }
+                        else{
+                            Utilities::ExceptionLog("Change transaction status failed");
+                        }
                     }
                     else if(!empty($installmentDB)){
                         //process installment payment checking
@@ -91,13 +99,29 @@ class NotificationController extends Controller
                             //send email notif to admin
 
                         }
+                        //distribute payment installment
+                        //$isSuccess = TransactionUnit::InstallmentPaymentProcess($installmentDB->id);
+//                        if($isSuccess){
+//                            Utilities::ExceptionLog("Change installment payment status success");
+//                        }
+//                        else{
+//                            Utilities::ExceptionLog("Change installment payment status failed");
+//                        }
+
+                        Utilities::ExceptionLog("Change installment payment status success");
                     }
                     //dana tanpa ada transaksi yang cocok
                     else{
-                        $userDB = User::where('va_acc', $vaNumber)->first();
+                        $vendorDB = Vendor::where('vendor_va', $vaVendorNumber)->first();
+                        if(!empty($vendorDB)){
+                            $userDB = User::find($vendorDB->user_id);
+                        }
+                        else{
+                            $userDB = User::where('va_acc', $vaNumber)->first();
+                        }
                         $saldo = (double) str_replace('.', '',$userDB->wallet_amount);
                         $userSaldoFinal = $saldo + $amount;
-                        $keterangan = "Dana dari virtual account ".$userDB->va_acc;
+                        $keterangan = "Dana dari virtual account ".$vaNumber;
 
                         //add wallet statement
                         $statement = WalletStatement::create([
@@ -117,6 +141,7 @@ class NotificationController extends Controller
                         //change user wallet amount
                         $userDB->wallet_amount = $userSaldoFinal;
                         $userDB->save();
+                        Utilities::ExceptionLog("Dana tak ada transaksinya sukses di pindahkan ke akun pemilik");
 
                         //send email to user
                         $data = array(

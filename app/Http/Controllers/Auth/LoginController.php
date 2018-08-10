@@ -60,7 +60,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
-            return View("auth.login")->withErrors(['msg' => ['Salah Username atau Password!']]);
+            return View("auth.login")->withErrors(['msg' => ['Salah Email atau Password!']]);
         }
         //$this->validateLogin($request);
 
@@ -76,12 +76,12 @@ class LoginController extends Controller
         $credentials = $this->credentials($request);
 
         if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return View("auth.login")->withErrors(['msg' => ['Salah Username atau Password!']]);
+            return View("auth.login")->withErrors(['msg' => ['Salah Email atau Password!']]);
         }
 
         //Custom Logic
         if(!User::where('email', $request->email)->exists()){
-            return View("auth.login")->withErrors(['msg' => ['Salah Username atau Password!']]);
+            return View("auth.login")->withErrors(['msg' => ['Salah Email atau Password!']]);
         }
         $userData = User::where('email', $request->email)->first();
 

@@ -72,19 +72,38 @@
                     <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;background-color: #fff;" width="570">
                         <tbody>
                         <tr>
-                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Hai {{ $user->first_name . ' ' . $user->last_name }}</span></td>
+                            <td align="center" bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 22px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f; text-align: center;"><span>Kepada Yth, {{ $user->first_name . ' ' . $user->last_name }}</span></td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Indofund.id telah berhasil melakukan transfer dana ke Rekening Anda</td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Mohon maaf, transaksi dengan rincian :</td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Silahkan lakukan pengecekan berkala pada Rekening Anda maksimal 1x24 jam pada hari kerja untuk sesama Bank.</b></td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Jumlah Penarikan</b> : Rp {{ $statement->amount }}</td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Apabila Dana belum Anda terima, silahkan hubungi kami melalui wa ke 089643448118</td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Biaya</b> : Rp {{ $statement->admin }}</td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Terima kasih,</td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Terima Bersih</b> : Rp {{ $statement->transfer_amount }}</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Bank</b> : {{$statement->bank_name}}</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><b>Nama Pemilik</b> : {{ $statement->bank_acc_number }}</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">
+                                Gagal dilakukan dengan alasan : <br>
+                                -	Tidak bisa dilakukan Pengiriman tersebut/Pengiriman ditolak<br>
+                                -	Saldo Anda tidak mencukupi/jumlah penarikan lebih besar daripada Saldo yang ada
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">
+                                Silahkan menghubungi kami melalui wa ke 089643448118<br><br>
+                                Terima kasih,
+                            </td>
                         </tr>
                         </tbody>
                     </table>

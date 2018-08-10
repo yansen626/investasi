@@ -101,7 +101,19 @@ class SendEmail
                     $walletStatement = $objData->walletStatement;
                     $userData = $objData->user;
 
-                    $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData);
+                    $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData, 1);
+                    Mail::to($userData->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")
+                        ->send($acceptWithdrawalEmail);
+                    break;
+
+
+                case 'withdrawalRejected' :
+                    $walletStatement = $objData->walletStatement;
+                    $userData = $objData->user;
+
+                    $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData, 0);
                     Mail::to($userData->email)
                         ->bcc("ryanfilbert@gdrive.id")
                         ->bcc("indofund.id@gmail.com")

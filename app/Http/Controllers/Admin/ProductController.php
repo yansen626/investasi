@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
+use App\Libs\TransactionUnit;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -26,9 +27,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 use Webpatser\Uuid\Uuid;
 
 class ProductController extends Controller
@@ -89,11 +90,11 @@ class ProductController extends Controller
                 $product->save();
 
                 //send fund to project owner
-                $userDB = User::find($product->user_id);
-                $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
-                $collectedFund = (double) str_replace('.','', $product->raised);
-                $userDB->wallet_amount = $userWalletDB + $collectedFund;
-                $userDB->save();
+//                $userDB = User::find($product->user_id);
+//                $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
+//                $collectedFund = (double) str_replace('.','', $product->raised);
+//                $userDB->wallet_amount = $userWalletDB + $collectedFund;
+//                $userDB->save();
 
                 //update project installment due date
                 $productInstallments = ProductInstallment::where('product_id',$product->id)->get();
@@ -107,11 +108,11 @@ class ProductController extends Controller
                 }
 
                 //send email notfication to project owner, fund collected
-                $data = array(
-                    'vendorData'    => $userDB,
-                    'project'       => $product
-                );
-                SendEmail::SendingEmail('acceptCollectedFund', $data);
+//                $data = array(
+//                    'vendorData'    => $userDB,
+//                    'project'       => $product
+//                );
+//                SendEmail::SendingEmail('acceptCollectedFund', $data);
 
                 Session::flash('message', 'Superadmin Berhasil konfirmasi!');
             });
@@ -204,60 +205,67 @@ class ProductController extends Controller
     public function ProductInstallmentPayment($id){
         try{
             $productInstallments = ProductInstallment::find($id);
-            $paid_amount = (double) str_replace('.','', $productInstallments->paid_amount);
-            $raised = (double) str_replace('.','', $productInstallments->product->raised);
+            $isSuccess = TransactionUnit::InstallmentPaymentProcess($id);
 
-            $transactionList = Transaction::where('product_id', $productInstallments->product_id)->where('status_id', 5)->get();
-            $asdf = array();
-            DB::transaction(function() use ($productInstallments, $transactionList, $paid_amount, $raised, $asdf) {
+//            $paid_amount = (double) str_replace('.','', $productInstallments->paid_amount);
+//            $raised = (double) str_replace('.','', $productInstallments->product->raised);
+//
+//            $transactionList = Transaction::where('product_id', $productInstallments->product_id)->where('status_id', 5)->get();
+//            $asdf = array();
+//            DB::transaction(function() use ($productInstallments, $transactionList, $paid_amount, $raised, $asdf) {
+//
+//                foreach ($transactionList as $transaction){
+//
+//                    $dateTimeNow = Carbon::now('Asia/Jakarta');
+//                    $userDB = User::find($transaction->user_id);
+//                    $userAmount = (double) str_replace('.','', $transaction->total_price);
+//
+//                    $userGetTemp = number_format((($userAmount*100) / $raised),2);
+//
+//                    $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
+//                    $userSaldoFinal = (double) str_replace('.','', $userDB->wallet_amount);
+//                    $userSaldoFinal = $userSaldoFinal + $userGetFinal;
+//                    $desription = 'Pembayaran cicilan dan bunga ke-'.$productInstallments->month.' dari '.$productInstallments->product->name;
+//
+//                    //add wallet statement
+//                    $statement = WalletStatement::create([
+//                        'id'            =>Uuid::generate(),
+//                        'user_id'       => $transaction->user_id,
+//                        'description'   => $desription,
+//                        'saldo'         => $userSaldoFinal,
+//                        'amount'        => $userGetFinal,
+//                        'fee'           => 0,
+//                        'admin'         => 0,
+//                        'transfer_amount'=> 0,
+//                        'status_id'     => 6,
+//                        'date'          => $dateTimeNow->toDateTimeString(),
+//                        'created_on'    => $dateTimeNow->toDateTimeString()
+//                    ]);
+//
+//                    //change user wallet amount
+//                    $userDB->wallet_amount = $userSaldoFinal;
+//                    $userDB->save();
+//
+//                    //send email to user
+//                    $data = array(
+//                        'user'=>$userDB,
+//                        'description' => $desription,
+//                        'userGetFinal' => $userGetFinal
+//                    );
+//                    SendEmail::SendingEmail('topupSaldo', $data);
+//
+//                }
+//                //change product installment status
+//                $productInstallments->status_id = 27;
+//                $productInstallments->save();
+//            });
 
-                foreach ($transactionList as $transaction){
-
-                    $dateTimeNow = Carbon::now('Asia/Jakarta');
-                    $userDB = User::find($transaction->user_id);
-                    $userAmount = (double) str_replace('.','', $transaction->total_price);
-
-                    $userGetTemp = number_format((($userAmount*100) / $raised),2);
-
-                    $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
-                    $userSaldoFinal = (double) str_replace('.','', $userDB->wallet_amount);
-                    $userSaldoFinal = $userSaldoFinal + $userGetFinal;
-                    $desription = 'Pembayaran cicilan dan bunga ke-'.$productInstallments->month.' dari '.$productInstallments->product->name;
-
-                    //add wallet statement
-                    $statement = WalletStatement::create([
-                        'id'            =>Uuid::generate(),
-                        'user_id'       => $transaction->user_id,
-                        'description'   => $desription,
-                        'saldo'         => $userSaldoFinal,
-                        'amount'        => $userGetFinal,
-                        'fee'           => 0,
-                        'admin'         => 0,
-                        'transfer_amount'=> 0,
-                        'status_id'     => 6,
-                        'date'          => $dateTimeNow->toDateTimeString(),
-                        'created_on'    => $dateTimeNow->toDateTimeString()
-                    ]);
-
-                    //change user wallet amount
-                    $userDB->wallet_amount = $userSaldoFinal;
-                    $userDB->save();
-
-                    //send email to user
-                    $data = array(
-                        'user'=>$userDB,
-                        'description' => $desription,
-                        'userGetFinal' => $userGetFinal
-                    );
-                    SendEmail::SendingEmail('topupSaldo', $data);
-
-                }
-                //change product installment status
-                $productInstallments->status_id = 27;
-                $productInstallments->save();
-            });
-
-            Session::flash('message', 'Pembayaran cicilan dan bunga Berhasil!');
+            if($isSuccess){
+                Session::flash('message', 'Pembayaran cicilan dan bunga Berhasil!');
+            }
+            else{
+                Session::flash('message', 'Terjadi kesalahan pada proses!');
+            }
 
             return Redirect::route('product-installment', ['id' => $productInstallments->product_id]);
         }
@@ -387,6 +395,7 @@ class ProductController extends Controller
 
             $img->save(public_path('storage/project/'. $filename), 75);
             $newProduct->image_path = $filename;
+            $newProduct->save();
 
             // save pdf
 //            $filenamePDF = $request['project_name'].'_'.Carbon::now('Asia/Jakarta')->format('Ymdhms').'.pdf';

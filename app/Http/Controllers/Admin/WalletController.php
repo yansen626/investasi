@@ -95,6 +95,12 @@ class WalletController extends Controller
             $user->wallet_amount = $userWalletFinal;
             $user->save();
 
+            //Send Email
+            $data = array(
+                'user' => $user,
+                'walletStatement' => $trx
+            );
+            SendEmail::SendingEmail('withdrawalRejected', $data);
 
             Session::flash('message', 'Penarikan Dana Rejected!');
         });

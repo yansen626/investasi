@@ -13,16 +13,18 @@ class AcceptPenarikan extends Mailable
 
     protected $statement;
     protected $user;
+    protected $type;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($statement, $user)
+    public function __construct($statement, $user, $type)
     {
         //
         $this->statement = $statement;
         $this->user = $user;
+        $this->type = $type;
     }
 
     /**
@@ -32,10 +34,20 @@ class AcceptPenarikan extends Mailable
      */
     public function build()
     {
-        return $this->subject("Penarikan Dana Diterima Indofund")
-            ->view('email.accept-penarikan')->with([
-            'statement' => $this->statement,
-            'user' => $this->user,
-        ]);
+        //type, 1=accepted, 0=rejected
+        if($this->type == 1){
+            return $this->subject("SELAMAT, Penarikan Dana Anda BERHASIL")
+                ->view('email.accept-penarikan')->with([
+                    'statement' => $this->statement,
+                    'user' => $this->user,
+                ]);
+        }
+        else{
+            return $this->subject("MAAF, pencairan dana anda GAGAL")
+                ->view('email.reject-penarikan')->with([
+                    'statement' => $this->statement,
+                    'user' => $this->user,
+                ]);
+        }
     }
 }

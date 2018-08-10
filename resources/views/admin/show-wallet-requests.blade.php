@@ -49,6 +49,7 @@
                                         <th class="text-right">Saldo Terakhir</th>
                                         <th class="text-right">Jumlah Penarikan</th>
                                         <th class="text-right">Fee</th>
+                                        <th class="text-right">Admin</th>
                                         <th class="text-right">Jumlah yang ditransfer</th>
                                         <th>Option</th>
                                     </tr>
@@ -69,6 +70,7 @@
                                         <td class="text-right">Rp {{ $statement->saldo }}</td>
                                         <td class="text-right">Rp {{ $statement->amount }}</td>
                                         <td class="text-right">Rp {{ $statement->fee }}</td>
+                                        <td class="text-right">Rp {{ $statement->admin }}</td>
                                         <td class="text-right">Rp {{ $statement->transfer_amount }}</td>
                                         <td>
                                             <a onclick="modalPop('{{ $statement->id }}', 'accept', '/admin/dompet/accept/')" class="btn btn-success">Terima</a>

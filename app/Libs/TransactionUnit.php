@@ -19,6 +19,7 @@ use App\Models\ProductInstallment;
 use App\Models\Transaction;
 use App\Models\TransactionWallet;
 use App\Models\User;
+use App\Models\WalletStatement;
 use Carbon\Carbon;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Facades\DB;
@@ -214,6 +215,68 @@ class TransactionUnit
 
 
 
+            return true;
+        }
+        catch(\Exception $ex){
+            Utilities::ExceptionLog($ex);
+        }
+        return false;
+    }
+    public static function InstallmentPaymentProcess($id){
+        try{
+            $productInstallments = ProductInstallment::find($id);
+            $paid_amount = (double) str_replace('.','', $productInstallments->paid_amount);
+            $raised = (double) str_replace('.','', $productInstallments->product->raised);
+
+            $transactionList = Transaction::where('product_id', $productInstallments->product_id)->where('status_id', 5)->get();
+            $asdf = array();
+            DB::transaction(function() use ($productInstallments, $transactionList, $paid_amount, $raised, $asdf) {
+
+                foreach ($transactionList as $transaction){
+
+                    $dateTimeNow = Carbon::now('Asia/Jakarta');
+                    $userDB = User::find($transaction->user_id);
+                    $userAmount = (double) str_replace('.','', $transaction->total_price);
+
+                    $userGetTemp = number_format((($userAmount*100) / $raised),2);
+
+                    $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
+                    $userSaldoFinal = (double) str_replace('.','', $userDB->wallet_amount);
+                    $userSaldoFinal = $userSaldoFinal + $userGetFinal;
+                    $desription = 'Pembayaran cicilan dan bunga ke-'.$productInstallments->month.' dari '.$productInstallments->product->name;
+
+                    //add wallet statement
+                    $statement = WalletStatement::create([
+                        'id'            =>Uuid::generate(),
+                        'user_id'       => $transaction->user_id,
+                        'description'   => $desription,
+                        'saldo'         => $userSaldoFinal,
+                        'amount'        => $userGetFinal,
+                        'fee'           => 0,
+                        'admin'         => 0,
+                        'transfer_amount'=> 0,
+                        'status_id'     => 6,
+                        'date'          => $dateTimeNow->toDateTimeString(),
+                        'created_on'    => $dateTimeNow->toDateTimeString()
+                    ]);
+
+                    //change user wallet amount
+                    $userDB->wallet_amount = $userSaldoFinal;
+                    $userDB->save();
+
+                    //send email to user
+                    $data = array(
+                        'user'=>$userDB,
+                        'description' => $desription,
+                        'userGetFinal' => $userGetFinal
+                    );
+                    SendEmail::SendingEmail('topupSaldo', $data);
+
+                }
+                //change product installment status
+                $productInstallments->status_id = 27;
+                $productInstallments->save();
+            });
             return true;
         }
         catch(\Exception $ex){

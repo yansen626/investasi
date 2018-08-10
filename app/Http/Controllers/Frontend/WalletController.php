@@ -22,6 +22,7 @@ use App\Models\WalletStatement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -199,107 +200,109 @@ class WalletController extends Controller
     public function WithdrawSubmit(Request $request){
         try{
 
-            $user = Auth::user();
-            $userId = $user->id;
+            DB::transaction(function() use ($request){
+                $user = Auth::user();
+                $userId = $user->id;
 
-            $validator = Validator::make($request->all(),[
-                'amount'        => 'required',
-                'acc_number'    => 'required',
-                'acc_name'      => 'required',
-                'bank'          => 'required',
-                'google'          => 'required'
-            ]);
+                $validator = Validator::make($request->all(),[
+                    'amount'        => 'required',
+                    'acc_number'    => 'required',
+                    'acc_name'      => 'required',
+                    'bank'          => 'required',
+                    'google'          => 'required'
+                ]);
 
-            $user = User::find($userId);
-            if ($validator->fails()) {
-                return back()->withErrors($validator)->withInput();
-            }
-            else {
-                $amount = (double) str_replace('.','', Input::get('amount'));
-                $userWallet = (double) str_replace('.','', $user->wallet_amount);
-
-                if($amount > $userWallet){
-                    return back()->withErrors("Jumlah Penarikan harus lebih kecil dari Dana yang tersedia")->withInput();
+                $user = User::find($userId);
+                if ($validator->fails()) {
+                    return back()->withErrors($validator)->withInput();
                 }
-                $minimum = (double) env('MINIMUM_WITHDRAWAL');
-                if($amount < $minimum){
-                    return back()->withErrors("Jumlah Penarikan minimal Rp ".$minimum)->withInput();
-                }
+                else {
+                    $amount = (double) str_replace('.','', Input::get('amount'));
+                    $userWallet = (double) str_replace('.','', $user->wallet_amount);
 
-                $secret = Input::get('google');
-                $google2fa = new Google2FA();
-
-//                $valid = $google2fa->verifyKey($user->google2fa_secret, $secret);
-                $valid = true;
-                if($valid){
-                    $dateTimeNow = Carbon::now('Asia/Jakarta');
-
-                    $accNumber = Input::get('acc_number');
-                    $accName = Input::get('acc_name');
-                    $bank = Input::get('bank');
-
-                    //check for fee and admin
-                    $fee = (double) env('FEE');
-                    if(Vendor::where('user_id', $userId)->exists()){
-                        $fee_percentage = (double) $amount*env('FEE_PERCENTAGE');
-                        $fee = $fee_percentage;
+                    if($amount > $userWallet){
+                        return back()->withErrors("Jumlah Penarikan harus lebih kecil dari Dana yang tersedia")->withInput();
                     }
-                    else if($amount > 100000000){
-                        $fee2 = (double) env('FEE2');
-                        $fee = $fee2;
+                    $minimum = (double) env('MINIMUM_WITHDRAWAL');
+                    if($amount < $minimum){
+                        return back()->withErrors("Jumlah Penarikan minimal Rp ".$minimum)->withInput();
                     }
-                    $admin = (double) env('FEE_TRANSFER');
+
+                    $secret = Input::get('google');
+                    $google2fa = new Google2FA();
+
+                    $valid = $google2fa->verifyKey($user->google2fa_secret, $secret);
+//                    $valid = true;
+                    if($valid){
+                        $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+                        $accNumber = Input::get('acc_number');
+                        $accName = Input::get('acc_name');
+                        $bank = Input::get('bank');
+
+                        //check for fee and admin
+//                        $fee = (double) env('FEE');
+                        $fee = 0;
+                        if(Vendor::where('user_id', $userId)->exists()){
+                            $fee_percentage = (double) $amount*env('FEE_PERCENTAGE');
+                            $fee = $fee_percentage;
+                        }
+                        else if($amount > 100000000){
+                            $fee2 = (double) env('FEE2');
+                            $fee = $fee2;
+                        }
+                        $admin = (double) env('FEE_TRANSFER');
 
 //                    $fee_percentage = (double) $amount*env('FEE_PERCENTAGE');
 //                    if($fee_percentage > $fee) $fee = $fee_percentage;
 
-                    $transfer_amount = $amount - $fee - $admin;
+                        $transfer_amount = $amount - $fee - $admin;
 
-                    $userFinalWallet = $userWallet - $amount;
-//                    dd($amount." | ".$fee." | ".$transfer_amount." | ".$userFinalWallet);
+                        $userFinalWallet = $userWallet - $amount;
 
-                    //if user bank account not registred
-                    if(empty($user->bank_name) || empty($user->bank_acc_number) || empty($user->bank_acc_name)){
-                        $user->bank_name = $bank;
-                        $user->bank_acc_name = $accName;
-                        $user->bank_acc_number = $accNumber;
+                        //if user bank account not registred
+                        if(empty($user->bank_name) || empty($user->bank_acc_number) || empty($user->bank_acc_name)){
+                            $user->bank_name = $bank;
+                            $user->bank_acc_name = $accName;
+                            $user->bank_acc_number = $accNumber;
 
+                            $user->save();
+                        }
+//                        dd($userFinalWallet." | ".$amount." | ".$admin." | ".$fee." | ".$transfer_amount);
+                        //status 3=pending, 6=accepted, 7=rejected
+                        $newStatement = WalletStatement::create([
+                            'id'                => Uuid::generate(),
+                            'user_id'           => $userId,
+                            'description'       => "Penarikan Dompet (".$bank." - ".$accName." - ".$accNumber.")",
+                            'saldo'             => $userFinalWallet,
+                            'amount'            => $amount,
+                            'admin'            => $admin,
+                            'fee'               => $fee,
+                            'transfer_amount'   => $transfer_amount,
+                            'bank_name'         => $bank,
+                            'bank_acc_name'     => $accName,
+                            'bank_acc_number'   => $accNumber,
+                            'date'              => $dateTimeNow->toDateTimeString(),
+                            'status_id'         => 3,
+                            'created_on'        => $dateTimeNow->toDateTimeString()
+                        ]);
+
+
+                        $data = array(
+                            'newStatement' => $newStatement,
+                            'user' => $user,
+                            'ip' => request()->ip()
+                        );
+                        SendEmail::SendingEmail('withdrawalRequest', $data);
+
+                        $user->wallet_amount = $userFinalWallet;
                         $user->save();
                     }
-
-                    //status 3=pending, 6=accepted, 7=rejected
-                    $newStatement = WalletStatement::create([
-                        'id'                => Uuid::generate(),
-                        'user_id'           => $userId,
-                        'description'       => "Penarikan Dompet (".$bank." - ".$accName." - ".$accNumber.")",
-                        'saldo'             => $userFinalWallet,
-                        'amount'            => $amount,
-                        'admin'            => $admin,
-                        'fee'               => $fee,
-                        'transfer_amount'   => $transfer_amount,
-                        'bank_name'         => $bank,
-                        'bank_acc_name'     => $accName,
-                        'bank_acc_number'   => $accNumber,
-                        'date'              => $dateTimeNow->toDateTimeString(),
-                        'status_id'         => 3,
-                        'created_on'        => $dateTimeNow->toDateTimeString()
-                    ]);
-
-
-                    $data = array(
-                        'newStatement' => $newStatement,
-                        'user' => $user,
-                        'ip' => request()->ip()
-                    );
-                    SendEmail::SendingEmail('withdrawalRequest', $data);
-
-                    $user->wallet_amount = $userFinalWallet;
-                    $user->save();
+                    else{
+                        return back()->withErrors("PIN google yang Anda masukan salah")->withInput();
+                    }
                 }
-                else{
-                    return back()->withErrors("PIN google yang Anda masukan salah")->withInput();
-                }
-            }
+            });
 
             //return ke page transaction
             return redirect()->route('my-wallet');
