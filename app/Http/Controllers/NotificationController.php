@@ -107,8 +107,8 @@ class NotificationController extends Controller
 //                        }
 
                         Utilities::ExceptionLog("Change installment payment status success");
-                        $vaProceed = true;
                     });
+                    $vaProceed = true;
                 }
                 //dana tanpa ada transaksi yang cocok
                 else{
@@ -144,7 +144,6 @@ class NotificationController extends Controller
                         $userDB->wallet_amount = $userSaldoFinal;
                         $userDB->save();
                         Utilities::ExceptionLog("Dana tak ada transaksinya sukses di pindahkan ke akun pemilik");
-
                         //send email to user
                         $data = array(
                             'user'=>$userDB,
@@ -152,8 +151,9 @@ class NotificationController extends Controller
                             'userGetFinal' => $amount
                         );
                         SendEmail::SendingEmail('topupSaldo', $data);
-                        $vaProceed = true;
                     });
+                    $vaProceed = true;
+
                 }
                 if(!$vaProceed){
                     Utilities::ExceptionLog("Va number = ".$vaNumber." or ".$vaVendorNumber." is not Processed");
