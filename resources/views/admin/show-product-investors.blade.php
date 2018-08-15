@@ -96,10 +96,10 @@
                                                     <th>Invoice</th>
                                                     <th>Status</th>
                                                     <th>Nama Pendana</th>
-                                                    <th>Metode Pembayaran </th>
+                                                    <th>Tanggal Transaksi</th>
                                                     <th>Jumlah Pendanaan</th>
                                                     <th>Biaya Admin</th>
-                                                    <th>Tanggal Transaksi</th>
+                                                    <th>Metode Pembayaran </th>
                                                 </tr>
                                                 </thead>
                                                 <form>
@@ -111,10 +111,10 @@
                                                                 <td>{{ $transaction->invoice}}</td>
                                                                 <td>{{$transaction->status->description}}</td>
                                                                 <td>{{ $transaction->user->first_name }} {{ $transaction->user->last_name }}</td>
-                                                                <td>{{ $transaction->payment_method->description}}</td>
+                                                                <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j-F-Y H:i:s')}}</td>
                                                                 <td>Rp {{ $transaction->total_price}}</td>
                                                                 <td>Rp {{ $transaction->admin_fee}}</td>
-                                                                <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j-F-Y H:i:s')}}</td>
+                                                                <td>{{ $transaction->payment_method->description}}</td>
                                                             </tr>
                                                             @php ($idx++)
                                                         @endforeach

@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Libs\Midtrans;
 use App\Libs\TransactionUnit;
+use App\Libs\Utilities;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Transaction;
@@ -217,9 +218,11 @@ class PaymentController extends Controller
                     error_log("CHECK!");
                     $isSuccess = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
                     if($isSuccess){
+                        Utilities::ExceptionLog("Payment ".$orderId." with 'bank transfer' successfully created");
                         return redirect()->route('pageVA', ['orderId' => $orderId]);
                     }
                     else{
+                        Utilities::ExceptionLog("Payment ".$orderId." with 'bank transfer' fail to created");
                         return View('frontend.checkout-failed', compact('investId'));
                     }
                 }
@@ -232,6 +235,7 @@ class PaymentController extends Controller
                     $redirectUrl = Midtrans::sendRequest($transactionDataArr);
 //                dd($redirectUrl);
 
+                    Utilities::ExceptionLog("Payment ".$orderId." with 'credit card' successfully created");
                     return redirect($redirectUrl);
                 }
             }
@@ -247,15 +251,17 @@ class PaymentController extends Controller
                     TransactionUnit::transactionAfterVerified($orderId);
 
                     $paymentMethod = 'dompet';
+                    Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' successfully created");
                     return View('frontend.checkout-success', compact('paymentMethod'));
                 }
                 else{
+                    Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' fail to created");
                     return View('frontend.checkout-failed', compact('investId'));
                 }
             }
         }
         catch(\Exception $ex){
-//            dd($ex);
+            Utilities::ExceptionLog("Payment ".$orderId." error ".$ex);
             return View('frontend.checkout-failed', compact('investId'));
         }
     }

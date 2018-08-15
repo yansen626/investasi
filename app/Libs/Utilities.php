@@ -18,15 +18,15 @@ use Carbon\Carbon;
 class Utilities
 {
     //generate invoice number
-    public static function GenerateInvoice() {
+    public static function GenerateInvoice($productName, $VANumber) {
         $start = Carbon::yesterday('Asia/Jakarta');
         $end = Carbon::tomorrow('Asia/Jakarta');
         $date = date_format($start, 'dmy');
 
         $transactionCount = Transaction::whereBetween('created_on', [$start->toDateString(),$end->toDateString()])->count();
         $number = str_pad($transactionCount+1, 3, '0', STR_PAD_LEFT);
-
-        return "INV".$date.$number;
+        //INV070618001/QQ laundry/8879500005
+        return "INV".$date.$number."/".$productName."/".$VANumber;
     }
 
     public static function SendSms($number, $message){

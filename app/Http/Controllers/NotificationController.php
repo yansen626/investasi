@@ -267,7 +267,7 @@ class NotificationController extends Controller
     public function limitPaymentCheck(){
         //DB : transaction
         try{
-            $transactions = Transaction::where('status_id', 3)->get();
+            $transactions = Transaction::where('status_id', 3)->where('payment_method_id', 1)->get();
             $temp = Carbon::now('Asia/Jakarta');
             $now = Carbon::parse(date_format($temp,'j-F-Y H:i:s'));
 //            dd($transactions);
@@ -298,6 +298,7 @@ class NotificationController extends Controller
 
                 //Change Status if more than 6 hours
                 if($interval >= 6){
+                    Utilities::ExceptionLog("Transaction ".$transaction->invoice." Reject Start");
                     TransactionUnit::transactionRejected($transaction->id);
                 }
             }

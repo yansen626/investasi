@@ -32,9 +32,10 @@ class TransactionUnit
 
             $cart = Cart::find($cartId);
             $user = User::find($userId);
+            $productDB = Product::find($cart->product_id);
 
             $dateTimeNow = Carbon::now('Asia/Jakarta');
-            $invoice = Utilities::GenerateInvoice();
+            $invoice = Utilities::GenerateInvoice($productDB->name, $user->va_acc);
             $paymentMethodInt = 1;
             if($cart->payment_method == 'credit_card'){
                 $paymentMethodInt = 2;
@@ -65,7 +66,6 @@ class TransactionUnit
                 'created_by'        => $userId
             ]);
 
-            $productDB = Product::find($cart->product_id);
             $raisedDB = (double) str_replace('.','', $productDB->raised);
             $newRaise = $cart->getOriginal('invest_amount');
             $productDB->raised = $raisedDB + $newRaise;
@@ -111,6 +111,7 @@ class TransactionUnit
 
                 $productDB->save();
 
+                Utilities::ExceptionLog("Transaction ".$transaction->invoice." Rejected on ".$dateTimeNow->toDateTimeString());
 
                 return true;
             });
@@ -122,6 +123,7 @@ class TransactionUnit
     }
     public static function transactionAfterVerified($orderid){
         try{
+            $dateTimeNow = Carbon::now('Asia/Jakarta');
             DB::transaction(function() use ($orderid){
                 $transaction = Transaction::where('order_id', $orderid)->first();
                 if($transaction->status_id == 5){
@@ -133,12 +135,12 @@ class TransactionUnit
                 $transaction->two_day_due_date = $dateTimeNow->addDays(2);
                 $transaction->modified_on = $dateTimeNow->toDateTimeString();
                 $transaction->save();
+                Utilities::ExceptionLog("Transaction ".$orderid." Verified on ".$dateTimeNow->toDateTimeString());
 
                 //update product data
                 $productDB = Product::find($transaction->product_id);
                 $raisedDB = (double) str_replace('.','', $productDB->raised);
                 $newRaise = (double) str_replace('.','', $transaction->total_price);
-    //            $productDB->raised = $raisedDB + $newRaise;
 
                 //checking if fund 100% or not and send email
                 $userData = User::find($transaction->user_id);
@@ -159,20 +161,11 @@ class TransactionUnit
                 if($raisedDB == $raisingDB){
                     $productDB->status_id = 22;
                     Utilities::ExceptionLog("product raising collected  ".$product->name." (".$raisedDB." from ".$raisingDB.")");
-    //                SendEmail::SendingEmail('collectedFund', $data);
-    //            $perjanjianLayananEmail = new PerjanjianLayanan($payment, $transaction, $product, $userData);
-    //            Mail::to($userData->email)->send($perjanjianLayananEmail);
                 }
                 $productDB->save();
 
                 //Send Email for accepted fund
                 SendEmail::SendingEmail('successTransaction', $data);
-
-    //            $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
-    //            Mail::to($userData->email)->send($invoiceEmail);
-    //
-    //            $perjanjianPinjamanEmail = new PerjanjianPinjaman($payment, $transaction, $product, $userData);
-    //            Mail::to($userData->email)->send($perjanjianPinjamanEmail);
 
             });
             return true;
