@@ -91,6 +91,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama</th>
+                                                <th>Status Pembayaran</th>
                                                 <th>Total</th>
                                                 <th>Terkumpul</th>
                                                 <th class="hidden-xs hidden-sm">Progress</th>
@@ -107,6 +108,9 @@
                                                         <tr class="row-clickable" data-href='{{ route('project-detail', ['id' => $product->id]) }}'>
                                                             <td>{{ $idx }}</td>
                                                             <td>{{ $product->name }}</td>
+                                                            <td>{{ $product->product_installments == null ? ""
+                                                                : "Pembayaran Cicilan ke-".$product->product_installments->where('status_id', 27)->count() }}
+                                                            </td>
                                                             <td>Rp {{ $product->raising }}</td>
                                                             <td>Rp {{ $product->raised == null ? 0 : $product->raised }}</td>
                                                             <td class="hidden-xs hidden-sm">

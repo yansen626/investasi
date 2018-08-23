@@ -60,7 +60,10 @@ class SendEmail
                     $description = $objData->description;
 
                     $subscribeEmail = new VerificationKTP($user, $description);
-                    Mail::to($user->email)->send($subscribeEmail);
+                    Mail::to($user->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")
+                        ->send($subscribeEmail);
                     break;
 
                 case 'contactUs' :
@@ -137,7 +140,9 @@ class SendEmail
                     $file_path = $fileName;
 
                     $sendProspectus = new SendProspectus($file_path);
-                    Mail::to($email)->send($sendProspectus);
+                    Mail::to($email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")->send($sendProspectus);
                     break;
 
                 //send document "perjanjian Pinjaman" to borrower
@@ -202,9 +207,11 @@ class SendEmail
 
                     // payment confirmed send email
                     $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
-                    Mail::to($userData->email)->send($invoiceEmail);
-                    Mail::to("ryanfilbert@gdrive.id")->send($invoiceEmail);
-                    Mail::to("indofund.id@gmail.com")->send($invoiceEmail);
+                    Mail::to($userData->email)
+                        ->bcc("ryanfilbert@gdrive.id")
+                        ->bcc("indofund.id@gmail.com")->send($invoiceEmail);
+//                    Mail::to("ryanfilbert@gdrive.id")->send($invoiceEmail);
+//                    Mail::to("indofund.id@gmail.com")->send($invoiceEmail);
 
                     //send document "perjanjian layanan" to user
                     $pdf = PDF::loadView('email.perjanjian-layanan', $data);

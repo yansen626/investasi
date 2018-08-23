@@ -50,6 +50,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \App\Models\User $user
  * @property \Illuminate\Database\Eloquent\Collection $carts
  * @property \Illuminate\Database\Eloquent\Collection $transaction_details
+ * @property \Illuminate\Database\Eloquent\Collection $product_installments
  *
  * @package App\Models
  */
@@ -136,6 +137,11 @@ class Product extends Eloquent
 	public function transaction_details()
 	{
 		return $this->hasMany(\App\Models\TransactionDetail::class);
+	}
+
+	public function product_installments()
+	{
+		return $this->hasMany(\App\Models\ProductInstallment::class);
 	}
 
     public function category(){

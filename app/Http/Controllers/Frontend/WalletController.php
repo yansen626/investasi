@@ -192,15 +192,13 @@ class WalletController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $user = User::find($userId);
-
         return View ('frontend.wallet-withdraw', compact('user'));
     }
 
     //withdraw process
     public function WithdrawSubmit(Request $request){
         try{
-
-            DB::transaction(function() use ($request){
+            $isError = false;
                 $user = Auth::user();
                 $userId = $user->id;
 
@@ -214,18 +212,18 @@ class WalletController extends Controller
 
                 $user = User::find($userId);
                 if ($validator->fails()) {
-                    return back()->withErrors($validator)->withInput();
+                    return redirect()->back()->withErrors($validator)->withInput($request->all());
                 }
                 else {
                     $amount = (double) str_replace('.','', Input::get('amount'));
                     $userWallet = (double) str_replace('.','', $user->wallet_amount);
 
                     if($amount > $userWallet){
-                        return back()->withErrors("Jumlah Penarikan harus lebih kecil dari Dana yang tersedia")->withInput();
+                        return redirect()->back()->withErrors("Jumlah Penarikan harus lebih kecil dari Saldo yang tersedia")->withInput($request->all());
                     }
                     $minimum = (double) env('MINIMUM_WITHDRAWAL');
                     if($amount < $minimum){
-                        return back()->withErrors("Jumlah Penarikan minimal Rp ".$minimum)->withInput();
+                        return redirect()->back()->withErrors("Jumlah Penarikan minimal Rp ".$minimum)->withInput($request->all());
                     }
 
                     $secret = Input::get('google');
@@ -234,6 +232,7 @@ class WalletController extends Controller
                     $valid = $google2fa->verifyKey($user->google2fa_secret, $secret);
 //                    $valid = true;
                     if($valid){
+                        DB::transaction(function() use ($request, $amount, $userWallet){
                         $dateTimeNow = Carbon::now('Asia/Jakarta');
 
                         $accNumber = Input::get('acc_number');
@@ -297,12 +296,12 @@ class WalletController extends Controller
 
                         $user->wallet_amount = $userFinalWallet;
                         $user->save();
+                        });
                     }
                     else{
-                        return back()->withErrors("PIN google yang Anda masukan salah")->withInput();
+                        return redirect()->back()->withErrors("PIN google yang Anda masukan salah")->withInput();
                     }
                 }
-            });
 
             //return ke page transaction
             return redirect()->route('my-wallet');

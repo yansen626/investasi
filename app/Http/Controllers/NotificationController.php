@@ -121,36 +121,42 @@ class NotificationController extends Controller
                         else{
                             $userDB = User::where('va_acc', $vaNumber)->first();
                         }
-                        $saldo = (double) str_replace('.', '',$userDB->wallet_amount);
-                        $userSaldoFinal = $saldo + $amount;
-                        $keterangan = "Dana dari virtual account ".$vaNumber;
+                        if(!empty($userDB)){
+                            $saldo = (double) str_replace('.', '',$userDB->wallet_amount);
+                            $userSaldoFinal = $saldo + $amount;
+                            $keterangan = "Dana dari virtual account ".$vaNumber;
 
-                        //add wallet statement
-                        $statement = WalletStatement::create([
-                            'id'            => Uuid::generate(),
-                            'user_id'       => $userDB->id,
-                            'description'   => $keterangan,
-                            'saldo'         => $userSaldoFinal,
-                            'amount'        => $amount,
-                            'fee'           => 0,
-                            'admin'         => 0,
-                            'transfer_amount'=> 0,
-                            'status_id'     => 6,
-                            'date'          => $dateTimeNow->toDateTimeString(),
-                            'created_on'    => $dateTimeNow->toDateTimeString()
-                        ]);
+                            //add wallet statement
+                            $statement = WalletStatement::create([
+                                'id'            => Uuid::generate(),
+                                'user_id'       => $userDB->id,
+                                'description'   => $keterangan,
+                                'saldo'         => $userSaldoFinal,
+                                'amount'        => $amount,
+                                'fee'           => 0,
+                                'admin'         => 0,
+                                'transfer_amount'=> 0,
+                                'status_id'     => 6,
+                                'date'          => $dateTimeNow->toDateTimeString(),
+                                'created_on'    => $dateTimeNow->toDateTimeString()
+                            ]);
 
-                        //change user wallet amount
-                        $userDB->wallet_amount = $userSaldoFinal;
-                        $userDB->save();
-                        Utilities::ExceptionLog("Dana tak ada transaksinya sukses di pindahkan ke akun pemilik");
-                        //send email to user
-                        $data = array(
-                            'user'=>$userDB,
-                            'description' => $keterangan,
-                            'userGetFinal' => $amount
-                        );
-                        SendEmail::SendingEmail('topupSaldo', $data);
+                            //change user wallet amount
+                            $userDB->wallet_amount = $userSaldoFinal;
+                            $userDB->save();
+                            Utilities::ExceptionLog("Dana tak ada transaksinya sukses di pindahkan ke akun pemilik");
+                            //send email to user
+                            $data = array(
+                                'user'=>$userDB,
+                                'description' => $keterangan,
+                                'userGetFinal' => $amount
+                            );
+                            SendEmail::SendingEmail('topupSaldo', $data);
+                        }
+                        else{
+                            Utilities::ExceptionLog("Dana tak ada transaksinya TIDAK ADA akun pemilik ".
+                                $vaVendorNumber." / ".$vaNumber." Sejumlah ".$amount);
+                        }
                     });
                     $vaProceed = true;
 

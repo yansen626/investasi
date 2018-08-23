@@ -212,7 +212,7 @@ class WalletController extends Controller
         try {
             $newFileName = "List Penarikan Dana_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
             $walletStatementDB =
-                WalletStatement::all();
+                WalletStatement::where('description', 'LIKE', '%Penarikan Dompet%')->where('status_id', 3)->get();
 //                DB::select('SELECT CONCAT(b.first_name, \' \', b.last_name) AS name, a.bank_name, a.bank_acc_number, a.transfer_amount
 //                            FROM investasi.wallet_statements as a, investasi.users as b
 //                            where a.user_id = b.id;');
