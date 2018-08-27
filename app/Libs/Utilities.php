@@ -186,4 +186,17 @@ class Utilities
         );
         return $dayList[$day];
     }
+
+    public static function UserPercentage ($raised, $userAmount){
+        $userGetTemp = number_format((($userAmount*100) / $raised),2);
+
+        return $userGetTemp;
+    }
+
+    public static function UserGetInstallment ($paid_amount, $raised, $userAmount){
+        $userGetTemp = number_format((($userAmount*100) / $raised),2);
+        $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
+
+        return $userGetFinal;
+    }
 }

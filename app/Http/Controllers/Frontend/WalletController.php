@@ -232,7 +232,7 @@ class WalletController extends Controller
                     $valid = $google2fa->verifyKey($user->google2fa_secret, $secret);
 //                    $valid = true;
                     if($valid){
-                        DB::transaction(function() use ($request, $amount, $userWallet){
+                        DB::transaction(function() use ($request, $amount, $userWallet, $userId, $user){
                         $dateTimeNow = Carbon::now('Asia/Jakarta');
 
                         $accNumber = Input::get('acc_number');

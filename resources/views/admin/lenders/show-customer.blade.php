@@ -228,3 +228,63 @@
     <!-- /footer -->
 
 @endsection
+
+@section('styles')
+    @parent
+    <style>
+    </style>
+@endsection
+
+@section('scripts')
+    @parent
+    <script>
+        $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function (e) {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+        });
+
+        $('#datatable-responsive-trx').DataTable( {
+            buttons: [
+                {
+                    responsive: {
+                        details: {
+                            display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                            type: ''
+                        }
+                    },
+                    extend: 'print',
+                    text: 'Print current page',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                }
+            ],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian-Alternative.json"
+            }
+        } );
+        $('#datatable-responsive-dompet').DataTable( {
+            buttons: [
+                {
+                    responsive: {
+                        details: {
+                            display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                            type: ''
+                        }
+                    },
+                    extend: 'print',
+                    text: 'Print current page',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                }
+            ],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian-Alternative.json"
+            }
+        } );
+    </script>
+@endsection

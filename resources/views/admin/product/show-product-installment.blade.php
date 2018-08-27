@@ -90,9 +90,16 @@
                                     <h3>Detail Cicilan</h3>
                                     @include('admin.partials._success')
                                     <table>
+                                        <tr>
+                                            <td width="80">Bulan </td>
+                                            <td width="100">Tanggal Jatuh Tempo</td>
+                                            <td width="100">Jumlah Tagihan</td>
+                                            <td width="20"></td>
+                                        </tr>
                                         @foreach($productInstallments as $productInstallment)
                                             <tr>
                                                 <td width="80">Bulan {{$productInstallment->month}}</td>
+                                                <td width="100">{{ \Carbon\Carbon::parse($productInstallment->due_date)->format('j-F-Y')}}</td>
                                                 <td width="100">Rp {{$productInstallment->paid_amount}}</td>
                                                 <td width="20">
                                                     @if($productInstallment->status_id == 26)
@@ -119,9 +126,14 @@
                                                     <th>Status</th>
                                                     <th>Nama Pendana</th>
                                                     <th>Metode Pembayaran </th>
-                                                    <th>Jumlah Pendanaan</th>
-                                                    <th>Biaya Admin</th>
                                                     <th>Tanggal Transaksi</th>
+                                                    <th>Jumlah Pendanaan</th>
+                                                    <th>Persentasi</th>
+                                                    @php ($idx2 = 1)
+                                                    @foreach($productInstallments as $productInstallment)
+                                                        <th>Pendapatan {{$idx2}}</th>
+                                                        @php ($idx2++)
+                                                    @endforeach
                                                 </tr>
                                                 </thead>
                                                 <form>
@@ -134,9 +146,13 @@
                                                                 <td>{{$transaction->status->description}}</td>
                                                                 <td>{{ $transaction->user->first_name }} {{ $transaction->user->last_name }}</td>
                                                                 <td>{{ $transaction->payment_method->description}}</td>
-                                                                <td>Rp {{ $transaction->total_price}}</td>
-                                                                <td>Rp {{ $transaction->admin_fee}}</td>
                                                                 <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j-F-Y H:i:s')}}</td>
+                                                                <td>Rp {{ $transaction->total_price}}</td>
+                                                                <td>{{ \App\Libs\Utilities::UserPercentage($productInstallments->product->raised, $transaction->total_price)}}%</td>
+
+                                                                @foreach($productInstallments as $productInstallment)
+                                                                    <td>{{ \App\Libs\Utilities::UserGetInstallment($productInstallment->paid_amount, $productInstallment->product->raised, $transaction->total_price)}}</td>
+                                                                @endforeach
                                                             </tr>
                                                             @php ($idx++)
                                                         @endforeach

@@ -98,7 +98,7 @@ class NotificationController extends Controller
 
                         }
                         //distribute payment installment
-                        //$isSuccess = TransactionUnit::InstallmentPaymentProcess($installmentDB->id);
+//                        $isSuccess = TransactionUnit::InstallmentPaymentProcess($installmentDB->id);
 //                        if($isSuccess){
 //                            Utilities::ExceptionLog("Change installment payment status success");
 //                        }

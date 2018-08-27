@@ -64,6 +64,8 @@
                                     {{--<label for="payment-2"><span></span>Kartu Kredit</label>--}}
                                     <input type="radio" id="payment-3" name="payment" value="bank_transfer" checked>
                                     <label for="payment-3"><span></span>Transfer bank</label>
+                                    {{--<input type="radio" id="payment-4" name="payment" value="wallet_transfer" checked>--}}
+                                    {{--<label for="payment-4"><span></span>Saldo Sebagian</label>--}}
                                 </div>
                                 @else
                                     <div class="radio-inputs">

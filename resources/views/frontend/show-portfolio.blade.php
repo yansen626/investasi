@@ -243,7 +243,7 @@
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Breakdown'],
                 ['Dana', parseInt(dompetVal)],
-                ['Investasi', parseInt(investVal)],
+                ['Pendanaan', parseInt(investVal)],
                 ['Pendapatan', parseInt(pendapatanVal)]
             ]);
             var chart = new google.visualization.PieChart(document.getElementById('chart'));
