@@ -148,7 +148,7 @@
                                                                 <td>{{ $transaction->payment_method->description}}</td>
                                                                 <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j-F-Y H:i:s')}}</td>
                                                                 <td>Rp {{ $transaction->total_price}}</td>
-                                                                <td>{{ \App\Libs\Utilities::UserPercentage($productInstallments->product->raised, $transaction->total_price)}}%</td>
+                                                                <td>{{ \App\Libs\Utilities::UserPercentage($transaction->product->raised, $transaction->total_price)}}%</td>
 
                                                                 @foreach($productInstallments as $productInstallment)
                                                                     <td>{{ \App\Libs\Utilities::UserGetInstallment($productInstallment->paid_amount, $productInstallment->product->raised, $transaction->total_price)}}</td>

@@ -188,15 +188,20 @@ class Utilities
     }
 
     public static function UserPercentage ($raised, $userAmount){
+        $raised = (double) str_replace('.','', $raised);
+        $userAmount = (double) str_replace('.','', $userAmount);
         $userGetTemp = number_format((($userAmount*100) / $raised),2);
 
         return $userGetTemp;
     }
 
     public static function UserGetInstallment ($paid_amount, $raised, $userAmount){
+        $raised = (double) str_replace('.','', $raised);
+        $userAmount = (double) str_replace('.','', $userAmount);
+        $paid_amount = (double) str_replace('.','', $paid_amount);
         $userGetTemp = number_format((($userAmount*100) / $raised),2);
         $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
 
-        return $userGetFinal;
+        return number_format($userGetFinal, 0, ",", ".");
     }
 }
