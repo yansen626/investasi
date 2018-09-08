@@ -113,6 +113,15 @@ class TransactionUnit
 
                 Utilities::ExceptionLog("Transaction ".$transaction->invoice." Rejected on ".$dateTimeNow->toDateTimeString());
 
+                //update user wallet
+                if(strpos($transaction->order_id, "WALLET") === true){
+                    $user = User::find($transaction->user_id);
+                    $walletUserTemp = (double)$user->getOriginal('wallet_amount');
+                    $walletUsedTemp = (double)$transaction->getOriginal('total_price');
+                    $user->wallet_amount = $walletUserTemp + $walletUsedTemp;
+                    $user->save();
+                }
+
                 return true;
             });
         }

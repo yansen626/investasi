@@ -72,7 +72,7 @@ class NotificationController extends Controller
                     ->where('vendor_va', $vaVendorNumber)
                     ->first();
 
-                Utilities::ExceptionLog($vaNumber." | ".$amount);
+                Utilities::ExceptionLog($vaNumber."/".$vaVendorNumber." | ".$amount);
 
                 if(!empty($transactionDB)){
                     $orderid = $transactionDB->order_id;
@@ -98,15 +98,15 @@ class NotificationController extends Controller
 
                         }
                         //distribute payment installment
-//                        $isSuccess = TransactionUnit::InstallmentPaymentProcess($installmentDB->id);
-//                        if($isSuccess){
-//                            Utilities::ExceptionLog("Change installment payment status success");
-//                        }
-//                        else{
-//                            Utilities::ExceptionLog("Change installment payment status failed");
-//                        }
+                        $isSuccess = TransactionUnit::InstallmentPaymentProcess($installmentDB->id);
+                        if($isSuccess){
+                            Utilities::ExceptionLog("Change installment payment status success");
+                        }
+                        else{
+                            Utilities::ExceptionLog("Change installment payment status failed");
+                        }
 
-                        Utilities::ExceptionLog("Change installment payment status success");
+//                        Utilities::ExceptionLog("Change installment payment status success");
                     });
                     $vaProceed = true;
                 }
@@ -304,6 +304,13 @@ class NotificationController extends Controller
 
                 //Change Status if more than 6 hours
                 if($interval >= 6){
+                    $transaction_wallet = Transaction::where('payment_method_id', 3)
+                        ->where('order_id', 'like', '%'.$transaction->order_id.'%')
+                        ->first();
+                    if(!empty($transaction_wallet)){
+                        Utilities::ExceptionLog("Transaction ".$transaction_wallet->invoice." Reject Start");
+                        TransactionUnit::transactionRejected($transaction_wallet->id);
+                    }
                     Utilities::ExceptionLog("Transaction ".$transaction->invoice." Reject Start");
                     TransactionUnit::transactionRejected($transaction->id);
                 }

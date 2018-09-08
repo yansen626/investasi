@@ -108,6 +108,13 @@ class ProductController extends Controller
                 }
 
                 //send email notfication to project owner, fund collected
+                $data = array(
+                    'user'=>User::find($product->user_id),
+                    'productInstallment' => $productInstallments,
+                    'product' => $product,
+                    'vendor' => Vendor::find($product->vendor_id)
+                );
+                SendEmail::SendingEmail('PerjanjianPinjaman', $data);
 //                $data = array(
 //                    'vendorData'    => $userDB,
 //                    'project'       => $product
@@ -448,13 +455,13 @@ class ProductController extends Controller
             $product->save();
 
             //send email to borrower
-            $data = array(
-                'user'=>User::find($product->user_id),
-                'productInstallment' => ProductInstallment::where('product_id', $id)->get(),
-                'product' => $product,
-                'vendor' => Vendor::find($product->vendor_id)
-            );
-            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
+//            $data = array(
+//                'user'=>User::find($product->user_id),
+//                'productInstallment' => ProductInstallment::where('product_id', $id)->get(),
+//                'product' => $product,
+//                'vendor' => Vendor::find($product->vendor_id)
+//            );
+//            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
 
             Session::flash('message', 'Project Rejected!');
         });

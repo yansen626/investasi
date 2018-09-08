@@ -238,13 +238,13 @@ class VendorController extends Controller
 
 
             //send email to borrower
-            $data = array(
-                'user'=>User::find($product->user_id),
-                'productInstallment' => ProductInstallment::where('product_id', $product->id)->get(),
-                'product' => $product,
-                'vendor' => $vendor
-            );
-            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
+//            $data = array(
+//                'user'=>User::find($product->user_id),
+//                'productInstallment' => ProductInstallment::where('product_id', $product->id)->get(),
+//                'product' => $product,
+//                'vendor' => $vendor
+//            );
+//            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
 
             Session::flash('message', 'Vendor and Project Accepted!');
         });

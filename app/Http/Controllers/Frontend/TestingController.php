@@ -102,31 +102,28 @@ class TestingController extends Controller
     }
     public function TestingFunction(){
         try{
-//            $data = Excel::load(Input::file('file'), function($reader) {})->get();
+            $ProductIds = Product::where('vendor_id', "96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8")->get();
 
-//            $productInstallments = ProductInstallment::where('paid_amount', null)->get();
-//
-//            foreach ($productInstallments as $productInstallment){
-//                $amount = (double) str_replace('.','', $productInstallment->amount);
-//                $interest = (double) str_replace('.','', $productInstallment->interest_amount);
-//                $productInstallment->paid_amount = $amount + $interest;
-//                $productInstallment->save();
-//            }
-//            dd($productInstallments);
-              //Testing view perjanjian layanan
-            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
-            //Send Email,
-            $userData = User::find($transaction->user_id);
-            $payment = PaymentMethod::find($transaction->payment_method_id);
-            $product = Product::find($transaction->product_id);
+            foreach ($ProductIds as $ProductId){
 
-            $productInstallments = ProductInstallment::where('product_id', $product->id)->get();
-            $vendor = Vendor::find($product->vendor_id);
-            $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
+                $userData = User::find($ProductId->user_id);
+                $data = array(
+                    'user'=>$userData,
+                    'productInstallments' => ProductInstallment::where('product_id', $ProductId->id)->get(),
+                    'product' => Product::find($ProductId->id),
+                    'vendor' => Vendor::find('96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8')
+                );
 
-            return View('email.perjanjian-layanan',compact('user', 'product', 'productInstallments', 'transaction', 'vendor'));
-//            return View('email.perjanjian-pinjaman', compact('user', 'product', 'productInstallments', 'vendor'));
+                $pdf2 = PDF::loadView('email.perjanjian-pinjaman', $data);
 
+                Mail::send('email.surat-perjanjian-pinjaman', $data, function ($message) use ($pdf2, $userData) {
+                    $message->to("yansen626@gmail.com")
+                        ->subject('Perjanjian Pinjaman di Indofund');
+
+                    $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
+                });
+            }
+            return "asdf";
         }
         catch (\Exception $ex){
             return "failed : ".$ex;

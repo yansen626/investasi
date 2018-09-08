@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Libs\TransactionUnit;
+use App\Libs\Utilities;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransferConfirmation;
@@ -88,9 +89,15 @@ class TransactionController extends Controller
 
     public function rejectOrder(Request $request){
 
-        TransactionUnit::transactionRejected($request['reject-trx-id']);
-
         $trx = Transaction::find($request['reject-trx-id']);
+        $transaction_wallet = Transaction::where('payment_method_id', 3)
+            ->where('order_id', 'like', '%'.$trx->order_id.'%')
+            ->first();
+        if(!empty($transaction_wallet)){
+            TransactionUnit::transactionRejected($transaction_wallet->id);
+        }
+
+        TransactionUnit::transactionRejected($request['reject-trx-id']);
         if(!empty($request['reject-reason'])){
             $trx->reject_note = $request['reject-reason'];
         }
