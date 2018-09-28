@@ -33,11 +33,13 @@
         <!-- /top tiles -->
         <!-- top tiles -->
         <div class="row tile_count">
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Tambah Borrower Baru</span>
-                <br>
-                <a style="color: dodgerblue;" href="{{ route('vendor-request-form') }}"><strong>Klik disini</strong></a>
-            </div>
+            @if(\Illuminate\Support\Facades\Auth::guard('user_admins')->user()->user_type < 3 )
+                <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Tambah Borrower Baru</span>
+                    <br>
+                    <a style="color: dodgerblue;" href="{{ route('vendor-request-form') }}"><strong>Klik disini</strong></a>
+                </div>
+            @endif
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i> Edit Konten Website</span>
                 <br>
@@ -62,7 +64,8 @@
                         {{--</div>--}}
                     </div>
 
-                    <div class="col-md-9 col-sm-9 col-xs-12">
+                    @if(\Illuminate\Support\Facades\Auth::guard('user_admins')->user()->user_type < 3 )
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                         @if($fundingDone == 0 && $fundingFailed == 0 && $twoDayTransfer == 0 && $newOrderTotal == 0 && $walletWithdraw == 0)
                             <div class="alert alert-info alert-dismissible fade in" role="alert">
                                 <strong>Halo!</strong> Saat ini tidak ada yang memerlukan tindakan Anda
@@ -111,6 +114,7 @@
                             </div>
                         @endif
                     </div>
+                    @endif
                     <div class="clearfix"></div>
                 </div>
             </div>

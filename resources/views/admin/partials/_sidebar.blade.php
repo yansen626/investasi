@@ -13,7 +13,7 @@
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>{{ \Illuminate\Support\Facades\Auth::guard('user_admins')->user()->first_name }}</h2>
+                <h2>{{ \Illuminate\Support\Facades\Auth::guard('user_admins')->user()->first_name }} {{ \Illuminate\Support\Facades\Auth::guard('user_admins')->user()->last_name }}</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -24,6 +24,7 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
                 <ul class="nav side-menu">
+                    @if(\Illuminate\Support\Facades\Auth::guard('user_admins')->user()->user_type < 3 )
                     <li>
                         <a href="{{ route('admin-dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
                     </li>
@@ -55,6 +56,7 @@
                             <li><a href="{{ route('transaction-list') }}">Transaction List</a></li>
                         </ul>
                     </li>
+                    @endif
                     <li><a><i class="fa fa-tags"></i> News & Blog <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('admin-blog-list') }}">News List</a></li>
@@ -68,105 +70,14 @@
                             <li><a href="{{ route('content-edit') }}">Edit Content</a></li>
                         </ul>
                     </li>
+                        @if(\Illuminate\Support\Facades\Auth::guard('user_admins')->user()->user_type == 1 )
                     <li><a><i class="fa fa-user-secret"></i> Admin <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('admin-list') }}">Admin List</a></li>
                             <li><a href="{{ route('admin-create') }}">Submit Admin</a></li>
                         </ul>
                     </li>
-                    {{--<li>--}}
-                        {{--<a href="{{ route('vendor-request') }}">--}}
-                            {{--<i class="fa fa-exclamation-triangle"></i> Request Borrower--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="{{ route('product-request') }}">--}}
-                            {{--<i class="fa fa-exclamation-triangle"></i> Request Produk Investasi--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="{{ route('dompet-request') }}">--}}
-                            {{--<i class="fa fa-exclamation-triangle"></i> Request Penarikan Dana--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="{{ route('customer-list') }}">--}}
-                            {{--<i class="fa fa-user"></i> Lender List--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="{{ route('subscribe-list') }}">--}}
-                            {{--<i class="fa fa-user"></i> Subscribe List--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-tags"></i> Borrower List <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('vendor-list') }}">Tampilkan Borrower</a></li>--}}
-                            {{--<li><a href="{{ route('vendor-request-form') }}">Tambah Borrower</a></li>--}}
-                            {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-tags"></i> Proyek List <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('product-list') }}">Tampilkan</a></li>--}}
-                            {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="{{ route('content-edit') }}">--}}
-                            {{--<i class="fa fa-file-text"></i> Edit Content--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="{{ route('dompet-list') }}">--}}
-                            {{--<i class="fa fa-money"></i> Semua Penarikan Dana--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-tags"></i> Blog <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('admin-blog-list') }}">Tampilkan</a></li>--}}
-                            {{--<li><a href="{{ route ('blog-create') }}">Tambah</a></li>--}}
-                            {{--<li><a href="{{ route ('admin-blog-update-list') }}">Pending</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-credit-card"></i> Coupon <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('coupon-index') }}">Tampilkan</a></li>--}}
-                            {{--<li><a href="{{ route ('coupon-create') }}">Tambah</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-shopping-cart"></i> Transaksi <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('transaction-list') }}">Histori</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-edit"></i> Banner <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a>Slider Banner<span class="fa fa-chevron-down"></span></a>--}}
-                                {{--<ul class="nav child_menu">--}}
-                                    {{--<li class="sub-menu"><a href="{{ route('slider-banner-list') }}">Tampilkan</a></li>--}}
-                                    {{--<li><a href="{{ route('slider-banner-create') }}">Tambah</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-bar-chart"></i> Reports <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('report-form') }}">Tampilkan</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-edit"></i> Status <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('status-list') }}">Tampilkan</a></li>--}}
-                            {{--<li><a href="{{ route('status-create') }}">Tambah</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a><i class="fa fa-user-secret"></i> Admin <span class="fa fa-chevron-down"></span></a>--}}
-                        {{--<ul class="nav child_menu">--}}
-                            {{--<li><a href="{{ route('admin-list') }}">Tampilkan</a></li>--}}
-                            {{--<li><a href="{{ route('admin-create') }}">Tambah</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
+                        @endif
                 </ul>
             </div>
         </div>

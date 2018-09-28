@@ -107,16 +107,16 @@ class BlogController extends Controller
     public function changeStatusUrgent($id){
 
         //Save Data
-        $blogDB = BlogUrgent::find($id);
-        if($blogDB->status_id = 3){
-            $blogDB->status_id = 1;
-        }
-        else{
-            $blogDB->status_id = 3;
-        }
-        $blogDB->save();
+        $blogDB = BlogUrgent::destroy($id);
+//        if($blogDB->status_id = 3){
+//            $blogDB->status_id = 1;
+//        }
+//        else{
+//            $blogDB->status_id = 3;
+//        }
+//        $blogDB->save();
 
-        Session::flash('message', 'Blog telah dijadikan Urgent!');
+        Session::flash('message', 'Status blog telah diubah!');
 
         return redirect()->route('admin-blog-urgent-list');
     }

@@ -87,6 +87,7 @@
                                         <option value="-1">Pilih Tipe</option>
                                         <option value="1">Moderator</option>
                                         <option value="2">Admin</option>
+                                        <option value="3">Content Creator</option>
                                     </select>
                                 </div>
                             </div>
