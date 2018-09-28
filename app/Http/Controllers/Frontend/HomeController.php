@@ -31,6 +31,7 @@ class HomeController extends Controller
     public function Home(){
         $blogCount = 4;
         $recentProducts = Product::where('category_id','=', 2)->where('status_id', 21)->orderByDesc('created_on')->take(3)->get();
+        $recentProductPremiums = Product::where('category_id','=', 6)->where('status_id', 21)->orderByDesc('created_on')->take(3)->get();
 
         $randomBlogs = Blog::where('status_id', 1)
             ->where('category_id', '<>', 5)
@@ -132,6 +133,7 @@ class HomeController extends Controller
 
         $data = [
             'recentProducts' => $recentProducts,
+            'recentProductPremiums' => $recentProductPremiums,
             'recentBlogs' => $recentBlogs,
             'highlightBlog' => $highlightBlog,
             'user' => $user,

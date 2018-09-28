@@ -172,10 +172,21 @@ class PaymentController extends Controller
 
             // Get unique order id
             $orderId = 'INVEST-'. uniqid();
+            $orderIdWallet = $orderId.'-WALLET';
 
             $investAmount = floatval(Input::get('checkout-invest-amount-input'));
+            $walletUsedAmount = floatval(Input::get('checkout-wallet-used'));
             $adminFee = floatval(Input::get('checkout-admin-fee-input'));
             $isNotComplete = Input::get('checkout-notCompletedData');
+
+            //checking product raised
+            $productDB = Product::find($investId);
+            $raisedDB = (double) str_replace('.','', $productDB->raised);
+            $raisingDB = (double) str_replace('.','', $productDB->raising);
+            $newRaise = $investAmount;
+            if($raisedDB + $newRaise > $raisingDB){
+                return redirect()->route('project-detail', ['id' => $investId]);
+            }
 
             if($isNotComplete == 0){
                 $user = User::find($userId);
@@ -202,6 +213,43 @@ class PaymentController extends Controller
             }
 
             // Save temporary data
+            //implement pembayaran dompet sebagian
+//            if($paymentMethod != 'wallet'){
+//                $cartCreate = Cart::create([
+//                    'product_id'            => $investId,
+//                    'user_id'               => $userId,
+//                    'quantity'              => 1,
+//                    'admin_fee'             => $adminFee,
+//                    'order_id'              => $orderId,
+//                    'payment_method'        => $paymentMethod,
+//                    'invest_amount'         => $investAmount,
+//                    'total_invest_amount'   => $investAmount + $adminFee
+//                ]);
+//            }
+//            else{
+//                $cartCreate = Cart::create([
+//                    'product_id'            => $investId,
+//                    'user_id'               => $userId,
+//                    'quantity'              => 1,
+//                    'admin_fee'             => $adminFee,
+//                    'order_id'              => $orderIdWallet,
+//                    'payment_method'        => $paymentMethod,
+//                    'invest_amount'         => $walletUsedAmount,
+//                    'total_invest_amount'   => $walletUsedAmount + $adminFee
+//                ]);
+//                $investTempAmount = $investAmount - $walletUsedAmount;
+//                $cartCreate2 = Cart::create([
+//                    'product_id'            => $investId,
+//                    'user_id'               => $userId,
+//                    'quantity'              => 1,
+//                    'admin_fee'             => $adminFee,
+//                    'order_id'              => $orderId,
+//                    'payment_method'        => "bank_transfer",
+//                    'invest_amount'         => $investTempAmount,
+//                    'total_invest_amount'   => $investTempAmount + $adminFee
+//                ]);
+//            }
+            //original
             $cartCreate = Cart::create([
                 'product_id'            => $investId,
                 'user_id'               => $userId,
@@ -213,6 +261,7 @@ class PaymentController extends Controller
                 'total_invest_amount'   => $investAmount + $adminFee
             ]);
 
+            //pay with bank transfer
             if($paymentMethod != 'wallet'){
                 if($paymentMethod == 'bank_transfer'){
                     error_log("CHECK!");
@@ -245,11 +294,29 @@ class PaymentController extends Controller
                 $userWallet = (double) str_replace('.','', $userDB->wallet_amount);
 //                dd($investAmount."|".$userWallet);
                 if($investAmount <= $userWallet){
-                    $isSuccess = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
+                    //create Transaction for wallet
+//                    $isSuccess1 = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderIdWallet);
+//                    TransactionUnit::transactionAfterVerified($orderIdWallet);
+//
+//                    $isSuccess2 = true;
+//                    if($walletUsedAmount != $investAmount){
+//                        //create transaction for transfer bank
+//                        $isSuccess2 = TransactionUnit::createTransaction($userId, $cartCreate2->id, $orderId);
+//                    }
+//
+//                    if($isSuccess1 && $isSuccess2){
+//                        $paymentMethod = 'dompet';
+//                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' successfully created");
+//                        return View('frontend.checkout-success', compact('paymentMethod'));
+//                    }
+//                    else{
+//                        $paymentMethod = 'dompet';
+//                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' fail to created");
+//                        return View('frontend.checkout-success', compact('paymentMethod'));
+//                    }
 
-                    //change status, date etc
+                    $isSuccess1 = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
                     TransactionUnit::transactionAfterVerified($orderId);
-
                     $paymentMethod = 'dompet';
                     Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' successfully created");
                     return View('frontend.checkout-success', compact('paymentMethod'));

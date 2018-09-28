@@ -31,9 +31,6 @@ class ProductController extends Controller
 {
     public function ProductList($tab)
     {
-//        $user = Auth::user();
-//        $userId = $user->id;
-
         if(auth()->check()){
             $user = Auth::user();
             $userId = $user->id;
@@ -46,45 +43,33 @@ class ProductController extends Controller
         $products = Product::where('is_secondary', 0)->get();
 
         $product_debts =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
+        $product_premiums =Product::where('category_id','=', 6)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
         $product_onprogress =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->wherein('status_id',[22, 23])->get();
-//        $product_equities =Product::where('category_id','=', 1)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
-//        $product_sharings =Product::where('category_id','=', 3)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
 
-
-        $isActiveDebt = "";$isActiveOnprogress = ""; $isActiveEquity = "";$isActiveSharing = "";
-        $isActiveTabDebt = "";$isActiveTabOnprogress = ""; $isActiveTabEquity = "";$isActiveTabSharing = "";
+        $isActiveDebt = "";$isActiveOnprogress = ""; $isActivePremium = "";$isActiveSharing = "";
+        $isActiveTabDebt = "";$isActiveTabOnprogress = ""; $isActiveTabPremium = "";$isActiveTabSharing = "";
         if($tab == "debt") {
             $isActiveDebt = "in active";
             $isActiveTabDebt = "class=active";
+        }
+        else if($tab == "premium") {
+            $isActivePremium = "in active";
+            $isActiveTabPremium = "class=active";
         }
         else if($tab == "onprogress") {
             $isActiveOnprogress = "in active";
             $isActiveTabOnprogress = "class=active";
         }
-//        else if($tab == "equity") {
-//            $isActiveEquity = "in active";
-//            $isActiveTabEquity = "class=active";
-//        }
-//        else if($tab == "sharing") {
-//            $isActiveSharing = "in active";
-//            $isActiveTabSharing = "class=active";
-//        }
-
-//        return View ('frontend.show-products', compact('product_debts', 'product_equities', 'product_sharings'));
-
         $data = [
             'product_debts'=>$product_debts,
             'product_onprogress'=>$product_onprogress,
-//            'product_equities'=>$product_equities,
-//            'product_sharings'=>$product_sharings,
+            'product_premiums'=>$product_premiums,
             'isActiveDebt'=>$isActiveDebt,
             'isActiveTabDebt'=>$isActiveTabDebt,
             'isActiveOnprogress'=>$isActiveOnprogress,
             'isActiveTabOnprogress'=>$isActiveTabOnprogress,
-//            'isActiveEquity'=>$isActiveEquity,
-//            'isActiveTabEquity'=>$isActiveTabEquity,
-//            'isActiveSharing'=>$isActiveSharing,
-//            'isActiveTabSharing'=>$isActiveTabSharing
+            'isActivePremium'=>$isActivePremium,
+            'isActiveTabPremium'=>$isActiveTabPremium,
         ];
         return View ('frontend.show-products')->with($data);
     }
@@ -107,7 +92,7 @@ class ProductController extends Controller
             $now = Carbon::parse(date_format($dateTimeNow, 'Y-m-d'));
             $dueDate = Carbon::parse(date_format($product->due_date, 'Y-m-d'));
             if($now < $dueDate){
-                dd($now."|".$dueDate);
+//                dd($now."|".$dueDate);
                 $product->days_left = $dateTimeNow->diffInDays(Carbon::parse($product->due_date));
                 $product->save();
             }

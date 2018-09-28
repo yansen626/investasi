@@ -574,7 +574,7 @@
         <span class="custom-span" lang="IN">Penerima Pinjaman akan membayar kepada Penyelenggara<b></b></span>
         <span class="custom-span">Komisi Layanan Situs</span>
         <b><span class="custom-span"></span></b>
-        <span class="custom-span" lang="IN">sebesar 3.5%</span>
+        <span class="custom-span" lang="IN">sebesar 3%</span>
         <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;(tiga koma lima </span>
         <span class="custom-span" lang="IN">persen) dari jumlah Pinjaman</span>
         <span lang="IN" style='font-size:11.0pt;line-height: 110%;font-family:"Calibri","sans-serif"'></span>

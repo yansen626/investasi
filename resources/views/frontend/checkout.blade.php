@@ -43,6 +43,9 @@
                             <div class="field col-sm-12 text-center error-div-wallet" style="display: none;">
                                 <span class="help-block" style="color: red;">Saldo Anda tidak mencukupi</span>
                             </div>
+                            <div class="field col-sm-12 text-center error-div-wallet-use" style="display: none;">
+                                <span class="help-block" style="color: red;">Saldo harus lebih kecil atau sama dengan Pendanaan</span>
+                            </div>
                             <div class="field col-sm-12 text-center error-remaining" style="display: none;">
                                 <span class="help-block" style="color: red;">Nominal Harus lebih kecil dari sisa pendanaan</span>
                             </div>
@@ -56,17 +59,22 @@
                             <div class="field col-sm-12">
                                 <h5>Pilihan Sumber Dana</h5>
                                 @if($userData->wallet_amount != 0)
-                                <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
-                                <div class="radio-inputs">
-                                    <input type="radio" id="payment-1" name="payment" value="wallet" checked>
-                                    <label for="payment-1"><span></span>Saldo Saya</label>
-                                    {{--<input type="radio" id="payment-2" name="payment" value="credit_card">--}}
-                                    {{--<label for="payment-2"><span></span>Kartu Kredit</label>--}}
-                                    <input type="radio" id="payment-3" name="payment" value="bank_transfer" checked>
-                                    <label for="payment-3"><span></span>Transfer bank</label>
-                                    {{--<input type="radio" id="payment-4" name="payment" value="wallet_transfer" checked>--}}
-                                    {{--<label for="payment-4"><span></span>Saldo Sebagian</label>--}}
-                                </div>
+                                    <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
+                                    <div class="radio-inputs">
+                                        <input type="radio" id="payment-3" name="payment" value="bank_transfer">
+                                        <label for="payment-3">
+                                            <span></span>Transfer bank
+                                        </label>
+                                        <input type="radio" id="payment-1" name="payment" value="wallet" checked>
+                                        <label for="payment-1">
+                                            <span></span>Saldo Saya
+                                        </label>
+                                        {{--<input type="radio" id="payment-2" name="payment" value="credit_card">--}}
+                                        {{--<label for="payment-2"><span></span>Kartu Kredit</label>--}}
+                                    </div>
+                                    <div class="amount_wallet_transfer">
+                                        <input id="amount_wallet_transfer" type="hidden" name="amount_wallet_transfer" placeholder="Penggunaan Saldo"/>
+                                    </div>
                                 @else
                                     <div class="radio-inputs">
                                         {{--<input type="radio" id="payment-2" name="payment" value="credit_card" checked>--}}
@@ -231,6 +239,7 @@
                     {{ Form::hidden('checkout-invest-amount-input', '', array('id' => 'checkout-invest-amount-input')) }}
                     {{ Form::hidden('checkout-admin-fee-input', '', array('id' => 'checkout-admin-fee-input')) }}
                     {{ Form::hidden('checkout-payment-method-input', '', array('id' => 'checkout-payment-method-input')) }}
+                    {{ Form::hidden('checkout-wallet-used', '', array('id' => 'checkout-wallet-used')) }}
 
                     {{ Form::hidden('checkout-notCompletedData', '', array('id' => 'checkout-notCompletedData')) }}
                     {{ Form::hidden('checkout-name-KTP', '', array('id' => 'checkout-name-KTP')) }}
@@ -278,15 +287,31 @@
     @parent
     <script src="{{ URL::asset('js/frontend/bootstrap-datetimepicker.min.js') }}"></script>
     <script>
+
+        numberFormat = new AutoNumeric('.amount_wallet_transfer > input', {
+            decimalCharacter: ',',
+            digitGroupSeparator: '.',
+            decimalPlaces: 0,
+            modifyValueOnWheel: false
+        });
+
         function modalCheckout(){
             // Set invest amount
             // var invest = $("input[name=amount]:checked").val();
             var invest = $("#amount").val();
+            var walletUsed = $("#amount_wallet_transfer").val();
             var remaining = $("#remaining").val();
 
             while(true)
                 if(invest.includes('.')){
                     invest = invest.replace('.', '');
+                }
+                else{
+                    break;
+                }
+            while(true)
+                if(walletUsed.includes('.')){
+                    walletUsed = walletUsed.replace('.', '');
                 }
                 else{
                     break;
@@ -310,10 +335,19 @@
             }
 
             //check remaining
-            if(parseInt(invest)  > parseInt(remaining)){
+            if(parseInt(invest)  < parseInt(walletUsed)){
                 $(".error-div").hide();
                 $(".error-remaining").hide();
                 $(".error-div-wallet").hide();
+                $(".error-div-wallet-use").hide();
+                $(".error-div-wallet-use").show();
+
+            }
+            else if(parseInt(invest)  > parseInt(remaining)){
+                $(".error-div").hide();
+                $(".error-remaining").hide();
+                $(".error-div-wallet").hide();
+                $(".error-div-wallet-use").hide();
                 $(".error-remaining").show();
             }
             else{
@@ -324,6 +358,7 @@
                     $(".error-div").hide();
                     $(".error-remaining").hide();
                     $(".error-div-wallet").hide();
+                    $(".error-div-wallet-use").hide();
 
                     var investStr = addCommas(invest);
                     $("#checkout-invest-amount").html(investStr);
@@ -376,6 +411,8 @@
                             $(".error-div-wallet").show();
                         }
                         else{
+                            $("#checkout-wallet-used").val(walletUsed);
+
                             $("#checkout-admin-fee-input").val(0);
                             $("#checkout-admin-fee").html("GRATIS");
                             $("#checkout-payment-method").html("Saldo Saya");
@@ -393,6 +430,7 @@
                     $(".error-div").hide();
                     $(".error-remaining").hide();
                     $(".error-div-wallet").hide();
+                    $(".error-div-wallet-use").hide();
 
                     $(".error-div").show();
                 }

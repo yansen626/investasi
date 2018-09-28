@@ -108,10 +108,21 @@ class TransactionUnit
                 $raisedDB = (double) str_replace('.','', $productDB->raised);
                 $newRaise = (double) str_replace('.','', $transaction->total_price);
                 $productDB->raised = $raisedDB - $newRaise;
-
+                if($productDB->status_id ==  22){
+                    $productDB->status_id = 21;
+                }
                 $productDB->save();
 
                 Utilities::ExceptionLog("Transaction ".$transaction->invoice." Rejected on ".$dateTimeNow->toDateTimeString());
+
+                //update user wallet
+                if(strpos($transaction->order_id, "WALLET") === true){
+                    $user = User::find($transaction->user_id);
+                    $walletUserTemp = (double)$user->getOriginal('wallet_amount');
+                    $walletUsedTemp = (double)$transaction->getOriginal('total_price');
+                    $user->wallet_amount = $walletUserTemp + $walletUsedTemp;
+                    $user->save();
+                }
 
                 return true;
             });
@@ -165,7 +176,7 @@ class TransactionUnit
                 $productDB->save();
 
                 //Send Email for accepted fund
-                SendEmail::SendingEmail('successTransaction', $data);
+//                SendEmail::SendingEmail('successTransaction', $data);
 
             });
             return true;

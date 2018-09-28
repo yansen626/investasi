@@ -377,6 +377,60 @@
                 </div>
                 <div style="margin: 40px; !important">
 
+                    @foreach($recentProductPremiums as $product)
+                        @php( $togo = $product->getOriginal('raising') - $product->getOriginal('raised') )
+                        @php( $togo = number_format($togo,0, ",", ".") )
+                        @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
+                        @php( $percentage = number_format($percentage, 0) )
+                        <a href="{{ route('project-detail', ['id' => $product->id]) }}">
+                            <div class="col-md-12 project-border" style="background-color: #DCF8C6;">
+                                <div class="col-md-2">
+                                    <span>Nama Project</span>
+                                    <br>
+                                    <span style="color: #ff7a00">{{ $product->name }}</span>
+                                    <br>
+                                    <span>{{ $product->Category->name }}</span>
+                                </div>
+                                <div class="col-md-2">
+                                    Nominal
+                                    <br>
+                                    <span style="color: #ff7a00">Rp {{ $product->raising }}</span>
+                                </div>
+                                <div class="col-md-2">
+                                    Rating Rate
+                                    <br>
+                                    <span style="color: #ff7a00">{{$product->business_class}} {{$product->interest_rate}}% / tahun</span>
+                                </div>
+                                <div class="col-md-2">
+                                    Waktu
+                                    <br>
+                                    <span style="color: #ff7a00">{{$product->tenor_loan}} Bulan </span>
+                                </div>
+                                <div class="col-md-2">
+                                    Progress {{$percentage}}%
+                                    <br>
+                                    Rp {{$product->raised}}
+                                    <br>
+                                    <div class="min">
+                                        <div class="progress-bar-outer">
+                                            <div class="progress-bar-inner">
+                                                <div class="progress-bar">
+                                                    <span data-percent="{{$percentage}}"><span class="pretng">{{$percentage}}%</span> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    Masa Penawaran
+                                    <br>
+                                    <span style="color: #ff7a00">{{ $product->days_left }} hari lagi</span>
+                                </div>
+
+                            </div>
+                        </a>
+
+                    @endforeach
                     @foreach($recentProducts as $product)
 
                         @php( $togo = $product->getOriginal('raising') - $product->getOriginal('raised') )

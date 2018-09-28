@@ -24,10 +24,8 @@
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li {{$isActiveTabDebt}}><a href="{{route('project-list', ['tab' => 'debt'])}}" >Produk Konvensional</a></li>
-                        <li><a href="#" >Produk Syariah</a></li>
+                        <li {{$isActiveTabPremium}}><a href="{{route('project-list', ['tab' => 'premium'])}}" >Produk Premium</a></li>
                         <li {{$isActiveTabOnprogress}}><a href="{{route('project-list', ['tab' => 'onprogress'])}}" >Produk Berjalan</a></li>
-{{--                        <li {{$isActiveTabEquity}}><a href="{{route('project-list', ['tab' => 'equity'])}}" >Saham</a></li>--}}
-                        {{--<li {{$isActiveTabSharing}}><a href="{{route('project-list', ['tab' => 'sharing'])}}" >Bagi Hasil / Produk</a></li>--}}
                     </ul>
                 </div>
                 <div class="panel-body">
@@ -52,6 +50,56 @@
 
                                             @php( $idx = 1 )
                                                 @foreach($product_debts as $product)
+
+                                                    @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
+                                                    @php( $percentage = number_format($percentage, 0) )
+                                                        <tr class="row-clickable" data-href='{{ route('project-detail', ['id' => $product->id]) }}'>
+                                                            <td>{{ $idx }}</td>
+                                                            <td>{{ $product->name }}</td>
+                                                            <td>Rp {{ $product->raising }}</td>
+                                                            <td>{{ $product->days_left }} Hari</td>
+                                                            <td>Rp {{ $product->raised == null ? 0 : $product->raised }}</td>
+                                                            <td class="hidden-xs hidden-sm">
+                                                                <div class="progress-bar-inner">
+                                                                    <div class="progress-bar">
+                                                                        <span data-percent="{{$percentage}}"><span class="pretng">{{$percentage}}%</span> </span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('project-detail', ['id' => $product->id]) }}">
+                                                                    <button class="btn btn-primary">Detail</button>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @php( $idx++ )
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade {{$isActivePremium}}" id="premium">
+                            <div class="col-md-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content table-responsive">
+                                        <table id="datatable-responsive-debt" class="table table-striped table-hover dt-responsive nowrap" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Total</th>
+                                                <th>Sisa Hari</th>
+                                                <th>Terkumpul</th>
+                                                <th class="hidden-xs hidden-sm">Progress</th>
+                                                <th>Detail</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            @php( $idx = 1 )
+                                                @foreach($product_premiums as $product)
 
                                                     @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
                                                     @php( $percentage = number_format($percentage, 0) )
