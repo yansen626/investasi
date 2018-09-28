@@ -45,7 +45,7 @@
                                                 <th>Nomor Invoice</th>
                                                 <th>Tanggal Beli</th>
                                                 <th class="text-right">Jumlah Pendanaan</th>
-                                                <th>Jenis</th>
+                                                <th>Jenis Produk</th>
                                                 <th>Status Pembayaran</th>
                                                 <th>Update Proyek</th>
                                                 <th>Keterangan</th>
@@ -167,10 +167,11 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama</th>
+                                                <th>Status Kolektibilitas</th>
+                                                <th>Jenis Produk</th>
                                                 <th>Tanggal Beli</th>
                                                 <th class="text-right">Jumlah Pendanaan</th>
                                                 <th>Grade/rate</th>
-                                                <th>Status Kolektibilitas</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -181,13 +182,14 @@
                                                         <td>
                                                             <a href="{{ route('project-detail', ['id' => $trx->product_id]) }}">{{ $trx->Product->name}}</a>
                                                         </td>
-                                                        <td>{{ $trx->created_on }}</td>
-                                                        <td class="text-right">Rp {{ $trx->total_price }}</td>
-                                                        <td>{{ $trx->Product->business_class }} / {{ $trx->Product->interest_rate }}%</td>
                                                         @php($color = 'background-color: green')
                                                         <td style="{{$color}}">
 
                                                         </td>
+                                                        <td>{{ $trx->Product->Category->name }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j-M-Y')}}</td>
+                                                        <td class="text-right">Rp {{ $trx->total_price }}</td>
+                                                        <td>{{ $trx->Product->business_class }} / {{ $trx->Product->interest_rate }}%</td>
                                                     </tr>
                                                     @php( $idx++ )
                                                         @endforeach

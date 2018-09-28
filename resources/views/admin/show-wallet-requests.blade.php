@@ -43,10 +43,12 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>No</th>
                                         <th>Tanggal</th>
-                                        <th>Deskripsi</th>
-                                        <th class="text-right">Saldo Terakhir</th>
+                                        <th>Nama User</th>
+                                        <th>Nama di Rekening</th>
+                                        <th>Nomor Rekening</th>
+                                        <th>Bank</th>
+                                        <th class="text-right">Saldo Terkini</th>
                                         <th class="text-right">Jumlah Penarikan</th>
                                         <th class="text-right">Fee</th>
                                         <th class="text-right">Admin</th>
@@ -64,9 +66,13 @@
                                             <input id="checkbox{{$idx}}" type="checkbox" value="{{$statement->id}}">
                                             <input id="checkboxvalue{{$idx}}" name="submitCheckbox[]" type="hidden" value="">
                                         </td>
-                                        <td>{{ $idx }}</td>
-                                        <td>{{ $statement->date }}</td>
-                                        <td>{{ $statement->description }}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($statement->date)->format('j F Y G:i:s')}}
+                                        </td>
+                                        <td>{{ $statement->user->first_name }} {{ $statement->user->last_name }}</td>
+                                        <td>{{ $statement->bank_acc_name }}</td>
+                                        <td>{{ $statement->bank_acc_number }}</td>
+                                        <td>{{ $statement->bank_name }}</td>
                                         <td class="text-right">Rp {{ $statement->saldo }}</td>
                                         <td class="text-right">Rp {{ $statement->amount }}</td>
                                         <td class="text-right">Rp {{ $statement->fee }}</td>
@@ -75,6 +81,7 @@
                                         <td>
                                             <a onclick="modalPop('{{ $statement->id }}', 'accept', '/admin/dompet/accept/')" class="btn btn-success">Terima</a>
                                             <a onclick="modalPop('{{ $statement->id }}', 'cancel', '/admin/dompet/reject/')" class="btn btn-danger">Tolak</a>
+                                            <a href="{{route('customer-detail', ['id'=> $statement->user_id])}}" class="btn btn-primary">Detail</a>
                                             <a href="{{route('customer-ktp', ['id'=> $statement->user_id])}}" class="btn btn-primary">Detail KTP</a>
                                         </td>
                                     </tr>

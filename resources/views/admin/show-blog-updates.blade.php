@@ -49,11 +49,10 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Tanggal Dibuat</th>
                                     <th>Produk</th>
                                     <th>Judul</th>
                                     <th>Kategori</th>
-                                    <th>Tanggal Dibuat</th>
                                     <th>Opsi</th>
                                 </tr>
                                 </thead>
@@ -61,7 +60,7 @@
                                 @php ($idx = 1)
                                 @foreach($blogs as $blog)
                                     <tr>
-                                        <td>{{ $idx}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($blog->created_at)->format('j F y')}}</td>
                                         <td>
                                             @if(!empty($blog->product_id))
                                                 <a href="#">{{ $blog->product->name }}</a>
@@ -71,7 +70,6 @@
                                         </td>
                                         <td>{{ $blog->title}}</td>
                                         <td>{{ $blog->category->name }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($blog->created_at)->format('j F y')}}</td>
                                         <td>
                                             <button class="btn btn-success" onclick="modalPop('{{ $blog->id }}', 'blog-update-accept', '/admin/blog/accept/')">Terima</button>
                                             <button class="btn btn-danger" onclick="modalPop('{{ $blog->id }}', 'blog-update-reject', '/admin/blog/reject/')">Tolak</button>

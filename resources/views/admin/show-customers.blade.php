@@ -64,14 +64,13 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Join Date</th>
                                     <th>Name</th>
                                     <th>E-mail</th>
                                     <th>Phone</th>
                                     <th>VA Number</th>
                                     <th>Wallet Amount</th>
                                     <th>Last Login</th>
-                                    <th>Join Date</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -79,14 +78,13 @@
                                 @php( $idx = 1 )
                                 @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $idx }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($user->created_at)->format('j M Y G:i:s') }}</td>
                                         <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->va_acc == null ? "-" : $user->va_acc }}</td>
                                         <td>Rp {{ $user->wallet_amount }}</td>
                                         <td>{{ $user->last_login!=null ? \Carbon\Carbon::parse($user->last_login)->format('j M Y G:i:s') : "-" }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($user->created_at)->format('j M Y G:i:s') }}</td>
                                         <td>
                                             <a href="{{route('customer-detail', ['id'=> $user->id])}}" class="btn btn-primary">Detail</a>
                                             <a href="{{route('customer-ktp', ['id'=> $user->id])}}" class="btn btn-primary">Detail KTP</a>

@@ -43,7 +43,7 @@
                                                 <th>Sisa Hari</th>
                                                 <th>Terkumpul</th>
                                                 <th class="hidden-xs hidden-sm">Progress</th>
-                                                <th>Detail</th>
+                                                <th>Tanggal</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -67,9 +67,7 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <a href="{{ route('project-detail', ['id' => $product->id]) }}">
-                                                                    <button class="btn btn-primary">Detail</button>
-                                                                </a>
+                                                                {{ \Carbon\Carbon::parse($product->created_on)->format('j M y')}}
                                                             </td>
                                                         </tr>
                                                     @php( $idx++ )
@@ -93,7 +91,7 @@
                                                 <th>Sisa Hari</th>
                                                 <th>Terkumpul</th>
                                                 <th class="hidden-xs hidden-sm">Progress</th>
-                                                <th>Detail</th>
+                                                <th>Tanggal</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -117,9 +115,7 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <a href="{{ route('project-detail', ['id' => $product->id]) }}">
-                                                                    <button class="btn btn-primary">Detail</button>
-                                                                </a>
+                                                                {{ \Carbon\Carbon::parse($product->created_on)->format('j M y')}}
                                                             </td>
                                                         </tr>
                                                     @php( $idx++ )
@@ -143,7 +139,7 @@
                                                 <th>Total</th>
                                                 <th>Terkumpul</th>
                                                 <th class="hidden-xs hidden-sm">Progress</th>
-                                                <th>Detail</th>
+                                                <th>Tanggal</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -169,9 +165,7 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <a href="{{ route('project-detail', ['id' => $product->id]) }}">
-                                                                    <button class="btn btn-primary">Detail</button>
-                                                                </a>
+                                                                {{ \Carbon\Carbon::parse($product->created_on)->format('j M y')}}
                                                             </td>
                                                         </tr>
                                                     @php( $idx++ )

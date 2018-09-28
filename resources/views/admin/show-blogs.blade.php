@@ -49,12 +49,11 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Tanggal Dibuat</th>
                                     <th>Judul</th>
                                     <th>Kategori</th>
                                     <th>Terbaca</th>
                                     <th>Status</th>
-                                    <th>Tanggal Dibuat</th>
                                     <th>Opsi</th>
                                 </tr>
                                 </thead>
@@ -62,7 +61,7 @@
                                 @php ($idx = 1)
                                 @foreach($blogs as $blog)
                                     <tr>
-                                        <td>{{ $idx}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($blog->created_at)->format('j F y')}}</td>
                                         <td>{{ $blog->title}}</td>
                                         <td>{{ $blog->category->name }}</td>
                                         <td>{{ $blog->read_count }}</td>
@@ -75,7 +74,6 @@
                                                 Unpublish
                                             @endif
                                         </td>
-                                        <td>{{ \Carbon\Carbon::parse($blog->created_at)->format('j F y')}}</td>
                                         <td>
                                             <a href="{{ route('blog-edit', ['id' => $blog->id]) }}" target="_blank" class="btn btn-primary">Ubah</a>
                                             @if(!$blogUrgentIds->contains('blog_id', $blog->id))

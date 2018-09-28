@@ -75,7 +75,9 @@
                                     <label>Tanggal Lahir :</label>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="form-control">{{ $user->dob}} </label>
+                                    <label class="form-control">
+                                        {{ \Carbon\Carbon::parse($user->dob)->format('j F Y')}}
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -129,12 +131,11 @@
                                                         <table id="datatable-responsive-trx" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Invoice</th>
-                                                                <th>Project Name</th>
-                                                                <th>Payment Method</th>
-                                                                <th>Total Price</th>
                                                                 <th>Order Date</th>
+                                                                <th>Project Name</th>
+                                                                <th>Total Price</th>
+                                                                <th>Invoice</th>
+                                                                <th>Payment Method</th>
                                                                 <th>Status</th>
                                                             </tr>
                                                             </thead>
@@ -142,12 +143,11 @@
                                                             @php( $idx = 1 )
                                                             @foreach($transactions as $trx)
                                                                 <tr>
-                                                                    <td>{{ $idx }}</td>
-                                                                    <td>{{ $trx->invoice }}</td>
-                                                                    <td>{{ $trx->Product->name }}</td>
-                                                                    <td>{{ $trx->payment_method->description }}</td>
-                                                                    <td>Rp {{ $trx->total_price }}</td>
                                                                     <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j M Y G:i:s') }}</td>
+                                                                    <td>{{ $trx->Product->name }}</td>
+                                                                    <td>Rp {{ $trx->total_price }}</td>
+                                                                    <td>{{ $trx->invoice }}</td>
+                                                                    <td>{{ $trx->payment_method->description }}</td>
                                                                     <td>
                                                                         @if($trx->status_id == 9)
                                                                             <span style="color: #42b549;">{{$trx->status->description}}</span>
@@ -179,7 +179,6 @@
                                                         <table id="datatable-responsive-dompet" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
                                                                 <th>Tanggal</th>
                                                                 <th>Deskripsi</th>
                                                                 <th class="text-right">Jumlah</th>
@@ -190,7 +189,6 @@
                                                             @php( $idx = 1 )
                                                             @foreach($statements as $statement)
                                                                 <tr>
-                                                                    <td>{{ $idx }}</td>
                                                                     <td>{{ \Carbon\Carbon::parse($statement->date)->format('j M Y G:i:s') }}</td>
                                                                     <td>{{ $statement->description }}</td>
                                                                     <td class="text-right">Rp {{ $statement->amount }}</td>
@@ -243,6 +241,7 @@
         });
 
         $('#datatable-responsive-trx').DataTable( {
+            order: [[ 0, "desc" ]],
             buttons: [
                 {
                     responsive: {
@@ -265,6 +264,7 @@
             }
         } );
         $('#datatable-responsive-dompet').DataTable( {
+            order: [[ 0, "desc" ]],
             buttons: [
                 {
                     responsive: {

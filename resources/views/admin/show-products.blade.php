@@ -44,7 +44,7 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Tanggal Dibuat</th>
                                     <th>Nama</th>
                                     <th>Total</th>
                                     <th>Sisa Hari</th>
@@ -62,7 +62,7 @@
                                         @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
                                             @php( $percentage = number_format($percentage, 0) )
                                                 <tr>
-                                                    <td>{{ $idx }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($product->created_on)->format('j-M-Y') }}</td>
                                                     <td>{{ $product->name }}</td>
                                                     <td>Rp {{ $product->raising }}</td>
                                                     <td>{{ $product->days_left }} hari</td>

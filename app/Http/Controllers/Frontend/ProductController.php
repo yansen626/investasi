@@ -40,11 +40,11 @@ class ProductController extends Controller
                 return View('frontend.show-blog-urgents', compact('blogs'));
             }
         }
-        $products = Product::where('is_secondary', 0)->get();
 
-        $product_debts =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
-        $product_premiums =Product::where('category_id','=', 6)->where('is_secondary','=', 0)->where('status_id','=', 21)->get();
-        $product_onprogress =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->wherein('status_id',[22, 23])->get();
+        $product_debts =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->where('status_id','=', 21)->orderByDesc('created_on')->get();
+        $product_premiums =Product::where('category_id','=', 6)->where('is_secondary','=', 0)->where('status_id','=', 21)->orderByDesc('created_on')->get();
+//        $product_onprogress =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->wherein('status_id',[22, 23])->->orderByDesc('created_on')->get();
+        $product_onprogress =Product::where('category_id','=', 2)->where('is_secondary','=', 0)->where('status_id','=', 23)->orderByDesc('created_on')->get();
 
         $isActiveDebt = "";$isActiveOnprogress = ""; $isActivePremium = "";$isActiveSharing = "";
         $isActiveTabDebt = "";$isActiveTabOnprogress = ""; $isActiveTabPremium = "";$isActiveTabSharing = "";

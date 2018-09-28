@@ -59,10 +59,9 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Created Date</th>
                                     <th>Lender Name</th>
                                     <th>Borrower Name</th>
-                                    <th>Created Date</th>
                                     <th>Option</th>
                                 </tr>
                                 </thead>
@@ -70,10 +69,9 @@
                                 @php( $idx = 1 )
                                     @foreach($vendors as $vendor)
                                         <tr>
-                                            <td>{{ $idx }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($vendor->created_at)->format('j M Y G:i:s') }}</td>
                                             <td>{{ $vendor->user->first_name }} {{ $vendor->user->last_name }}</td>
                                             <td>{{ $vendor->name }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($vendor->created_at)->format('j M Y G:i:s') }}</td>
                                             <td>
                                                 <a href="/admin/vendor/detail/{{ $vendor->id }}" class="btn btn-primary">Detail</a>
 

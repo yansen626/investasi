@@ -58,11 +58,10 @@
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>No</th>
+                                <th>Created Date</th>
                                 <th>E-mail</th>
                                 <th>First name</th>
                                 <th>Last name</th>
-                                <th>Created Date</th>
                                 <th>Option</th>
                             </tr>
                             </thead>
@@ -70,11 +69,10 @@
                             @php( $idx = 1 )
                             @foreach($users as $user)
                                 <tr>
-                                    <td>{{ $idx }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($user->created_on)->format('j M Y G:i:s') }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->first_name }}</td>
                                     <td>{{ $user->last_name }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($user->created_on)->format('j M Y G:i:s') }}</td>
                                     <td>
                                         @if(\Illuminate\Support\Facades\Auth::guard('user_admins')->user()->id == $user->id)
                                             <a href="/admin/user/edit/{{ $user->id }}" class="btn btn-primary">Edit</a>

@@ -50,7 +50,7 @@ class WalletController extends Controller
     }
 
     public function newRequest(){
-        $statements = WalletStatement::where('status_id', 3)->orderByDesc('created_on')->get();
+        $statements = WalletStatement::where('status_id', 3)->orderByDesc('date')->get();
 
         return View('admin.show-wallet-requests', compact('statements'));
     }

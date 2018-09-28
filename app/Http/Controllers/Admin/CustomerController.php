@@ -42,8 +42,8 @@ class CustomerController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $statements = WalletStatement::where('user_id', $id)->get();
-        $transactions = Transaction::where('user_id', $id)->get();
+        $statements = WalletStatement::where('user_id', $id)->orderBy('date', 'Desc')->get();
+        $transactions = Transaction::where('user_id', $id)->orderBy('created_on', 'Desc')->get();
 
         return View('admin.lenders.show-customer', compact('user', 'statements', 'transactions'));
         //return view('admin.show_users')->with('users', $users);

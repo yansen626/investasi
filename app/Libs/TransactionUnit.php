@@ -81,7 +81,7 @@ class TransactionUnit
                 'paymentMethod' => $payment,
                 'product' => $productDB
             );
-            SendEmail::SendingEmail('DetailPembayaran', $data);
+//            SendEmail::SendingEmail('DetailPembayaran', $data);
             return true;
         }
         catch(\Exception $ex){

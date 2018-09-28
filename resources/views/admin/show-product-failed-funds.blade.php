@@ -26,14 +26,13 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Tanggal Pembuatan</th>
                                     <th>Nama Proyek</th>
                                     {{--<th>Category</th>--}}
                                     <th>Pengumpulan Dana </th>
                                     <th>Dana Terkumpul</th>
                                     <th>Konfirmasi Admin</th>
                                     <th>Konfirmasi Superadmin</th>
-                                    <th>Tanggal Pembuatan</th>
                                     <th>Option</th>
                                 </tr>
                                 </thead>
@@ -42,16 +41,15 @@
                                 @php ($idx = 1)
                                     @foreach($products as $product)
                                         <tr>
-                                            <td>{{ $idx}}</td>
+                                            <td>
+                                                {{ \Carbon\Carbon::parse($product->created_on)->format('j F y')}}
+                                            </td>
                                             <td>{{ $product->name}}</td>
                                             {{--<td>{{ $product->category->name }}</td>--}}
                                             <td>Rp {{ $product->raising}}</td>
                                             <td>Rp {{ $product->raised}}</td>
                                             <td><input type="checkbox" @if($product->confirmation_1 == 1) checked @endif onclick="return false;" /></td>
                                             <td><input type="checkbox" @if($product->confirmation_2 == 1) checked @endif onclick="return false;" /></td>
-                                            <td>
-                                                {{ \Carbon\Carbon::parse($product->created_on)->format('j F y')}}
-                                            </td>
                                             <td>
                                                 <a href="{{ route('product-investors', ['id'=>$product->id]) }}" class="btn btn-primary">Detail Pendana</a>
                                                 @if(

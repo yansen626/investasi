@@ -133,7 +133,7 @@ class ProductController extends Controller
 
     public function ProductFailedFund(){
         $adminType = Auth::guard('user_admins')->user()->user_type;
-        $products = Product::Where('status_id', 26)->get()->sortByDesc('created_on');
+        $products = Product::Where('status_id', 26)->get()->orderByDesc('created_on');
 
         return View('admin.show-product-failed-funds', compact('products', 'adminType'));
     }
@@ -196,7 +196,7 @@ class ProductController extends Controller
      * */
     public function ProductInvestorList($id){
         $productDB = Product::find($id);
-        $transactionDB = Transaction::where('product_id', $id)->get();
+        $transactionDB = Transaction::where('product_id', $id)->orderByDesc('created_on')->get();
 
         return View('admin.show-product-investors', compact('transactionDB', 'productDB'));
     }
@@ -204,7 +204,7 @@ class ProductController extends Controller
     public function ProductInstallmentDetail($id){
         $productDB = Product::find($id);
         $productInstallments = ProductInstallment::where('product_id', $id)->get();
-        $transactionDB = Transaction::where('product_id', $id)->where('status_id', 5)->get();
+        $transactionDB = Transaction::where('product_id', $id)->where('status_id', 5)->orderByDesc('created_on')->get();
 
         return View('admin.product.show-product-installment', compact('transactionDB', 'productDB', 'productInstallments'));
     }

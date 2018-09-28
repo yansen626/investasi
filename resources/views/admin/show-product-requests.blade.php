@@ -27,13 +27,12 @@
                             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Created Date</th>
                                     <th>Product Name</th>
                                     <th>Category</th>
                                     {{--<th>User Name</th>--}}
                                     {{--<th>Vendor Name</th>--}}
                                     <th>Raising </th>
-                                    <th>Created Date</th>
                                     <th>Featured Photo</th>
                                     <th>Option</th>
                                 </tr>
@@ -42,15 +41,14 @@
                                 @php ($idx = 1)
                                     @foreach($products as $product)
                                         <tr>
-                                            <td>{{ $idx}}</td>
+                                            <td>
+                                                {{ \Carbon\Carbon::parse($product->created_on)->format('j F y')}}
+                                            </td>
                                             <td>{{ $product->name}}</td>
                                             <td>{{ $product->category->name }}</td>
 {{--                                            <td>{{ $product->user->first_name }} {{ $product->user->last_name }}</td>--}}
 {{--                                            <td>{{ $product->name}}</td>--}}
                                             <td>Rp {{ $product->raising}}</td>
-                                            <td>
-                                                {{ \Carbon\Carbon::parse($product->created_on)->format('j F y')}}
-                                            </td>
                                             {{--<td width="15%">--}}
                                                 {{--<img width="100%" src="{{ asset('storage\product\\'. $product->product_image()->where('featured', 1)->first()->path) }}">--}}
                                             {{--</td>--}}

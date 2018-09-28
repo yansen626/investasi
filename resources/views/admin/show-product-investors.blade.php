@@ -191,12 +191,11 @@
                                                         <table class="datatable-js table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
+                                                                <th>Tanggal Transaksi</th>
                                                                 <th>Invoice</th>
                                                                 <th>Status</th>
                                                                 <th>Nama Pendana</th>
                                                                 <th>Nomor VA</th>
-                                                                <th>Tanggal Transaksi</th>
                                                                 <th>Jumlah Pendanaan</th>
                                                                 <th>Metode Pembayaran </th>
                                                             </tr>
@@ -206,12 +205,11 @@
                                                                 @php ($idx = 1)
                                                                 @foreach($transactionDB->where('status_id', 10) as $transaction)
                                                                     <tr>
-                                                                        <td>{{ $idx}}</td>
+                                                                        <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j-F-Y H:i:s')}}</td>
                                                                         <td>{{ $transaction->invoice}}</td>
                                                                         <td>{{$transaction->status->description}}</td>
                                                                         <td>{{ $transaction->user->first_name }} {{ $transaction->user->last_name }}</td>
                                                                         <td>{{ $transaction->user->va_acc }}</td>
-                                                                        <td>{{ \Carbon\Carbon::parse($transaction->created_on)->format('j-F-Y H:i:s')}}</td>
                                                                         <td>Rp {{ $transaction->total_price}}</td>
                                                                         <td>{{ $transaction->payment_method->description}}</td>
                                                                     </tr>
