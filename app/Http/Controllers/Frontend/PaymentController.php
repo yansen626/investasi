@@ -261,7 +261,6 @@ class PaymentController extends Controller
                 'total_invest_amount'   => $investAmount + $adminFee
             ]);
 
-            //pay with bank transfer
             if($paymentMethod != 'wallet'){
                 if($paymentMethod == 'bank_transfer'){
                     error_log("CHECK!");
