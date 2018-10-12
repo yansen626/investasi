@@ -81,7 +81,7 @@ class TransactionUnit
                 'paymentMethod' => $payment,
                 'product' => $productDB
             );
-//            SendEmail::SendingEmail('DetailPembayaran', $data);
+            SendEmail::SendingEmail('DetailPembayaran', $data);
             return true;
         }
         catch(\Exception $ex){
@@ -138,6 +138,7 @@ class TransactionUnit
             DB::transaction(function() use ($orderid){
                 $transaction = Transaction::where('order_id', $orderid)->first();
                 if($transaction->status_id == 5){
+                    Utilities::ExceptionLog("Transaction ".$orderid." status already 5");
                     return false;
                 }
                 $dateTimeNow = Carbon::now('Asia/Jakarta');
@@ -176,7 +177,7 @@ class TransactionUnit
                 $productDB->save();
 
                 //Send Email for accepted fund
-//                SendEmail::SendingEmail('successTransaction', $data);
+                SendEmail::SendingEmail('successTransaction', $data);
 
             });
             return true;

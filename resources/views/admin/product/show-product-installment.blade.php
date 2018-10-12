@@ -92,15 +92,15 @@
                                     <table>
                                         <tr>
                                             <td width="80">Bulan </td>
-                                            <td width="100">Tanggal Jatuh Tempo</td>
-                                            <td width="100">Jumlah Tagihan</td>
+                                            <td width="150">Tanggal Jatuh Tempo</td>
+                                            <td width="200">Jumlah Tagihan</td>
                                             <td width="20"></td>
                                         </tr>
                                         @foreach($productInstallments as $productInstallment)
                                             <tr>
                                                 <td width="80">Bulan {{$productInstallment->month}}</td>
-                                                <td width="100">{{ \Carbon\Carbon::parse($productInstallment->due_date)->format('j-F-Y')}}</td>
-                                                <td width="100">Rp {{$productInstallment->paid_amount}}</td>
+                                                <td width="150">{{ \Carbon\Carbon::parse($productInstallment->due_date)->format('j-F-Y')}}</td>
+                                                <td width="200">Rp {{$productInstallment->paid_amount}}</td>
                                                 <td width="20">
                                                     @if($productInstallment->status_id == 26)
                                                         <a onclick="modalPop('{{ $productInstallment->id }}', 'accept', '/admin/product/installment/process/')" class="btn btn-sm btn-success">Process</a>

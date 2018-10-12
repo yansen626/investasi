@@ -191,8 +191,12 @@
             sbAdd.append("<td style='padding-left:5%;'><h4>Cicilan/bulan</h4></td>");
             sbAdd.append("<td style='padding-left:5%;'><h4>Bunga/bulan</h4></td>");
             sbAdd.append("</tr>");
-
-            for(var i=1;i<=divAmount;i++){
+            var start = 1;
+            var category = $('#category').val();
+            if(category == 6){
+                start = 0;
+            }
+            for(var i=start;i<=divAmount;i++){
                 sbAdd.append("<tr>");
                 sbAdd.append("<td> Bulan "+ i + "</td>");
                 sbAdd.append("<td style='padding-left:5%;'>");

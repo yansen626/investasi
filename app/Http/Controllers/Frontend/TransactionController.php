@@ -42,7 +42,7 @@ class TransactionController extends Controller
         }
 
         $productSahamHasil = Product::select('id')->wherein('category_id', [1, 3])->where('status_id', 1)->orderByDesc('created_on')->get();
-        $productHutang = Product::select('id')->where('category_id', 2)->wherein('status_id', [21,22,23])->orderByDesc('created_on')->get();
+        $productHutang = Product::select('id')->wherein('category_id', [2, 6])->wherein('status_id', [21,22,23])->orderByDesc('created_on')->get();
 
         $transactionPending = Transaction::where('user_id', $userId)->where('status_id', 3)->orderByDesc('created_on')->get();
         $transactionSahamHasil = Transaction::where('user_id', $userId)->wherein('product_id', $productSahamHasil)->orderByDesc('created_on')->get();

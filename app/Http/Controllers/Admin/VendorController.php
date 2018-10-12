@@ -539,13 +539,21 @@ class VendorController extends Controller
 
 
 //        create product ciclan & bunga
+                $category = $request['category'];
+                if($category != 6){
+                    $start = 1;
+                }
+                else{
+                    $start = 0;
+                }
 
-                for($i=0;$i<$request['tenor_loan'];$i++){
+                $i = 0;
+                for($j=$start;$j<=$request['tenor_loan'];$j++){
                     $totalPayment = $installmentPerMonths[$i] + $interestPerMonths[$i];
-                    $newProduct = ProductInstallment::create([
+                    $ProductInstallment = ProductInstallment::create([
                         'id'            =>Uuid::generate(),
                         'product_id'    => $productID,
-                        'month'         => $i + 1,
+                        'month'         => $j,
                         'amount'        => $installmentPerMonths[$i],
                         'interest_amount'        => $interestPerMonths[$i],
                         'paid_amount'        => $totalPayment,
@@ -553,6 +561,7 @@ class VendorController extends Controller
                         'status_id'     => 1,
                         'created_on'    => $dateTimeNow->toDateTimeString()
                     ]);
+                    $i++;
                 }
             });
         }

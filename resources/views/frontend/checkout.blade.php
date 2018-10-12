@@ -49,14 +49,18 @@
                             <div class="field col-sm-12 text-center error-remaining" style="display: none;">
                                 <span class="help-block" style="color: red;">Nominal Harus lebih kecil dari sisa pendanaan</span>
                             </div>
-                            <div class="field col-sm-12 price-format">
+                            <div class="field col-sm-12 price-format checkout-border">
                                 <h5>Nominal</h5>
                                 <input id="amount" type="text" name="amount" />
                                 <h5>Minimum Pendanaan : Rp {{number_format(env('PAYMENT_MINIMUM'), 0, ",", ".")}}</h5>
                                 <h5>Kelipatan : Rp {{number_format(env('PAYMENT_MULTIPLE'), 0, ",", ".")}}</h5>
+                                {{--<h5 style="visibility: hidden">Simulasi pendapatan per-bulan : <span id="income">Rp 0</span></h5>--}}
+                            </div>
+                            <div class="field col-sm-12 checkout-border">
+                                <h5>Simulasi pendapatan per-bulan : <span id="income">Rp 0</span></h5>
                             </div>
 
-                            <div class="field col-sm-12">
+                            <div class="field col-sm-12 checkout-border">
                                 <h5>Pilihan Sumber Dana</h5>
                                 @if($userData->wallet_amount != 0)
                                     <h5>Saldo Anda Rp {{$userData->wallet_amount}}</h5>
@@ -91,6 +95,8 @@
                                 <input id="remaining" value="{{$remaining}}" type="hidden">
                                 <input id="paymentMinim" value="{{env('PAYMENT_MINIMUM')}}" type="hidden">
                                 <input id="paymentMultiple" value="{{env('PAYMENT_MULTIPLE')}}" type="hidden">
+                                <input id="raised" value="{{$product->raised}}" type="hidden">
+                                <input id="getProductInstallment" value="{{$getProductInstallment}}" type="hidden">
 
                                 <div class="field col-sm-12">
                                     <div class="col-sm-12">
@@ -279,7 +285,10 @@
     @parent
     <link rel="stylesheet" href="{{ URL::asset('css/datatable/jquery.dataTables.min.css') }}">
     <style>
-
+        .checkout-border{
+            border-bottom: 2px solid #ff7a00;
+            padding-bottom: 6%;
+        }
     </style>
 @endsection
 
@@ -287,12 +296,40 @@
     @parent
     <script src="{{ URL::asset('js/frontend/bootstrap-datetimepicker.min.js') }}"></script>
     <script>
+        $( document ).ready(function() {
+            var paidAmount = $('#getProductInstallment').val();
+            var editedPaidAmount = RemoveDot(paidAmount);
+            $('#getProductInstallment').val(editedPaidAmount);
 
+            var raised = $('#raised').val();
+            var editedRaised = RemoveDot(raised);
+            $('#raised').val(editedRaised);
+
+        });
         numberFormat = new AutoNumeric('.amount_wallet_transfer > input', {
             decimalCharacter: ',',
             digitGroupSeparator: '.',
             decimalPlaces: 0,
             modifyValueOnWheel: false
+        });
+        $('#amount').on('input',function(){
+            var invest = $("#amount").val();
+            while(true)
+                if(invest.includes('.')){
+                    invest = invest.replace('.', '');
+                }
+                else{
+                    break;
+                }
+            var paidAmount = $('#getProductInstallment').val();
+            var raised = $('#raised').val();
+
+            var userGetTemp = ((invest*100) / raised).toFixed(2);
+
+            var userGetFinal =  Math.round((userGetTemp * paidAmount) / 100);
+            // alert(invest + " | "  + paidAmount + " | " + raised + " | " + userGetTemp + " | " + userGetFinal)
+
+            $('#income').html(addCommas(userGetFinal));
         });
 
         function modalCheckout(){
@@ -436,5 +473,6 @@
                 }
             }
         }
+
     </script>
 @endsection

@@ -102,28 +102,32 @@ class TestingController extends Controller
     }
     public function TestingFunction(){
         try{
-            $ProductIds = Product::where('vendor_id', "96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8")->get();
+//            $ProductIds = Product::where('vendor_id', "96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8")->get();
+//
+//            foreach ($ProductIds as $ProductId){
+//
+//                $userData = User::find($ProductId->user_id);
+//                $data = array(
+//                    'user'=>$userData,
+//                    'productInstallments' => ProductInstallment::where('product_id', $ProductId->id)->get(),
+//                    'product' => Product::find($ProductId->id),
+//                    'vendor' => Vendor::find('96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8')
+//                );
+//
+//                $pdf2 = PDF::loadView('email.perjanjian-pinjaman', $data);
+//
+//                Mail::send('email.surat-perjanjian-pinjaman', $data, function ($message) use ($pdf2, $userData) {
+//                    $message->to("yansen626@gmail.com")
+//                        ->subject('Perjanjian Pinjaman di Indofund');
+//
+//                    $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
+//                });
+//            }
 
-            foreach ($ProductIds as $ProductId){
+            $userGetTemp = number_format(((9000*100) / 12800000 ),2);
 
-                $userData = User::find($ProductId->user_id);
-                $data = array(
-                    'user'=>$userData,
-                    'productInstallments' => ProductInstallment::where('product_id', $ProductId->id)->get(),
-                    'product' => Product::find($ProductId->id),
-                    'vendor' => Vendor::find('96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8')
-                );
-
-                $pdf2 = PDF::loadView('email.perjanjian-pinjaman', $data);
-
-                Mail::send('email.surat-perjanjian-pinjaman', $data, function ($message) use ($pdf2, $userData) {
-                    $message->to("yansen626@gmail.com")
-                        ->subject('Perjanjian Pinjaman di Indofund');
-
-                    $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
-                });
-            }
-            return "asdf";
+            $userGetFinal = round(($userGetTemp * 13582163) / 100);
+            return "9000 | 13582163 | 12800000 | ".$userGetTemp." | ".$userGetFinal;
         }
         catch (\Exception $ex){
             return "failed : ".$ex;

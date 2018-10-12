@@ -10,6 +10,18 @@ function addCommas(nStr) {
     return "Rp " + x1 + x2;
 }
 
+function RemoveDot(str){
+    var newStr = str;
+    while(true)
+        if(newStr.includes('.')){
+            newStr = newStr.replace('.', '');
+        }
+        else{
+            break;
+        }
+    return newStr;
+}
+
 $('input[type=radio][name=amount]').change(function() {
     var amount = parseInt(this.value);
     var totalAmount = amount + 4000;

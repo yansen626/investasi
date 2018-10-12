@@ -15,6 +15,7 @@ use App\Libs\TransactionUnit;
 use App\Libs\Utilities;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ProductInstallment;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
@@ -55,6 +56,11 @@ class PaymentController extends Controller
         $remaining = $productRaising - $productRaised;
         $remainingStr = number_format($remaining, 0, ",", ".");
 
+        $ProductInstallmentTotal = ProductInstallment::where('product_id', $id)->sum('paid_amount');
+        $ProductInstallmentCount = ProductInstallment::where('product_id', $id)->count();
+        $getProductInstallment = $ProductInstallmentTotal / $ProductInstallmentCount;
+//        dd($getProductInstallment);
+
         $notCompletedData = 1;
         if($userData->identity_number== null ||
             $userData->address_ktp== null ||
@@ -72,7 +78,8 @@ class PaymentController extends Controller
             'product'       => $product,
             'notCompletedData'    => $notCompletedData,
             'remaining'    => $remaining,
-            'remainingStr'    => $remainingStr
+            'remainingStr'    => $remainingStr,
+            'getProductInstallment'    => $getProductInstallment
         );
 //        dd($data);
         return View('frontend.checkout')->with($data);
@@ -292,7 +299,7 @@ class PaymentController extends Controller
                 $userDB = User::find($userId);
                 $userWallet = (double) str_replace('.','', $userDB->wallet_amount);
 //                dd($investAmount."|".$userWallet);
-                if($investAmount <= $userWallet){
+//                if($investAmount <= $userWallet){
                     //create Transaction for wallet
 //                    $isSuccess1 = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderIdWallet);
 //                    TransactionUnit::transactionAfterVerified($orderIdWallet);
@@ -313,15 +320,21 @@ class PaymentController extends Controller
 //                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' fail to created");
 //                        return View('frontend.checkout-success', compact('paymentMethod'));
 //                    }
-
+                if($investAmount <= $userWallet){
                     $isSuccess1 = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
-                    TransactionUnit::transactionAfterVerified($orderId);
-                    $paymentMethod = 'dompet';
-                    Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' successfully created");
-                    return View('frontend.checkout-success', compact('paymentMethod'));
+                    if($isSuccess1){
+                        TransactionUnit::transactionAfterVerified($orderId);
+                        $paymentMethod = 'dompet';
+                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' successfully created");
+                        return View('frontend.checkout-success', compact('paymentMethod'));
+                    }
+                    else{
+                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' (error create transaction) fail to created");
+                        return View('frontend.checkout-failed', compact('investId'));
+                    }
                 }
                 else{
-                    Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' fail to created");
+                    Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' (investAmount > userWallet) fail to created");
                     return View('frontend.checkout-failed', compact('investId'));
                 }
             }

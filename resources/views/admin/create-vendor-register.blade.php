@@ -74,19 +74,19 @@
                                             {{--tab 3--}}
                                             <div class="tab-pane" id="user">
                                                 <div class="field col-md-6 col-sm-12">
-                                                    <h4>E-mail</h4>
+                                                    <h4>E-mail * </h4>
                                                     <input type="email" name="email" value="{{old('email')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-md-6 col-sm-12">
-                                                    <h4>Nomor Handphone</h4>
+                                                    <h4>Nomor Handphone * </h4>
                                                     <input type="number" name="phone" value="{{old('phone')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-md-6 col-sm-12">
-                                                    <h4>Password</h4>
+                                                    <h4>Password * </h4>
                                                     <input type="password" name="password" value="{{old('password')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-md-6 col-sm-12">
-                                                    <h4>Konfirmasi Password</h4>
+                                                    <h4>Konfirmasi Password * </h4>
                                                     <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
@@ -110,7 +110,7 @@
                                                     <input type="text" name="education" value="{{old('education')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div style="margin-top: 0;" class="field col-sm-12">
-                                                    <h4>Username</h4>
+                                                    <h4>Username * </h4>
                                                     <input type="text" name="username" value="{{old('username')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -371,7 +371,12 @@
             sbAdd.append("<td style='padding-left:5%;'><h4>Bunga/bulan</h4></td>");
             sbAdd.append("</tr>");
 
-            for(var i=1;i<=divAmount;i++){
+            var start = 1;
+            var category = $('#category').val();
+            if(category == 6){
+                start = 0;
+            }
+            for(var i=start;i<=divAmount;i++){
                 sbAdd.append("<tr>");
                 sbAdd.append("<td> Bulan "+ i + "</td>");
                 sbAdd.append("<td style='padding-left:5%;'>");

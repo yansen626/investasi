@@ -88,12 +88,12 @@ class HomeController extends Controller
 //                $vendor = Vendor::select('id')->where("user_id", $userId)->first();
 //                $myProductCount = Product::where('status_id', 21)
 //                    ->where('vendor_id', $vendor->id)
-//                    ->where('category_id', 2)
+//                    ->where('category_id', 2)e
 //                    ->orderByDesc('created_on')
 //                    ->count();
 //            }
 
-            $recentProductCount = Product::where('status_id', 21)->where('category_id', 2)->orderByDesc('created_on')->count();
+            $recentProductCount = Product::where('status_id', 21)->whereIn('category_id', [2,6])->orderByDesc('created_on')->count();
             $onGoingProducts = Transaction::where('user_id', $userId)->where('status_id', 5)->orderByDesc('created_on')->take(3)->get();
             $onGoingProductCount = Transaction::where('user_id', $userId)->where('status_id', 5)->orderByDesc('created_on')->count();
 
