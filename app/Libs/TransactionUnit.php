@@ -268,13 +268,29 @@ class TransactionUnit
                     $userDB->wallet_amount = $userSaldoFinal;
                     $userDB->save();
 
-                    //send email to user
-                    $data = array(
-                        'user'=>$userDB,
-                        'description' => $desription,
-                        'userGetFinal' => $userGetFinal
-                    );
-                    SendEmail::SendingEmail('topupSaldo', $data);
+                    if($productInstallments->month == $productInstallments->Product->tenor_loan){
+                        $statements = WalletStatement::where('user_id', $transaction->user_id)
+                            ->where('description', 'like', '%'.$productInstallments->product->name.'%')
+                            ->orderBy('created_on', 'ASC')
+                            ->get();
+                        //send email to user
+                        $data = array(
+                            'user'=>$userDB,
+                            'description' => $productInstallments->product->name,
+                            'statements' => $statements,
+                            'userGetFinal' => $userGetFinal
+                        );
+                        SendEmail::SendingEmail('installmentDone', $data);
+                    }
+                    else{
+                        //send email to user
+                        $data = array(
+                            'user'=>$userDB,
+                            'description' => $desription,
+                            'userGetFinal' => $userGetFinal
+                        );
+                        SendEmail::SendingEmail('topupSaldo', $data);
+                    }
 
                 }
                 //change product installment status

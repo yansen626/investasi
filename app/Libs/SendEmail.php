@@ -12,6 +12,7 @@ use App\Mail\AcceptPenarikan;
 use App\Mail\ContactUs;
 use App\Mail\DetailPembayaran;
 use App\Mail\EmailVerification;
+use App\Mail\InstallmentDone;
 use App\Mail\InvoicePembelian;
 use App\Mail\PerjanjianLayanan;
 use App\Mail\PerjanjianPinjaman;
@@ -243,6 +244,18 @@ class SendEmail
                     $userGetFinal = $objData->userGetFinal;
 
                     $topupEmail = new TopUpSaldo($userDB, $desription, $userGetFinal);
+//                    dd($topupEmail);
+                    Mail::to($userDB->email)->send($topupEmail);
+                    break;
+
+                // notif email for topup saldo and installment done for paying
+                case 'installmentDone' :
+                    $userDB = $objData->user;
+                    $description = $objData->description;
+                    $statements = $objData->statements;
+                    $userGetFinal = $objData->userGetFinal;
+
+                    $topupEmail = new InstallmentDone($userDB, $description, $statements, $userGetFinal);
 //                    dd($topupEmail);
                     Mail::to($userDB->email)->send($topupEmail);
                     break;

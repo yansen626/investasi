@@ -106,7 +106,7 @@ class TestingController extends Controller
 //
 //            foreach ($ProductIds as $ProductId){
 //
-//                $userData = User::find($ProductId->user_id);
+                $userData = User::find("6fa921f0-493e-11e8-9760-5f8fe286ae19");
 //                $data = array(
 //                    'user'=>$userData,
 //                    'productInstallments' => ProductInstallment::where('product_id', $ProductId->id)->get(),
@@ -124,10 +124,25 @@ class TestingController extends Controller
 //                });
 //            }
 
-            $userGetTemp = number_format(((9000*100) / 12800000 ),2);
+//            $userGetTemp = number_format(((9000*100) / 12800000 ),2);
+//
+//            $userGetFinal = round(($userGetTemp * 13582163) / 100);
+//            return "9000 | 13582163 | 12800000 | ".$userGetTemp." | ".$userGetFinal;
 
-            $userGetFinal = round(($userGetTemp * 13582163) / 100);
-            return "9000 | 13582163 | 12800000 | ".$userGetTemp." | ".$userGetFinal;
+
+            $statements = WalletStatement::where('user_id', '6fa921f0-493e-11e8-9760-5f8fe286ae19')
+                ->where('description', 'like', '%Modal Kerja Cafe%')
+                ->orderBy('created_on', 'ASC')
+                ->get();
+//            dd($statements);
+            //send email to user
+            $data = array(
+                'user'=>$userData,
+                'description' => "Modal Kerja Cafe",
+                'statements' => $statements,
+                'userGetFinal' => 123456789
+            );
+            SendEmail::SendingEmail('installmentDone', $data);
         }
         catch (\Exception $ex){
             return "failed : ".$ex;
