@@ -54,11 +54,11 @@
                                 <input id="amount" type="text" name="amount" />
                                 <h5>Minimum Pendanaan : Rp {{number_format(env('PAYMENT_MINIMUM'), 0, ",", ".")}}</h5>
                                 <h5>Kelipatan : Rp {{number_format(env('PAYMENT_MULTIPLE'), 0, ",", ".")}}</h5>
-                                {{--<h5 style="visibility: hidden">Simulasi pendapatan per-bulan : <span id="income">Rp 0</span></h5>--}}
+                                <h5 style="visibility: hidden">Simulasi pendapatan per-bulan : <span id="income">Rp 0</span></h5>
                             </div>
-                            <div class="field col-sm-12 checkout-border">
-                                <h5>Simulasi pendapatan per-bulan : <span id="income">Rp 0</span></h5>
-                            </div>
+                            {{--<div class="field col-sm-12 checkout-border">--}}
+                                {{--<h5>Simulasi pendapatan per-bulan : <span id="income">Rp 0</span></h5>--}}
+                            {{--</div>--}}
 
                             <div class="field col-sm-12 checkout-border">
                                 <h5>Pilihan Sumber Dana</h5>
@@ -256,7 +256,7 @@
                     {{ Form::hidden('checkout-province', '', array('id' => 'checkout-province')) }}
                     {{ Form::hidden('checkout-zip', '', array('id' => 'checkout-zip')) }}
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="text-align: center;">
                     <button type="button" class="btn btn-error" data-dismiss="modal">Tutup</button>
                     <button id="submit" type="submit" class="btn btn-solid" disabled>Bayar Sekarang</button>
                 </div>

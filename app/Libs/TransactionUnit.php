@@ -235,7 +235,7 @@ class TransactionUnit
             $transactionList = Transaction::where('product_id', $productInstallments->product_id)->where('status_id', 5)->get();
             $asdf = array();
             DB::transaction(function() use ($productInstallments, $transactionList, $paid_amount, $raised, $asdf) {
-
+                $doneInstallmentPayment = false;
                 foreach ($transactionList as $transaction){
 
                     $dateTimeNow = Carbon::now('Asia/Jakarta');
@@ -281,6 +281,7 @@ class TransactionUnit
                             'userGetFinal' => $userGetFinal
                         );
                         SendEmail::SendingEmail('installmentDone', $data);
+                        $doneInstallmentPayment = true;
                     }
                     else{
                         //send email to user
@@ -296,6 +297,13 @@ class TransactionUnit
                 //change product installment status
                 $productInstallments->status_id = 27;
                 $productInstallments->save();
+
+                //change product status kalau pembayaran cicilan sudah selesai
+                if($doneInstallmentPayment){
+                    $productDB = Product::find($productInstallments->product_id);
+                    $productDB->status_id = 24;
+                    $productDB->save();
+                }
             });
             return true;
         }

@@ -52,7 +52,7 @@
                                                 @foreach($product_debts as $product)
 
                                                     @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
-                                                    @php( $percentage = number_format($percentage, 0) )
+                                                    @php( $percentage = number_format($percentage, 2) )
                                                         <tr class="row-clickable" data-href='{{ route('project-detail', ['id' => $product->id]) }}'>
                                                             <td>{{ $idx }}</td>
                                                             <td>{{ $product->name }}</td>
@@ -100,7 +100,7 @@
                                                 @foreach($product_premiums as $product)
 
                                                     @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
-                                                    @php( $percentage = number_format($percentage, 0) )
+                                                    @php( $percentage = number_format($percentage, 2) )
                                                         <tr class="row-clickable" data-href='{{ route('project-detail', ['id' => $product->id]) }}'>
                                                             <td>{{ $idx }}</td>
                                                             <td>{{ $product->name }}</td>
@@ -148,7 +148,7 @@
                                                 @foreach($product_onprogress as $product)
 
                                                     @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
-                                                    @php( $percentage = number_format($percentage, 0) )
+                                                    @php( $percentage = number_format($percentage, 2) )
                                                         <tr class="row-clickable" data-href='{{ route('project-detail', ['id' => $product->id]) }}'>
                                                             <td>{{ $idx }}</td>
                                                             <td>{{ $product->name }}</td>

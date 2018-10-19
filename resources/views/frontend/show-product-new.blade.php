@@ -54,7 +54,7 @@
                             <div class="progress-bar-wrapper min">
                                 <div class="progress-bar-outer">
                                     @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
-                                    @php( $percentage = number_format($percentage, 0) )
+                                    @php( $percentage = number_format($percentage, 2) )
                                     <div class="progress-bar-inner">
                                         <div class="progress-bar">
                                             <span data-percent="{{$percentage}}"> <span class="pretng">{{$percentage}}%</span> </span>

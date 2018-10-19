@@ -39,7 +39,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Ringkasan Akun Anda adalah menu borrower melakukan pengecekan terhadap hasil keuntungan hasil bunga dari proyek yang didanainya.">
-                            <a href="{{route('pendapatan')}}">
+                            <a href="{{route('portfolio', ['tab' => 'debt'])}}">
                                 <div class="feature  clearfix">
                                     <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-3.png') }}">
                                     <h4>Ringkasan Akun Anda </h4>
@@ -116,7 +116,7 @@
                         @php( $togo = $transaction->product->getOriginal('raising') - $transaction->product->getOriginal('raised') )
                         @php( $togo = number_format($togo,0, ",", ".") )
                         @php( $percentage = ($transaction->product->getOriginal('raised') * 100) / $transaction->product->getOriginal('raising') )
-                        @php( $percentage = number_format($percentage, 0) )
+                        @php( $percentage = number_format($percentage, 2) )
                         <a href="{{ route('project-detail', ['id' => $transaction->product->id]) }}">
                             <div class="col-md-12 project-border">
                                 <div class="col-md-3">
@@ -381,7 +381,7 @@
                         @php( $togo = $product->getOriginal('raising') - $product->getOriginal('raised') )
                         @php( $togo = number_format($togo,0, ",", ".") )
                         @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
-                        @php( $percentage = number_format($percentage, 0) )
+                        @php( $percentage = number_format($percentage, 2) )
                         <a href="{{ route('project-detail', ['id' => $product->id]) }}">
                             <div class="col-md-12 project-border" style="background-color: #DCF8C6;">
                                 <div class="col-md-2">
@@ -436,7 +436,7 @@
                         @php( $togo = $product->getOriginal('raising') - $product->getOriginal('raised') )
                         @php( $togo = number_format($togo,0, ",", ".") )
                         @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
-                        @php( $percentage = number_format($percentage, 0) )
+                        @php( $percentage = number_format($percentage, 2) )
                         <a href="{{ route('project-detail', ['id' => $product->id]) }}">
                             <div class="col-md-12 project-border">
                                 <div class="col-md-2">
