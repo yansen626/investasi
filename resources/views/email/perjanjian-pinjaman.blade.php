@@ -516,15 +516,14 @@
         <b><span style='text-transform:uppercase'>JANGKA WAKTU PINJAMAN</span></b>
     </p>
     <p class="MsoListParagraph" style='text-align:justify;line-height:110%'>
-        Jangka waktu Pinjaman ditetapkan selama {{$product->tenor_loan}}
-        terhitung sejak tanggal pengiriman atas seluruh jumlah Pinjaman secara penuh dan dapat diperpanjang sesuai dengan kesepakatan dari Para Pihak (“<b>Jangka Waktu Pinjaman</b>”).
+        Jangka waktu Pinjaman ditetapkan selama {{$product->tenor_loan}} bulan terhitung sejak tanggal pengiriman atas seluruh jumlah Pinjaman secara penuh dan dapat diperpanjang sesuai dengan kesepakatan dari Para Pihak (“<b>Jangka Waktu Pinjaman</b>”).
     </p>
     <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
         <b>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></b>
         <b><span style='text-transform:uppercase'>PEMBAYARAN</span> PINJAMAN DAN PELUNASAN DIPERCEPAT</b>
     </p>
     <p class="custom-p"><b><span style='font-size:10.5pt;line-height:110%;font-family:"Calibri","sans-serif"'>4.1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></b> <b><span style='font-size:11.0pt;line-height:110%;font-family: "Calibri","sans-serif"'>Pembayaran Pinjaman</span></b></p>
-    <p class="custom-p4"><span class="custom-span">4.1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Pinjaman dan</span> <span class="custom-span">jumlah</span><span class="custom-span" lang="IN">lain yang terutang berdasarkan Perjanjian Pinjaman harus dilunasi oleh Penerima Pinjaman dalam Jangka Waktu Pinjaman</span> <span class="custom-span">sesuai dengan jadwal pembayaran pinjaman yang dimuat pada Lampiran I</span></p>
+    <p class="custom-p4"><span class="custom-span">4.1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Pinjaman dan</span> <span class="custom-span">jumlah </span><span class="custom-span" lang="IN">lain yang terutang berdasarkan Perjanjian Pinjaman harus dilunasi oleh Penerima Pinjaman dalam Jangka Waktu Pinjaman</span> <span class="custom-span">sesuai dengan jadwal pembayaran pinjaman yang dimuat pada Lampiran I</span></p>
     <p class="custom-p4"><span class="custom-span">4.1.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Pembayaran atas Angsuran dilakukan oleh Penerima Pinjaman kepada</span> <span class="custom-span">Pemberi Pinjaman</span><span class="custom-span" lang="IN">pada</span> <span class="custom-span">H</span><span class="custom-span" lang="IN">ari Kerja</span> <span class="custom-span">ke rekening bank yang ditentukan pada Lampiran II dari Perjanjian ini (“<b>Rekening Escrow</b>”).</span></p>
     <p class="custom-p4"><span class="custom-span">4.1.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span">Setiap pembayaran dari</span> <span class="custom-span" lang="IN">Penerima</span> <span class="custom-span">Pinjaman, akan dipergunakan untuk pembayaran dengan urutan sebagai berikut:</span></p>
     <p class="custom-p5"><span class="custom-span">(a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span">biaya-biaya;</span></p>
@@ -538,7 +537,7 @@
     <p class="custom-p4"><span class="custom-span">
             4.2.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Penerima Pinjaman diperkenankan untuk melakukan pembayaran seluruh</span> <span style='font-size:11.0pt;line-height: 110%;font-family:"Calibri","sans-serif"'>Pinjaman</span> <span class="custom-span" lang="IN">lebih cepat dari waktu yang ditetapkan dengan</span> <span class="custom-span">melakukan permohonan untuk itu melalui Akun Penerima Pinjaman</span> <span class="custom-span" lang="IN">sedikitnya</span>
         3 <span lang="IN"></span>
-        <span class="custom-span">Hari Kerja sebelum tanggal pelunasan dipercepat yang direncakan</span>
+        <span class="custom-span">Hari Kerja sebelum tanggal pelunasan dipercepat yang direncanakan</span>
         <span class="custom-span" lang="IN">(“<b>Pelunasan Dipercepat</b>”).</span>
     </p>
     <p class="custom-p4"><span class="custom-span">4.2.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span">Penerima Pinjaman tidak diperkenankan untuk melakukan pelunasan dipercepat sebagian melainkan harus untuk seluruh Pinjaman yang diterimanya dari Pemberi Pinjaman yang memberikan.</span></p>
@@ -581,7 +580,7 @@
         <span class="custom-span" lang="IN">yang pembayarannya akan dilakukan dengan cara pengurangan langsung dari jumlah</span>
         <span class="custom-span">Pinjaman</span><span class="custom-span" lang="IN">.</span>
     </p>
-    <p class="custom-p5"><span class="custom-span">(b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Penerima Pinjaman setuju untuk membayar seluruh biaya-biaya (termasuk biaya hukum) sehubungan dengan penandatanganan, pelaksanaan termasuk eksekusi dari Perjanjian, atau perjanjian lainnya yang disebutkan di</span> <span class="custom-span" lang="IN"></span><span class="custom-span" lang="IN">sini yang pembayarannya akan dilakukan dengan cara</span> <span class="custom-span">pengurangan</span><span class="custom-span" lang="IN">langsung dari jumlah yang ditarik</span> <span class="custom-span">atau cara lain yang merupakan diskresi dari</span> <span class="custom-span" lang="IN">Penyelenggara.</span></p>
+    <p class="custom-p5"><span class="custom-span">(b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span> <span class="custom-span" lang="IN">Penerima Pinjaman setuju untuk membayar seluruh biaya-biaya (termasuk biaya hukum) sehubungan dengan penandatanganan, pelaksanaan termasuk eksekusi dari Perjanjian, atau perjanjian lainnya yang disebutkan di</span> <span class="custom-span" lang="IN"></span><span class="custom-span" lang="IN">sini yang pembayarannya akan dilakukan dengan cara</span> <span class="custom-span">pengurangan </span><span class="custom-span" lang="IN">langsung dari jumlah yang ditarik</span> <span class="custom-span">atau cara lain yang merupakan diskresi dari</span> <span class="custom-span" lang="IN">Penyelenggara.</span></p>
     <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left: 72.0pt;text-align:justify;line-height:110%'><span class="custom-span">&nbsp;</span></p>
     <p class="custom-p"><b><span style='font-size:10.5pt;line-height:110%;font-family:"Calibri","sans-serif"'>5.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></b> <b><span style='font-size:11.0pt;line-height:110%;font-family: "Calibri","sans-serif"'>Denda</span></b> <b><span class="custom-span" lang="IN">Keterlambatan</span></b></p>
     <p class="custom-p3"><span class="custom-span">Pemberi Pinjaman dapat mengenakan denda keterlambatan kepada Penerima Pinjaman sebagaimana diatur pada Ketentuan-ketentuan Pinjaman.</span></p>
@@ -662,20 +661,6 @@
             </td>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
                 <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'><b><span lang="EN-GB">PENERIMA PINJAMAN</span></b></p>
-            </td>
-        </tr>
-        <tr>
-            <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">Ryan Filbert</span></p>
-            </td>
-            <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">&nbsp;</span></p>
-                <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><span lang="EN-GB">{{$user->name_ktp}}</span></p>
             </td>
         </tr>
         <tr>
