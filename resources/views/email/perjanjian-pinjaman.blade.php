@@ -351,6 +351,8 @@
     <p class="MsoTitle" style='margin-bottom:10.0pt;line-height:110%'>
         <span class="custom-span">PERJANJIAN PINJAMAN</span>
     </p>
+    <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
+line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
     <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height:110%'>
         <b><span lang="EN-GB" style='text-transform:uppercase'>PERJANJIAN PINJAMAN</span></b>
         <span lang="EN-GB">ini (selanjutnya disebut sebagai “<b>Perjanjian Pinjaman</b>”) dibuat dan ditandatangani pada hari
@@ -362,24 +364,36 @@
         <span lang="IN">1.
             <span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </span>
-        <b>PT</b> <b><span lang="IN">Bursa Akselerasi Indonesia</span></b>
+        <b>PT<span lang="IN"> Bursa Akselerasi Indonesia</span></b>
         <span lang="IN">, sebuah</span> perseroan <span lang="IN">terbatas yang didirikan berdasarkan hukum Negara Republik Indonesia, beralamat di</span>
-        <span lang="IN"></span> <span>Menara Satrio Lantai 14 unit 5, Jalan PRof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span>
+        <span lang="IN"></span> <span>Menara Satrio Lantai 14 unit 5, Jalan Prof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span>
         <span lang="EN-GB">yang dalam hal ini diwakili oleh</span>
-        <span>Ryan Filbert</span> dalam kedudukannya selaku Direktur yang dalam hal ini bertindak selaku penerima kuasa dari
+        <span>Ryan Filbert</span>, dengan NIK no KTP dalam kedudukannya selaku Direktur yang dalam hal ini bertindak selaku penerima kuasa dari
         <span lang="IN">Pemberi Pinjaman.</span>
         <span lang="IN">&nbsp;</span><span lang="IN">&nbsp;</span>
     </p>
     <p class="MsoListParagraph" style='text-align:justify;line-height:110%'>
         (selanjutnya disebut sebagai “<b>Pemberi Pinjaman”</b>, termasuk kuasa, pengganti dan penerima pengalihannya);
     </p>
-    <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
-        2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>{{ $user->name_ktp }}</span>, Warga Negara {{ $user->citizen }},
-        pemegang Kartu Tanda Penduduk nomor <span>{{ $user->identity_number }}</span>
-        yang beralamat di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span>
-        (untuk selanjutnya disebut sebagai “<b>Penerima Pinjaman</b>”)
-    </p>
+    @if($vendor->vendor_type == "pt")
+        <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
+            2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <b>{{$vendor->name}}</b>, sebuah perseroan terbatas yang didirikan berdasarkan hukum Negara Republik Indonesia,
+            beralamat di <b>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</b> yang dalam hal ini diwakili
+            oleh <b>{{ $user->name_ktp }}</b>, dengan NIK <b>{{ $user->identity_number }}</b>,
+            dalam kedudukannya selaku <b>Direktur</b> yang dalam hal ini bertindak selaku penerima kuasa dari Penerima Pinjaman.
+            (untuk selanjutnya disebut sebagai “<b>Penerima Pinjaman</b>”)
+        </p>
+    @else
+        <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
+            2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>{{ $user->name_ktp }}</span>, Warga Negara {{ $user->citizen }},
+            pemegang Kartu Tanda Penduduk nomor <span>{{ $user->identity_number }}</span>
+            yang beralamat di <span>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</span>
+            (untuk selanjutnya disebut sebagai “<b>Penerima Pinjaman</b>”)
+        </p>
+    @endif
+
     <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'>
         <span lang="SV">(Pemberi Pinjaman, Penerima Pinjaman, masing-masing disebut sebagai ”<b>Pihak</b>” dan secara bersama-sama disebut sebagai ”<b>Para Pihak</b>”).</span>
     </p>

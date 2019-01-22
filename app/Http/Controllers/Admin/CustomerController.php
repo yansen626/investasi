@@ -12,6 +12,8 @@ use App\Excel\ExcelExport;
 use App\Excel\ExcelExportFromView;
 use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
+use App\Models\Product;
+use App\Models\ProductInstallment;
 use App\Models\Subscribe;
 use App\Models\Transaction;
 use App\Models\User;
@@ -121,16 +123,48 @@ class CustomerController extends Controller
 
     public function downloadExcel(){
         try {
-            $newFileName = "List Subscribe_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
+            $newFileName = "List transaction_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
 
-            $subscribeListDB = Subscribe::all();
+            $datetimeNow = Carbon::now('Asia/Jakarta');
+            $datetimeStart = Carbon::create('2018', 8, 1, 0,0,0,'Asia/Jakarta');
+
+            $subscribeListDB = Transaction::where('status_id', 5)
+                ->whereBetween('due_date', [$datetimeStart, $datetimeNow])
+                ->get();
 
             return Facades\Excel::create($newFileName, function($excel) use ($subscribeListDB) {
                 $excel->sheet('New sheet', function($sheet) use ($subscribeListDB) {
-                    $sheet->loadView('excel.subscribe', array('subscribeListDB' => $subscribeListDB));
+                    $sheet->loadView('excel.transaction', array('subscribeListDB' => $subscribeListDB));
                 });
             })->export('xlsx');
-//            return Facades\Excel::download(new ExcelExport('subs'), $newFileName.'.xlsx');
+//            $newFileName = "List productInstallment_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
+//
+//            $datetimeNow = Carbon::now('Asia/Jakarta');
+//            $datetimeStart = Carbon::create('2018', 8, 1, 0,0,0,'Asia/Jakarta');
+//            $subscribeListDB = ProductInstallment::whereBetween($datetimeStart, $datetimeNow)->get();
+//
+//            return Facades\Excel::create($newFileName, function($excel) use ($subscribeListDB) {
+//                $excel->sheet('New sheet', function($sheet) use ($subscribeListDB) {
+//                    $sheet->loadView('excel.transaction', array('subscribeListDB' => $subscribeListDB));
+//                });
+//            })->export('xlsx');
+//            $subscribeListDB = Product::all();
+//
+//            return Facades\Excel::create($newFileName, function($excel) use ($subscribeListDB) {
+//                $excel->sheet('New sheet', function($sheet) use ($subscribeListDB) {
+//                    $sheet->loadView('excel.transaction', array('subscribeListDB' => $subscribeListDB));
+//                });
+//            })->export('xlsx');
+
+//            $newFileName = "List Subscribe_".Carbon::now('Asia/Jakarta')->format('Ymdhms');
+//
+//            $subscribeListDB = Subscribe::all();
+//
+//            return Facades\Excel::create($newFileName, function($excel) use ($subscribeListDB) {
+//                $excel->sheet('New sheet', function($sheet) use ($subscribeListDB) {
+//                    $sheet->loadView('excel.subscribe', array('subscribeListDB' => $subscribeListDB));
+//                });
+//            })->export('xlsx');
         }
         catch (Exception $ex){
             //Utilities::ExceptionLog($ex);

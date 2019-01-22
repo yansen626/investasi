@@ -20,11 +20,17 @@ class BlogController extends Controller
 {
     public function BlogList($type){
         if($type==1){
-            $blogDBs = Blog::where('status_id', 1)->where('category_id', '<>', 5)->paginate(5);
+            $blogDBs = Blog::where('status_id', 1)
+                ->where('category_id', '<>', 5)
+                ->orderByDesc('created_at')
+                ->paginate(5);
         }
         else{
 
-            $blogDBs = Blog::where('status_id', 1)->where('category_id', 5)->paginate(5);
+            $blogDBs = Blog::where('status_id', 1)
+                ->where('category_id', 5)
+                ->orderByDesc('created_at')
+                ->paginate(5);
         }
 //        $blogDBs = $blogDBs->paginate(10);
 //        $blogDBs = App\Blog::paginate(10);

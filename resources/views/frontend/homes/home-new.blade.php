@@ -39,6 +39,8 @@
                             </a>
                         </div>
                         <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Ringkasan Akun Anda adalah menu borrower melakukan pengecekan terhadap hasil keuntungan hasil bunga dari proyek yang didanainya.">
+
+                            {{--<a href="{{route('portfolio', ['tab' => 'sum'])}}">--}}
                             <a href="{{route('portfolio', ['tab' => 'debt'])}}">
                                 <div class="feature  clearfix">
                                     <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-3.png') }}">
@@ -64,7 +66,8 @@
                         </div>
                         <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Pendapatan adalah menu investor melakukan pengecekan terhadap hasil keuntungan (kerugian) hasil bunga atau dividen atau bagi hasil dari investasinya.">
 
-                            <a href="{{route('pendapatan')}}">
+                            {{--<a href="{{route('portfolio', ['tab' => 'sum'])}}">--}}
+                            <a href="{{route('portfolio', ['tab' => 'debt'])}}">
                                 <div class="feature  clearfix">
                                     <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-3.png') }}">
                                     <h4>Ringkasan Akun Anda </h4>

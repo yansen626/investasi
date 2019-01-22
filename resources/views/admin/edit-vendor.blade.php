@@ -175,6 +175,10 @@
                                                     {{--<input type="password" name="password_confirmation" value="{{$userDB->phone old('password_confirmation')}}" class="form-control col-md-7 col-xs-12">--}}
                                                 {{--</div>--}}
                                                 <div class="field col-sm-12">
+                                                    <h4>Nomor KTP</h4>
+                                                    <input type="text" name="identity_number" value="{{$userDB->identity_number }}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-sm-12">
                                                     <h4>Nama sesuai KTP</h4>
                                                     <input type="text" name="name" value="{{$userDB->first_name}}" class="form-control col-md-7 col-xs-12">
                                                 </div>

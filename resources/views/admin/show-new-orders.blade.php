@@ -34,6 +34,7 @@
                                     <th>Va Number</th>
                                     <th>Project Name</th>
                                     <th>Total Price</th>
+                                    <th>Payment Type</th>
                                     <th>Biaya Admin</th>
                                     <th>Total Payment</th>
                                     <th>Status</th>
@@ -51,6 +52,7 @@
                                         <td>{{ $trx->user->va_acc }}</td>
                                         <td>{{ $trx->product->name }}</td>
                                         <td>Rp {{ $trx->total_price }}</td>
+                                        <td>{{ $trx->payment_method->description }}</td>
                                         <td>Rp {{ $trx->admin_fee }}</td>
                                         <td>Rp {{ $trx->total_payment }}</td>
                                         <td>{{ $trx->status->description }}</td>

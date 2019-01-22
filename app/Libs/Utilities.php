@@ -9,6 +9,7 @@
 namespace App\Libs;
 
 use App\Models\AutoNumber;
+use App\Models\Option;
 use App\Models\Transaction;
 use GuzzleHttp\Client;
 use Monolog\Handler\StreamHandler;
@@ -27,6 +28,33 @@ class Utilities
         $number = str_pad($transactionCount+1, 3, '0', STR_PAD_LEFT);
         //INV070618001/QQ laundry/8879500005
         return "INV".$date.$number."/".$productName."/".$VANumber;
+    }
+
+    //generate surat perjanjian borrower number
+    public static function GenerateSuratPerjanjian() {
+        $optionDB = Option::find(1);
+        $numberDB = $optionDB->perjanjian_number;
+        $romawi = array('', 'I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII');
+
+        $now = Carbon::now('Asia/Jakarta');
+        $year = $now->year;
+        $month = $now->month;
+
+        if($year != $optionDB->perjanjian_year){
+            $optionDB->perjanjian_year = $year;
+            $optionDB->perjanjian_number = 1;
+            $optionDB->save();
+
+            $numberDB = 1;
+        }
+        else{
+            $optionDB->perjanjian_number = $numberDB + 1;
+            $optionDB->save();
+        }
+
+        //1/SPP-BAI/I/2019
+        //[No]/SPP-BAI/[Month romawi]/[Year]
+        return $numberDB."/SPP-BAI/".$romawi[$month]."/".$year;
     }
 
     public static function SendSms($number, $message){
@@ -190,17 +218,23 @@ class Utilities
     public static function UserPercentage ($raised, $userAmount){
         $raised = (double) str_replace('.','', $raised);
         $userAmount = (double) str_replace('.','', $userAmount);
-        $userGetTemp = number_format((($userAmount*100) / $raised),2);
+        $userGetTemp = number_format((($userAmount*100) / $raised),8);
 
         return $userGetTemp;
+    }
+
+    public static function UserGetInstallmentAmount($paid_amount, $raised, $userAmount){
+        $userGetTemp = number_format((($userAmount*100) / $raised),8);
+        $userGetFinal = floor(($userGetTemp * $paid_amount) / 100);
+
+        return $userGetFinal;
     }
 
     public static function UserGetInstallment ($paid_amount, $raised, $userAmount){
         $raised = (double) str_replace('.','', $raised);
         $userAmount = (double) str_replace('.','', $userAmount);
         $paid_amount = (double) str_replace('.','', $paid_amount);
-        $userGetTemp = number_format((($userAmount*100) / $raised),2);
-        $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
+        $userGetFinal = self::UserGetInstallmentAmount($paid_amount, $raised, $userAmount);
 
         return number_format($userGetFinal, 0, ",", ".");
     }

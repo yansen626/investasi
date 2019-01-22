@@ -90,6 +90,10 @@
                                                     <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                                 <div class="field col-sm-12">
+                                                    <h4>Nomor KTP</h4>
+                                                    <input type="text" name="identity_number" value="{{old('identity_number')}}" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                                <div class="field col-sm-12">
                                                     <h4>Nama sesuai KTP</h4>
                                                     <input type="text" name="name" value="{{old('name')}}" class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -385,6 +389,16 @@
                 sbAdd.append("<input type='number' name='interest_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
                 sbAdd.append("</tr>");
             }
+            // for(var i=1;i<=divAmount;i++){
+            //     sbAdd.append("<tr>");
+            //     sbAdd.append("<td> Bulan "+ i + "</td>");
+            //     sbAdd.append("<td style='padding-left:5%;'>");
+            //     sbAdd.append("<input type='number' name='installment_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
+            //     sbAdd.append("<td style='padding-left:5%;'>");
+            //     sbAdd.append("<input type='number' name='interest_per_month[]' class='form-control col-md-7 col-xs-12'/></td>");
+            //     sbAdd.append("</tr>");
+            // }
+
 
             $('#interest-month').append(sbAdd.toString());
         }

@@ -132,11 +132,11 @@
                                                             <thead>
                                                             <tr>
                                                                 <th>Order Date</th>
-                                                                <th>Project Name</th>
-                                                                <th>Total Price</th>
-                                                                <th>Invoice</th>
-                                                                <th>Payment Method</th>
                                                                 <th>Status</th>
+                                                                <th>Total Price</th>
+                                                                <th>Project Name</th>
+                                                                <th>Payment Method</th>
+                                                                <th>Invoice</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -144,10 +144,6 @@
                                                             @foreach($transactions as $trx)
                                                                 <tr>
                                                                     <td>{{ \Carbon\Carbon::parse($trx->created_on)->format('j M Y G:i:s') }}</td>
-                                                                    <td>{{ $trx->Product->name }}</td>
-                                                                    <td>Rp {{ $trx->total_price }}</td>
-                                                                    <td>{{ $trx->invoice }}</td>
-                                                                    <td>{{ $trx->payment_method->description }}</td>
                                                                     <td>
                                                                         @if($trx->status_id == 9)
                                                                             <span style="color: #42b549;">{{$trx->status->description}}</span>
@@ -159,6 +155,10 @@
                                                                             {{$trx->status->description}}
                                                                         @endif
                                                                     </td>
+                                                                    <td>Rp {{ $trx->total_price }}</td>
+                                                                    <td>{{ $trx->Product->name }}</td>
+                                                                    <td>{{ $trx->payment_method->description }}</td>
+                                                                    <td>{{ $trx->invoice }}</td>
                                                                 </tr>
                                                                 @php( $idx++ )
                                                             @endforeach
@@ -181,7 +181,8 @@
                                                             <tr>
                                                                 <th>Tanggal</th>
                                                                 <th>Deskripsi</th>
-                                                                <th class="text-right">Jumlah</th>
+                                                                <th class="text-right">Jumlah </th>
+                                                                <th class="text-right">Jumlah Wallet</th>
                                                                 <th>Status</th>
                                                             </tr>
                                                             </thead>
@@ -191,7 +192,14 @@
                                                                 <tr>
                                                                     <td>{{ \Carbon\Carbon::parse($statement->date)->format('j M Y G:i:s') }}</td>
                                                                     <td>{{ $statement->description }}</td>
-                                                                    <td class="text-right">Rp {{ $statement->amount }}</td>
+                                                                    <td class="text-right">
+                                                                        @if(strpos($statement->description, 'Penggunaan dompet') !== false)
+                                                                            Rp ({{ $statement->amount }})
+                                                                        @else
+                                                                            Rp {{ $statement->amount }}
+                                                                        @endif
+                                                                    </td>
+                                                                    <td class="text-right">Rp {{ $statement->saldo }}</td>
                                                                     @if($statement->status_id == 3)
                                                                         <td>Pending</td>
                                                                     @elseif($statement->status_id == 7)

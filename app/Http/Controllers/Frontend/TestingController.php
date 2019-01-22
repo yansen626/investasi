@@ -37,63 +37,21 @@ class TestingController extends Controller
 {
     public function TestingSendEmail(){
         try{
+            //PRMG002
+            $product = Product::find('34f54170-d04f-11e8-882f-15662530057c');
+            //PRMG003
+//            $product = Product::find('de31cfc0-d75a-11e8-89b3-f3cf371d0b47');
 
-            TransactionUnit::transactionAfterVerified("INVEST-5b512402f369a");
-            $transaction = Transaction::find("017cb7e0-30c5-11e8-b010-2b4aab383c12");
-            //Send Email,
-            $userData = User::find($transaction->user_id);
-            $payment = PaymentMethod::find($transaction->payment_method_id);
-            $product = Product::find($transaction->product_id);
+            $productInstallments = ProductInstallment::where('product_id',$product->id)->get();
 
-            $user = User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4");
-
-//            $data = array(
-//                'user'=>User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4"),
-//                'productInstallment' => ProductInstallment::where('product_id', $transaction->product_id),
-//                'product' => Product::find($transaction->product_id)
-//            );
-//            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
-
-
-//            $data = array(
-//                'user' => User::find("3a7dcde0-b246-11e7-ba8d-c3ff1c82f7e4"),
-////                'description' => "Kami telah melakukan verifikasi foto KTP beserta data anda di indofund.id."
-//                'description' => "Kami telah melakukan verifikasi data anda di indofund.id namun data yang anda masukkan belum
-//                    lengkap sehingga kami belum bisa melakukan verifikasi lebih lanjut, mohon kirimkan ulang foto ktp beserta data
-//                    secara tepat dan sesuai"
-//            );
-//            SendEmail::SendingEmail('verificationKTP', $data);
-
-//            $data = array(
-//                'user' => $user
-//            );
-//            SendEmail::SendingEmail('requestVerification', $data);
-//            SendEmail::SendingEmail('emailVerification', $data);
-
-//            $data = array(
-//                'transaction' => $transaction,
-//                'user'=>$userData,
-//                'paymentMethod' => $payment,
-//                'product' => $product
-//            );
-//
-//            SendEmail::SendingEmail('testing', $data);
-
-//            $data = array(
-//                'email' => $userData->email,
-//                'filename' => $product->prospectus_path
-//            );
-//            SendEmail::SendingEmail('sendProspectus', $data);
-
-//            $data = array(
-//                'transaction' => $transaction,
-//                'user'=>$userData,
-//                'paymentMethod' => $payment,
-//                'product' => $product
-//            );
-//            //Send Email for accepted fund
-//            SendEmail::SendingEmail('successTransaction', $data);
-
+            $data = array(
+                'user'=>User::find($product->user_id),
+                'productInstallment' => $productInstallments,
+                'product' => $product,
+                'vendor' => Vendor::find($product->vendor_id)
+            );
+            dd($data);
+            SendEmail::SendingEmail('PerjanjianPinjaman', $data);
             return "success";
         }
         catch (\Exception $ex){
@@ -102,47 +60,16 @@ class TestingController extends Controller
     }
     public function TestingFunction(){
         try{
-//            $ProductIds = Product::where('vendor_id', "96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8")->get();
-//
-//            foreach ($ProductIds as $ProductId){
-//
-                $userData = User::find("6fa921f0-493e-11e8-9760-5f8fe286ae19");
-//                $data = array(
-//                    'user'=>$userData,
-//                    'productInstallments' => ProductInstallment::where('product_id', $ProductId->id)->get(),
-//                    'product' => Product::find($ProductId->id),
-//                    'vendor' => Vendor::find('96b4c5d0-9ae8-11e8-bf2e-e510ffd4c4a8')
-//                );
-//
-//                $pdf2 = PDF::loadView('email.perjanjian-pinjaman', $data);
-//
-//                Mail::send('email.surat-perjanjian-pinjaman', $data, function ($message) use ($pdf2, $userData) {
-//                    $message->to("yansen626@gmail.com")
-//                        ->subject('Perjanjian Pinjaman di Indofund');
-//
-//                    $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
-//                });
-//            }
+            $asf = Utilities::GenerateSuratPerjanjian();
+            dd($asf);
+            $trxKredit = '0.00';
+            $trxKredit2 = explode(".", $trxKredit);
+            $amount = (double) str_replace(',', '',$trxKredit2[0]);
+            $is0 = $amount == 0.0;
+            dd(!$is0);
 
-//            $userGetTemp = number_format(((9000*100) / 12800000 ),2);
-//
-//            $userGetFinal = round(($userGetTemp * 13582163) / 100);
-//            return "9000 | 13582163 | 12800000 | ".$userGetTemp." | ".$userGetFinal;
-
-
-            $statements = WalletStatement::where('user_id', '6fa921f0-493e-11e8-9760-5f8fe286ae19')
-                ->where('description', 'like', '%Modal Kerja Cafe%')
-                ->orderBy('created_on', 'ASC')
-                ->get();
-//            dd($statements);
-            //send email to user
-            $data = array(
-                'user'=>$userData,
-                'description' => "Modal Kerja Cafe",
-                'statements' => $statements,
-                'userGetFinal' => 123456789
-            );
-            SendEmail::SendingEmail('installmentDone', $data);
+            $asdf = TransactionUnit::InstallmentPaymentProcess('bd42c7d0-8f1b-11e8-b813-4d521d9a648a');
+            dd($asdf);
         }
         catch (\Exception $ex){
             return "failed : ".$ex;

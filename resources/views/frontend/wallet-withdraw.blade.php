@@ -27,20 +27,21 @@
                         Total Saldo Anda<br> Rp {{$user->wallet_amount}}
                     </h2>
                 </div>
-                @if($user->google_authenticator == 0)
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="comment-form-wrapper contact-from clearfix">
-                            <div class="widget-title ">
-                                <h4>Mohon Aktifkan Google Authenticator Anda.</h4>
-                                <h3>
-                                    Klik <a href="{{route('my-profile', ['tab' => 'security'])}}">disini</a> untuk mengaktifkan.
-                                    <br>
-                                    Informasi lebih lanjut hubungi kami melalui email atau chat box di bawah
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                @elseif(empty($user->img_ktp))
+                {{--@if($user->google_authenticator == 0)--}}
+                    {{--<div class="col-md-6 col-md-offset-3">--}}
+                        {{--<div class="comment-form-wrapper contact-from clearfix">--}}
+                            {{--<div class="widget-title ">--}}
+                                {{--<h4>Mohon Aktifkan Google Authenticator Anda.</h4>--}}
+                                {{--<h3>--}}
+                                    {{--Klik <a href="{{route('my-profile', ['tab' => 'security'])}}">disini</a> untuk mengaktifkan.--}}
+                                    {{--<br>--}}
+                                    {{--Informasi lebih lanjut hubungi kami melalui email atau chat box di bawah--}}
+                                {{--</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--@else--}}
+                    @if(empty($user->img_ktp))
                     <div class="col-md-6 col-md-offset-3">
                         <div class="comment-form-wrapper contact-from clearfix">
                             <div class="widget-title ">
@@ -107,9 +108,9 @@
                                     <h4>Jumlah Penarikan</h4>
                                     <input type="text" id="amount" name="amount"  value="{{old('amount')}}">
                                 </div>
-                                <div style="margin-top: 0;" class="field col-sm-12 {{ $errors->has('google') ? ' has-error' : '' }}">
+                                <div style="display:none; margin-top: 0;" class="field col-sm-12">
                                     <h4>PIN Google Auth</h4>
-                                    <input type="number" name="google" value="{{old('google')}}">
+                                    <input type="number" name="google" value="123456">
                                 </div>
                                 <input type="hidden" id="fee" value="{{env('FEE_TRANSFER')}}">
                             </form>

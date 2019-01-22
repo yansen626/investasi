@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Libs\UrgentNews;
 use App\Models\Transaction;
 use App\Models\User;
+use Dompdf\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -153,47 +154,59 @@ class ProfileController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-        $user = Auth::user();
-        $userId = $user->id;
-//dd($request);
-        $userDB = User::find($userId);
-        $userDB->first_name = Input::get('fname');
-        $userDB->last_name = Input::get('lname');
-        $userDB->name_ktp = Input::get('name_ktp');
-        $userDB->citizen = Input::get('citizen');
-        $userDB->address_ktp = Input::get('address_ktp');
-        $userDB->city_ktp = Input::get('city_ktp');
-        $userDB->province_ktp = Input::get('province_ktp');
-        $userDB->postal_code_ktp = Input::get('postal_code_ktp');
 
+        try{
+            $user = Auth::user();
+            $userId = $user->id;
 
-        if(!empty($request->file('photo_ktp'))) {
-            //Check if Image or PDF
-            $extension = $request->file('photo_ktp')->getClientOriginalExtension();
-            $extCheck = strtolower($extension);
+            $userDB = User::find($userId);
+            $userDB->first_name = Input::get('fname');
+            $userDB->last_name = Input::get('lname');
+            $userDB->name_ktp = Input::get('name_ktp');
+            $userDB->citizen = Input::get('citizen');
+            $userDB->address_ktp = Input::get('address_ktp');
+            $userDB->city_ktp = Input::get('city_ktp');
+            $userDB->province_ktp = Input::get('province_ktp');
+            $userDB->postal_code_ktp = Input::get('postal_code_ktp');
 
-            if($extCheck == 'png' || $extCheck == 'jpg') {
-                $img = Image::make($request->file('photo_ktp'));
-                $extStr = $img->mime();
-                $ext = explode('/', $extStr, 2);
-                if ($ext[1] == 'jpeg')
-                    $ext[1] = 'jpg';
+            if(!empty($request->file('photo_ktp'))) {
+                //Check if Image or PDF
+                $extension = $request->file('photo_ktp')->getClientOriginalExtension();
+                $extCheck = strtolower($extension);
 
-                $filename = 'ktp_' . $userDB->identity_number . '_' . Input::get('fname') . '-' . Input::get('lname') . '.' . $ext[1];
+                if($extCheck == 'png' || $extCheck == 'jpg' || $extCheck == 'jpeg') {
+//                    dd($request->file('photo_ktp'));
+//                    ini_set('memory_limit', '1024MB');
+//                    dd($extCheck);
+                    $img = Image::make($request->file('photo_ktp'));
+//                    dd($img);
+                    $extStr = $img->mime();
+                    $ext = explode('/', $extStr, 2);
+                    if ($ext[1] == 'jpeg')
+                        $ext[1] = 'jpg';
 
-                $img->save(public_path('storage/ktp/' . $filename), 75);
-                $userDB->img_ktp = $filename;
+//                    dd($img);
+                    $filename = 'ktp_' . $userDB->identity_number . '_' . Input::get('fname') . '-' . Input::get('lname') . '.' . $ext[1];
+
+                    $img->save(public_path('storage/ktp/' . $filename), 75);
+                    $img->destroy();
+                    $userDB->img_ktp = $filename;
+//                    dd($filename);
+                }
+                else if($extCheck == 'pdf'){
+                    $filename = 'ktp_' . $userDB->identity_number . '_' . Input::get('fname') . '-' . Input::get('lname') . '.' . $extension;
+
+                    $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
+                    $userDB->img_ktp = $filename;
+                    dd($filename);
+                }
             }
-            else if($extCheck == 'pdf'){
-                $filename = 'ktp_' . $userDB->identity_number . '_' . Input::get('fname') . '-' . Input::get('lname') . '.' . $extension;
-
-                $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
-                $userDB->img_ktp = $filename;
-            }
+            $userDB->save();
+            Session::flash('message', 'Data Berhasil di Update');
         }
-        $userDB->save();
-
-        Session::flash('message', 'Data Berhasil di Update');
+        catch (Exception $ex){
+            Session::flash('message', 'Terjadi kesalahan pada proses!');
+        }
 
         return Redirect::route('my-profile', ['tab' => 'profile']);
     }

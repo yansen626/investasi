@@ -66,7 +66,7 @@
         {{--&nbsp;&nbsp;&nbsp;--}}
         {{--<a href="https://www.youtube.com/channel/UCLV2VznCGF7XFSzjuKARzrQ" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>--}}
         &nbsp;&nbsp;&nbsp;
-        <a href="http://wassmee.us/w/send.aspx?phone=6289643448118&text=Halo%20Indofund.id!%20Saya%20mau%20bertanya%20:" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i> +62 896-4344-8118</a>
+        <a href="http://wassmee.us/w/send.aspx?phone=6289643448118&text=Halo%20Indofund.id!%20Saya%20mau%20bertanya%20:" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat with Us Now</a>
         <br><br>
         <div class="container">
             <h5>2018 © All Rights Reserved | Privacy Policy</h5>

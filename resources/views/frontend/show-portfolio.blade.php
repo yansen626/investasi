@@ -24,6 +24,7 @@
                             <li {{$isActiveTabPending}}><a href="{{route('portfolio', ['tab' => 'pending'])}}">Pending Transaksi</a></li>
 {{--                            <li {{$isActiveTabEquity}}><a href="{{route('portfolio', ['tab' => 'equity'])}}">Saham / Bagi Produk</a></li>--}}
                             <li {{$isActiveTabDebt}}><a href="{{route('portfolio', ['tab' => 'debt'])}}">Portfolio</a></li>
+{{--                            <li {{$isActiveTabSum}}><a href="{{route('portfolio', ['tab' => 'sum'])}}">Portfolio Summary</a></li>--}}
                             <li><a href="#portfolio" data-toggle="tab">Portfolio Breakdown</a></li>
                         </ul>
                     </div>
@@ -201,6 +202,45 @@
                                         <div class="col-md-6">
                                             <img src="{{ URL::asset('frontend_images/keterangan.jpg') }}" style="width: 100%">
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade {{$isActiveSum}}" id="sum">
+
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Ringkasan Anda</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content table-responsive">
+                                        <table id="datatable-responsive-debt" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Proyek</th>
+                                                <th class="text-right">Total Pendanaan</th>
+                                                <th>Progress</th>
+                                                <th class="text-right">Total Pendapatan</th>
+                                                <th>Keterangan</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @php( $idx = 1 )
+                                                @foreach($transactionSummary as $trx)
+                                                    <tr>
+                                                        <td>{{ $idx }}</td>
+                                                        <td>
+                                                            {{ $trx['name']}}
+                                                        </td>
+                                                        <td class="text-right">Rp {{ $trx['total'] }}</td>
+                                                        <td>{{ $trx['progress']}}</td>
+                                                        <td class="text-right">Rp {{ $trx['return'] }}</td>
+                                                        <td>{{ $trx['status'] }}</td>
+                                                    </tr>
+                                                    @php( $idx++ )
+                                                        @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

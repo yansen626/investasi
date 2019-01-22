@@ -98,13 +98,13 @@ class NotificationController extends Controller
 
                         }
                         //distribute payment installment
-//                        $isSuccess = TransactionUnit::InstallmentPaymentProcess($installmentDB->id);
-//                        if($isSuccess){
-//                            Utilities::ExceptionLog("Change installment payment status success");
-//                        }
-//                        else{
-//                            Utilities::ExceptionLog("Change installment payment status failed");
-//                        }
+                        $isSuccess = TransactionUnit::InstallmentPaymentProcess($installmentDB->id);
+                        if($isSuccess){
+                            Utilities::ExceptionLog("Change installment payment status success");
+                        }
+                        else{
+                            Utilities::ExceptionLog("Change installment payment status failed");
+                        }
 
                         Utilities::ExceptionLog("Change installment payment status success");
                     });
@@ -112,8 +112,6 @@ class NotificationController extends Controller
                 }
                 //dana tanpa ada transaksi yang cocok
                 else{
-                    DB::transaction(function() use ($vaVendorNumber, $vaNumber, $amount){
-                        $dateTimeNow = Carbon::now('Asia/Jakarta');
                         $vendorDB = Vendor::where('vendor_va', $vaVendorNumber)->first();
                         if(!empty($vendorDB)){
                             $userDB = User::find($vendorDB->user_id);
@@ -121,43 +119,54 @@ class NotificationController extends Controller
                         else{
                             $userDB = User::where('va_acc', $vaNumber)->first();
                         }
-                        if(!empty($userDB)){
-                            $saldo = (double) str_replace('.', '',$userDB->wallet_amount);
-                            $userSaldoFinal = $saldo + $amount;
+                        if(!empty($userDB) && $amount != 0.0){
+
                             $keterangan = "Dana dari virtual account ".$vaNumber;
+                            DB::transaction(function() use ($vaVendorNumber, $vaNumber, $amount, $userDB, $keterangan){
+                                $dateTimeNow = Carbon::now('Asia/Jakarta');
+                                $saldo = (double) str_replace('.', '',$userDB->wallet_amount);
+                                $userSaldoFinal = $saldo + $amount;
+                                $keterangan = "Dana dari virtual account ".$vaNumber;
+                                //add wallet statement
+                                $statement = WalletStatement::create([
+                                    'id'            => Uuid::generate(),
+                                    'user_id'       => $userDB->id,
+                                    'description'   => $keterangan,
+                                    'saldo'         => $userSaldoFinal,
+                                    'amount'        => $amount,
+                                    'fee'           => 0,
+                                    'admin'         => 0,
+                                    'transfer_amount'=> 0,
+                                    'status_id'     => 6,
+                                    'date'          => $dateTimeNow->toDateTimeString(),
+                                    'created_on'    => $dateTimeNow->toDateTimeString()
+                                ]);
 
-                            //add wallet statement
-                            $statement = WalletStatement::create([
-                                'id'            => Uuid::generate(),
-                                'user_id'       => $userDB->id,
-                                'description'   => $keterangan,
-                                'saldo'         => $userSaldoFinal,
-                                'amount'        => $amount,
-                                'fee'           => 0,
-                                'admin'         => 0,
-                                'transfer_amount'=> 0,
-                                'status_id'     => 6,
-                                'date'          => $dateTimeNow->toDateTimeString(),
-                                'created_on'    => $dateTimeNow->toDateTimeString()
-                            ]);
+                                //change user wallet amount
+                                $userDB->wallet_amount = $userSaldoFinal;
+                                $userDB->save();
 
-                            //change user wallet amount
-                            $userDB->wallet_amount = $userSaldoFinal;
-                            $userDB->save();
-                            Utilities::ExceptionLog("Dana tak ada transaksinya sukses di pindahkan ke akun pemilik");
-                            //send email to user
-                            $data = array(
-                                'user'=>$userDB,
-                                'description' => $keterangan,
-                                'userGetFinal' => $amount
-                            );
-                            SendEmail::SendingEmail('topupSaldo', $data);
+                                Utilities::ExceptionLog("Dana tak ada transaksinya sukses di pindahkan ke akun pemilik");
+                            });
+
+                            try{
+                                //send email to user
+                                $data = array(
+                                    'user'=>$userDB,
+                                    'description' => $keterangan,
+                                    'userGetFinal' => $amount
+                                );
+                                SendEmail::SendingEmail('topupSaldo', $data);
+                            }
+                            catch (\Exception $ex){
+                                Utilities::ExceptionLog("(dana tanpa ada transaksi yang cocok) send email error =  ".$ex);
+                            }
+
                         }
                         else{
                             Utilities::ExceptionLog("Dana tak ada transaksinya TIDAK ADA akun pemilik ".
                                 $vaVendorNumber." / ".$vaNumber." Sejumlah ".$amount);
                         }
-                    });
                     $vaProceed = true;
 
                 }
@@ -168,7 +177,7 @@ class NotificationController extends Controller
         }
         catch (\Exception $ex){
             Utilities::ExceptionLog("Change transaction status failed error =  ".$ex);
-            return $ex;
+            //return $ex;
         }
     }
 
@@ -235,7 +244,7 @@ class NotificationController extends Controller
         }
         catch (Exception $ex){
             Utilities::ExceptionLog("Send Email to notify installment failed ".$ex);
-            return $ex;
+            //return $ex;
         }
     }
 
@@ -265,7 +274,7 @@ class NotificationController extends Controller
         }
         catch (Exception $ex){
             Utilities::ExceptionLog("Change project limit failed ".$ex);
-            return $ex;
+            //return $ex;
         }
     }
 
@@ -312,7 +321,7 @@ class NotificationController extends Controller
         }
         catch (Exception $ex){
             Utilities::ExceptionLog("Change payment due date failed ".$ex);
-            return $ex;
+            //return $ex;
         }
     }
 

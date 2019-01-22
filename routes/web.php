@@ -117,7 +117,7 @@ Route::get('/installment-payment/success/{id}', 'Frontend\VendorController@Insta
 Route::get('rajaongkir/subdistrict/{cityId}', 'frontend\UserAddressController@getSubdistrict');
 
 // admin Routing
-Route::get('/admin', 'Admin\DashboardController@dashboardShow')->name('admin-dashboard');
+//Route::get('/admin', 'Admin\DashboardController@dashboardShow')->name('admin-dashboard');
 
 Route::get('/investasi-saya', function (){
     return view('admin/login');
@@ -141,6 +141,9 @@ Route::get('/download-mcm', 'Admin\CustomerController@downloadMCMData')->name('d
 Route::post('/admin', 'Auth\LoginAdminController@login');
 Route::get('/admin', 'Admin\DashboardController@index')->name('admin-dashboard');
 Route::get('/admin/logout', 'Auth\LoginAdminController@logout')->name('admin-logout');
+
+//Referral
+//Route::get('/admin/referral/{id}', 'Frontend\ReferralController@ShowReferral')->name('admin-referral');
 
 // Product
 Route::prefix('/admin/product')->group(function (){

@@ -119,5 +119,13 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+    stream_context_set_default(array(
+        'ssl'                => array(
+            'peer_name'          => 'generic-server',
+            'verify_peer'        => FALSE,
+            'verify_peer_name'   => FALSE,
+            'allow_self_signed'  => TRUE
+        ))),
+
 
 ];

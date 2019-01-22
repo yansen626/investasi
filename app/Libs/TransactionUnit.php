@@ -36,15 +36,13 @@ class TransactionUnit
 
             $dateTimeNow = Carbon::now('Asia/Jakarta');
             $invoice = Utilities::GenerateInvoice($productDB->name, $user->va_acc);
+
+            $investAmount = (double)$cart->getOriginal('invest_amount');
             $paymentMethodInt = 1;
             if($cart->payment_method == 'credit_card'){
                 $paymentMethodInt = 2;
             }
             else if($cart->payment_method == 'wallet'){
-                $walletTemp = (double)$user->getOriginal('wallet_amount');
-                $user->wallet_amount = $walletTemp - (double)$cart->getOriginal('invest_amount');
-                $user->save();
-
                 $paymentMethodInt = 3;
             }
 
@@ -57,7 +55,7 @@ class TransactionUnit
                 'payment_method_id' => $paymentMethodInt,
                 'order_id'          => $orderId,
                 'total_payment'     => $cart->getOriginal('total_invest_amount'),
-                'total_price'       => $cart->getOriginal('invest_amount'),
+                'total_price'       => $investAmount,
                 'phone'             => $user->phone,
                 'admin_fee'         => $cart->getOriginal('admin_fee'),
                 'two_day_due_date_flag' => 0,
@@ -67,21 +65,50 @@ class TransactionUnit
             ]);
 
             $raisedDB = (double) str_replace('.','', $productDB->raised);
-            $newRaise = $cart->getOriginal('invest_amount');
+            $newRaise = $investAmount;
             $productDB->raised = $raisedDB + $newRaise;
             $productDB->save();
+
+            //add wallet statement
+            if($cart->payment_method == 'wallet'){
+                $walletTemp = (double)$user->getOriginal('wallet_amount');
+                $newWallet = $walletTemp - $investAmount;
+                $user->wallet_amount = $newWallet;
+                $user->save();
+
+                $desription = 'Penggunaan dompet pada invoice '.$invoice;
+
+                $statement = WalletStatement::create([
+                    'id'            => Uuid::generate(),
+                    'user_id'       => $userId,
+                    'description'   => $desription,
+                    'saldo'         => $newWallet,
+                    'amount'        => $investAmount,
+                    'fee'           => 0,
+                    'admin'         => 0,
+                    'transfer_amount'=> 0,
+                    'status_id'     => 6,
+                    'date'          => $dateTimeNow->toDateTimeString(),
+                    'created_on'    => $dateTimeNow->toDateTimeString()
+                ]);
+            }
 
             // Delete cart
             $cart->delete();
 
-            $payment = PaymentMethod::find($paymentMethodInt);
-            $data = array(
-                'transaction' => $trxCreate,
-                'user'=>$user,
-                'paymentMethod' => $payment,
-                'product' => $productDB
-            );
-            SendEmail::SendingEmail('DetailPembayaran', $data);
+            try{
+                $payment = PaymentMethod::find($paymentMethodInt);
+                $data = array(
+                    'transaction' => $trxCreate,
+                    'user'=>$user,
+                    'paymentMethod' => $payment,
+                    'product' => $productDB
+                );
+                SendEmail::SendingEmail('DetailPembayaran', $data);
+            }
+            catch(\Exception $ex){
+                Utilities::ExceptionLog('TransactionUnit.php > createTransaction(send email) ========> '.$ex);
+            }
             return true;
         }
         catch(\Exception $ex){
@@ -113,6 +140,30 @@ class TransactionUnit
                 }
                 $productDB->save();
 
+                //add wallet statement (if transaction using wallet)
+                if($transaction->payment_method_id == 3){
+                    $user = User::find($transaction->user_id);
+                    $walletTemp = (double)$user->getOriginal('wallet_amount');
+                    $newWallet = $walletTemp + $transaction->total_price;
+                    $user->wallet_amount = $newWallet;
+                    $user->save();
+
+                    $desription = 'Pembatalan project '.$productDB->name.' invoice '.$transaction->invoice;
+
+                    $statement = WalletStatement::create([
+                        'id'            => Uuid::generate(),
+                        'user_id'       => $transaction->user_id,
+                        'description'   => $desription,
+                        'saldo'         => $newWallet,
+                        'amount'        => $transaction->total_price,
+                        'fee'           => 0,
+                        'admin'         => 0,
+                        'transfer_amount'=> 0,
+                        'status_id'     => 6,
+                        'date'          => $dateTimeNow->toDateTimeString(),
+                        'created_on'    => $dateTimeNow->toDateTimeString()
+                    ]);
+                }
                 Utilities::ExceptionLog("Transaction ".$transaction->invoice." Rejected on ".$dateTimeNow->toDateTimeString());
 
                 //update user wallet
@@ -135,8 +186,9 @@ class TransactionUnit
     public static function transactionAfterVerified($orderid){
         try{
             $dateTimeNow = Carbon::now('Asia/Jakarta');
-            DB::transaction(function() use ($orderid){
-                $transaction = Transaction::where('order_id', $orderid)->first();
+            $transaction = Transaction::where('order_id', $orderid)->first();
+
+            DB::transaction(function() use ($orderid, $transaction){
                 if($transaction->status_id == 5){
                     Utilities::ExceptionLog("Transaction ".$orderid." status already 5");
                     return false;
@@ -153,7 +205,18 @@ class TransactionUnit
                 $productDB = Product::find($transaction->product_id);
                 $raisedDB = (double) str_replace('.','', $productDB->raised);
                 $newRaise = (double) str_replace('.','', $transaction->total_price);
+                $raisingDB = (double) str_replace('.','', $productDB->raising);
+                $tempTotal = $raisedDB + $newRaise;
 
+                //check if raising 100%
+                if($raisedDB == $raisingDB){
+                    $productDB->status_id = 22;
+                    Utilities::ExceptionLog("product raising collected  ".$productDB->name." (".$raisedDB." from ".$raisingDB.")");
+                }
+                $productDB->save();
+            });
+
+            try{
                 //checking if fund 100% or not and send email
                 $userData = User::find($transaction->user_id);
                 $payment = PaymentMethod::find($transaction->payment_method_id);
@@ -167,19 +230,13 @@ class TransactionUnit
                     'product' => $product,
                     'productInstallment' => $productInstallments
                 );
-
-                $raisingDB = (double) str_replace('.','', $productDB->raising);
-                $tempTotal = $raisedDB + $newRaise;
-                if($raisedDB == $raisingDB){
-                    $productDB->status_id = 22;
-                    Utilities::ExceptionLog("product raising collected  ".$product->name." (".$raisedDB." from ".$raisingDB.")");
-                }
-                $productDB->save();
-
                 //Send Email for accepted fund
                 SendEmail::SendingEmail('successTransaction', $data);
+            }
+            catch(\Exception $ex){
+                Utilities::ExceptionLog('TransactionUnit.php > transactionAfterVerified(send email) ========> '.$ex);
+            }
 
-            });
             return true;
         }
         catch(\Exception $ex){
@@ -234,17 +291,25 @@ class TransactionUnit
 
             $transactionList = Transaction::where('product_id', $productInstallments->product_id)->where('status_id', 5)->get();
             $asdf = array();
-            DB::transaction(function() use ($productInstallments, $transactionList, $paid_amount, $raised, $asdf) {
+            $isSuccessTopUp = false;
+            $isSuccessTopUp = DB::transaction(function() use ($productInstallments, $transactionList, $paid_amount, $raised, $asdf) {
                 $doneInstallmentPayment = false;
                 foreach ($transactionList as $transaction){
 
                     $dateTimeNow = Carbon::now('Asia/Jakarta');
                     $userDB = User::find($transaction->user_id);
+
+                    //user installment distribution
                     $userAmount = (double) str_replace('.','', $transaction->total_price);
+//                    $userGetTemp = number_format((($userAmount*100) / $raised),8);
+//                    $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
+                    $userGetFinal = Utilities::UserGetInstallmentAmount($paid_amount, $raised, $userAmount);
+                    if($productInstallments->month == $productInstallments->Product->tenor_loan) {
+                        if($productInstallments->Product->category_id == 6){
+                            $userGetFinal = $userAmount;
+                        }
+                    }
 
-                    $userGetTemp = number_format((($userAmount*100) / $raised),2);
-
-                    $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
                     $userSaldoFinal = (double) str_replace('.','', $userDB->wallet_amount);
                     $userSaldoFinal = $userSaldoFinal + $userGetFinal;
                     $desription = 'Pembayaran cicilan dan bunga ke-'.$productInstallments->month.' dari '.$productInstallments->product->name;
@@ -267,6 +332,55 @@ class TransactionUnit
                     //change user wallet amount
                     $userDB->wallet_amount = $userSaldoFinal;
                     $userDB->save();
+                    if($productInstallments->month == $productInstallments->Product->tenor_loan){
+                        $doneInstallmentPayment = true;
+//                        $statements = WalletStatement::where('user_id', $transaction->user_id)
+//                            ->where('description', 'like', '%'.$productInstallments->product->name.'%')
+//                            ->orderBy('created_on', 'ASC')
+//                            ->get();
+//                        //send email to user
+//                        $data = array(
+//                            'user'=>$userDB,
+//                            'description' => $productInstallments->product->name,
+//                            'statements' => $statements,
+//                            'userGetFinal' => $userGetFinal
+//                        );
+//                        SendEmail::SendingEmail('installmentDone', $data);
+                    }
+//                    else{
+//                        //send email to user
+//                        $data = array(
+//                            'user'=>$userDB,
+//                            'description' => $desription,
+//                            'userGetFinal' => $userGetFinal
+//                        );
+//                        SendEmail::SendingEmail('topupSaldo', $data);
+//                    }
+
+                }
+                //change product installment status
+                $productInstallments->status_id = 27;
+                $productInstallments->save();
+
+                //change product status kalau pembayaran cicilan sudah selesai
+                if($doneInstallmentPayment){
+                    $productDB = Product::find($productInstallments->product_id);
+                    $productDB->status_id = 24;
+                    $productDB->save();
+                }
+                return true;
+            });
+//dd($isSuccessTopUp);
+            if($isSuccessTopUp){
+                foreach ($transactionList as $transaction){
+                    $userDB = User::find($transaction->user_id);
+                    $userAmount = (double) str_replace('.','', $transaction->total_price);
+
+                    $userGetTemp = number_format((($userAmount*100) / $raised),8);
+
+                    $userGetFinal = round(($userGetTemp * $paid_amount) / 100);
+                    $desription = 'Pembayaran cicilan dan bunga ke-'.$productInstallments->month.' dari '.$productInstallments->product->name;
+
 
                     if($productInstallments->month == $productInstallments->Product->tenor_loan){
                         $statements = WalletStatement::where('user_id', $transaction->user_id)
@@ -280,8 +394,7 @@ class TransactionUnit
                             'statements' => $statements,
                             'userGetFinal' => $userGetFinal
                         );
-                        SendEmail::SendingEmail('installmentDone', $data);
-                        $doneInstallmentPayment = true;
+//                        SendEmail::SendingEmail('installmentDone', $data);
                     }
                     else{
                         //send email to user
@@ -290,21 +403,11 @@ class TransactionUnit
                             'description' => $desription,
                             'userGetFinal' => $userGetFinal
                         );
-                        SendEmail::SendingEmail('topupSaldo', $data);
+//                        SendEmail::SendingEmail('topupSaldo', $data);
                     }
 
                 }
-                //change product installment status
-                $productInstallments->status_id = 27;
-                $productInstallments->save();
-
-                //change product status kalau pembayaran cicilan sudah selesai
-                if($doneInstallmentPayment){
-                    $productDB = Product::find($productInstallments->product_id);
-                    $productDB->status_id = 24;
-                    $productDB->save();
-                }
-            });
+            }
             return true;
         }
         catch(\Exception $ex){

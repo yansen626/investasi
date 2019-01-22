@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
 use App\Libs\TransactionUnit;
+use App\Libs\Utilities;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -119,10 +120,10 @@ class ProductController extends Controller
                                 Utilities::ExceptionLog("Change installment payment status failed");
                             }
                         }
-                        if($productInstallment->month > 0 && $productInstallment->month < $ct){
-                            $productInstallment->status_id = 27;
-                            $productInstallment->save();
-                        }
+//                        if($productInstallment->month > 0 && $productInstallment->month == $productInstallment->Product->tenor_loan){
+//                            $productInstallment->status_id = 27;
+//                            $productInstallment->save();
+//                        }
                     }
                 }
 

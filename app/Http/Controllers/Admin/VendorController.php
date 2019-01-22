@@ -71,6 +71,7 @@ class VendorController extends Controller
             'name'            => 'required|max:100',
             'dob'            => 'required|max:100',
             'address_ktp'            => 'required|max:100',
+            'identity_number'            => 'required',
             'marital_status'            => 'required|max:100',
             'education'            => 'required|max:100',
             'username'              => 'required',
@@ -107,6 +108,7 @@ class VendorController extends Controller
                 'username.required'   => 'Username harus diisi',
                 'dob.required'   => 'Tanggal Lahir harus diisi',
                 'address_ktp.required'   => 'Alamat Rumah harus diisi',
+                'identity_number.required'   => 'Nomor KTP harus diisi',
                 'marital_status.required'   => 'Status Pernikahan harus diisi',
                 'education.required'   => 'Pendidikan Terakhir harus diisi',
 //                'fb_acc.required'   => 'Akun Facebook harus diisi',
@@ -154,6 +156,7 @@ class VendorController extends Controller
                 $userDB->email = $request['email'];
                 $userDB->phone = $request['phone'];
                 $userDB->name_ktp = $request['name'];
+                $userDB->identity_number = $request['identity_number'];
                 $userDB->address_ktp = $request['address_ktp'];
                 $userDB->marital_status = $request['marital_status'];
                 $userDB->education = $request['education'];
@@ -299,6 +302,7 @@ class VendorController extends Controller
             'name'            => 'required|max:100',
             'dob'            => 'required|max:100',
             'address_ktp'            => 'required|max:100',
+            'identity_number'            => 'required',
             'marital_status'            => 'required|max:100',
             'education'            => 'required|max:100',
             'password'              => 'required|min:6|max:20|same:password',
@@ -340,6 +344,7 @@ class VendorController extends Controller
                 'username.unique'   => 'Username sudah pernah terdaftar',
                 'dob.required'   => 'Tanggal Lahir harus diisi',
                 'address_ktp.required'   => 'Alamat Rumah harus diisi',
+                'identity_number.required'   => 'Nomor KTP harus diisi',
                 'marital_status.required'   => 'Status Pernikahan harus diisi',
                 'education.required'   => 'Pendidikan Terakhir harus diisi',
 //                'fb_acc.required'   => 'Akun Facebook harus diisi',
@@ -415,6 +420,7 @@ class VendorController extends Controller
                     'last_name' => "",
                     'email' => $request['email'],
                     'phone' => $request['phone'],
+                    'identity_number' => $request['identity_number'],
                     'name_ktp' => $request['name'],
                     'address_ktp' => $request['address_ktp'],
 //                    'dob' => $request['dob'],

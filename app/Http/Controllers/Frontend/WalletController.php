@@ -207,7 +207,6 @@ class WalletController extends Controller
                     'acc_number'    => 'required',
                     'acc_name'      => 'required',
                     'bank'          => 'required',
-                    'google'          => 'required'
                 ]);
 
                 $user = User::find($userId);
@@ -226,11 +225,11 @@ class WalletController extends Controller
                         return redirect()->back()->withErrors("Jumlah Penarikan minimal Rp ".$minimum)->withInput($request->all());
                     }
 
-                    $secret = Input::get('google');
-                    $google2fa = new Google2FA();
+//                    $secret = Input::get('google');
+//                    $google2fa = new Google2FA();
 
-                    $valid = $google2fa->verifyKey($user->google2fa_secret, $secret);
-//                    $valid = true;
+//                    $valid = $google2fa->verifyKey($user->google2fa_secret, $secret);
+                    $valid = true;
                     if($valid){
                         DB::transaction(function() use ($request, $amount, $userWallet, $userId, $user){
                         $dateTimeNow = Carbon::now('Asia/Jakarta');
@@ -317,6 +316,13 @@ class WalletController extends Controller
         $wallet->status_id = 7;
         $wallet->updated_on = Carbon::now('Asia/Jakarta')->toDateTimeString();
         $wallet->save();
+
+        $userDB = User::find($wallet->user_id);
+        $walletAmount = (double) str_replace('.','', $wallet->amount);
+        $userWallet = (double) str_replace('.','', $userDB->wallet_amount);
+        $wallet = $userWallet + $walletAmount;
+        $userDB->wallet_amount = $wallet;
+        $userDB->save();
 
         return redirect()->route('my-wallet');
     }

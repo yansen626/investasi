@@ -270,10 +270,10 @@ class PaymentController extends Controller
 
             if($paymentMethod != 'wallet'){
                 if($paymentMethod == 'bank_transfer'){
-                    error_log("CHECK!");
+                    error_log("bank_transfer ".$orderId);
                     $isSuccess = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
                     if($isSuccess){
-                        Utilities::ExceptionLog("Payment ".$orderId." with 'bank transfer' successfully created");
+                        Utilities::ExceptionLog("Payment (".$user->first_name." ".$user->last_name.") ".$orderId." with 'bank transfer' successfully created");
                         return redirect()->route('pageVA', ['orderId' => $orderId]);
                     }
                     else{
@@ -296,6 +296,7 @@ class PaymentController extends Controller
             }
             //if pay with dompet
             else{
+                error_log("wallet ".$orderId);
                 $userDB = User::find($userId);
                 $userWallet = (double) str_replace('.','', $userDB->wallet_amount);
 //                dd($investAmount."|".$userWallet);
@@ -321,20 +322,27 @@ class PaymentController extends Controller
 //                        return View('frontend.checkout-success', compact('paymentMethod'));
 //                    }
                 if($investAmount <= $userWallet){
+//                    dd($paymentMethod);
                     $isSuccess1 = TransactionUnit::createTransaction($userId, $cartCreate->id, $orderId);
-                    if($isSuccess1){
-                        TransactionUnit::transactionAfterVerified($orderId);
-                        $paymentMethod = 'dompet';
-                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' successfully created");
-                        return View('frontend.checkout-success', compact('paymentMethod'));
-                    }
-                    else{
-                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' (error create transaction) fail to created");
-                        return View('frontend.checkout-failed', compact('investId'));
-                    }
+                    TransactionUnit::transactionAfterVerified($orderId);
+                    $paymentMethod = 'dompet';
+                    Utilities::ExceptionLog("Payment (".$user->first_name." ".$user->last_name.") ".$orderId." with 'Dana Saya' successfully created");
+
+                    return View('frontend.checkout-success', compact('paymentMethod'));
+//                    if($isSuccess1){
+//                        TransactionUnit::transactionAfterVerified($orderId);
+//                        $paymentMethod = 'dompet';
+//                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' successfully created");
+//                        return View('frontend.checkout-success', compact('paymentMethod'));
+//                    }
+//                    else{
+//                        Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' (error create transaction) fail to created");
+//                        return View('frontend.checkout-failed', compact('investId'));
+//                    }
                 }
                 else{
-                    Utilities::ExceptionLog("Payment ".$orderId." with 'Dana Saya' (investAmount > userWallet) fail to created");
+                    Utilities::ExceptionLog("Payment (".$user->first_name." ".$user->last_name.") ".$orderId.
+                        " with 'Dana Saya' (investAmount [".$investAmount."] > userWallet [".$userWallet."]) fail to created");
                     return View('frontend.checkout-failed', compact('investId'));
                 }
             }

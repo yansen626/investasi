@@ -14,6 +14,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property int $id
  * @property int $va_last_number
+ * @property int $perjanjian_year
+ * @property int $perjanjian_number
  *
  * @package App\Models
  */
@@ -24,10 +26,14 @@ class Option extends Eloquent
 
 	protected $casts = [
 		'id' => 'int',
-		'va_last_number' => 'int'
+		'va_last_number' => 'int',
+		'perjanjian_year' => 'int',
+		'perjanjian_number' => 'int'
 	];
 
 	protected $fillable = [
-		'va_last_number'
+		'va_last_number',
+		'perjanjian_year',
+		'perjanjian_number'
 	];
 }

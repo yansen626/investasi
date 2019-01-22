@@ -11,7 +11,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Libs\UrgentNews;
 use App\Models\Product;
+use App\Models\ProductInstallment;
 use App\Models\Transaction;
+use App\Models\WalletStatement;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
@@ -53,9 +55,39 @@ class TransactionController extends Controller
         $userInvestasi = Transaction::where('user_id', $userId)->where('status_id', 5)->sum('total_price');
         $userInvestasiFormated = number_format($userInvestasi,0, ",", ".");
 
+        //summary portfolio
+        $onGoingProductIds = Transaction::select('product_id')
+            ->where('user_id', "6fa921f0-493e-11e8-9760-5f8fe286ae19")
+            ->where('status_id', 5)
+            ->groupBy('product_id')
+            ->get();
 
-        $isActiveDebt = ""; $isActiveEquity = "";$isActivePending = "";
-        $isActiveTabDebt = "";$isActiveTabEquity = "";$isActiveTabPending = "";
+        $collection = collect(['name', 'total', 'progress', 'return', 'status']);
+        $transactionSummary = collect();
+        foreach($onGoingProductIds as $onGoingProductId){
+            $total = Transaction::where('product_id', $onGoingProductId->product_id)
+                ->where('user_id', $userId)
+                ->where('status_id', 5)
+                ->sum('total_price');
+            $total = number_format($total, 0, ",", ".");
+            $productDB = Product::where('id', $onGoingProductId->product_id)->first();
+            $productInstallmentCount = ProductInstallment::where('product_id', $onGoingProductId->product_id)
+                ->where('status_id', 27)->count();
+
+            $walletStatementDB = WalletStatement::where('description', 'like', '%'.$productDB->name.'%')
+                ->where('user_id', $userId)
+                ->get();
+            $walletSum = $walletStatementDB->sum('amount');
+
+            $combined = $collection->combine([
+                $productDB->name, $total, $productInstallmentCount." of ".$productDB->tenor_loan,
+                $walletSum, $productDB->Status->description
+            ]);
+            $transactionSummary = $transactionSummary->push($combined);
+        }
+
+        $isActiveDebt = ""; $isActiveEquity = "";$isActivePending = "";$isActiveSum = "";
+        $isActiveTabDebt = "";$isActiveTabEquity = "";$isActiveTabPending = "";$isActiveTabSum = "";
         if($tab == "debt") {
             $isActiveDebt = "in active";
             $isActiveTabDebt = "class=active";
@@ -63,6 +95,10 @@ class TransactionController extends Controller
         else if($tab == "equity") {
             $isActiveEquity = "in active";
             $isActiveTabEquity = "class=active";
+        }
+        else if($tab == "sum") {
+            $isActiveSum = "in active";
+            $isActiveTabSum = "class=active";
         }
         else if($tab == "pending") {
             $isActivePending = "in active";
@@ -75,16 +111,19 @@ class TransactionController extends Controller
             'transactionPending'=>$transactionPending,
             'transactionSahamHasil'=>$transactionSahamHasil,
             'transactionHutang'=>$transactionHutang,
+            'transactionSummary'=>$transactionSummary,
             'user'=>$user,
             'userDompet'=>$userDompet,
             'userPendapatan'=>$userPendapatan,
             'userInvestasi'=>$userInvestasiFormated,
             'isActiveDebt'=>$isActiveDebt,
-            'isActiveEquity'=>$isActiveEquity,
-            'isActivePending'=>$isActivePending,
             'isActiveTabDebt'=>$isActiveTabDebt,
+            'isActiveEquity'=>$isActiveEquity,
             'isActiveTabEquity'=>$isActiveTabEquity,
-            'isActiveTabPending'=>$isActiveTabPending
+            'isActivePending'=>$isActivePending,
+            'isActiveTabPending'=>$isActiveTabPending,
+            'isActiveSum'=>$isActiveSum,
+            'isActiveTabSum'=>$isActiveTabSum
         ];
         return View ('frontend.show-portfolio')->with($data);
     }
