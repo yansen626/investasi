@@ -144,6 +144,7 @@ Route::get('/admin/logout', 'Auth\LoginAdminController@logout')->name('admin-log
 
 //Referral
 //Route::get('/admin/referral/{id}', 'Frontend\ReferralController@ShowReferral')->name('admin-referral');
+Route::get('/admin/referral', 'Admin\CustomerController@referral')->name('referral-list');
 
 // Product
 Route::prefix('/admin/product')->group(function (){

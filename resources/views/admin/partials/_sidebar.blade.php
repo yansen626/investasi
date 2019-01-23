@@ -33,6 +33,7 @@
                             <li><a href="{{ route('customer-list') }}">User List</a></li>
                             <li><a href="{{route ('import')}}">Topup Saldo</a></li>
                             <li><a href="{{ route('subscribe-list') }}">Subscriber List</a></li>
+                            <li><a href="{{ route('referral-list') }}">Refferal List</a></li>
                             {{--<li><a href="{{ route('product-create') }}">Tambah</a></li>--}}
                         </ul>
                     </li>
@@ -41,7 +42,7 @@
                             <li><a href="{{ route('vendor-request-form') }}">Submit New Borrower</a></li>
                             <li><a href="{{ route('vendor-list') }}">Borrower List</a></li>
                             <li><a href="{{ route('product-request') }}">Project Launch</a></li>
-                                <li><a href="{{ route('product-list') }}">Project List</a></li>
+                            <li><a href="{{ route('product-list') }}">Project List</a></li>
                             <li><a href="{{ route('product-collected-fund') }}">Project Success Funding</a></li>
                             <li><a href="{{ route('product-failed-fund') }}">Project Failed Funding</a></li>
                         </ul>

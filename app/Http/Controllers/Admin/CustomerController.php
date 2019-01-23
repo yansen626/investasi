@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
 use App\Models\Product;
 use App\Models\ProductInstallment;
+use App\Models\Referral;
 use App\Models\Subscribe;
 use App\Models\Transaction;
 use App\Models\User;
@@ -117,6 +118,14 @@ class CustomerController extends Controller
         $subscribes = Subscribe::all();
 
         return View('admin.show-subscribes', compact('subscribes'));
+        //return view('admin.show_users')->with('users', $users);
+    }
+
+    public function referral()
+    {
+        $referrals = Referral::all();
+
+        return View('admin.lenders.show-referrals', compact('referrals'));
         //return view('admin.show_users')->with('users', $users);
     }
 

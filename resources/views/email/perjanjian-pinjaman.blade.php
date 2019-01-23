@@ -368,7 +368,7 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
         <span lang="IN">, sebuah</span> perseroan <span lang="IN">terbatas yang didirikan berdasarkan hukum Negara Republik Indonesia, beralamat di</span>
         <span lang="IN"></span> <span>Menara Satrio Lantai 14 unit 5, Jalan Prof. DR. Satrio Kav. 1-4 Blok C4, Kel. Kuningan Timur, Kec. Setiabudi, Jakarta Selatan 12950</span>
         <span lang="EN-GB">yang dalam hal ini diwakili oleh</span>
-        <span>Ryan Filbert</span>, dengan NIK no KTP dalam kedudukannya selaku Direktur yang dalam hal ini bertindak selaku penerima kuasa dari
+        <span>Ryan Filbert</span>, dengan NIK 3171012001860003 dalam kedudukannya selaku Direktur yang dalam hal ini bertindak selaku penerima kuasa dari
         <span lang="IN">Pemberi Pinjaman.</span>
         <span lang="IN">&nbsp;</span><span lang="IN">&nbsp;</span>
     </p>
