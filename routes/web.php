@@ -295,6 +295,9 @@ Route::prefix('admin/customer')->group(function(){
     Route::get('/ktp-accept/{id}', 'Admin\CustomerController@AcceptKTPData');
     Route::get('/ktp-reject/{id}', 'Admin\CustomerController@RejectKTPData');
     Route::get('/download/{filename}', 'Admin\CustomerController@DownloadPdfKtp')->name('download');
+
+    Route::get('/add-dana-form/{id}', 'Admin\CustomerController@customerAddDana')->name('customer-add-dana');
+    Route::post('/add-dana/', 'Admin\CustomerController@submitCustomerAddDana');
 });
 //Route::get('/admin/customer', 'Admin\CustomerController@index')->name('customer-list');
 //Route::get('/admin/customer-ktp/{id}', 'Admin\CustomerController@customerKtp')->name('customer-ktp');

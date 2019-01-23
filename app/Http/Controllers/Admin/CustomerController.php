@@ -12,6 +12,7 @@ use App\Excel\ExcelExport;
 use App\Excel\ExcelExportFromView;
 use App\Http\Controllers\Controller;
 use App\Libs\SendEmail;
+use App\Libs\Utilities;
 use App\Models\Product;
 use App\Models\ProductInstallment;
 use App\Models\Referral;
@@ -22,11 +23,13 @@ use App\Models\WalletStatement;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
 use Dompdf\Exception;
 use Maatwebsite\Excel\Excel;
 use Maatwebsite\Excel\Facades;
+use Webpatser\Uuid\Uuid;
 
 class CustomerController extends Controller
 {
@@ -38,8 +41,9 @@ class CustomerController extends Controller
     public function index()
     {
         $users = User::orderByDesc('created_at')->get();
+        $adminType = Auth::guard('user_admins')->user()->user_type;
 
-        return View('admin.show-customers', compact('users'));
+        return View('admin.show-customers', compact('users', 'adminType'));
         //return view('admin.show_users')->with('users', $users);
     }
     public function show($id)
@@ -55,6 +59,50 @@ class CustomerController extends Controller
     {
         $file_path = public_path('storage/ktp/'.$filename);
         return response()->download($file_path);
+    }
+
+    public function customerAddDana($id){
+        $user = User::find($id);
+
+        return View('admin.lenders.create-add-dana', compact('user'));
+    }
+
+    public function submitCustomerAddDana(Request $request){
+        try{
+            DB::transaction(function() use ($request){
+                $dateTimeNow = Carbon::now('Asia/Jakarta');
+
+                $userDB = User::find($request->input('user_id'));
+                $userWalletDB = (double) str_replace('.','', $userDB->wallet_amount);
+
+                $amount = $request->input('amount');
+                $newWallet = $userWalletDB + $amount;
+                $userDB->wallet_amount = $newWallet;
+                $userDB->save();
+
+                $desription = 'Pembayaran '.$request->input('description');
+
+                $statement = WalletStatement::create([
+                    'id'            => Uuid::generate(),
+                    'user_id'       => $request->input('user_id'),
+                    'description'   => $desription,
+                    'saldo'         => $newWallet,
+                    'amount'        => $amount,
+                    'fee'           => 0,
+                    'admin'         => 0,
+                    'transfer_amount'=> 0,
+                    'status_id'     => 6,
+                    'date'          => $dateTimeNow->toDateTimeString(),
+                    'created_on'    => $dateTimeNow->toDateTimeString()
+                ]);
+
+                Session::flash('message', 'Penambahan Dana Berhasil!');
+            });
+        }
+        catch(\Exception $ex){
+            Utilities::ExceptionLog('CustomerController.php > submitCustomerAddDana ========> '.$ex);
+        }
+        return Redirect::route('customer-list');
     }
 
     public function customerKtp($id){

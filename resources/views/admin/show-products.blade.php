@@ -80,6 +80,9 @@
                                                         <a href="{{ route('product-news-request', ['productId' => $product->id])}}" target="_blank">
                                                             <button class="btn btn-success">Tambah Berita</button>
                                                         </a>
+                                                        {{--<a href="{{ route('product-news-request', ['productId' => $product->id])}}" target="_blank">--}}
+                                                            {{--<button class="btn btn-danger">Denda</button>--}}
+                                                        {{--</a>--}}
                                                     </td>
                                                 </tr>
                                                 @php( $idx++ )

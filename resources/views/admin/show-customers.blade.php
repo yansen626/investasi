@@ -88,6 +88,9 @@
                                         <td>
                                             <a href="{{route('customer-detail', ['id'=> $user->id])}}" class="btn btn-primary">Detail</a>
                                             <a href="{{route('customer-ktp', ['id'=> $user->id])}}" class="btn btn-primary">Detail KTP</a>
+                                            @if($adminType == 1)
+                                                <a href="{{route('customer-add-dana', ['id'=> $user->id])}}" class="btn btn-danger">Tambah Dana</a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @php( $idx++ )
