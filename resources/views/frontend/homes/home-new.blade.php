@@ -172,7 +172,7 @@
                     @endforeach
                 </div>
                 <div class="text-center">
-                    <a href="{{route('portfolio', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Proyek yang Anda Danai</span></a>
+                    <a href="{{route('portfolio', ['tab' => 'premium'])}}" class="btn btn-min btn-solid"><span>Proyek yang Anda Danai</span></a>
                 </div>
                 @endif
             </div>
@@ -492,13 +492,13 @@
                 </div>
 
                 <div class="col-md-6 text-right hidden-sm hidden-xs">
-                    <a href="{{route('project-list', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
+                    <a href="{{route('project-list', ['tab' => 'premium'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
                 </div>
                 <div class="col-md-6 text-left hidden-sm hidden-xs">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;" target="_blank"><span>Daftarkan Proyek</span></a>
                 </div>
                 <div class="col-sm-12 text-center hidden-md hidden-lg" style="margin-bottom:3%;">
-                    <a href="{{route('project-list', ['tab' => 'debt'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
+                    <a href="{{route('project-list', ['tab' => 'premium'])}}" class="btn btn-min btn-solid"><span>Berikan Bantuan</span></a>
                 </div>
                 <div class="col-sm-12 text-center hidden-md hidden-lg">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfykNgRf0GkrOe_7Eer-VuIuViOaGwFzDdqp4YxVl3yNnxOFg/viewform?c=0&w=1" class="btn btn-min btn-solid" style="background-color: white !important;color: #ff7a00 !important;" target="_blank"><span>Daftarkan Proyek</span></a>

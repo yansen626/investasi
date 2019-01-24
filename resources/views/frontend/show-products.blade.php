@@ -23,8 +23,8 @@
             <div id="tabs" class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
-                        <li {{$isActiveTabDebt}}><a href="{{route('project-list', ['tab' => 'debt'])}}" >Produk Konvensional</a></li>
                         <li {{$isActiveTabPremium}}><a href="{{route('project-list', ['tab' => 'premium'])}}" >Produk Premium</a></li>
+                        <li {{$isActiveTabDebt}}><a href="{{route('project-list', ['tab' => 'debt'])}}" >Produk Konvensional</a></li>
                         <li {{$isActiveTabOnprogress}}><a href="{{route('project-list', ['tab' => 'onprogress'])}}" >Produk Berjalan</a></li>
                     </ul>
                 </div>

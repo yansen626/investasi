@@ -379,7 +379,7 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
         <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
             2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <b>{{$vendor->name}}</b>, sebuah perseroan terbatas yang didirikan berdasarkan hukum Negara Republik Indonesia,
-            beralamat di <b>{{$user->address_ktp}}, {{$user->city_ktp}}, {{$user->postal_code_ktp}}</b> yang dalam hal ini diwakili
+            beralamat di <b>{{$user->address_ktp}}</b> yang dalam hal ini diwakili
             oleh <b>{{ $user->name_ktp }}</b>, dengan NIK <b>{{ $user->identity_number }}</b>,
             dalam kedudukannya selaku <b>Direktur</b> yang dalam hal ini bertindak selaku penerima kuasa dari Penerima Pinjaman.
             (untuk selanjutnya disebut sebagai “<b>Penerima Pinjaman</b>”)

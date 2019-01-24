@@ -57,7 +57,7 @@
                                 </thead>
                                 <tbody>
                                 @php( $idx = 1 )
-                                @foreach($vendor->products as $product)
+                                @foreach($vendor->products->where('status_id', '>=', 21) as $product)
 
                                     @php( $percentage = ($product->getOriginal('raised') * 100) / $product->getOriginal('raising') )
                                     @php( $percentage = number_format($percentage, 0) )

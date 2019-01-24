@@ -40,7 +40,7 @@
                         <li>
                             <span>Proyek </span>
                             <ul class="submenu">
-                                <li><a href="{{route('project-list', ['tab' => 'debt'])}}">Daftar Proyek</a></li>
+                                <li><a href="{{route('project-list', ['tab' => 'premium'])}}">Daftar Proyek</a></li>
                                 {{--<li><a href="{{route('secondary-market')}}">Secondary Market</a></li>--}}
                             </ul>
                         </li>
@@ -109,7 +109,7 @@
                                         <li><a href="{{route('index')}}">Beranda </a></li>
                                         <li><a>Proyek </a>
                                             <ul>
-                                                <li><a href="{{route('project-list', ['tab' => 'debt'])}}">Daftar Proyek</a></li>
+                                                <li><a href="{{route('project-list', ['tab' => 'premium'])}}">Daftar Proyek</a></li>
                                                 {{--<li><a href="{{route('secondary-market')}}">Secondary Market</a></li>--}}
                                             </ul>
                                         </li>

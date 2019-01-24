@@ -257,8 +257,12 @@
                     {{ Form::hidden('checkout-zip', '', array('id' => 'checkout-zip')) }}
                 </div>
                 <div class="modal-footer" style="text-align: center;">
+                    <span class="loader-text" style="color: red;display: none;">Harap Menunggu..</span>
+                    <br>
                     <button type="button" class="btn btn-error" data-dismiss="modal">Tutup</button>
-                    <button id="submit" type="submit" class="btn btn-solid" disabled>Bayar Sekarang</button>
+                    <button id="submit" type="submit" class="btn btn-solid" disabled>
+                        <span class="loader" style="display: none;"></span> Bayar Sekarang
+                    </button>
                 </div>
 
                 {!! Form::close() !!}
@@ -269,15 +273,6 @@
     {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59f6e999249e3f1c"></script>--}}
 
     <script type="text/javascript">
-        function check(){
-
-            if(document.getElementById("check1").checked){
-                document.getElementById("submit").disabled = false;
-            }
-            else if(document.getElementById("check1").checked == false){
-                document.getElementById("submit").disabled = true;
-            }
-        }
     </script>
 @endsection
 
@@ -285,6 +280,26 @@
     @parent
     <link rel="stylesheet" href="{{ URL::asset('css/datatable/jquery.dataTables.min.css') }}">
     <style>
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid black;
+            border-bottom: 4px solid black;
+            width: 15px;
+            height: 15px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         .checkout-border{
             border-bottom: 2px solid #ff7a00;
             padding-bottom: 6%;
@@ -294,8 +309,18 @@
 
 @section('scripts')
     @parent
+
     <script src="{{ URL::asset('js/frontend/bootstrap-datetimepicker.min.js') }}"></script>
     <script>
+        function check(){
+            if(document.getElementById("check1").checked){
+                document.getElementById("submit").disabled = false;
+            }
+            else if(document.getElementById("check1").checked == false){
+                document.getElementById("submit").disabled = true;
+            }
+        }
+
         $( document ).ready(function() {
             var paidAmount = $('#getProductInstallment').val();
             var editedPaidAmount = RemoveDot(paidAmount);
@@ -306,6 +331,13 @@
             $('#raised').val(editedRaised);
 
         });
+
+        $("form").submit(function(){
+            $('.loader').show();
+            $('.loader-text').show();
+            document.getElementById("submit").disabled = true;
+        });
+
         numberFormat = new AutoNumeric('.amount_wallet_transfer > input', {
             decimalCharacter: ',',
             digitGroupSeparator: '.',
