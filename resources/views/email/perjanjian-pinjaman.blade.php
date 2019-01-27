@@ -351,8 +351,9 @@
     <p class="MsoTitle" style='margin-bottom:10.0pt;line-height:110%'>
         <span class="custom-span">PERJANJIAN PINJAMAN</span>
     </p>
-    <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;
-line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
+    <p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center;line-height:110%'>
+        <b><span lang=IN>No. </span></b>{{$noPerjanjian}}
+    </p>
     <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height:110%'>
         <b><span lang="EN-GB" style='text-transform:uppercase'>PERJANJIAN PINJAMAN</span></b>
         <span lang="EN-GB">ini (selanjutnya disebut sebagai “<b>Perjanjian Pinjaman</b>”) dibuat dan ditandatangani pada hari
@@ -375,7 +376,7 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
     <p class="MsoListParagraph" style='text-align:justify;line-height:110%'>
         (selanjutnya disebut sebagai “<b>Pemberi Pinjaman”</b>, termasuk kuasa, pengganti dan penerima pengalihannya);
     </p>
-    @if($vendor->vendor_type == "pt")
+    @if($vendor->vendor_type != "individual")
         <p class="MsoListParagraph" style='text-align:justify;text-indent:-36.0pt; line-height:110%'>
             2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <b>{{$vendor->name}}</b>, sebuah perseroan terbatas yang didirikan berdasarkan hukum Negara Republik Indonesia,
@@ -587,7 +588,7 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
         <span class="custom-span" lang="IN">Penerima Pinjaman akan membayar kepada Penyelenggara<b></b></span>
         <span class="custom-span">Komisi Layanan Situs</span>
         <b><span class="custom-span"></span></b>
-        <span class="custom-span" lang="IN">sebesar 3%</span>
+        <span class="custom-span" lang="IN">sebesar 2.5%</span>
         <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;(tiga koma lima </span>
         <span class="custom-span" lang="IN">persen) dari jumlah Pinjaman</span>
         <span lang="IN" style='font-size:11.0pt;line-height: 110%;font-family:"Calibri","sans-serif"'></span>
@@ -674,15 +675,25 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
                 <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">PEMBERI PINJAMAN</span></b></p>
             </td>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'><b><span lang="EN-GB">PENERIMA PINJAMAN</span></b></p>
+                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:center;line-height:110%'><b><span lang="EN-GB">PENERIMA PINJAMAN</span></b></p>
             </td>
         </tr>
         <tr>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">______________________________________</span></p>
+                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'>
+                    <span lang="EN-GB">
+                        <br><br><br><br><br><br><br>
+                        ______________________________________
+                    </span>
+                </p>
             </td>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
-                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">______________________________________</span></p>
+                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'>
+                    <span lang="EN-GB">
+                        <br><br><br><br><br><br><br>
+                        ______________________________________
+                    </span>
+                </p>
             </td>
         </tr>
         <tr>
@@ -719,17 +730,17 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
             </td>
         </tr>
         @foreach($productInstallments as $productInstallment)
-        <tr>
-            <td style='width:85.25pt;border:solid windowtext 1.0pt; border-top:none;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="114">
-                <p class="MsoListParagraph" style='margin-left:45.0pt;text-align:justify; text-indent:-9.0pt;line-height:110%'><b>{{$productInstallment->month}}. <span style='font:7.0pt "Times New Roman"'></span></b><b><span lang="EN-GB">&nbsp;</span></b></p>
-            </td>
-            <td style='width:215.25pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="287">
-                <p align="center" class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:center;line-height:normal'><span lang="EN-GB">Rp {{$productInstallment->paid_amount}}</span></p>
-            </td>
-            <td style='width:150.3pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="200">
-                <p align="center" class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:center;line-height:normal'><span lang="EN-GB">{{ \Carbon\Carbon::parse($productInstallment->due_date)->format('j F Y')}}</span></p>
-            </td>
-        </tr>
+            <tr>
+                <td style='width:85.25pt;border:solid windowtext 1.0pt; border-top:none;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="114">
+                    <p class="MsoListParagraph" style='margin-left:45.0pt;text-align:justify; text-indent:-9.0pt;line-height:110%'><b>{{$productInstallment->month}}. <span style='font:7.0pt "Times New Roman"'></span></b><b><span lang="EN-GB">&nbsp;</span></b></p>
+                </td>
+                <td style='width:215.25pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="287">
+                    <p align="center" class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:center;line-height:normal'><span lang="EN-GB">Rp {{$productInstallment->paid_amount}}</span></p>
+                </td>
+                <td style='width:150.3pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="200">
+                    <p align="center" class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:center;line-height:normal'><span lang="EN-GB">{{ \Carbon\Carbon::parse($productInstallment->due_date)->format('j F Y')}}</span></p>
+                </td>
+            </tr>
         @endforeach
     </table>
     <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><b><span lang="EN-GB">&nbsp;</span></b></p>
@@ -737,7 +748,7 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
 </div><b><span class="custom-span" lang="EN-GB"><br clear="all" style='page-break-before:always'></span></b>
 <div class="WordSection3">
     <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">LAMPIRAN II</span></b></p>
-    <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">REKENING ESCROW</span></b></p>
+    <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">REKENING PEMBAYARAN</span></b></p>
     <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style='border-collapse:collapse;border:none'>
         <tr>
             <td style='width:150.25pt;border:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="200">
@@ -761,7 +772,11 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
             </td>
             <td style='width:266.55pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="355">
                 <p class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt;line-height: normal'>
-                    <span lang="EN-GB">Indofund.id / {{ $user->first_name }} {{ $user->last_name }}</span>
+                    @if($vendor->vendor_type != "individual")
+                        <span lang="EN-GB">Indofund.id / {{ $user->first_name }} {{ $user->last_name }}</span>
+                    @else
+                        <span lang="EN-GB">Indofund.id / {{ $vendor->name }}</span>
+                    @endif
                 </p>
             </td>
         </tr>
@@ -771,7 +786,7 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
 </div><b><span class="custom-span" lang="EN-GB"><br clear="all" style='page-break-before:always'></span></b>
 <div class="WordSection4">
     <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">LAMPIRAN III</span></b></p>
-    <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">Ketentuan-ketentuan Pinjaman</span></b></p>
+    <p align="center" class="MsoNormal" style='margin-bottom:10.0pt;text-align:center; line-height:110%'><b><span lang="EN-GB">Ketentuan-ketentuan Pinjaman dan Jaminan</span></b></p>
     <table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style='border-collapse:collapse;border:none'>
         <tr>
             <td style='width:188.75pt;border:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="252">
@@ -822,6 +837,21 @@ line-height:110%'><b><span lang=IN>No. </span></b>{{$noPerjanjian}}</p>
             <td style='width:239.55pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="319">
                 <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'>
                     <span lang="EN-GB">3% (tiga persen) atau Rp 100.000 (seratus ribu rupiah) perbulan</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td style='width:188.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="252">
+                <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'>Jaminan</p>
+            </td>
+            <td style='width:22.5pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="30">
+                <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'><span lang="EN-GB">:</span></p>
+            </td>
+            <td style='width:239.55pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="319">
+                <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'>
+                    &nbsp;<br>
+                    &nbsp;<br>
+                    &nbsp;
                 </p>
             </td>
         </tr>

@@ -99,7 +99,8 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'va_acc'    => $va_acc,
             'email_token' => base64_encode($data['email']),
-            'status_id' => 3,
+//            'status_id' => 3,
+            'status_id' => 11,
             'password' => bcrypt($data['password']),
         ]);
     }

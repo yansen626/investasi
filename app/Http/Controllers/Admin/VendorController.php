@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades;
 use Webpatser\Uuid\Uuid;
 use Carbon\Carbon;
 
@@ -578,5 +580,22 @@ class VendorController extends Controller
 
 
         return Redirect::route('vendor-list');
+    }
+
+    public function downloadMCMData(){
+        try {
+            $customerList = Vendor::all();
+            return Facades\Excel::create('88795', function($excel) use ($customerList) {
+                $excel->sheet('New sheet', function($sheet) use ($customerList) {
+                    $sheet->loadView('excel.mcm-borrower', array('customerListDB' => $customerList));
+                });
+            })->export('xlsx');
+//            return Facades\Excel::download(new ExcelExportFromView('mcm'), '88795.xlsx');
+        }
+        catch (Exception $ex){
+            //Utilities::ExceptionLog($ex);
+            return response($ex, 500)
+                ->header('Content-Type', 'text/plain');
+        }
     }
 }

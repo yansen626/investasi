@@ -319,6 +319,8 @@ Route::prefix('admin/vendor')->group(function(){
 
     Route::get('/pengajuan-owner', 'Admin\VendorController@RequestOwner')->name('vendor-request-form');
     Route::post('/pengajuan-owner', 'Admin\VendorController@RequestOwnerSubmit')->name('vendor-request-submit');
+
+    Route::get('/download-mcm', 'Admin\VendorController@downloadMCMData')->name('download-borrower-mcm');
 });
 
 // Wallet

@@ -198,7 +198,7 @@ class ProfileController extends Controller
 
                     $request->file('photo_ktp')->move(public_path('storage/ktp/'), $filename);
                     $userDB->img_ktp = $filename;
-                    dd($filename);
+                    //dd($filename);
                 }
             }
             $userDB->save();

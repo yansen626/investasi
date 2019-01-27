@@ -15,7 +15,7 @@
                 <div class="row features">
                     @if($user->wallet_amount != 0)
                         <div class="col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Danai Proyek adalah list proyek yang dapat didanai, link ini sama seperti pada link Daftar Proyek pada menu utama di header">
-                            <a href="{{route('project-list', ['tab' => 'debt'])}}">
+                            <a href="{{route('project-list', ['tab' => 'premium'])}}">
                                 <div class="feature clearfix">
                                     <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-1.png') }}">
                                     <h4>Danai Proyek</h4>
@@ -53,7 +53,7 @@
                         </div>
                     @else
                         <div class="col-md-offset-2 col-md-4 col-sm-12" data-toggle="tooltip" data-placement="bottom" title="Investasi sekarang adalah list proyek yang dapat didanai, link ini sama seperti pada link investasi pada menu utama di header">
-                            <a href="{{route('project-list', ['tab' => 'debt'])}}">
+                            <a href="{{route('project-list', ['tab' => 'premium'])}}">
                                 <div class="feature clearfix">
                                     <img class="homepage-section1-img" src="{{ URL::asset('frontend_images/homepage/login-1.png') }}">
                                     <h4>Danai Proyek</h4>
