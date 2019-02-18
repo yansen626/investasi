@@ -42,9 +42,10 @@ class TestingController extends Controller
             switch($option){
                 //1 for surat perjanjian manualy download
                 case 1:
-                    $productId = Product::whereDate('created_on', '>=', '2019-01-01 00:00:01')
-                        ->orderby('created_on')
-                        ->get();
+                    $productId = Product::where('id', "547926f0-250c-11e9-b10f-130a4494910d")->get();
+//                    $productId = Product::whereDate('created_on', '>=', '2019-01-01 00:00:01')
+//                        ->orderby('created_on')
+//                        ->get();
 //                    $productId = Product::where('category_id', 2)->where('category_id', 6)->orderby('created_on')->get();
 //                    dd($productId);
                     $pdfList = collect();

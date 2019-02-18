@@ -102,8 +102,8 @@
                 <p>Tim utama Indofund.id terdiri dari individu-individu yang telah berpengalaman dalam industri keuangan</p>
 
                 <div class="team-members row">
-                    <img class="img-responsive" src="{{ URL::asset('frontend_images/aboutus/BOD.png') }}" alt="">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
+                    {{--<img class="img-responsive" src="{{ URL::asset('frontend_images/aboutus/BOD.png') }}" alt="">--}}
+                    <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="single-member">
                             <div class="best-volunteer">
                                 <h4><strong>Ryan Filbert</strong></h4>
@@ -117,21 +117,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="best-volunteer">
-                                <h4><strong>David Alusinsing</strong></h4>
-                                <h4><i>CFO – Indofund.id</i></h4>
-                                <p>
-                                    Berpengalaman lebih dari 10 tahun di pasar modal sebagai <i>Corporate Finance</i> dan Investment Banker.
-                                </p>
-                                <p>
-                                    Mengawali karir sebagai <i>Investment Bank</i>, David Alusinsing memiliki pengalaman sebagai <i>financial advisor</i> untuk beberapa sektor seperti pertambangan, keuangan, <i>consumer</i> dan beberapa industri.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 hidden-sm">
+                    {{--<div class="col-md-3 col-sm-6 col-xs-12">--}}
+                        {{--<div class="single-member">--}}
+                            {{--<div class="best-volunteer">--}}
+                                {{--<h4><strong>David Alusinsing</strong></h4>--}}
+                                {{--<h4><i>CFO – Indofund.id</i></h4>--}}
+                                {{--<p>--}}
+                                    {{--Berpengalaman lebih dari 10 tahun di pasar modal sebagai <i>Corporate Finance</i> dan Investment Banker.--}}
+                                {{--</p>--}}
+                                {{--<p>--}}
+                                    {{--Mengawali karir sebagai <i>Investment Bank</i>, David Alusinsing memiliki pengalaman sebagai <i>financial advisor</i> untuk beberapa sektor seperti pertambangan, keuangan, <i>consumer</i> dan beberapa industri.--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    <div class="col-md-4 col-sm-6 col-xs-12 hidden-sm">
                         <div class="single-member">
                             <div class="best-volunteer">
                                 <h4><strong>Hevy Yafanny (Fanny)</strong></h4>
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12 hidden-sm">
+                    <div class="col-md-4 col-sm-6 col-xs-12 hidden-sm">
                         <div class="single-member">
                             <div class="best-volunteer">
                                 <h4><strong>Steffen Fang</strong></h4>

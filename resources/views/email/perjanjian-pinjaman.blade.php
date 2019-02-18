@@ -589,7 +589,7 @@
         <span class="custom-span">Komisi Layanan Situs</span>
         <b><span class="custom-span"></span></b>
         <span class="custom-span" lang="IN">sebesar 2.5%</span>
-        <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;(tiga koma lima </span>
+        <span lang="IN"></span><span class="custom-span" lang="IN">&nbsp;(dua koma lima </span>
         <span class="custom-span" lang="IN">persen) dari jumlah Pinjaman</span>
         <span lang="IN" style='font-size:11.0pt;line-height: 110%;font-family:"Calibri","sans-serif"'></span>
         <span class="custom-span" lang="IN">yang pembayarannya akan dilakukan dengan cara pengurangan langsung dari jumlah</span>
@@ -707,7 +707,7 @@
             </td>
             <td style='width:225.4pt;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="301">
                 <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">Nama&nbsp;&nbsp;&nbsp; : {{$user->name_ktp}}</span></p>
-                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">&nbsp;</span></p>
+                <p class="MsoNormal" style='margin-bottom:10.0pt;text-align:justify;line-height: 110%'><span lang="EN-GB">Jabatan : </span></p>
             </td>
         </tr>
     </table>
@@ -773,9 +773,9 @@
             <td style='width:266.55pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="355">
                 <p class="MsoNormal" style='margin-bottom:0cm;margin-bottom:.0001pt;line-height: normal'>
                     @if($vendor->vendor_type != "individual")
-                        <span lang="EN-GB">Indofund.id / {{ $user->first_name }} {{ $user->last_name }}</span>
-                    @else
                         <span lang="EN-GB">Indofund.id / {{ $vendor->name }}</span>
+                    @else
+                        <span lang="EN-GB">Indofund.id / {{ $user->first_name }} {{ $user->last_name }}</span>
                     @endif
                 </p>
             </td>
@@ -837,21 +837,6 @@
             <td style='width:239.55pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="319">
                 <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'>
                     <span lang="EN-GB">3% (tiga persen) atau Rp 100.000 (seratus ribu rupiah) perbulan</span>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style='width:188.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="252">
-                <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'>Jaminan</p>
-            </td>
-            <td style='width:22.5pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="30">
-                <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'><span lang="EN-GB">:</span></p>
-            </td>
-            <td style='width:239.55pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt' valign="top" width="319">
-                <p class="MsoNormal" style='margin-bottom:10.0pt;line-height:110%'>
-                    &nbsp;<br>
-                    &nbsp;<br>
-                    &nbsp;
                 </p>
             </td>
         </tr>

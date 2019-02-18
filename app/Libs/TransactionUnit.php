@@ -194,10 +194,11 @@ class TransactionUnit
                     return false;
                 }
                 $dateTimeNow = Carbon::now('Asia/Jakarta');
+                $dateTimeNow2 = Carbon::now('Asia/Jakarta');
 
                 $transaction->status_id = 5;
-                $transaction->two_day_due_date = $dateTimeNow->addDays(2);
                 $transaction->modified_on = $dateTimeNow->toDateTimeString();
+                $transaction->two_day_due_date = $dateTimeNow2->addDays(2);
                 $transaction->save();
                 Utilities::ExceptionLog("Transaction ".$orderid." Verified on ".$dateTimeNow->toDateTimeString());
 

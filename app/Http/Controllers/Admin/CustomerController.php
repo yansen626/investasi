@@ -80,7 +80,7 @@ class CustomerController extends Controller
                 $userDB->wallet_amount = $newWallet;
                 $userDB->save();
 
-                $desription = 'Pembayaran '.$request->input('description');
+                $desription = 'Penambahan '.$request->input('description');
 
                 $statement = WalletStatement::create([
                     'id'            => Uuid::generate(),

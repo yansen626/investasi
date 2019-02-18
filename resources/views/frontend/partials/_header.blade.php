@@ -63,7 +63,7 @@
                             </li>
                         @endif
                         <li>
-                            <a href="#" >Lowongan </a>
+                            <a href="{{route('job-vacancy')}}" >Lowongan </a>
                         </li>
 
                         {{--<li>--}}
@@ -128,7 +128,7 @@
                                         @if(auth()->check())
                                             <li><a href="{{route('blog-list', ['type'=>2])}}">Update</a></li>
                                         @endif
-                                        <li><a href="#">Lowongan </a></li>
+                                        <li><a href="{{route('job-vacancy')}}" >Lowongan </a></li>
 
                                         {{--<li>--}}
                                             {{--<a href="{{route('blog-list')}}">Blog</a>--}}

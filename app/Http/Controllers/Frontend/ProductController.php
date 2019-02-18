@@ -82,7 +82,7 @@ class ProductController extends Controller
         $projectCount = 1;
         if(!empty($product->vendor_id)){
             $vendor = Vendor::find($product->vendor_id);
-            $projectCount = Product::where('vendor_id', $product->vendor_id)->count();
+            $projectCount = Product::where('vendor_id', $product->vendor_id)->where('status_id', '>=', 21)->count();
 
             //get description vendor
             $vendorDesc = Utilities::TruncateString($vendor->description);

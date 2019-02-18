@@ -81,11 +81,11 @@
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Kami telah menerima instruksi tersebut dan kami akan mengirimkan konfirmasi berhasil setelah penarikan berhasil diproses</td>
                         </tr>
                         <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Bila Anda tidak merasa melakukan penarikan segera klik link berikut:</td>
+                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Bila Anda tidak merasa melakukan penarikan atau ingin membatalkan proses penarikan harap menghubungi customer service.</td>
                         </tr>
-                        <tr>
-                            <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><a href="{{ route('withdraw-cancel',['id' => $statement->id]) }}" style="text-decoration: underline">{{ route('withdraw-cancel',['id' => $statement->id]) }}</a></td>
-                        </tr>
+                        {{--<tr>--}}
+                            {{--<td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;"><a href="{{ route('withdraw-cancel',['id' => $statement->id]) }}" style="text-decoration: underline">{{ route('withdraw-cancel',['id' => $statement->id]) }}</a></td>--}}
+                        {{--</tr>--}}
                         <tr>
                             <td bgcolor="#FFFFFF" style="background-color: #ffffff; font-size: 16px; font-family: Verdana, Geneva, sans-serif; color: #3f3f3f;">Jika anda tidak melakukan permintaan ini, segera ganti password akun anda dan hubungi customer service.</td>
                         </tr>
