@@ -246,16 +246,30 @@
                             </div>
                             <div class="tab-pane fade" id="portfolio">
                                 <h2>Portfolio Breakdown</h2>
-                                <h5>Dana : Rp {{ $userDompet }}</h5>
-                                <h5>Pendanaan : Rp {{ $userInvestasi }}</h5>
-                                <h5>Pendapatan : Rp {{ $userPendapatan }}</h5>
+                                <div class="col-md-4">
+                                    <div style="background-color: #ffffcc; text-align: center;padding: 5% 0 5% 0;">
+                                        <span style="font-weight: bold;">Dana </span><br>
+                                        Rp {{ $userDompet }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="background-color: #ffffcc; text-align: center;padding: 5% 0 5% 0;">
+                                        <span style="font-weight: bold;">Total Pendanaan </span><br>
+                                        Rp {{ $userInvestasi }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="background-color: #ffffcc; text-align: center;padding: 5% 0 5% 0;">
+                                        <span style="font-weight: bold;">Pendapatan </span><br>
+                                        Rp {{ $userPendapatan }}
+                                    </div>
+                                </div>
 
-                                <input type="hidden" id="dana" value="{{ $userDompet }}">
-                                <input type="hidden" id="investasi" value="{{ $userInvestasi }}">
-                                <input type="hidden" id="pendapatan" value="{{$userPendapatan }}">
-                                {{--<div id="chart_wrap"><div id="chart_div"></div></div>--}}
-                                <div id="chart_wrap"><div id="chart"></div></div>
-                                <p id="canvas_size"></p>
+                                {{--<input type="hidden" id="dana" value="{{ $userDompet }}">--}}
+                                {{--<input type="hidden" id="investasi" value="{{ $userInvestasi }}">--}}
+                                {{--<input type="hidden" id="pendapatan" value="{{$userPendapatan }}">--}}
+                                {{--<div id="chart_wrap"><div id="chart"></div></div>--}}
+                                {{--<p id="canvas_size"></p>--}}
                             </div>
                         </div>
                     </div>

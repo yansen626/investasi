@@ -42,7 +42,7 @@ class TestingController extends Controller
             switch($option){
                 //1 for surat perjanjian manualy download
                 case 1:
-                    $productId = Product::where('id', "547926f0-250c-11e9-b10f-130a4494910d")->get();
+                    $productId = Product::where('id', "b1ab3ec0-1ee9-11e9-b184-afa28b66d715")->get();
 //                    $productId = Product::whereDate('created_on', '>=', '2019-01-01 00:00:01')
 //                        ->orderby('created_on')
 //                        ->get();
@@ -55,6 +55,9 @@ class TestingController extends Controller
                         $user = User::find($product->user_id);
                         $vendor = Vendor::find($product->vendor_id);
 
+                        $noPerjanjian = Utilities::GenerateSuratPerjanjian();
+
+                        //for custom nomor perjanjian
                         $noPerjanjian = Utilities::GenerateSuratPerjanjian();
                         $data = array(
                             'user'=>$user,

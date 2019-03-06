@@ -40,10 +40,10 @@ class SendEmail
                         $emailVerify = new EmailVerification($user);
                         Mail::to($user->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")
+                            ->bcc("indofundid.operational@gmail.com")
                             ->send($emailVerify);
 //                    Mail::to("ryanfilbert@gdrive.id")->send($emailVerify);
-//                    Mail::to("indofund.id@gmail.com")->send($emailVerify);
+//                    Mail::to("indofundid.operational@gmail.com")->send($emailVerify);
                         break;
 
                     case 'requestVerification' :
@@ -53,8 +53,8 @@ class SendEmail
 //                    Mail::to($user->email)->send($requestVerification);
                         Mail::to("ryanfilbert@gdrive.id")->send($requestVerification);
                         Mail::to("vina.marintan@gmail.com")->send($requestVerification);
-                        Mail::to("indofund.id@gmail.com")->send($requestVerification);
-//                    Mail::to("contact@mail.indofund.id")->send($requestVerification);
+                        Mail::to("indofundid.operational@gmail.com")->send($requestVerification);
+//                    Mail::to("contact@mail.indofundid.operational")->send($requestVerification);
                         break;
 
                     case 'verificationKTP' :
@@ -64,7 +64,7 @@ class SendEmail
                         $subscribeEmail = new VerificationKTP($user, $description);
                         Mail::to($user->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")
+                            ->bcc("indofundid.operational@gmail.com")
                             ->send($subscribeEmail);
                         break;
 
@@ -78,8 +78,8 @@ class SendEmail
                         $contactUsEmail = new ContactUs($name, $email, $phone, $description);
                         Mail::to("ryanfilbert@gdrive.id")->send($contactUsEmail);
                         Mail::to("vina.marintan@gmail.com")->send($contactUsEmail);
-                        Mail::to("indofund.id@gmail.com")->send($contactUsEmail);
-//                    Mail::to("contact@mail.indofund.id")->send($contactUsEmail);
+                        Mail::to("indofundid.operational@gmail.com")->send($contactUsEmail);
+//                    Mail::to("contact@mail.indofundid.operational")->send($contactUsEmail);
                         break;
 
 
@@ -98,7 +98,7 @@ class SendEmail
 
                         Mail::to($user->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")
+                            ->bcc("indofundid.operational@gmail.com")
                             ->send(new RequestWithdrawInvestor($newStatement, $user, $ip));
                         break;
 
@@ -109,7 +109,7 @@ class SendEmail
                         $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData, 1);
                         Mail::to($userData->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")
+                            ->bcc("indofundid.operational@gmail.com")
                             ->send($acceptWithdrawalEmail);
                         break;
 
@@ -121,7 +121,7 @@ class SendEmail
                         $acceptWithdrawalEmail = new AcceptPenarikan($walletStatement, $userData, 0);
                         Mail::to($userData->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")
+                            ->bcc("indofundid.operational@gmail.com")
                             ->send($acceptWithdrawalEmail);
                         break;
 
@@ -144,7 +144,7 @@ class SendEmail
                         $sendProspectus = new SendProspectus($file_path);
                         Mail::to($email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")->send($sendProspectus);
+                            ->bcc("indofundid.operational@gmail.com")->send($sendProspectus);
                         break;
 
                     //send document "perjanjian Pinjaman" to borrower
@@ -162,7 +162,7 @@ class SendEmail
                         Mail::send('email.surat-perjanjian-pinjaman', $data, function ($message) use ($pdf2, $userData, $noPerjanjian) {
                             $message->to($userData->email)
                                 ->bcc("ryanfilbert@gdrive.id")
-                                ->bcc("indofund.id@gmail.com")
+                                ->bcc("indofundid.operational@gmail.com")
                                 ->subject('Perjanjian Pinjaman di Indofund');
 
                             $message->attachData($pdf2->output(), "Perjanjian Pinjaman.pdf");
@@ -188,10 +188,10 @@ class SendEmail
                         $detailPembayaran = new DetailPembayaran($payment, $transaction, $product, $userData);
                         Mail::to($userData->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")
+                            ->bcc("indofundid.operational@gmail.com")
                             ->send($detailPembayaran);
 //                    Mail::to("ryanfilbert@gdrive.id")->send($detailPembayaran);
-//                    Mail::to("indofund.id@gmail.com")->send($detailPembayaran);
+//                    Mail::to("indofundid.operational@gmail.com")->send($detailPembayaran);
 
                         break;
 
@@ -216,16 +216,16 @@ class SendEmail
                         $invoiceEmail = new InvoicePembelian($payment, $transaction, $product, $userData);
                         Mail::to($userData->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")->send($invoiceEmail);
+                            ->bcc("indofundid.operational@gmail.com")->send($invoiceEmail);
 //                    Mail::to("ryanfilbert@gdrive.id")->send($invoiceEmail);
-//                    Mail::to("indofund.id@gmail.com")->send($invoiceEmail);
+//                    Mail::to("indofundid.operational@gmail.com")->send($invoiceEmail);
 
                         //send document "perjanjian layanan" to user
                         $pdf = PDF::loadView('email.perjanjian-layanan', $data);
                         Mail::send('email.surat-perjanjian-layanan', $data, function ($message) use ($pdf, $userData) {
                             $message->to($userData->email)
                                 ->bcc("ryanfilbert@gdrive.id")
-                                ->bcc("indofund.id@gmail.com")
+                                ->bcc("indofundid.operational@gmail.com")
                                 ->subject('Perjanjian Layanan Pinjam Meminjam di Indofund');
 
                             $message->attachData($pdf->output(), "Perjanjian Layanan.pdf");
@@ -293,7 +293,7 @@ class SendEmail
                         });
 
                         break;
-                    // pembayaran pinjaman proyek di indofund.id
+                    // pembayaran pinjaman proyek di indofund
                     case 'installmentPayment' :
                         break;
 
@@ -306,10 +306,10 @@ class SendEmail
                         $reminderInstallment = new ReminderInstallment($userData, $product, $productInstallment);
                         Mail::to($userData->email)
                             ->bcc("ryanfilbert@gdrive.id")
-                            ->bcc("indofund.id@gmail.com")
+                            ->bcc("indofundid.operational@gmail.com")
                             ->send($reminderInstallment);
 //                    Mail::to("ryanfilbert@gdrive.id")->send($reminderInstallment);
-//                    Mail::to("indofund.id@gmail.com")->send($reminderInstallment);
+//                    Mail::to("indofundid.operational@gmail.com")->send($reminderInstallment);
                         break;
                     case 'testing' :
 

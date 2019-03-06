@@ -122,9 +122,7 @@ class CustomerController extends Controller
             //send email to notify user
             $data = array(
                 'user' => $user,
-                'description' => "Kami telah melakukan verifikasi data anda di indofund.id namun data yang anda masukkan belum 
-                    lengkap sehingga kami belum bisa melakukan verifikasi lebih lanjut, mohon kirimkan ulang foto ktp beserta data 
-                    secara tepat dan sesuai"
+                'description' => "Kami telah melakukan verifikasi foto KTP beserta data anda di indofund.id."
             );
             SendEmail::SendingEmail('verificationKTP', $data);
 
@@ -152,7 +150,9 @@ class CustomerController extends Controller
             //send email to notify user
             $data = array(
                 'user' => $user,
-                'description' => "Kami telah melakukan verifikasi foto KTP beserta data anda di indofund.id."
+                'description' => "Kami telah melakukan verifikasi data anda di indofund.id namun data yang anda masukkan belum 
+                    lengkap sehingga kami belum bisa melakukan verifikasi lebih lanjut, mohon kirimkan ulang foto ktp beserta data 
+                    secara tepat dan sesuai"
             );
             SendEmail::SendingEmail('verificationKTP', $data);
 
